@@ -2,7 +2,7 @@
 
 **Bursa / Nilüfer / Odunluk Mahallesi, 4632 Ada, 9 Parsel** için hazırlanmış bir tanıtım videosu üreticisi.
 
-Araç parsel sınırını TKGM Parsel Sorgu servisinden alır ve Esri World Imagery uydu görüntüsünü indirir. Bunlardan **dron uçuşu hissi veren** 52 saniyelik bir MP4 üretir:
+Araç parsel sınırını TKGM Parsel Sorgu servisinden ya da TKGM'den indirilmiş KML/GeoJSON dosyasından alır. Uydu görüntüsü olarak **Esri Wayback arşivinde parselin en güncel tarihli çekimini** kendisi bulur ve bu çekimin tarihini videoya yazar. Bunlardan **dron uçuşu hissi veren** 52 saniyelik bir MP4 üretir:
 
 | Süre | Sahne |
 |---|---|
@@ -29,11 +29,27 @@ Ek olarak ilan sitelerinde kullanılabilecek bir **kapak görseli** (`.kapak.jpg
 
 ## Çalıştırma
 
-Varsayılan değerler zaten bu parsele ayarlıdır:
+TKGM Parsel Sorgu'dan indirilen KML dosyasıyla (önerilen):
 
 ```bash
-python drone_video.py --title "Satılık Arsa" --contact "0 5xx xxx xx xx · Ad Soyad"
+python drone_video.py --kml tkgm-parsel-sorgu-sonuc-4632-ada-9-parsel.kml \
+    --title "Satılık Arsa" --contact "0 5xx xxx xx xx · Ad Soyad"
 ```
+
+KML'deki il, ilçe, mahalle, ada, parsel, alan, nitelik ve pafta bilgileri otomatik okunur. KML vermezseniz araç sınırı TKGM servisinden çekmeyi dener. Varsayılan değerler zaten 4632 ada 9 parsele ayarlıdır.
+
+### Görüntü tarihi
+
+Araç Esri Wayback arşivindeki son 15 yayını tarar ve parselin bulunduğu noktadaki **çekim tarihlerini** listeler. Bunlar arasından en yeni çekimi seçer:
+
+```
+  Wayback 2026-10-29: çekim 2025-xx-xx Maxar
+  Wayback 2026-09-24: çekim 2025-xx-xx Maxar
+  ...
+Seçilen: Wayback 2026-10-29 yayını, çekim tarihi 2025-xx-xx
+```
+
+Çekim tarihi bilgi kartında ("Görüntü tarihi") ve kaynak satırında gösterilir. Belirli bir yayını kullanmak için `--wayback-release 2026-09-24` verilebilir.
 
 Çıktılar `cikti/` klasörüne yazılır:
 - `arsa_4632_9.mp4`: 1920×1080 video
@@ -49,6 +65,7 @@ Diğer seçenekler:
 | `--title "..."` | Üst başlık (varsayılan: *Arsa Tanıtımı*) |
 | `--contact "..."` | Bilgi kartında ve kapanışta gösterilecek iletişim bilgisi |
 | `--music dosya.mp3` / `--no-music` | Kendi müziğinizi kullanın ya da müziği kapatın |
+| `--wayback-release YYYY-AA-GG` | En günceli yerine belirli bir Wayback yayını |
 | `--detail-zoom 18` | Bölgede zoom 19 görüntüsü yoksa daha düşük detay seviyesi |
 | `--il --ilce --mahalle --ada --parsel` | Başka bir parsel için |
 
@@ -76,5 +93,5 @@ python drone_video.py --coords "40.2227,28.9847; 40.2226,28.9854; 40.2221,28.985
 ## Kaynaklar ve lisans notu
 
 - Parsel sınırı: Tapu ve Kadastro Genel Müdürlüğü (TKGM) Parsel Sorgu.
-- Uydu görüntüsü: Esri World Imagery (Esri, Maxar, Earthstar Geographics). Videoda kaynak gösterimi otomatik olarak yer alır. Ticari reklam kullanımında Esri'nin kullanım koşullarını kontrol edin. `--tile-url` ile lisansına sahip olduğunuz başka bir XYZ karo kaynağı da kullanılabilir.
+- Uydu görüntüsü: Esri World Imagery / Wayback arşivi (Esri, Maxar, Earthstar Geographics). Videoda kaynak gösterimi otomatik olarak yer alır. Ticari reklam kullanımında Esri'nin kullanım koşullarını kontrol edin. `--tile-url` ile lisansına sahip olduğunuz başka bir XYZ karo kaynağı da kullanılabilir.
 - Ekrandaki bilgiler tanıtım amaçlıdır. Resmî bilgi için tapu kayıtları esas alınmalıdır.

@@ -17,6 +17,7 @@ verilebilir.
 """
 
 import argparse
+import hashlib
 import json
 import math
 import re
@@ -26,6 +27,7 @@ import threading
 import time
 import wave
 from concurrent.futures import ThreadPoolExecutor
+from datetime import date, datetime, timezone
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -42,6 +44,7 @@ TILE_URL_DEFAULT = (
     "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
 )
 IMAGERY_CREDIT = "Uydu görüntüsü: Esri, Maxar, Earthstar Geographics"
+WAYBACK_CONFIG = "https://s3-us-west-2.amazonaws.com/config.maptiles.arcgis.com/waybackconfig.json"
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/126.0 Safari/537.36"
@@ -167,7 +170,11 @@ def load_kml(path):
                 pts.append((float(parts[0]), float(parts[1])))
         if len(pts) >= 3:
             rings.append(pts)
-    return max(rings, key=lambda r: abs(_shoelace(r))), {}
+    props = {}
+    for name, value in re.findall(
+            r'<Data\s+name="([^"]+)"\s*>\s*(?:<value>(.*?)</value>|<value\s*/>)', text, flags=re.S):
+        props[name.strip()] = value.strip()
+    return max(rings, key=lambda r: abs(_shoelace(r))), props
 
 
 def parse_coords(text):
@@ -186,6 +193,25 @@ def _shoelace(pts):
     for (x1, y1), (x2, y2) in zip(pts, pts[1:] + pts[:1]):
         a += x1 * y2 - x2 * y1
     return a / 2.0
+
+
+def simplify_ring(ring, min_turn_deg=5.0, min_edge=0.6):
+    """Aynı doğru üzerindeki ara köşeleri ve çok kısa kenarları atar (kenar ölçüleri için)."""
+    pts = [np.asarray(p, float) for p in ring]
+    changed = True
+    while changed and len(pts) > 3:
+        changed = False
+        for i in range(len(pts)):
+            a, b, c = pts[i - 1], pts[i], pts[(i + 1) % len(pts)]
+            u, v = b - a, c - b
+            nu, nv = np.linalg.norm(u), np.linalg.norm(v)
+            turn = 0.0 if min(nu, nv) < 1e-9 else math.degrees(
+                math.acos(float(np.clip(np.dot(u, v) / (nu * nv), -1, 1))))
+            if nu < min_edge or turn < min_turn_deg:
+                del pts[i]
+                changed = True
+                break
+    return np.array(pts)
 
 
 def parcel_props(raw):
@@ -263,7 +289,86 @@ def _get_tile(url, path):
 
 
 def tile_cache_key(tile_url):
-    return re.sub(r"[^A-Za-z0-9]+", "_", urlparse(tile_url).netloc or "local")[:48]
+    host = re.sub(r"[^A-Za-z0-9]+", "_", urlparse(tile_url).netloc or "local")[:40]
+    return f"{host}_{hashlib.md5(tile_url.encode()).hexdigest()[:8]}"
+
+
+# ------------------------------------------------- Esri Wayback (tarihli arşiv) ----
+
+def _parse_date(v):
+    if v in (None, ""):
+        return None
+    if isinstance(v, (int, float)) and v > 1e11:  # epoch milisaniye
+        return datetime.fromtimestamp(v / 1000, tz=timezone.utc).date()
+    m = re.match(r"(\d{4})-?(\d{2})-?(\d{2})", str(int(v)) if isinstance(v, (int, float)) else str(v))
+    return date(int(m[1]), int(m[2]), int(m[3])) if m else None
+
+
+def wayback_releases():
+    """Esri Wayback yayınları, en yeniden eskiye."""
+    r = requests.get(WAYBACK_CONFIG, timeout=30, headers={"User-Agent": USER_AGENT})
+    r.raise_for_status()
+    out = []
+    for num, item in r.json().items():
+        m = re.search(r"(\d{4}-\d{2}-\d{2})", item.get("itemTitle", ""))
+        if not m:
+            continue
+        out.append({
+            "num": num,
+            "release": m[1],
+            "tile_url": item["itemURL"].replace("{level}", "{z}").replace("{row}", "{y}").replace("{col}", "{x}"),
+            "metadata": item.get("metadataLayerUrl"),
+        })
+    return sorted(out, key=lambda x: x["release"], reverse=True)
+
+
+def wayback_capture(metadata_url, lon, lat, zoom):
+    """Bir yayında, verilen noktadaki görüntünün çekim tarihi ve kaynağı."""
+    sess = _session()
+    info = sess.get(metadata_url, params={"f": "json"}, timeout=30).json()
+    scale = 591657527.591555 / 2 ** zoom
+    layers = info.get("layers") or []
+    fits = [L["id"] for L in layers
+            if (not L.get("minScale") or scale <= L["minScale"]) and (not L.get("maxScale") or scale >= L["maxScale"])]
+    for layer_id in fits + [L["id"] for L in layers if L["id"] not in fits]:
+        q = sess.get(f"{metadata_url}/{layer_id}/query", timeout=30, params={
+            "f": "json", "geometry": json.dumps({"x": lon, "y": lat, "spatialReference": {"wkid": 4326}}),
+            "geometryType": "esriGeometryPoint", "spatialRel": "esriSpatialRelIntersects",
+            "outFields": "*", "returnGeometry": "false"}).json()
+        feats = q.get("features") or []
+        if feats:
+            a = {k.upper(): v for k, v in feats[0]["attributes"].items()}
+            d = _parse_date(a.get("SRC_DATE2")) or _parse_date(a.get("SRC_DATE"))
+            if d:
+                return {"date": d, "source": a.get("NICE_DESC") or a.get("SRC_DESC") or "",
+                        "resolution": a.get("SRC_RES")}
+    return None
+
+
+def choose_wayback(lon, lat, zoom, scan=15, release=None):
+    """En güncel çekim tarihli Wayback yayınını seçer (ya da istenen yayını)."""
+    releases = wayback_releases()
+    if release:
+        chosen = [r for r in releases if r["release"] == release]
+        if not chosen:
+            sys.exit(f"HATA: {release} tarihli Wayback yayını yok. Mevcut son yayınlar: "
+                     + ", ".join(r["release"] for r in releases[:10]))
+        releases = chosen
+    best = None
+    for rel in releases[:scan]:
+        try:
+            cap = wayback_capture(rel["metadata"], lon, lat, zoom)
+        except (requests.RequestException, ValueError, KeyError) as e:
+            print(f"  {rel['release']}: çekim tarihi sorgulanamadı ({e.__class__.__name__})")
+            continue
+        if cap:
+            print(f"  Wayback {rel['release']}: çekim {cap['date'].isoformat()} {cap['source']}")
+            if best is None or cap["date"] > best["capture"]["date"]:
+                best = dict(rel, capture=cap)
+    if best is None:
+        print("  ! Çekim tarihi öğrenilemedi; en son Wayback yayını kullanılıyor.")
+        best = dict(releases[0], capture=None)
+    return best
 
 
 def fetch_mosaic(tile_url, z, proj, radius_m, cache_dir, workers=8):
@@ -644,6 +749,7 @@ class Video:
             cy += (y1 + y2) * c
         self.center = np.array([cx / (6 * a), cy / (6 * a)]) if abs(a) > 1e-6 else self.ring.mean(0)
         self.area = abs(a)
+        self.ring_simple = simplify_ring(self.ring)
         self.radius = float(np.max(np.linalg.norm(self.ring - self.center, axis=1)))
         self.props = parcel_props(props)
 
@@ -692,11 +798,31 @@ class Video:
     def load_imagery(self):
         a = self.args
         zd = a.detail_zoom
+        self.imagery_date = None
+        if a.tile_url:
+            tile_url, self.credit = a.tile_url, IMAGERY_CREDIT
+        else:
+            print("Esri Wayback arşivinde en güncel çekim aranıyor...")
+            try:
+                wb = choose_wayback(self.proj.lon0, self.proj.lat0, zd, release=a.wayback_release)
+            except (requests.RequestException, ValueError) as e:
+                print(f"  ! Wayback arşivine ulaşılamadı ({e.__class__.__name__}); güncel World Imagery kullanılıyor.")
+                wb = {"release": "güncel", "tile_url": TILE_URL_DEFAULT, "capture": None}
+            tile_url = wb["tile_url"]
+            cap = wb["capture"]
+            self.credit = "Uydu görüntüsü: Esri World Imagery"
+            if cap:
+                self.imagery_date = cap["date"]
+                src = f" · {cap['source']}" if cap["source"] else ""
+                self.credit += f"{src} · Çekim: {cap['date'].strftime('%d.%m.%Y')}"
+                print(f"Seçilen: Wayback {wb['release']} yayını, çekim tarihi {cap['date'].isoformat()}")
+            else:
+                self.credit += f" (Wayback {wb['release']})"
         r_detail = float(np.clip(self.d_orbit * 1.5 + self.radius, 420, 1400))
         plan = [(zd - 6, 20000), (zd - 4, 6500), (zd - 2, max(1900, r_detail * 3)), (zd, r_detail)]
         self.layers = []
         for z, radius in plan:
-            img, origin, st = fetch_mosaic(a.tile_url, z, self.proj, radius, a.cache_dir, a.workers)
+            img, origin, st = fetch_mosaic(tile_url, z, self.proj, radius, a.cache_dir, a.workers)
             print(f"  zoom {z}: {img.shape[1]}x{img.shape[0]} px, {st['total']} karo, "
                   f"eksik {st['missing']}, boş {st['placeholder']}")
             bad = (st["missing"] + st["placeholder"]) / max(1, st["total"])
@@ -812,9 +938,9 @@ class Video:
             end.append(text_sprite(F, a.contact, int(44 * S), True, (255, 205, 60), max_width=maxw))
         self.spr_end = stack_sprites(end, gap=int(8 * S), align="c")
         small = int(19 * S)
-        self.spr_credit = text_sprite(F, IMAGERY_CREDIT, small, False, (235, 235, 235))
+        self.spr_credit = text_sprite(F, self.credit, small, False, (235, 235, 235))
         self.spr_end_credit = stack_sprites([
-            text_sprite(F, f"{IMAGERY_CREDIT} · Parsel sınırı: TKGM", small, False, (200, 200, 200), max_width=maxw),
+            text_sprite(F, f"{self.credit} · Parsel sınırı: TKGM", small, False, (200, 200, 200), max_width=maxw),
             text_sprite(F, "Görüntüler uydu verisinden oluşturulmuştur, temsilidir; "
                            "resmi bilgi için tapu kayıtlarını esas alınız.", small, False, (170, 170, 170),
                         max_width=maxw),
@@ -828,6 +954,8 @@ class Video:
         for key, label in (("nitelik", "Nitelik"), ("mevkii", "Mevkii"), ("pafta", "Pafta")):
             if self.props[key]:
                 rows.append((label, tr_title(self.props[key]) if key != "pafta" else self.props[key]))
+        if self.imagery_date:
+            rows.append(("Görüntü tarihi", self.imagery_date.strftime("%d.%m.%Y")))
         card_w = int((self.W * 0.40) if not self.portrait else (self.W * 0.88))
         pad = int(34 * S)
         inner = card_w - 2 * pad
@@ -846,7 +974,7 @@ class Video:
             items.append(text_sprite(F, a.contact, int(32 * S), True, (255, 205, 60), shadow=False,
                                      max_width=inner))
         body = stack_sprites(items, gap=0)
-        card = rounded_panel(card_w, body.shape[0] + 2 * pad, int(22 * S), fill=(12, 16, 22, 228))
+        card = rounded_panel(card_w, body.shape[0] + 2 * pad, int(22 * S), fill=(12, 16, 22, 238))
         over(card, body, pad, pad)
         return card
 
@@ -867,7 +995,7 @@ class Video:
         if alpha <= 0:
             return
         S = self.S
-        pts = project(H, self.ring)
+        pts = project(H, self.ring_simple)
         closed = np.vstack([pts, pts[:1]])
         if progress < 1:
             seg = np.linalg.norm(np.diff(closed, axis=0), axis=1)
@@ -899,12 +1027,14 @@ class Video:
     def draw_edge_lengths(self, frame, H, alpha):
         if alpha <= 0:
             return
-        pts = project(H, self.ring)
-        nxt = np.roll(self.ring, -1, axis=0)
-        lens = np.linalg.norm(nxt - self.ring, axis=1)
+        ring = self.ring_simple
+        pts = project(H, ring)
+        nxt = np.roll(ring, -1, axis=0)
+        lens = np.linalg.norm(nxt - ring, axis=1)
         perim = lens.sum()
         c = project(H, [self.center])[0]
         shown = sorted(range(len(lens)), key=lambda i: -lens[i])[:12]
+        placed = []
         for i in shown:
             if lens[i] < max(4.0, perim * 0.05):
                 continue
@@ -923,7 +1053,14 @@ class Video:
                 over(spr, txt, pad, pad // 4)
                 self._edge_cache[key] = spr
             p = mid + nrm * 30 * self.S
-            blit(frame, self._edge_cache[key], p[0], p[1], alpha, "cm")
+            spr = self._edge_cache[key]
+            m = 6 * self.S
+            box = (p[0] - spr.shape[1] / 2 - m, p[1] - spr.shape[0] / 2 - m,
+                   p[0] + spr.shape[1] / 2 + m, p[1] + spr.shape[0] / 2 + m)
+            if any(box[0] < q[2] and q[0] < box[2] and box[1] < q[3] and q[1] < box[3] for q in placed):
+                continue
+            placed.append(box)
+            blit(frame, spr, p[0], p[1], alpha, "cm")
 
     def draw_scale_bar(self, frame, dist, alpha):
         if alpha <= 0:
@@ -1098,7 +1235,9 @@ def main(argv=None):
     v.add_argument("--font", help="Normal yazı tipi dosyası (.ttf/.otf)")
     v.add_argument("--font-bold", help="Kalın yazı tipi dosyası (.ttf/.otf)")
     m = p.add_argument_group("Görüntü kaynağı")
-    m.add_argument("--tile-url", default=TILE_URL_DEFAULT, help="XYZ karo adresi ({z}/{x}/{y})")
+    m.add_argument("--tile-url", help="Kendi XYZ karo adresiniz ({z}/{x}/{y}); verilmezse Esri Wayback "
+                                      "arşivindeki en güncel çekim kullanılır")
+    m.add_argument("--wayback-release", help="Belirli bir Wayback yayın tarihi (YYYY-AA-GG)")
     m.add_argument("--detail-zoom", type=int, default=19, help="En yakın zoom seviyesi (18-19)")
     m.add_argument("--cache-dir", default=str(Path(__file__).with_name(".karo_onbellek")))
     m.add_argument("--workers", type=int, default=8)
@@ -1116,6 +1255,10 @@ def main(argv=None):
         ring, props = load_geojson(args.geojson)
     elif args.kml:
         ring, props = load_kml(args.kml)
+        for arg, key in (("il", "İl"), ("ilce", "İlçe"), ("mahalle", "Mahalle"), ("ada", "Ada"),
+                         ("parsel", "ParselNo")):
+            if props.get(key):
+                setattr(args, arg, props[key])
     elif args.coords:
         ring, props = parse_coords(args.coords)
     else:
