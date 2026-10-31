@@ -1,0 +1,2176 @@
+{
+ "duration": 98.24,
+ "rate": 6.140471919414927,
+ "words": [
+  {
+   "i": 0,
+   "chunk": "kemik",
+   "text": "Kemiklerin,",
+   "start": 0.06,
+   "end": 0.68
+  },
+  {
+   "i": 1,
+   "chunk": "onyil",
+   "text": "yaklaşık",
+   "start": 0.83,
+   "end": 1.329
+  },
+  {
+   "i": 2,
+   "chunk": "onyil",
+   "text": "on",
+   "start": 1.329,
+   "end": 1.496
+  },
+  {
+   "i": 3,
+   "chunk": "onyil",
+   "text": "yılda",
+   "start": 1.496,
+   "end": 1.829
+  },
+  {
+   "i": 4,
+   "chunk": "onyil",
+   "text": "bir",
+   "start": 1.829,
+   "end": 1.995
+  },
+  {
+   "i": 5,
+   "chunk": "bastan",
+   "text": "baştan",
+   "start": 1.995,
+   "end": 2.328
+  },
+  {
+   "i": 6,
+   "chunk": "bastan",
+   "text": "yenileniyor.",
+   "start": 2.328,
+   "end": 3.16
+  },
+  {
+   "i": 7,
+   "chunk": "kan",
+   "text": "Kırmızı",
+   "start": 3.7,
+   "end": 4.194
+  },
+  {
+   "i": 8,
+   "chunk": "kan",
+   "text": "kan",
+   "start": 4.194,
+   "end": 4.358
+  },
+  {
+   "i": 9,
+   "chunk": "kan",
+   "text": "hücrelerin",
+   "start": 4.358,
+   "end": 5.016
+  },
+  {
+   "i": 10,
+   "chunk": "dortay",
+   "text": "dört",
+   "start": 5.016,
+   "end": 5.181
+  },
+  {
+   "i": 11,
+   "chunk": "dortay",
+   "text": "ayda,",
+   "start": 5.181,
+   "end": 5.51
+  },
+  {
+   "i": 12,
+   "chunk": "deri",
+   "text": "derinin",
+   "start": 5.84,
+   "end": 6.292
+  },
+  {
+   "i": 13,
+   "chunk": "deri",
+   "text": "yüzeyi",
+   "start": 6.292,
+   "end": 6.745
+  },
+  {
+   "i": 14,
+   "chunk": "deri",
+   "text": "ise",
+   "start": 6.745,
+   "end": 7.046
+  },
+  {
+   "i": 15,
+   "chunk": "hafta",
+   "text": "birkaç",
+   "start": 7.046,
+   "end": 7.348
+  },
+  {
+   "i": 16,
+   "chunk": "hafta",
+   "text": "haftada.",
+   "start": 7.348,
+   "end": 7.8
+  },
+  {
+   "i": 17,
+   "chunk": "yani",
+   "text": "Yani",
+   "start": 8.4,
+   "end": 8.725
+  },
+  {
+   "i": 18,
+   "chunk": "yani",
+   "text": "on",
+   "start": 8.725,
+   "end": 8.888
+  },
+  {
+   "i": 19,
+   "chunk": "yani",
+   "text": "yıl",
+   "start": 8.888,
+   "end": 9.051
+  },
+  {
+   "i": 20,
+   "chunk": "yani",
+   "text": "önceki",
+   "start": 9.051,
+   "end": 9.539
+  },
+  {
+   "i": 21,
+   "chunk": "beden",
+   "text": "bedeninden,",
+   "start": 9.539,
+   "end": 10.19
+  },
+  {
+   "i": 22,
+   "chunk": "bugun",
+   "text": "bugün",
+   "start": 10.5,
+   "end": 10.812
+  },
+  {
+   "i": 23,
+   "chunk": "bugun",
+   "text": "geriye",
+   "start": 10.812,
+   "end": 11.28
+  },
+  {
+   "i": 24,
+   "chunk": "azsey",
+   "text": "çok",
+   "start": 11.28,
+   "end": 11.436
+  },
+  {
+   "i": 25,
+   "chunk": "azsey",
+   "text": "az",
+   "start": 11.436,
+   "end": 11.592
+  },
+  {
+   "i": 26,
+   "chunk": "azsey",
+   "text": "şey",
+   "start": 11.592,
+   "end": 11.748
+  },
+  {
+   "i": 27,
+   "chunk": "azsey",
+   "text": "kaldı.",
+   "start": 11.748,
+   "end": 12.06
+  },
+  {
+   "i": 28,
+   "chunk": "peki",
+   "text": "Peki,",
+   "start": 12.74,
+   "end": 13.08
+  },
+  {
+   "i": 29,
+   "chunk": "peki",
+   "text": "on",
+   "start": 13.5,
+   "end": 13.665
+  },
+  {
+   "i": 30,
+   "chunk": "peki",
+   "text": "yıl",
+   "start": 13.665,
+   "end": 13.83
+  },
+  {
+   "i": 31,
+   "chunk": "peki",
+   "text": "önceki",
+   "start": 13.83,
+   "end": 14.325
+  },
+  {
+   "i": 32,
+   "chunk": "peki",
+   "text": "sen...",
+   "start": 14.325,
+   "end": 14.49
+  },
+  {
+   "i": 33,
+   "chunk": "halasen",
+   "text": "hâlâ",
+   "start": 15.06,
+   "end": 15.428
+  },
+  {
+   "i": 34,
+   "chunk": "halasen",
+   "text": "sen",
+   "start": 15.428,
+   "end": 15.612
+  },
+  {
+   "i": 35,
+   "chunk": "halasen",
+   "text": "misin?",
+   "start": 15.612,
+   "end": 15.98
+  },
+  {
+   "i": 36,
+   "chunk": "anilar",
+   "text": "Anıların",
+   "start": 16.74,
+   "end": 17.307
+  },
+  {
+   "i": 37,
+   "chunk": "anilar",
+   "text": "aynı.",
+   "start": 17.307,
+   "end": 17.59
+  },
+  {
+   "i": 38,
+   "chunk": "isim",
+   "text": "İsmin",
+   "start": 17.99,
+   "end": 18.345
+  },
+  {
+   "i": 39,
+   "chunk": "isim",
+   "text": "aynı.",
+   "start": 18.345,
+   "end": 18.7
+  },
+  {
+   "i": 40,
+   "chunk": "ben",
+   "text": "\"Ben\"",
+   "start": 19.17,
+   "end": 19.352
+  },
+  {
+   "i": 41,
+   "chunk": "ben",
+   "text": "dediğin",
+   "start": 19.352,
+   "end": 19.898
+  },
+  {
+   "i": 42,
+   "chunk": "ben",
+   "text": "şey",
+   "start": 19.898,
+   "end": 20.08
+  },
+  {
+   "i": 43,
+   "chunk": "degismedi",
+   "text": "hiç",
+   "start": 20.08,
+   "end": 20.262
+  },
+  {
+   "i": 44,
+   "chunk": "degismedi",
+   "text": "değişmedi.",
+   "start": 20.262,
+   "end": 20.99
+  },
+  {
+   "i": 45,
+   "chunk": "parcalar",
+   "text": "Parçalar",
+   "start": 21.53,
+   "end": 21.95
+  },
+  {
+   "i": 46,
+   "chunk": "parcalar",
+   "text": "değişiyor,",
+   "start": 21.95,
+   "end": 22.51
+  },
+  {
+   "i": 47,
+   "chunk": "kaliyor",
+   "text": "ama",
+   "start": 22.88,
+   "end": 23.143
+  },
+  {
+   "i": 48,
+   "chunk": "kaliyor",
+   "text": "sen",
+   "start": 23.143,
+   "end": 23.274
+  },
+  {
+   "i": 49,
+   "chunk": "kaliyor",
+   "text": "kalıyorsun.",
+   "start": 23.274,
+   "end": 23.8
+  },
+  {
+   "i": 50,
+   "chunk": "bilim",
+   "text": "Bilim",
+   "start": 24.5,
+   "end": 24.773
+  },
+  {
+   "i": 51,
+   "chunk": "bilim",
+   "text": "insanları",
+   "start": 24.773,
+   "end": 25.32
+  },
+  {
+   "i": 52,
+   "chunk": "beyin",
+   "text": "beyni",
+   "start": 25.32,
+   "end": 25.593
+  },
+  {
+   "i": 53,
+   "chunk": "beyin",
+   "text": "inceledi.",
+   "start": 25.593,
+   "end": 26.14
+  },
+  {
+   "i": 54,
+   "chunk": "noron",
+   "text": "Yaklaşık",
+   "start": 26.64,
+   "end": 27.161
+  },
+  {
+   "i": 55,
+   "chunk": "noron",
+   "text": "seksen",
+   "start": 27.161,
+   "end": 27.508
+  },
+  {
+   "i": 56,
+   "chunk": "noron",
+   "text": "altı",
+   "start": 27.508,
+   "end": 27.855
+  },
+  {
+   "i": 57,
+   "chunk": "noron",
+   "text": "milyar",
+   "start": 27.855,
+   "end": 28.203
+  },
+  {
+   "i": 58,
+   "chunk": "noron",
+   "text": "nöron,",
+   "start": 28.203,
+   "end": 28.55
+  },
+  {
+   "i": 59,
+   "chunk": "baglanti",
+   "text": "trilyonlarca",
+   "start": 28.85,
+   "end": 29.633
+  },
+  {
+   "i": 60,
+   "chunk": "baglanti",
+   "text": "bağlantı.",
+   "start": 29.633,
+   "end": 30.22
+  },
+  {
+   "i": 61,
+   "chunk": "hangi",
+   "text": "Hangi",
+   "start": 30.71,
+   "end": 31.084
+  },
+  {
+   "i": 62,
+   "chunk": "hangi",
+   "text": "düşüncede",
+   "start": 31.084,
+   "end": 31.831
+  },
+  {
+   "i": 63,
+   "chunk": "bolge",
+   "text": "hangi",
+   "start": 31.831,
+   "end": 32.205
+  },
+  {
+   "i": 64,
+   "chunk": "bolge",
+   "text": "bölgenin",
+   "start": 32.205,
+   "end": 32.766
+  },
+  {
+   "i": 65,
+   "chunk": "bolge",
+   "text": "çalıştığını",
+   "start": 32.766,
+   "end": 33.7
+  },
+  {
+   "i": 66,
+   "chunk": "gorebiliyoruz",
+   "text": "görebiliyoruz.",
+   "start": 34.24,
+   "end": 35.92
+  },
+  {
+   "i": 67,
+   "chunk": "amabir",
+   "text": "Ama",
+   "start": 36.43,
+   "end": 36.692
+  },
+  {
+   "i": 68,
+   "chunk": "amabir",
+   "text": "bir",
+   "start": 36.692,
+   "end": 36.823
+  },
+  {
+   "i": 69,
+   "chunk": "amabir",
+   "text": "soru",
+   "start": 36.823,
+   "end": 37.085
+  },
+  {
+   "i": 70,
+   "chunk": "cevapsiz",
+   "text": "hâlâ",
+   "start": 37.085,
+   "end": 37.347
+  },
+  {
+   "i": 71,
+   "chunk": "cevapsiz",
+   "text": "cevapsız:",
+   "start": 37.347,
+   "end": 37.74
+  },
+  {
+   "i": 72,
+   "chunk": "elektrik",
+   "text": "Bu",
+   "start": 38.08,
+   "end": 38.188
+  },
+  {
+   "i": 73,
+   "chunk": "elektrik",
+   "text": "elektrik",
+   "start": 38.188,
+   "end": 38.511
+  },
+  {
+   "i": 74,
+   "chunk": "elektrik",
+   "text": "sinyalleri,",
+   "start": 38.511,
+   "end": 38.942
+  },
+  {
+   "i": 75,
+   "chunk": "nasil",
+   "text": "nasıl",
+   "start": 38.942,
+   "end": 39.158
+  },
+  {
+   "i": 76,
+   "chunk": "nasil",
+   "text": "oluyor",
+   "start": 39.158,
+   "end": 39.481
+  },
+  {
+   "i": 77,
+   "chunk": "nasil",
+   "text": "da",
+   "start": 39.481,
+   "end": 39.589
+  },
+  {
+   "i": 78,
+   "chunk": "hisseden",
+   "text": "\"ben\"",
+   "start": 39.589,
+   "end": 39.697
+  },
+  {
+   "i": 79,
+   "chunk": "hisseden",
+   "text": "diye",
+   "start": 39.697,
+   "end": 39.912
+  },
+  {
+   "i": 80,
+   "chunk": "hisseden",
+   "text": "hisseden",
+   "start": 39.912,
+   "end": 40.236
+  },
+  {
+   "i": 81,
+   "chunk": "donusuyor",
+   "text": "birine",
+   "start": 40.236,
+   "end": 40.559
+  },
+  {
+   "i": 82,
+   "chunk": "donusuyor",
+   "text": "dönüşüyor?",
+   "start": 40.559,
+   "end": 40.99
+  },
+  {
+   "i": 83,
+   "chunk": "chalmers",
+   "text": "Filozof",
+   "start": 41.72,
+   "end": 42.34
+  },
+  {
+   "i": 84,
+   "chunk": "chalmers",
+   "text": "David",
+   "start": 42.34,
+   "end": 42.753
+  },
+  {
+   "i": 85,
+   "chunk": "chalmers",
+   "text": "Chalmers",
+   "start": 42.753,
+   "end": 43.167
+  },
+  {
+   "i": 86,
+   "chunk": "buna",
+   "text": "buna,",
+   "start": 43.167,
+   "end": 43.58
+  },
+  {
+   "i": 87,
+   "chunk": "zor",
+   "text": "bilincin",
+   "start": 43.79,
+   "end": 44.307
+  },
+  {
+   "i": 88,
+   "chunk": "zor",
+   "text": "zor",
+   "start": 44.307,
+   "end": 44.479
+  },
+  {
+   "i": 89,
+   "chunk": "zor",
+   "text": "problemi",
+   "start": 44.479,
+   "end": 44.996
+  },
+  {
+   "i": 90,
+   "chunk": "zor",
+   "text": "diyor.",
+   "start": 44.996,
+   "end": 45.34
+  },
+  {
+   "i": 91,
+   "chunk": "oysa",
+   "text": "Oysa",
+   "start": 45.96,
+   "end": 46.284
+  },
+  {
+   "i": 92,
+   "chunk": "oysa",
+   "text": "bu",
+   "start": 46.284,
+   "end": 46.446
+  },
+  {
+   "i": 93,
+   "chunk": "oysa",
+   "text": "soru,",
+   "start": 46.446,
+   "end": 46.77
+  },
+  {
+   "i": 94,
+   "chunk": "asir",
+   "text": "on",
+   "start": 47.07,
+   "end": 47.212
+  },
+  {
+   "i": 95,
+   "chunk": "asir",
+   "text": "dört",
+   "start": 47.212,
+   "end": 47.354
+  },
+  {
+   "i": 96,
+   "chunk": "asir",
+   "text": "asır",
+   "start": 47.354,
+   "end": 47.638
+  },
+  {
+   "i": 97,
+   "chunk": "asir",
+   "text": "önce",
+   "start": 47.638,
+   "end": 47.922
+  },
+  {
+   "i": 98,
+   "chunk": "asir",
+   "text": "de",
+   "start": 47.922,
+   "end": 48.064
+  },
+  {
+   "i": 99,
+   "chunk": "asir",
+   "text": "soruldu.",
+   "start": 48.064,
+   "end": 48.49
+  },
+  {
+   "i": 100,
+   "chunk": "isra",
+   "text": "İsrâ",
+   "start": 49.11,
+   "end": 49.453
+  },
+  {
+   "i": 101,
+   "chunk": "isra",
+   "text": "suresi,",
+   "start": 49.453,
+   "end": 49.968
+  },
+  {
+   "i": 102,
+   "chunk": "ayet85",
+   "text": "seksen",
+   "start": 49.968,
+   "end": 50.312
+  },
+  {
+   "i": 103,
+   "chunk": "ayet85",
+   "text": "beşinci",
+   "start": 50.312,
+   "end": 50.827
+  },
+  {
+   "i": 104,
+   "chunk": "ayet85",
+   "text": "ayet.",
+   "start": 50.827,
+   "end": 51.17
+  },
+  {
+   "i": 105,
+   "chunk": "allah",
+   "text": "Allah",
+   "start": 51.82,
+   "end": 52.105
+  },
+  {
+   "i": 106,
+   "chunk": "allah",
+   "text": "celle",
+   "start": 52.105,
+   "end": 52.39
+  },
+  {
+   "i": 107,
+   "chunk": "allah",
+   "text": "celâlühû",
+   "start": 52.39,
+   "end": 52.96
+  },
+  {
+   "i": 108,
+   "chunk": "buyuruyor",
+   "text": "buyuruyor:",
+   "start": 52.96,
+   "end": 53.53
+  },
+  {
+   "i": 109,
+   "chunk": "a1",
+   "text": "\"Ve",
+   "start": 54.08,
+   "end": 54.288
+  },
+  {
+   "i": 110,
+   "chunk": "a1",
+   "text": "yes'elûneke",
+   "start": 54.288,
+   "end": 55.327
+  },
+  {
+   "i": 111,
+   "chunk": "a2",
+   "text": "ani'r-rûh.",
+   "start": 55.327,
+   "end": 55.95
+  },
+  {
+   "i": 112,
+   "chunk": "a3",
+   "text": "Kuli'r-rûhu",
+   "start": 56.44,
+   "end": 57.236
+  },
+  {
+   "i": 113,
+   "chunk": "a4",
+   "text": "min",
+   "start": 57.236,
+   "end": 57.434
+  },
+  {
+   "i": 114,
+   "chunk": "a4",
+   "text": "emri",
+   "start": 57.434,
+   "end": 57.832
+  },
+  {
+   "i": 115,
+   "chunk": "a4",
+   "text": "Rabbî.",
+   "start": 57.832,
+   "end": 58.23
+  },
+  {
+   "i": 116,
+   "chunk": "a5",
+   "text": "Ve",
+   "start": 58.75,
+   "end": 58.966
+  },
+  {
+   "i": 117,
+   "chunk": "a5",
+   "text": "mâ",
+   "start": 58.966,
+   "end": 59.181
+  },
+  {
+   "i": 118,
+   "chunk": "a5",
+   "text": "ûtîtum",
+   "start": 59.181,
+   "end": 59.829
+  },
+  {
+   "i": 119,
+   "chunk": "a6",
+   "text": "mine'l-ilmi",
+   "start": 59.829,
+   "end": 60.691
+  },
+  {
+   "i": 120,
+   "chunk": "a6",
+   "text": "illâ",
+   "start": 60.691,
+   "end": 61.123
+  },
+  {
+   "i": 121,
+   "chunk": "a6",
+   "text": "kalîlâ.\"",
+   "start": 61.123,
+   "end": 61.77
+  },
+  {
+   "i": 122,
+   "chunk": "m1",
+   "text": "Sana",
+   "start": 62.42,
+   "end": 62.733
+  },
+  {
+   "i": 123,
+   "chunk": "m1",
+   "text": "ruhu",
+   "start": 62.733,
+   "end": 63.045
+  },
+  {
+   "i": 124,
+   "chunk": "m1",
+   "text": "soruyorlar.",
+   "start": 63.045,
+   "end": 63.67
+  },
+  {
+   "i": 125,
+   "chunk": "m2",
+   "text": "De",
+   "start": 64.12,
+   "end": 64.295
+  },
+  {
+   "i": 126,
+   "chunk": "m2",
+   "text": "ki:",
+   "start": 64.295,
+   "end": 64.47
+  },
+  {
+   "i": 127,
+   "chunk": "m3",
+   "text": "Ruh,",
+   "start": 64.9,
+   "end": 65.18
+  },
+  {
+   "i": 128,
+   "chunk": "m3",
+   "text": "Rabbimin",
+   "start": 65.48,
+   "end": 65.981
+  },
+  {
+   "i": 129,
+   "chunk": "m3",
+   "text": "emrindendir.",
+   "start": 65.981,
+   "end": 66.65
+  },
+  {
+   "i": 130,
+   "chunk": "m4",
+   "text": "Ve",
+   "start": 67.22,
+   "end": 67.378
+  },
+  {
+   "i": 131,
+   "chunk": "m4",
+   "text": "size",
+   "start": 67.378,
+   "end": 67.695
+  },
+  {
+   "i": 132,
+   "chunk": "m4",
+   "text": "ilimden,",
+   "start": 67.695,
+   "end": 68.17
+  },
+  {
+   "i": 133,
+   "chunk": "m5",
+   "text": "ancak",
+   "start": 68.49,
+   "end": 68.85
+  },
+  {
+   "i": 134,
+   "chunk": "m5",
+   "text": "pek",
+   "start": 68.85,
+   "end": 69.03
+  },
+  {
+   "i": 135,
+   "chunk": "m5",
+   "text": "az",
+   "start": 69.03,
+   "end": 69.21
+  },
+  {
+   "i": 136,
+   "chunk": "m6",
+   "text": "bir",
+   "start": 69.21,
+   "end": 69.39
+  },
+  {
+   "i": 137,
+   "chunk": "m6",
+   "text": "şey",
+   "start": 69.39,
+   "end": 69.57
+  },
+  {
+   "i": 138,
+   "chunk": "m6",
+   "text": "verilmiştir.",
+   "start": 69.57,
+   "end": 70.29
+  },
+  {
+   "i": 139,
+   "chunk": "dikkat",
+   "text": "Dikkat",
+   "start": 70.95,
+   "end": 71.223
+  },
+  {
+   "i": 140,
+   "chunk": "dikkat",
+   "text": "et.",
+   "start": 71.223,
+   "end": 71.36
+  },
+  {
+   "i": 141,
+   "chunk": "ne",
+   "text": "Ayet,",
+   "start": 71.9,
+   "end": 72.3
+  },
+  {
+   "i": 142,
+   "chunk": "ne",
+   "text": "ruhun",
+   "start": 72.53,
+   "end": 72.819
+  },
+  {
+   "i": 143,
+   "chunk": "ne",
+   "text": "ne",
+   "start": 72.819,
+   "end": 72.964
+  },
+  {
+   "i": 144,
+   "chunk": "ne",
+   "text": "olduğunu",
+   "start": 72.964,
+   "end": 73.542
+  },
+  {
+   "i": 145,
+   "chunk": "anlatmiyor",
+   "text": "anlatmıyor;",
+   "start": 73.542,
+   "end": 74.12
+  },
+  {
+   "i": 146,
+   "chunk": "kimin",
+   "text": "kimin",
+   "start": 74.63,
+   "end": 74.915
+  },
+  {
+   "i": 147,
+   "chunk": "kimin",
+   "text": "emrinden",
+   "start": 74.915,
+   "end": 75.343
+  },
+  {
+   "i": 148,
+   "chunk": "kimin",
+   "text": "olduğunu",
+   "start": 75.343,
+   "end": 75.912
+  },
+  {
+   "i": 149,
+   "chunk": "soyluyor",
+   "text": "söylüyor.",
+   "start": 75.912,
+   "end": 76.34
+  },
+  {
+   "i": 150,
+   "chunk": "ekliyor",
+   "text": "Ve",
+   "start": 76.77,
+   "end": 76.915
+  },
+  {
+   "i": 151,
+   "chunk": "ekliyor",
+   "text": "ekliyor:",
+   "start": 76.915,
+   "end": 77.35
+  },
+  {
+   "i": 152,
+   "chunk": "bilginiz",
+   "text": "bilginiz",
+   "start": 77.85,
+   "end": 78.615
+  },
+  {
+   "i": 153,
+   "chunk": "bilginiz",
+   "text": "az.",
+   "start": 78.615,
+   "end": 78.87
+  },
+  {
+   "i": 154,
+   "chunk": "sonra",
+   "text": "On",
+   "start": 79.43,
+   "end": 79.61
+  },
+  {
+   "i": 155,
+   "chunk": "sonra",
+   "text": "dört",
+   "start": 79.61,
+   "end": 79.79
+  },
+  {
+   "i": 156,
+   "chunk": "sonra",
+   "text": "asır",
+   "start": 79.79,
+   "end": 80.15
+  },
+  {
+   "i": 157,
+   "chunk": "sonra",
+   "text": "sonra,",
+   "start": 80.15,
+   "end": 80.51
+  },
+  {
+   "i": 158,
+   "chunk": "lab",
+   "text": "en",
+   "start": 80.81,
+   "end": 80.954
+  },
+  {
+   "i": 159,
+   "chunk": "lab",
+   "text": "gelişmiş",
+   "start": 80.954,
+   "end": 81.385
+  },
+  {
+   "i": 160,
+   "chunk": "lab",
+   "text": "laboratuvarlar",
+   "start": 81.385,
+   "end": 82.246
+  },
+  {
+   "i": 161,
+   "chunk": "lab",
+   "text": "da",
+   "start": 82.246,
+   "end": 82.39
+  },
+  {
+   "i": 162,
+   "chunk": "nokta",
+   "text": "tam",
+   "start": 82.55,
+   "end": 82.686
+  },
+  {
+   "i": 163,
+   "chunk": "nokta",
+   "text": "bu",
+   "start": 82.686,
+   "end": 82.822
+  },
+  {
+   "i": 164,
+   "chunk": "nokta",
+   "text": "noktada",
+   "start": 82.822,
+   "end": 83.231
+  },
+  {
+   "i": 165,
+   "chunk": "nokta",
+   "text": "duruyor.",
+   "start": 83.231,
+   "end": 83.64
+  },
+  {
+   "i": 166,
+   "chunk": "seni1",
+   "text": "Seni",
+   "start": 84.19,
+   "end": 84.593
+  },
+  {
+   "i": 167,
+   "chunk": "seni1",
+   "text": "sen",
+   "start": 84.593,
+   "end": 84.795
+  },
+  {
+   "i": 168,
+   "chunk": "seni1",
+   "text": "yapan",
+   "start": 84.795,
+   "end": 85.198
+  },
+  {
+   "i": 169,
+   "chunk": "seni1",
+   "text": "şey,",
+   "start": 85.198,
+   "end": 85.4
+  },
+  {
+   "i": 170,
+   "chunk": "hucre",
+   "text": "değişen",
+   "start": 85.58,
+   "end": 85.973
+  },
+  {
+   "i": 171,
+   "chunk": "hucre",
+   "text": "hücrelerin",
+   "start": 85.973,
+   "end": 86.498
+  },
+  {
+   "i": 172,
+   "chunk": "hucre",
+   "text": "değil.",
+   "start": 86.498,
+   "end": 86.76
+  },
+  {
+   "i": 173,
+   "chunk": "atom",
+   "text": "Atomların",
+   "start": 87.28,
+   "end": 87.909
+  },
+  {
+   "i": 174,
+   "chunk": "atom",
+   "text": "hiç",
+   "start": 87.909,
+   "end": 88.066
+  },
+  {
+   "i": 175,
+   "chunk": "atom",
+   "text": "değil.",
+   "start": 88.066,
+   "end": 88.38
+  },
+  {
+   "i": 176,
+   "chunk": "seni2",
+   "text": "Seni",
+   "start": 88.98,
+   "end": 89.368
+  },
+  {
+   "i": 177,
+   "chunk": "seni2",
+   "text": "sen",
+   "start": 89.368,
+   "end": 89.562
+  },
+  {
+   "i": 178,
+   "chunk": "seni2",
+   "text": "yapan,",
+   "start": 89.562,
+   "end": 89.95
+  },
+  {
+   "i": 179,
+   "chunk": "emrinden",
+   "text": "Rabbinin",
+   "start": 90.29,
+   "end": 90.854
+  },
+  {
+   "i": 180,
+   "chunk": "emrinden",
+   "text": "emrinden",
+   "start": 90.854,
+   "end": 91.418
+  },
+  {
+   "i": 181,
+   "chunk": "emrinden",
+   "text": "gelen",
+   "start": 91.418,
+   "end": 91.794
+  },
+  {
+   "i": 182,
+   "chunk": "oruh",
+   "text": "o",
+   "start": 91.794,
+   "end": 91.982
+  },
+  {
+   "i": 183,
+   "chunk": "oruh",
+   "text": "ruh.",
+   "start": 91.982,
+   "end": 92.17
+  },
+  {
+   "i": 184,
+   "chunk": "veoruh",
+   "text": "Ve",
+   "start": 92.79,
+   "end": 92.973
+  },
+  {
+   "i": 185,
+   "chunk": "veoruh",
+   "text": "o",
+   "start": 92.973,
+   "end": 93.157
+  },
+  {
+   "i": 186,
+   "chunk": "veoruh",
+   "text": "ruh,",
+   "start": 93.157,
+   "end": 93.34
+  },
+  {
+   "i": 187,
+   "chunk": "sahibine",
+   "text": "bir",
+   "start": 93.73,
+   "end": 93.867
+  },
+  {
+   "i": 188,
+   "chunk": "sahibine",
+   "text": "gün",
+   "start": 93.867,
+   "end": 94.003
+  },
+  {
+   "i": 189,
+   "chunk": "sahibine",
+   "text": "sahibine",
+   "start": 94.003,
+   "end": 94.55
+  },
+  {
+   "i": 190,
+   "chunk": "sahibine",
+   "text": "dönecek.",
+   "start": 94.55,
+   "end": 94.96
+  },
+  {
+   "i": 191,
+   "chunk": "pekisen",
+   "text": "Peki",
+   "start": 95.61,
+   "end": 95.963
+  },
+  {
+   "i": 192,
+   "chunk": "pekisen",
+   "text": "sen,",
+   "start": 95.963,
+   "end": 96.14
+  },
+  {
+   "i": 193,
+   "chunk": "onu",
+   "text": "onu",
+   "start": 96.68,
+   "end": 96.96
+  },
+  {
+   "i": 194,
+   "chunk": "onu",
+   "text": "nasıl",
+   "start": 96.96,
+   "end": 97.24
+  },
+  {
+   "i": 195,
+   "chunk": "teslim",
+   "text": "teslim",
+   "start": 97.24,
+   "end": 97.52
+  },
+  {
+   "i": 196,
+   "chunk": "teslim",
+   "text": "edeceksin?",
+   "start": 97.52,
+   "end": 98.08
+  }
+ ],
+ "chunks": [
+  {
+   "id": "kemik",
+   "text": "Kemiklerin,",
+   "start": 0.06,
+   "end": 0.68,
+   "words": [
+    0
+   ]
+  },
+  {
+   "id": "onyil",
+   "text": "yaklaşık on yılda bir",
+   "start": 0.83,
+   "end": 1.995,
+   "words": [
+    1,
+    2,
+    3,
+    4
+   ]
+  },
+  {
+   "id": "bastan",
+   "text": "baştan yenileniyor.",
+   "start": 1.995,
+   "end": 3.16,
+   "words": [
+    5,
+    6
+   ]
+  },
+  {
+   "id": "kan",
+   "text": "Kırmızı kan hücrelerin",
+   "start": 3.7,
+   "end": 5.016,
+   "words": [
+    7,
+    8,
+    9
+   ]
+  },
+  {
+   "id": "dortay",
+   "text": "dört ayda,",
+   "start": 5.016,
+   "end": 5.51,
+   "words": [
+    10,
+    11
+   ]
+  },
+  {
+   "id": "deri",
+   "text": "derinin yüzeyi ise",
+   "start": 5.84,
+   "end": 7.046,
+   "words": [
+    12,
+    13,
+    14
+   ]
+  },
+  {
+   "id": "hafta",
+   "text": "birkaç haftada.",
+   "start": 7.046,
+   "end": 7.8,
+   "words": [
+    15,
+    16
+   ]
+  },
+  {
+   "id": "yani",
+   "text": "Yani on yıl önceki",
+   "start": 8.4,
+   "end": 9.539,
+   "words": [
+    17,
+    18,
+    19,
+    20
+   ]
+  },
+  {
+   "id": "beden",
+   "text": "bedeninden,",
+   "start": 9.539,
+   "end": 10.19,
+   "words": [
+    21
+   ]
+  },
+  {
+   "id": "bugun",
+   "text": "bugün geriye",
+   "start": 10.5,
+   "end": 11.28,
+   "words": [
+    22,
+    23
+   ]
+  },
+  {
+   "id": "azsey",
+   "text": "çok az şey kaldı.",
+   "start": 11.28,
+   "end": 12.06,
+   "words": [
+    24,
+    25,
+    26,
+    27
+   ]
+  },
+  {
+   "id": "peki",
+   "text": "Peki, on yıl önceki sen...",
+   "start": 12.74,
+   "end": 14.49,
+   "words": [
+    28,
+    29,
+    30,
+    31,
+    32
+   ]
+  },
+  {
+   "id": "halasen",
+   "text": "hâlâ sen misin?",
+   "start": 15.06,
+   "end": 15.98,
+   "words": [
+    33,
+    34,
+    35
+   ]
+  },
+  {
+   "id": "anilar",
+   "text": "Anıların aynı.",
+   "start": 16.74,
+   "end": 17.59,
+   "words": [
+    36,
+    37
+   ]
+  },
+  {
+   "id": "isim",
+   "text": "İsmin aynı.",
+   "start": 17.99,
+   "end": 18.7,
+   "words": [
+    38,
+    39
+   ]
+  },
+  {
+   "id": "ben",
+   "text": "\"Ben\" dediğin şey",
+   "start": 19.17,
+   "end": 20.08,
+   "words": [
+    40,
+    41,
+    42
+   ]
+  },
+  {
+   "id": "degismedi",
+   "text": "hiç değişmedi.",
+   "start": 20.08,
+   "end": 20.99,
+   "words": [
+    43,
+    44
+   ]
+  },
+  {
+   "id": "parcalar",
+   "text": "Parçalar değişiyor,",
+   "start": 21.53,
+   "end": 22.51,
+   "words": [
+    45,
+    46
+   ]
+  },
+  {
+   "id": "kaliyor",
+   "text": "ama sen kalıyorsun.",
+   "start": 22.88,
+   "end": 23.8,
+   "words": [
+    47,
+    48,
+    49
+   ]
+  },
+  {
+   "id": "bilim",
+   "text": "Bilim insanları",
+   "start": 24.5,
+   "end": 25.32,
+   "words": [
+    50,
+    51
+   ]
+  },
+  {
+   "id": "beyin",
+   "text": "beyni inceledi.",
+   "start": 25.32,
+   "end": 26.14,
+   "words": [
+    52,
+    53
+   ]
+  },
+  {
+   "id": "noron",
+   "text": "Yaklaşık seksen altı milyar nöron,",
+   "start": 26.64,
+   "end": 28.55,
+   "words": [
+    54,
+    55,
+    56,
+    57,
+    58
+   ]
+  },
+  {
+   "id": "baglanti",
+   "text": "trilyonlarca bağlantı.",
+   "start": 28.85,
+   "end": 30.22,
+   "words": [
+    59,
+    60
+   ]
+  },
+  {
+   "id": "hangi",
+   "text": "Hangi düşüncede",
+   "start": 30.71,
+   "end": 31.831,
+   "words": [
+    61,
+    62
+   ]
+  },
+  {
+   "id": "bolge",
+   "text": "hangi bölgenin çalıştığını",
+   "start": 31.831,
+   "end": 33.7,
+   "words": [
+    63,
+    64,
+    65
+   ]
+  },
+  {
+   "id": "gorebiliyoruz",
+   "text": "görebiliyoruz.",
+   "start": 34.24,
+   "end": 35.92,
+   "words": [
+    66
+   ]
+  },
+  {
+   "id": "amabir",
+   "text": "Ama bir soru",
+   "start": 36.43,
+   "end": 37.085,
+   "words": [
+    67,
+    68,
+    69
+   ]
+  },
+  {
+   "id": "cevapsiz",
+   "text": "hâlâ cevapsız:",
+   "start": 37.085,
+   "end": 37.74,
+   "words": [
+    70,
+    71
+   ]
+  },
+  {
+   "id": "elektrik",
+   "text": "Bu elektrik sinyalleri,",
+   "start": 38.08,
+   "end": 38.942,
+   "words": [
+    72,
+    73,
+    74
+   ]
+  },
+  {
+   "id": "nasil",
+   "text": "nasıl oluyor da",
+   "start": 38.942,
+   "end": 39.589,
+   "words": [
+    75,
+    76,
+    77
+   ]
+  },
+  {
+   "id": "hisseden",
+   "text": "\"ben\" diye hisseden",
+   "start": 39.589,
+   "end": 40.236,
+   "words": [
+    78,
+    79,
+    80
+   ]
+  },
+  {
+   "id": "donusuyor",
+   "text": "birine dönüşüyor?",
+   "start": 40.236,
+   "end": 40.99,
+   "words": [
+    81,
+    82
+   ]
+  },
+  {
+   "id": "chalmers",
+   "text": "Filozof David Chalmers",
+   "start": 41.72,
+   "end": 43.167,
+   "words": [
+    83,
+    84,
+    85
+   ]
+  },
+  {
+   "id": "buna",
+   "text": "buna,",
+   "start": 43.167,
+   "end": 43.58,
+   "words": [
+    86
+   ]
+  },
+  {
+   "id": "zor",
+   "text": "bilincin zor problemi diyor.",
+   "start": 43.79,
+   "end": 45.34,
+   "words": [
+    87,
+    88,
+    89,
+    90
+   ]
+  },
+  {
+   "id": "oysa",
+   "text": "Oysa bu soru,",
+   "start": 45.96,
+   "end": 46.77,
+   "words": [
+    91,
+    92,
+    93
+   ]
+  },
+  {
+   "id": "asir",
+   "text": "on dört asır önce de soruldu.",
+   "start": 47.07,
+   "end": 48.49,
+   "words": [
+    94,
+    95,
+    96,
+    97,
+    98,
+    99
+   ]
+  },
+  {
+   "id": "isra",
+   "text": "İsrâ suresi,",
+   "start": 49.11,
+   "end": 49.968,
+   "words": [
+    100,
+    101
+   ]
+  },
+  {
+   "id": "ayet85",
+   "text": "seksen beşinci ayet.",
+   "start": 49.968,
+   "end": 51.17,
+   "words": [
+    102,
+    103,
+    104
+   ]
+  },
+  {
+   "id": "allah",
+   "text": "Allah celle celâlühû",
+   "start": 51.82,
+   "end": 52.96,
+   "words": [
+    105,
+    106,
+    107
+   ]
+  },
+  {
+   "id": "buyuruyor",
+   "text": "buyuruyor:",
+   "start": 52.96,
+   "end": 53.53,
+   "words": [
+    108
+   ]
+  },
+  {
+   "id": "a1",
+   "text": "\"Ve yes'elûneke",
+   "start": 54.08,
+   "end": 55.327,
+   "words": [
+    109,
+    110
+   ]
+  },
+  {
+   "id": "a2",
+   "text": "ani'r-rûh.",
+   "start": 55.327,
+   "end": 55.95,
+   "words": [
+    111
+   ]
+  },
+  {
+   "id": "a3",
+   "text": "Kuli'r-rûhu",
+   "start": 56.44,
+   "end": 57.236,
+   "words": [
+    112
+   ]
+  },
+  {
+   "id": "a4",
+   "text": "min emri Rabbî.",
+   "start": 57.236,
+   "end": 58.23,
+   "words": [
+    113,
+    114,
+    115
+   ]
+  },
+  {
+   "id": "a5",
+   "text": "Ve mâ ûtîtum",
+   "start": 58.75,
+   "end": 59.829,
+   "words": [
+    116,
+    117,
+    118
+   ]
+  },
+  {
+   "id": "a6",
+   "text": "mine'l-ilmi illâ kalîlâ.\"",
+   "start": 59.829,
+   "end": 61.77,
+   "words": [
+    119,
+    120,
+    121
+   ]
+  },
+  {
+   "id": "m1",
+   "text": "Sana ruhu soruyorlar.",
+   "start": 62.42,
+   "end": 63.67,
+   "words": [
+    122,
+    123,
+    124
+   ]
+  },
+  {
+   "id": "m2",
+   "text": "De ki:",
+   "start": 64.12,
+   "end": 64.47,
+   "words": [
+    125,
+    126
+   ]
+  },
+  {
+   "id": "m3",
+   "text": "Ruh, Rabbimin emrindendir.",
+   "start": 64.9,
+   "end": 66.65,
+   "words": [
+    127,
+    128,
+    129
+   ]
+  },
+  {
+   "id": "m4",
+   "text": "Ve size ilimden,",
+   "start": 67.22,
+   "end": 68.17,
+   "words": [
+    130,
+    131,
+    132
+   ]
+  },
+  {
+   "id": "m5",
+   "text": "ancak pek az",
+   "start": 68.49,
+   "end": 69.21,
+   "words": [
+    133,
+    134,
+    135
+   ]
+  },
+  {
+   "id": "m6",
+   "text": "bir şey verilmiştir.",
+   "start": 69.21,
+   "end": 70.29,
+   "words": [
+    136,
+    137,
+    138
+   ]
+  },
+  {
+   "id": "dikkat",
+   "text": "Dikkat et.",
+   "start": 70.95,
+   "end": 71.36,
+   "words": [
+    139,
+    140
+   ]
+  },
+  {
+   "id": "ne",
+   "text": "Ayet, ruhun ne olduğunu",
+   "start": 71.9,
+   "end": 73.542,
+   "words": [
+    141,
+    142,
+    143,
+    144
+   ]
+  },
+  {
+   "id": "anlatmiyor",
+   "text": "anlatmıyor;",
+   "start": 73.542,
+   "end": 74.12,
+   "words": [
+    145
+   ]
+  },
+  {
+   "id": "kimin",
+   "text": "kimin emrinden olduğunu",
+   "start": 74.63,
+   "end": 75.912,
+   "words": [
+    146,
+    147,
+    148
+   ]
+  },
+  {
+   "id": "soyluyor",
+   "text": "söylüyor.",
+   "start": 75.912,
+   "end": 76.34,
+   "words": [
+    149
+   ]
+  },
+  {
+   "id": "ekliyor",
+   "text": "Ve ekliyor:",
+   "start": 76.77,
+   "end": 77.35,
+   "words": [
+    150,
+    151
+   ]
+  },
+  {
+   "id": "bilginiz",
+   "text": "bilginiz az.",
+   "start": 77.85,
+   "end": 78.87,
+   "words": [
+    152,
+    153
+   ]
+  },
+  {
+   "id": "sonra",
+   "text": "On dört asır sonra,",
+   "start": 79.43,
+   "end": 80.51,
+   "words": [
+    154,
+    155,
+    156,
+    157
+   ]
+  },
+  {
+   "id": "lab",
+   "text": "en gelişmiş laboratuvarlar da",
+   "start": 80.81,
+   "end": 82.39,
+   "words": [
+    158,
+    159,
+    160,
+    161
+   ]
+  },
+  {
+   "id": "nokta",
+   "text": "tam bu noktada duruyor.",
+   "start": 82.55,
+   "end": 83.64,
+   "words": [
+    162,
+    163,
+    164,
+    165
+   ]
+  },
+  {
+   "id": "seni1",
+   "text": "Seni sen yapan şey,",
+   "start": 84.19,
+   "end": 85.4,
+   "words": [
+    166,
+    167,
+    168,
+    169
+   ]
+  },
+  {
+   "id": "hucre",
+   "text": "değişen hücrelerin değil.",
+   "start": 85.58,
+   "end": 86.76,
+   "words": [
+    170,
+    171,
+    172
+   ]
+  },
+  {
+   "id": "atom",
+   "text": "Atomların hiç değil.",
+   "start": 87.28,
+   "end": 88.38,
+   "words": [
+    173,
+    174,
+    175
+   ]
+  },
+  {
+   "id": "seni2",
+   "text": "Seni sen yapan,",
+   "start": 88.98,
+   "end": 89.95,
+   "words": [
+    176,
+    177,
+    178
+   ]
+  },
+  {
+   "id": "emrinden",
+   "text": "Rabbinin emrinden gelen",
+   "start": 90.29,
+   "end": 91.794,
+   "words": [
+    179,
+    180,
+    181
+   ]
+  },
+  {
+   "id": "oruh",
+   "text": "o ruh.",
+   "start": 91.794,
+   "end": 92.17,
+   "words": [
+    182,
+    183
+   ]
+  },
+  {
+   "id": "veoruh",
+   "text": "Ve o ruh,",
+   "start": 92.79,
+   "end": 93.34,
+   "words": [
+    184,
+    185,
+    186
+   ]
+  },
+  {
+   "id": "sahibine",
+   "text": "bir gün sahibine dönecek.",
+   "start": 93.73,
+   "end": 94.96,
+   "words": [
+    187,
+    188,
+    189,
+    190
+   ]
+  },
+  {
+   "id": "pekisen",
+   "text": "Peki sen,",
+   "start": 95.61,
+   "end": 96.14,
+   "words": [
+    191,
+    192
+   ]
+  },
+  {
+   "id": "onu",
+   "text": "onu nasıl",
+   "start": 96.68,
+   "end": 97.24,
+   "words": [
+    193,
+    194
+   ]
+  },
+  {
+   "id": "teslim",
+   "text": "teslim edeceksin?",
+   "start": 97.24,
+   "end": 98.08,
+   "words": [
+    195,
+    196
+   ]
+  }
+ ]
+}

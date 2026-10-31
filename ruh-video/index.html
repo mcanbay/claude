@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Seni sen yapan şey nedir? · İsrâ 85</title>
+<style>
+@font-face{font-family:Kalam;font-weight:400;src:url(fonts/kalam-latin-400-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Kalam;font-weight:400;src:url(fonts/kalam-latin-ext-400-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Kalam;font-weight:700;src:url(fonts/kalam-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Kalam;font-weight:700;src:url(fonts/kalam-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Caveat;font-weight:700;src:url(fonts/caveat-latin-700-normal.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Caveat;font-weight:700;src:url(fonts/caveat-latin-ext-700-normal.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Amiri;font-weight:400;src:url(fonts/amiri-arabic-400-normal.woff2) format('woff2')}
+@font-face{font-family:Amiri;font-weight:700;src:url(fonts/amiri-arabic-700-normal.woff2) format('woff2')}
+
+:root{--ink:#26324f;--navy:#1f3166;--red:#c8372d;--teal:#2f9bb3;--green:#2e8b57;--grey:#9aa0aa;--blue:#3b5fa8}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:720px;height:1280px;overflow:hidden;background:#efede5}
+#stage{position:relative;width:720px;height:1280px;overflow:hidden;font-family:Kalam,sans-serif;color:var(--ink);
+  background-color:#efede5;
+  background-image:
+    linear-gradient(rgba(110,130,165,.17) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(110,130,165,.17) 1px,transparent 1px);
+  background-size:36px 36px;background-position:-6px -10px}
+#margin{position:absolute;left:46px;top:0;bottom:0;width:1.5px;background:rgba(214,84,84,.55)}
+#rings{position:absolute;left:0;top:0;width:720px;height:50px}
+#vignette{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 85% 70% at 50% 42%,rgba(0,0,0,0) 60%,rgba(60,50,30,.16) 100%),
+             linear-gradient(180deg,rgba(0,0,0,0) 78%,rgba(70,60,40,.10) 100%);z-index:50}
+.scene{position:absolute;inset:0}
+.abs{position:absolute}
+svg.layer{position:absolute;left:0;top:0;width:720px;height:1280px;overflow:visible}
+svg *{transform-box:fill-box;transform-origin:center}
+.title{font-weight:700;color:var(--navy);font-size:34px;text-align:center;width:720px;left:0}
+.hand{font-family:Caveat,cursive;font-weight:700}
+.red{color:var(--red)} .teal{color:var(--teal)} .green{color:var(--green)} .grey{color:var(--grey)} .navy{color:var(--navy)}
+.lbl{font-size:24px;font-weight:700;color:var(--ink);white-space:nowrap}
+.sticky{background:#f6e27a;padding:7px 14px;font-size:17px;font-weight:700;color:#3a3420;box-shadow:2px 3px 6px rgba(0,0,0,.18);white-space:nowrap}
+.stamp{border:3px solid var(--blue);outline:1.5px solid var(--blue);outline-offset:3px;color:var(--blue);font-weight:700;font-size:25px;padding:3px 14px;letter-spacing:.5px;white-space:nowrap;background:rgba(235,240,250,.35)}
+.hl{position:absolute;background:rgba(240,128,150,.42);border-radius:3px;z-index:-1}
+.ar{font-family:Amiri,serif;font-weight:700;direction:rtl;color:#1b1b1b;white-space:nowrap}
+.ar .w{display:inline-block}
+
+#capwrap{position:absolute;left:0;width:720px;top:912px;display:flex;justify-content:center;z-index:40}
+#cap{background:#fbfaf6;border:2.5px solid var(--ink);border-radius:12px;padding:6px 22px 4px;font-weight:700;font-size:28px;
+  color:var(--ink);max-width:640px;text-align:center;line-height:1.25;box-shadow:0 2px 0 rgba(38,50,79,.08)}
+#cap .f{color:#bfc2ca}
+#tag{position:absolute;left:0;width:720px;top:1002px;text-align:center;font-size:17px;font-weight:700;color:rgba(130,136,150,.75);z-index:40}
+</style>
+</head>
+<body>
+<div id="stage">
+  <div id="margin"></div>
+  <svg id="rings"></svg>
+
+  <svg width="0" height="0" style="position:absolute">
+    <defs>
+      <filter id="rough" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="4"/>
+        <feDisplacementMap in="SourceGraphic" scale="2.6"/>
+      </filter>
+      <radialGradient id="glow"><stop offset="0" stop-color="#ffe9a0" stop-opacity="1"/><stop offset=".55" stop-color="#ffd85a" stop-opacity=".55"/><stop offset="1" stop-color="#ffd85a" stop-opacity="0"/></radialGradient>
+      <marker id="arrowhead" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2e8b57"/></marker>
+      <marker id="arrowink" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#26324f"/></marker>
+    </defs>
+  </svg>
+
+  <!-- ================= SCENE 1: beden yenileniyor ================= -->
+  <div class="scene" id="s1">
+    <div class="abs title" id="s1title" style="top:118px">Seni sen yapan şey nedir?</div>
+    <div class="abs hand red" id="s1sub" style="top:166px;left:0;width:720px;text-align:center;font-size:30px">bedenin sürekli yenileniyor...</div>
+    <svg class="layer" id="s1svg"></svg>
+    <div class="abs lbl" id="r1l" style="left:160px;top:236px">Kemikler</div>
+    <div class="abs hand red" id="r1v" style="left:520px;top:232px;font-size:32px">≈ 10 yıl</div>
+    <div class="abs lbl" id="r2l" style="left:160px;top:316px">Kırmızı kan hücreleri</div>
+    <div class="abs hand red" id="r2v" style="left:520px;top:312px;font-size:32px">≈ 4 ay</div>
+    <div class="abs lbl" id="r3l" style="left:160px;top:396px">Deri yüzeyi</div>
+    <div class="abs hand red" id="r3v" style="left:520px;top:392px;font-size:32px">≈ 2–4 hafta</div>
+    <div class="abs hand teal" id="f1l" style="left:120px;top:812px;width:200px;text-align:center;font-size:28px">10 yıl önce</div>
+    <div class="abs hand navy" id="f2l" style="left:400px;top:812px;width:200px;text-align:center;font-size:28px">bugün</div>
+    <div class="abs hand red" id="s1left" style="left:486px;top:474px;font-size:26px;transform:rotate(-4deg)">geriye kalan: çok az!</div>
+  </div>
+
+  <!-- ================= SCENE 2: hâlâ sen misin ================= -->
+  <div class="scene" id="s2">
+    <div class="abs title" id="s2title" style="top:118px">10 yıl önceki sen <span class="red">=</span> bugünkü sen <span class="red" id="s2q" style="display:inline-block;font-size:44px">?</span></div>
+    <svg class="layer" id="s2svg"></svg>
+    <div class="abs hand teal" id="g1l" style="left:120px;top:472px;width:200px;text-align:center;font-size:28px">10 yıl önce</div>
+    <div class="abs hand navy" id="g2l" style="left:400px;top:472px;width:200px;text-align:center;font-size:28px">bugün</div>
+    <div class="abs lbl" id="c1" style="left:200px;top:548px;font-size:30px">anıların</div>
+    <div class="abs lbl" id="c2" style="left:200px;top:608px;font-size:30px">ismin</div>
+    <div class="abs lbl" id="c3" style="left:200px;top:668px;font-size:30px">“ben” dediğin şey</div>
+    <div class="abs hand green" id="c1v" style="left:470px;top:548px;font-size:30px">aynı</div>
+    <div class="abs hand green" id="c2v" style="left:470px;top:608px;font-size:30px">aynı</div>
+    <div class="abs hand green" id="c3v" style="left:470px;top:668px;font-size:30px">aynı</div>
+    <div class="abs hand teal" id="s2parts" style="left:0;width:720px;text-align:center;top:752px;font-size:30px">parçalar değişiyor ↻ &nbsp;·&nbsp; <span class="red" id="s2stay">sen kalıyorsun</span></div>
+  </div>
+
+  <!-- ================= SCENE 3: beyin / bilinç ================= -->
+  <div class="scene" id="s3">
+    <div class="abs title" id="s3title" style="top:118px">Beyin <span class="red">·</span> Bilinç</div>
+    <div class="abs sticky" id="s3sticky" style="left:470px;top:176px;transform:rotate(3deg)">David Chalmers · 1995</div>
+    <svg class="layer" id="s3svg"></svg>
+    <div class="abs lbl" id="n1" style="left:120px;top:498px;font-size:26px"><span class="red">≈ 86 milyar</span> nöron</div>
+    <div class="abs lbl" id="n2" style="left:390px;top:498px;font-size:26px"><span class="teal">trilyonlarca</span> bağlantı</div>
+    <div class="abs hand green" id="n3" style="left:0;width:720px;text-align:center;top:540px;font-size:28px">hangi bölge çalışıyor? → görebiliyoruz ✓</div>
+    <div class="abs lbl" id="e1" style="left:96px;top:650px;font-size:24px">elektrik sinyalleri</div>
+    <div class="abs lbl" id="e2" style="left:470px;top:650px;font-size:24px">“ben” hissi</div>
+    <div class="abs hand red" id="e3" style="left:404px;top:588px;font-size:64px">?</div>
+    <div class="abs stamp" id="s3stamp" style="left:0;top:752px;transform:rotate(-4deg)">BİLİNCİN ZOR PROBLEMİ</div>
+  </div>
+
+  <!-- ================= SCENE 4: ayet ================= -->
+  <div class="scene" id="s4">
+    <div class="abs title" id="s4a" style="top:118px">Kur’an, 14 asır önce...</div>
+    <div class="abs" id="s4hdr" style="left:66px;top:118px;font-size:34px;font-weight:700;color:var(--navy)">
+      <span style="display:inline-block;width:52px"></span>İsrâ Sûresi · 85</div>
+    <div class="abs sticky" id="s4sticky" style="left:500px;top:124px;transform:rotate(2.5deg)">konu: ruh</div>
+    <svg class="layer" id="s4svg"></svg>
+    <div class="abs ar" id="ar1" style="top:186px;right:70px;font-size:46px"><span class="w" data-k="0">وَيَسْأَلُونَكَ</span> <span class="w" data-k="1">عَنِ</span> <span class="w" data-k="2">الرُّوحِ</span></div>
+    <div class="abs ar" id="ar2" style="top:274px;right:70px;font-size:46px"><span class="w" data-k="3">قُلِ</span> <span class="w" data-k="4">الرُّوحُ</span> <span class="w" data-k="5">مِنْ</span> <span class="w" data-k="6">أَمْرِ</span> <span class="w" data-k="7">رَبِّي</span></div>
+    <div class="abs ar" id="ar3" style="top:362px;right:70px;font-size:46px"><span class="w" data-k="8">وَمَا</span> <span class="w" data-k="9">أُوتِيتُمْ</span> <span class="w" data-k="10">مِنَ</span> <span class="w" data-k="11">الْعِلْمِ</span> <span class="w" data-k="12">إِلَّا</span> <span class="w" data-k="13">قَلِيلًا</span></div>
+    <div class="abs hand red" id="ruhl" style="font-size:24px">ruh</div>
+    <div class="abs hand red" id="emrl" style="font-size:24px">Rabbimin emri</div>
+    <div class="abs hand red" id="azl" style="font-size:24px">az</div>
+    <div class="abs lbl" id="t1" style="left:96px;top:520px;font-size:28px">Sana <span class="mk" id="mk1">ruhu</span> soruyorlar.</div>
+    <div class="abs lbl" id="t2" style="left:96px;top:574px;font-size:28px">De ki: Ruh, <span class="mk" id="mk2">Rabbimin emrindendir.</span></div>
+    <div class="abs lbl" id="t3" style="left:96px;top:628px;font-size:28px">Size ilimden ancak <span class="mk" id="mk3">pek az</span> bir şey</div>
+    <div class="abs lbl" id="t4" style="left:96px;top:676px;font-size:28px">verilmiştir.</div>
+  </div>
+
+  <!-- ================= SCENE 5: ayet ne söylüyor ================= -->
+  <div class="scene" id="s5">
+    <div class="abs title" id="s5title" style="top:118px">Ayet ne söylüyor?</div>
+    <svg class="layer" id="s5svg"></svg>
+    <div class="abs lbl" id="k1t" style="left:84px;top:236px;width:260px;text-align:center;font-size:30px">Ruh <span class="navy">NEDİR?</span></div>
+    <div class="abs hand grey" id="k1v" style="left:84px;top:300px;width:260px;text-align:center;font-size:30px">anlatılmıyor</div>
+    <div class="abs lbl" id="k2t" style="left:376px;top:236px;width:260px;text-align:center;font-size:30px">Ruh <span class="navy">KİMDEN?</span></div>
+    <div class="abs hand green" id="k2v" style="left:376px;top:296px;width:260px;text-align:center;font-size:30px;line-height:1.05">Rabbimin<br>emrinden ✓</div>
+    <div class="abs lbl" id="i0" style="left:96px;top:430px;font-size:28px">insanın <span class="teal">ilmi</span>:</div>
+    <div class="abs hand grey" id="i1" style="left:300px;top:560px;font-size:30px">bilinmeyen</div>
+    <div class="abs hand red" id="i2" style="left:160px;top:606px;font-size:30px">← bildiğimiz: az</div>
+    <div class="abs stamp" id="s5stamp" style="left:0;top:752px;transform:rotate(-4deg)">14 ASIR SONRA: AYNI NOKTA</div>
+  </div>
+
+  <!-- ================= SCENE 6: sonuç ================= -->
+  <div class="scene" id="s6">
+    <div class="abs title" id="s6title" style="top:118px;font-size:38px">Seni sen yapan şey...</div>
+    <svg class="layer" id="s6svg"></svg>
+    <div class="abs lbl" id="z1" style="left:170px;top:214px;font-size:32px">değişen hücrelerin</div>
+    <div class="abs hand red" id="z1v" style="left:480px;top:212px;font-size:34px">değil</div>
+    <div class="abs lbl" id="z2" style="left:170px;top:290px;font-size:32px">atomların</div>
+    <div class="abs hand red" id="z2v" style="left:480px;top:288px;font-size:34px">hiç değil</div>
+    <div class="abs lbl" id="z3" style="left:170px;top:366px;font-size:32px"><span class="mk" id="mk4">Rabbinin emrinden gelen</span></div>
+    <div class="abs hand red" id="z3v" style="left:170px;top:414px;font-size:44px">o ruh.</div>
+    <div class="abs ar" id="z4" style="left:0;width:720px;text-align:center;top:520px;font-size:42px;color:#1b1b1b">إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ</div>
+    <div class="abs lbl grey" id="z5" style="left:0;width:720px;text-align:center;top:600px;font-size:21px;color:#7d8391">“Biz Allah’a aitiz ve O’na döneceğiz.” · Bakara 156</div>
+    <div class="abs hand red" id="z6" style="left:0;width:720px;text-align:center;top:672px;font-size:44px;line-height:1.1">Peki sen,<br>onu nasıl teslim edeceksin?</div>
+  </div>
+
+  <div id="capwrap"><div id="cap"></div></div>
+  <div id="tag">Seni sen yapan şey nedir? · İsrâ 85</div>
+  <div id="vignette"></div>
+</div>
+
+<script>
+// ---------------------------------------------------------------- helpers
+const NS = 'http://www.w3.org/2000/svg';
+const $ = s => document.querySelector(s);
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const easeOut = p => 1 - Math.pow(1 - p, 3);
+const easeInOut = p => p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+const backOut = p => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(p - 1, 3) + c1 * Math.pow(p - 1, 2); };
+function rng(seed) { return () => { seed = (seed * 16807) % 2147483647; return (seed - 1) / 2147483646; }; }
+function svgEl(parent, tag, attrs = {}, cls) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  if (attrs.transform) { e.style.transformBox = 'view-box'; e.style.transformOrigin = '0 0'; }
+  if (cls) e.setAttribute('class', cls);
+  parent.appendChild(e);
+  return e;
+}
+
+let TM = null;           // timings
+const anims = [];        // {els, type, t0, dur, o}
+function S(id) { return TM.chunkMap[id].start; }
+function E(id) { return TM.chunkMap[id].end; }
+function W(id, k) { const c = TM.chunkMap[id]; return TM.words[c.words[k]].start; }
+function A(target, type, t0, dur = .5, o = {}) {
+  let els = typeof target === 'string' ? [...document.querySelectorAll(target)] : (Array.isArray(target) ? target : [target]);
+  anims.push({ els, type, t0, dur, o });
+}
+
+// ---------------------------------------------------------------- shapes
+const FIG_PATH = 'M38,60 Q60,52 82,60 L100,70 Q108,74 108,84 L108,150 Q108,158 100,158 L96,158 L94,100 L92,100 L92,240 Q92,248 84,248 L70,248 Q64,248 64,240 L62,170 L58,170 L56,240 Q56,248 50,248 L36,248 Q28,248 28,240 L28,100 L26,100 L24,158 L20,158 Q12,158 12,150 L12,84 Q12,74 20,70 Z';
+function figure(svg, x, y, s, stroke, nDots, seed, dotColor) {
+  const g = svgEl(svg, 'g', { transform: `translate(${x},${y}) scale(${s})` });
+  const rough = svgEl(g, 'g', { filter: 'url(#rough)' });
+  const head = svgEl(rough, 'circle', { cx: 60, cy: 28, r: 24, fill: 'rgba(255,255,255,.35)', stroke, 'stroke-width': 3 / s }, 'draw');
+  const body = svgEl(rough, 'path', { d: FIG_PATH, fill: 'rgba(255,255,255,.35)', stroke, 'stroke-width': 3 / s, 'stroke-linejoin': 'round' }, 'draw');
+  const dots = [];
+  if (nDots) {
+    const r = rng(seed); let tries = 0;
+    while (dots.length < nDots && tries < 5000) {
+      tries++;
+      const px = 14 + r() * 92, py = 8 + r() * 238;
+      const inHead = (px - 60) ** 2 + (py - 28) ** 2 < 19 ** 2;
+      if (!inHead && !body.isPointInFill(new DOMPoint(px, py))) continue;
+      if (!inHead && py < 64) continue;
+      if (dots.some(d => (d.x - px) ** 2 + (d.y - py) ** 2 < 11 ** 2)) continue;
+      dots.push({ x: px, y: py });
+    }
+    dots.forEach((d, i) => d.el = svgEl(g, 'circle', { cx: d.x, cy: d.y, r: 3.6, fill: dotColor }));
+  }
+  return { g, head, body, dots: dots.map(d => d.el) };
+}
+
+function check(svg, x, y, color = '#2e8b57') {
+  return svgEl(svg, 'path', { d: `M${x},${y + 10} L${x + 8},${y + 19} L${x + 24},${y - 2}`, fill: 'none', stroke: color, 'stroke-width': 4.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, 'draw');
+}
+function circleNum(svg, cx, cy, r, txt) {
+  const c = svgEl(svg, 'ellipse', { cx, cy, rx: r, ry: r * .92, fill: 'none', stroke: '#c8372d', 'stroke-width': 3, filter: 'url(#rough)' }, 'draw');
+  const t = svgEl(svg, 'text', { x: cx, y: cy + 9, 'text-anchor': 'middle', 'font-family': 'Kalam', 'font-weight': 700, 'font-size': 26, fill: '#c8372d' });
+  t.textContent = txt;
+  return [c, t];
+}
+
+// ---------------------------------------------------------------- build
+function build() {
+  // rings
+  const rings = $('#rings');
+  for (let i = 0; i < 15; i++) {
+    const cx = 38 + i * 47.5;
+    svgEl(rings, 'path', { d: `M${cx - 11},${22} A12,12 0 1,1 ${cx + 11},${22}`, fill: 'none', stroke: '#6f6f72', 'stroke-width': 3.2, 'stroke-linecap': 'round' });
+    svgEl(rings, 'circle', { cx: cx + 0.5, cy: 29, r: 5.2, fill: '#2b2b2e' });
+  }
+
+  // ---------- S1
+  const s1 = $('#s1svg');
+  // icons
+  const ic1 = svgEl(svgEl(s1, 'g'), 'g', { transform: 'translate(96,226) rotate(-30 27 27)', filter: 'url(#rough)' });
+  svgEl(ic1, 'rect', { x: 13, y: 22, width: 28, height: 10, fill: '#f6efdc', stroke: '#26324f', 'stroke-width': 2.5 });
+  for (const [x, y] of [[13, 21], [13, 33], [41, 21], [41, 33]]) svgEl(ic1, 'circle', { cx: x, cy: y, r: 6, fill: '#f6efdc', stroke: '#26324f', 'stroke-width': 2.5 });
+  svgEl(ic1, 'rect', { x: 14, y: 24.5, width: 26, height: 5, fill: '#f6efdc' });
+  const ic2 = svgEl(svgEl(s1, 'g'), 'g', { transform: 'translate(96,306)', filter: 'url(#rough)' });
+  svgEl(ic2, 'circle', { cx: 27, cy: 27, r: 18, fill: '#d64a3c', stroke: '#9e2a22', 'stroke-width': 2.5 });
+  svgEl(ic2, 'ellipse', { cx: 27, cy: 27, rx: 8, ry: 7, fill: '#b8342b', opacity: .8 });
+  const ic3 = svgEl(svgEl(s1, 'g'), 'g', { transform: 'translate(96,386)', filter: 'url(#rough)' });
+  [['#e8b58f', 16], ['#d98c76', 27], ['#a8604f', 38]].forEach(([c, y]) => svgEl(ic3, 'path', { d: `M4,${y} q8,-7 16,0 t16,0 t16,0`, fill: 'none', stroke: c, 'stroke-width': 5, 'stroke-linecap': 'round' }));
+  // renewal bars
+  const bars = [];
+  [270, 350, 430].forEach((y, i) => {
+    svgEl(s1, 'rect', { x: 160, y: y + 12, width: 330, height: 7, rx: 3.5, fill: 'rgba(38,50,79,.10)' }, 'bt' + i);
+    bars.push(svgEl(s1, 'rect', { x: 160, y: y + 12, width: 330, height: 7, rx: 3.5, fill: '#2f9bb3' }, 'bf' + i));
+  });
+  // figures with dots
+  const fA = figure(s1, 160, 530, 1.05, '#2f9bb3', 46, 7, '#2f9bb3');
+  const fB = figure(s1, 440, 530, 1.05, '#1f3166', 46, 7, '#1f3166');
+  // keep a few "old" dots teal in figure B
+  const keep = [3, 17, 29, 40];
+  fB.dots.forEach((d, i) => { if (keep.includes(i)) d.setAttribute('fill', '#2f9bb3'); });
+  const arr1 = svgEl(s1, 'path', { d: 'M310,640 Q360,610 410,640', fill: 'none', stroke: '#26324f', 'stroke-width': 3, 'stroke-dasharray': '0', 'marker-end': 'url(#arrowink)', filter: 'url(#rough)' }, 'draw');
+  const keepCircles = keep.map(i => {
+    const d = fB.dots[i];
+    const cx = 440 + d.getAttribute('cx') * 1.05, cy = 530 + d.getAttribute('cy') * 1.05;
+    return svgEl(s1, 'circle', { cx, cy, r: 9, fill: 'none', stroke: '#c8372d', 'stroke-width': 2.5 }, 'draw');
+  });
+
+  A('#s1title', 'type', 0.0, .7);
+  A('#s1sub', 'wipe', S('kemik') + .1, .8);
+  A(ic1.parentNode, 'pop', S('kemik'), .45); A('#r1l', 'wipe', S('kemik') + .1, .5);
+  A('#r1v', 'pop', S('onyil') + .5, .45);
+  A('.bt0', 'fade', S('onyil') + .2, .3); A(bars[0], 'grow', S('bastan'), 1.0);
+  A(ic2.parentNode, 'pop', S('kan'), .45); A('#r2l', 'wipe', S('kan') + .1, .6);
+  A('#r2v', 'pop', S('dortay'), .45);
+  A('.bt1', 'fade', S('kan') + .2, .3); A(bars[1], 'grow', S('dortay'), .7);
+  A(ic3.parentNode, 'pop', S('deri'), .45); A('#r3l', 'wipe', S('deri') + .1, .5);
+  A('#r3v', 'pop', S('hafta'), .45);
+  A('.bt2', 'fade', S('deri') + .2, .3); A(bars[2], 'grow', S('hafta'), .45);
+  [fA.head, fA.body].forEach(e => A(e, 'draw', S('yani'), .8));
+  A(fA.dots, 'pop', S('yani') + .3, .3, { stagger: .012 });
+  A('#f1l', 'fade', S('yani') + .2, .4);
+  A(arr1, 'draw', S('beden'), .5);
+  [fB.head, fB.body].forEach(e => A(e, 'draw', S('bugun'), .7));
+  A(fB.dots, 'pop', S('bugun') + .2, .3, { stagger: .012 });
+  A('#f2l', 'fade', S('bugun') + .1, .4);
+  A(keepCircles, 'draw', S('azsey'), .35, { stagger: .1 });
+  A('#s1left', 'pop', S('azsey') + .3, .45);
+
+  // ---------- S2
+  const s2 = $('#s2svg');
+  const gA = figure(s2, 170, 222, .95, '#2f9bb3', 40, 11, '#2f9bb3');
+  const gB = figure(s2, 450, 222, .95, '#1f3166', 40, 11, '#1f3166');
+  const eq = svgEl(s2, 'text', { x: 360, y: 360, 'text-anchor': 'middle', 'font-family': 'Kalam', 'font-weight': 700, 'font-size': 64, fill: '#c8372d' });
+  eq.textContent = '=';
+  const ck = [check(s2, 160, 552), check(s2, 160, 612), check(s2, 160, 672)];
+  const benCirc = svgEl(s2, 'ellipse', { cx: 247, cy: 690, rx: 44, ry: 24, fill: 'none', stroke: '#c8372d', 'stroke-width': 3, filter: 'url(#rough)' }, 'draw');
+  // glowing core "ben"
+  const cores = [[170, 222], [450, 222]].map(([x, y]) => {
+    const g = svgEl(s2, 'g', {});
+    svgEl(g, 'circle', { cx: x + 57, cy: y + 105, r: 30, fill: 'url(#glow)' });
+    const t = svgEl(g, 'text', { x: x + 57, y: y + 113, 'text-anchor': 'middle', 'font-family': 'Kalam', 'font-weight': 700, 'font-size': 22, fill: '#b5480f' });
+    t.textContent = 'ben';
+    return g;
+  });
+  const link = svgEl(s2, 'path', { d: 'M262,327 Q360,290 482,327', fill: 'none', stroke: '#e0a020', 'stroke-width': 3, 'stroke-dasharray': '7 7' }, 'dash');
+
+  const s2t = S('peki');
+  A('#s2title', 'type', s2t, .9);
+  [gA.head, gA.body].forEach(e => A(e, 'draw', s2t + .1, .7));
+  A(gA.dots, 'pop', s2t + .4, .25, { stagger: .01 });
+  A('#g1l', 'fade', s2t + .3, .4);
+  [gB.head, gB.body].forEach(e => A(e, 'draw', s2t + .7, .7));
+  A(gB.dots, 'pop', s2t + 1.0, .25, { stagger: .01 });
+  A('#g2l', 'fade', s2t + .9, .4);
+  A(eq, 'pop', S('halasen'), .4);
+  A('#s2q', 'pop', S('halasen') + .3, .5);
+  A('#c1', 'wipe', S('anilar'), .45); A(ck[0], 'draw', S('anilar') + .35, .3); A('#c1v', 'pop', S('anilar') + .5, .35);
+  A('#c2', 'wipe', S('isim'), .4); A(ck[1], 'draw', S('isim') + .3, .3); A('#c2v', 'pop', S('isim') + .45, .35);
+  A('#c3', 'wipe', S('ben'), .6); A(ck[2], 'draw', S('degismedi'), .3); A('#c3v', 'pop', S('degismedi') + .15, .35);
+  A(benCirc, 'draw', S('degismedi') + .2, .45);
+  // parts change: dots recolour in waves
+  const pal = ['#c8372d', '#e0a020', '#2e8b57', '#7a5bb5'];
+  [...gA.dots, ...gB.dots].forEach((d, i) => {
+    A(d, 'recolor', S('parcalar') + (i % 20) * .045, .1, { colors: pal, period: .55, phase: i * .37, until: S('kaliyor') + .8 });
+  });
+  A('#s2parts', 'fade', S('parcalar'), .4);
+  A(cores, 'pop', S('kaliyor'), .5);
+  A(cores, 'pulse', S('kaliyor') + .5, 99, {});
+  A(link, 'fade', S('kaliyor') + .3, .4);
+  A('#s2stay', 'wipe', S('kaliyor') + .2, .6);
+
+  // ---------- S3
+  const s3 = $('#s3svg');
+  const BX = 160, BY = 200;
+  const brain = svgEl(s3, 'g', { transform: `translate(${BX},${BY})` });
+  const BRAIN = 'M60,150 C30,120 40,60 100,50 C120,15 190,10 220,30 C260,5 330,20 345,60 C390,70 400,130 370,160 C380,195 340,225 300,210 C290,235 240,240 220,220 C200,240 150,240 130,215 C90,225 50,195 60,150 Z';
+  const roughG = svgEl(brain, 'g', { filter: 'url(#rough)' });
+  const bOut = svgEl(roughG, 'path', { d: BRAIN, fill: 'rgba(242,190,200,.35)', stroke: '#9b3b5a', 'stroke-width': 3.2, 'stroke-linejoin': 'round' }, 'draw');
+  const cereb = svgEl(roughG, 'path', { d: 'M300,210 C330,240 300,262 268,250 C255,246 248,236 250,226', fill: 'rgba(242,190,200,.35)', stroke: '#9b3b5a', 'stroke-width': 3 }, 'draw');
+  const stem = svgEl(roughG, 'path', { d: 'M238,226 C244,250 246,264 252,284', fill: 'none', stroke: '#9b3b5a', 'stroke-width': 3 }, 'draw');
+  const gyri = ['M110,90 C140,70 160,110 190,85', 'M220,70 C240,100 270,60 300,90', 'M90,150 C120,130 140,170 170,145 C190,130 210,170 240,150',
+    'M260,140 C290,120 310,160 340,135', 'M150,190 C170,175 190,205 215,190', 'M120,120 C135,110 150,125 165,115', 'M200,110 C215,125 235,105 250,118', 'M320,95 C335,105 345,95 355,108']
+    .map(d => svgEl(roughG, 'path', { d, fill: 'none', stroke: '#b05a76', 'stroke-width': 2.4, 'stroke-linecap': 'round' }, 'draw'));
+  // regions
+  const regions = [[115, 105, 42, 32, 'rgba(255,160,60,.45)'], [325, 115, 36, 30, 'rgba(47,155,179,.45)'], [215, 175, 48, 26, 'rgba(120,90,200,.35)']]
+    .map(([cx, cy, rx, ry, f]) => svgEl(brain, 'ellipse', { cx, cy, rx, ry, fill: f }));
+  // neurons
+  const r = rng(21); const nodes = [];
+  let tries = 0;
+  while (nodes.length < 34 && tries < 4000) {
+    tries++;
+    const x = 50 + r() * 340, y = 20 + r() * 220;
+    if (!bOut.isPointInFill(new DOMPoint(x, y))) continue;
+    if (nodes.some(n => (n.x - x) ** 2 + (n.y - y) ** 2 < 30 ** 2)) continue;
+    nodes.push({ x, y });
+  }
+  const edges = [];
+  nodes.forEach((n, i) => {
+    const near = nodes.map((m, j) => [j, (m.x - n.x) ** 2 + (m.y - n.y) ** 2]).filter(([j]) => j !== i).sort((a, b) => a[1] - b[1]).slice(0, 2);
+    near.forEach(([j]) => { if (j > i || !edges.some(e => e.i === j && e.j === i)) edges.push({ i, j }); });
+  });
+  const edgeEls = edges.map(({ i, j }) => svgEl(brain, 'line', { x1: nodes[i].x, y1: nodes[i].y, x2: nodes[j].x, y2: nodes[j].y, stroke: '#2f9bb3', 'stroke-width': 1.8, opacity: .8 }, 'draw'));
+  const nodeEls = nodes.map(n => svgEl(brain, 'circle', { cx: n.x, cy: n.y, r: 4.2, fill: '#1f3166' }));
+  // signal → ? → ben
+  const zig = svgEl(s3, 'path', { d: 'M110,620 l22,-18 l6,16 l22,-20 l6,16 l22,-20 l6,16 l22,-20 l6,16 l22,-20', fill: 'none', stroke: '#e0a020', 'stroke-width': 4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, 'draw');
+  const arr3 = svgEl(s3, 'path', { d: 'M300,612 Q350,590 395,612', fill: 'none', stroke: '#26324f', 'stroke-width': 3, 'marker-end': 'url(#arrowink)', filter: 'url(#rough)' }, 'draw');
+  const arr3b = svgEl(s3, 'path', { d: 'M440,612 Q480,590 520,612', fill: 'none', stroke: '#26324f', 'stroke-width': 3, 'marker-end': 'url(#arrowink)', filter: 'url(#rough)' }, 'draw');
+  const benG = svgEl(s3, 'g', {});
+  svgEl(benG, 'circle', { cx: 570, cy: 612, r: 34, fill: 'url(#glow)' });
+  const bt = svgEl(benG, 'text', { x: 570, y: 621, 'text-anchor': 'middle', 'font-family': 'Kalam', 'font-weight': 700, 'font-size': 24, fill: '#b5480f' });
+  bt.textContent = 'ben';
+
+  const s3t = S('bilim');
+  A('#s3title', 'type', s3t, .7);
+  A([bOut, cereb, stem], 'draw', S('beyin') - .3, 1.1);
+  A(gyri, 'draw', S('beyin'), .8, { stagger: .07 });
+  A(nodeEls, 'pop', S('noron'), .25, { stagger: .03 });
+  A('#n1', 'wipe', S('noron') + .6, .7);
+  A(edgeEls, 'draw', S('baglanti'), .3, { stagger: .012 });
+  A('#n2', 'wipe', S('baglanti') + .2, .7);
+  regions.forEach((rg, i) => { A(rg, 'pop', S('bolge') + i * .35, .4); A(rg, 'pulse', S('bolge') + i * .35 + .4, 99, { amp: .08 }); });
+  A('#n3', 'wipe', S('gorebiliyoruz') - .2, .9);
+  A(zig, 'draw', S('elektrik'), .6);
+  A('#e1', 'fade', S('elektrik') + .2, .4);
+  A(arr3, 'draw', S('nasil'), .4);
+  A('#e3', 'pop', S('nasil') + .3, .45);
+  A(arr3b, 'draw', S('hisseden'), .35);
+  A(benG, 'pop', S('hisseden') + .2, .45);
+  A('#e2', 'fade', S('hisseden') + .3, .4);
+  A('#e3', 'wobble', S('donusuyor'), 99);
+  A('#s3sticky', 'pop', S('chalmers'), .45);
+  A('#s3stamp', 'stamp', S('zor') + .4, .35);
+
+  // ---------- S4
+  const s4 = $('#s4svg');
+  const book = svgEl(s4, 'g', {});
+  for (let i = 0; i < 12; i++) {
+    const a = i / 12 * Math.PI * 2, r1 = 100, r2 = 122;
+    svgEl(book, 'line', { x1: 360 + Math.cos(a) * r1, y1: 330 + Math.sin(a) * r1, x2: 360 + Math.cos(a) * r2, y2: 330 + Math.sin(a) * r2, stroke: '#e8c93c', 'stroke-width': 3, 'stroke-linecap': 'round' });
+  }
+  svgEl(book, 'circle', { cx: 360, cy: 330, r: 105, fill: 'url(#glow)', opacity: .7 });
+  svgEl(book, 'rect', { x: 295, y: 250, width: 130, height: 160, rx: 4, fill: '#2f6e3c', stroke: '#1d4a27', 'stroke-width': 4 });
+  svgEl(book, 'ellipse', { cx: 360, cy: 330, rx: 40, ry: 44, fill: 'none', stroke: '#d8b64a', 'stroke-width': 3 });
+  const bt4 = svgEl(book, 'text', { x: 360, y: 340, 'text-anchor': 'middle', 'font-family': 'Amiri', 'font-weight': 700, 'font-size': 28, fill: '#e2c25a' });
+  bt4.textContent = 'القرآن';
+  const num = circleNum(s4, 92, 140, 22, '17');
+
+  const s4t = S('oysa');
+  A('#s4a', 'type', s4t, .8);
+  A(book, 'pop', S('asir'), .6);
+  A('#s4a', 'out', S('isra') - .1, .3);
+  A(book, 'out', S('a1') - .45, .35);
+  A(num[0], 'draw', S('isra'), .5); A(num[1], 'fade', S('isra') + .2, .3);
+  A('#s4hdr', 'wipe', S('isra') + .1, .8);
+  A('#s4sticky', 'pop', S('ayet85') + .2, .45);
+
+  // arabic words → word timing anchors
+  const arTimes = [
+    W('a1', 0), W('a2', 0), (W('a2', 0) + E('a2')) / 2,
+    W('a3', 0), (W('a3', 0) + E('a3')) / 2, W('a4', 0), W('a4', 1), W('a4', 2),
+    W('a5', 0), W('a5', 2), W('a6', 0), (W('a6', 0) + W('a6', 1)) / 2, W('a6', 1), W('a6', 2)];
+  document.querySelectorAll('#s4 .ar .w').forEach(w => A(w, 'wipeR', arTimes[+w.dataset.k], .45));
+
+  // circles + labels around key arabic words (placed after layout in layoutArabic())
+  A('#t1', 'wipe', S('m1'), .9);
+  A('#t2', 'wipe', S('m2'), 1.6);
+  A('#t3', 'wipe', S('m4'), 1.2);
+  A('#t4', 'wipe', S('m6'), .6);
+
+  // ---------- S5
+  const s5 = $('#s5svg');
+  const card1 = svgEl(s5, 'rect', { x: 84, y: 220, width: 260, height: 160, rx: 14, fill: 'rgba(255,255,255,.4)', stroke: '#9aa0aa', 'stroke-width': 3, 'stroke-dasharray': '10 7', filter: 'url(#rough)' });
+  const card2 = svgEl(s5, 'rect', { x: 376, y: 220, width: 260, height: 160, rx: 14, fill: 'rgba(255,255,255,.55)', stroke: '#2e8b57', 'stroke-width': 3.5, filter: 'url(#rough)' }, 'draw');
+  const big = svgEl(s5, 'rect', { x: 96, y: 480, width: 528, height: 200, rx: 8, fill: 'rgba(38,50,79,.04)', stroke: '#9aa0aa', 'stroke-width': 3, 'stroke-dasharray': '9 7', filter: 'url(#rough)' });
+  const small = svgEl(s5, 'rect', { x: 104, y: 600, width: 34, height: 34, rx: 3, fill: '#1f3166' });
+  const ul = svgEl(s5, 'path', { d: 'M232,166 q120,10 256,-2', fill: 'none', stroke: '#c8372d', 'stroke-width': 3.5, 'stroke-linecap': 'round', filter: 'url(#rough)' }, 'draw');
+
+  const s5t = S('dikkat');
+  A('#s5title', 'type', s5t, .7);
+  A(ul, 'draw', s5t + .5, .4);
+  A(card1, 'fade', S('ne'), .4); A('#k1t', 'wipe', S('ne') + .1, .6);
+  A('#k1v', 'fade', S('anlatmiyor'), .4);
+  A(card2, 'draw', S('kimin'), .7); A('#k2t', 'wipe', S('kimin') + .1, .6);
+  A('#k2v', 'pop', S('soyluyor') - .1, .45);
+  A('#i0', 'wipe', S('ekliyor'), .5);
+  A(big, 'fade', S('ekliyor') + .3, .4); A('#i1', 'fade', S('ekliyor') + .4, .4);
+  A(small, 'pop', S('bilginiz'), .4); A('#i2', 'wipe', S('bilginiz') + .2, .6);
+  A('#s5stamp', 'stamp', S('nokta') - .1, .35);
+
+  // ---------- S6
+  const s6 = $('#s6svg');
+  const cellIc = svgEl(s6, 'g', { filter: 'url(#rough)' });
+  [[112, 232, 11], [130, 244, 9], [116, 252, 8]].forEach(([cx, cy, r]) => svgEl(cellIc, 'circle', { cx, cy, r, fill: 'rgba(214,74,60,.25)', stroke: '#c8372d', 'stroke-width': 2.2 }));
+  const atomIc = svgEl(s6, 'g', { filter: 'url(#rough)' });
+  svgEl(atomIc, 'circle', { cx: 122, cy: 314, r: 5, fill: '#1f3166' });
+  svgEl(atomIc, 'ellipse', { cx: 122, cy: 314, rx: 20, ry: 8, fill: 'none', stroke: '#2f9bb3', 'stroke-width': 2.2, transform: 'rotate(30 122 314)' });
+  svgEl(atomIc, 'ellipse', { cx: 122, cy: 314, rx: 20, ry: 8, fill: 'none', stroke: '#2f9bb3', 'stroke-width': 2.2, transform: 'rotate(-30 122 314)' });
+  const lightIc = svgEl(s6, 'g', {});
+  svgEl(lightIc, 'circle', { cx: 122, cy: 392, r: 30, fill: 'url(#glow)' });
+  svgEl(lightIc, 'circle', { cx: 122, cy: 392, r: 7, fill: '#f2b52c' });
+  const st1 = svgEl(s6, 'path', { d: 'M164,240 L452,236', stroke: '#c8372d', 'stroke-width': 4, 'stroke-linecap': 'round', fill: 'none', filter: 'url(#rough)' }, 'draw');
+  const st2 = svgEl(s6, 'path', { d: 'M164,316 L318,313', stroke: '#c8372d', 'stroke-width': 4, 'stroke-linecap': 'round', fill: 'none', filter: 'url(#rough)' }, 'draw');
+
+  const s6t = S('seni1');
+  A('#s6title', 'type', s6t, .9);
+  A(cellIc, 'pop', S('hucre'), .4); A('#z1', 'wipe', S('hucre'), .6);
+  A(st1, 'draw', E('hucre') - .5, .35); A('#z1v', 'pop', E('hucre') - .3, .4);
+  A(atomIc, 'pop', S('atom'), .4); A('#z2', 'wipe', S('atom'), .4);
+  A(st2, 'draw', S('atom') + .5, .3); A('#z2v', 'pop', S('atom') + .6, .4);
+  A('#z3', 'wipe', S('emrinden'), .9);
+  A(lightIc, 'pop', S('oruh'), .5); A(lightIc, 'pulse', S('oruh') + .5, 99, { amp: .1 });
+  A('#z3v', 'pop', S('oruh'), .45);
+  A('#z4', 'wipeR', S('sahibine'), 1.2);
+  A('#z5', 'fade', S('sahibine') + .8, .5);
+  A('#z6', 'wipe', S('pekisen'), 2.2);
+
+  // ---------- scene windows
+  const sc = [['#s1', 0, S('peki')], ['#s2', S('peki'), S('bilim')], ['#s3', S('bilim'), S('oysa')],
+    ['#s4', S('oysa'), S('dikkat')], ['#s5', S('dikkat'), S('seni1')], ['#s6', S('seni1'), 1e9]];
+  sc.forEach(([id, a, b]) => { A(id, 'show', a - .25, .25, { end: b - .25 }); });
+}
+
+// after fonts/layout: highlight boxes + circles positioned from real text boxes
+function layoutDynamic() {
+  const stage = $('#stage').getBoundingClientRect();
+  const box = el => { const r = el.getBoundingClientRect(); return { x: r.left - stage.left, y: r.top - stage.top, w: r.width, h: r.height }; };
+  // pink marker highlights
+  [['#mk1', 'hl1'], ['#mk2', 'hl2'], ['#mk3', 'hl3'], ['#mk4', 'hl4']].forEach(([sel, id]) => {
+    const el = $(sel), b = box(el), parent = el.closest('.scene');
+    const pb = box(parent);
+    const d = document.createElement('div');
+    d.className = 'hl'; d.id = id;
+    Object.assign(d.style, { left: (b.x - pb.x - 4) + 'px', top: (b.y - pb.y + b.h * .42) + 'px', width: (b.w + 8) + 'px', height: (b.h * .5) + 'px', zIndex: 0 });
+    parent.insertBefore(d, parent.firstChild.nextSibling);
+  });
+  A('#hl1', 'wipe', S('m1') + .4, .4);
+  A('#hl2', 'wipe', S('m3') + .5, .6);
+  A('#hl3', 'wipe', S('m5'), .4);
+  A('#hl4', 'wipe', S('emrinden') + .5, .8);
+  // red circles around arabic words
+  const s4 = $('#s4svg');
+  const words = [...document.querySelectorAll('#s4 .ar .w')];
+  const circ = (ks, labelSel, t) => {
+    const bs = ks.map(k => box(words[k]));
+    const x0 = Math.min(...bs.map(b => b.x)), x1 = Math.max(...bs.map(b => b.x + b.w));
+    const y0 = Math.min(...bs.map(b => b.y)), y1 = Math.max(...bs.map(b => b.y + b.h));
+    const cx = (x0 + x1) / 2, cy = (y0 + y1) / 2 + 4;
+    const e = svgEl(s4, 'ellipse', { cx, cy, rx: (x1 - x0) / 2 + 10, ry: (y1 - y0) / 2 - 4, fill: 'none', stroke: '#c8372d', 'stroke-width': 3, filter: 'url(#rough)' }, 'draw');
+    const lab = $(labelSel);
+    lab.style.left = '0px';
+    const lr = lab.getBoundingClientRect();
+    lab.style.top = (cy - lr.height / 2) + 'px';
+    lab.style.left = (x0 - 10 - 12 - lr.width) + 'px';
+    A(e, 'draw', t, .45);
+    A(labelSel, 'fade', t + .25, .35);
+  };
+  circ([2], '#ruhl', S('m1') + .2);
+  circ([6, 7], '#emrl', S('m3') + .3);
+  circ([13], '#azl', S('m5'));
+
+  // stamps centered
+  ['#s3stamp', '#s5stamp'].forEach(s => { const el = $(s); el.style.left = (360 - el.getBoundingClientRect().width / 2) + 'px'; });
+}
+
+// prepare draw lengths
+function prepDraw() {
+  for (const a of anims) {
+    if (a.type !== 'draw') continue;
+    for (const el of a.els) {
+      if (el.__len) continue;
+      try { el.__len = el.getTotalLength(); } catch (e) { el.__len = 500; }
+      el.style.strokeDasharray = el.__len + ' ' + el.__len;
+    }
+  }
+}
+
+// ---------------------------------------------------------------- render
+function render(t) {
+  const st = new Map();
+  const get = el => { let s = st.get(el); if (!s) { s = { op: 1, sc: 1, ty: 0, rot: 0, clip: null, dash: null, fill: null, show: true, sx: 1 }; st.set(el, s); } return s; };
+  for (const a of anims) {
+    a.els.forEach((el, i) => {
+      const t0 = a.t0 + (a.o.stagger || 0) * i;
+      const p = clamp((t - t0) / a.dur);
+      const s = get(el);
+      switch (a.type) {
+        case 'fade': s.op *= easeOut(p); s.ty += (1 - easeOut(p)) * 10; break;
+        case 'out': s.op *= 1 - easeOut(p); break;
+        case 'pop': s.op *= clamp(p * 3); s.sc *= p <= 0 ? .5 : (p >= 1 ? 1 : .5 + .5 * backOut(p)); break;
+        case 'stamp': s.op *= clamp(p * 2.5); s.sc *= p >= 1 ? 1 : 1.7 - .7 * easeOut(p); break;
+        case 'draw': s.dash = 1 - easeInOut(p); if (p <= 0) s.op = 0; break;
+        case 'grow': s.sx = easeInOut(p); if (p <= 0) s.op = 0; break;
+        case 'wipe': s.clip = ['r', easeInOut(p)]; break;
+        case 'wipeR': s.clip = ['l', easeInOut(p)]; break;
+        case 'type': s.clip = ['r', p]; break;
+        case 'show': { const v = clamp((t - a.t0) / a.dur) * (1 - clamp((t - a.o.end) / a.dur)); s.op *= v; s.show = v > 0; break; }
+        case 'pulse': if (t > t0) s.sc *= 1 + (a.o.amp || .06) * Math.sin((t - t0) * 4.2); break;
+        case 'wobble': if (t > t0) s.rot += 7 * Math.sin((t - t0) * 6); break;
+        case 'recolor': if (t > t0 && t < a.o.until) { const k = Math.floor((t - t0) / a.o.period + a.o.phase) % a.o.colors.length; s.fill = a.o.colors[k]; } break;
+      }
+    });
+  }
+  for (const [el, s] of st) {
+    const isSvg = el instanceof SVGElement;
+    el.style.opacity = s.op;
+    el.style.display = s.show ? '' : 'none';
+    const baseRot = el.__baseRot ?? (el.__baseRot = (el.style.transform.match(/rotate\(([-\d.]+)deg\)/) || [0, 0])[1] * 1);
+    if (!(isSvg && el.hasAttribute('transform')))
+      el.style.transform = `translateY(${s.ty}px) rotate(${baseRot + s.rot}deg) scale(${s.sc * s.sx},${s.sc})`;
+    if (s.sx !== 1) el.style.transformOrigin = 'left center';
+    if (s.clip) {
+      const [side, v] = s.clip; const pct = (1 - v) * 100;
+      el.style.clipPath = v >= 1 ? 'none' : (side === 'r' ? `inset(-20% ${pct}% -20% -3%)` : `inset(-20% -3% -20% ${pct}%)`);
+      if (v <= 0) el.style.opacity = 0;
+    }
+    if (s.dash !== null && el.__len) el.style.strokeDashoffset = el.__len * s.dash;
+    if (s.fill && !el.__origFill) el.__origFill = el.getAttribute('fill');
+    if (s.fill) el.setAttribute('fill', s.fill); else if (el.__origFill) el.setAttribute('fill', el.__origFill);
+  }
+  renderCaption(t);
+}
+
+let capIdx = -2;
+function renderCaption(t) {
+  const ch = TM.chunks;
+  let idx = -1;
+  for (let i = 0; i < ch.length; i++) if (t >= ch[i].start - .05) idx = i;
+  const cap = $('#cap'), wrap = $('#capwrap');
+  if (idx < 0) { wrap.style.opacity = 0; return; }
+  wrap.style.opacity = 1;
+  if (idx !== capIdx) {
+    capIdx = idx;
+    cap.innerHTML = ch[idx].words.map(i => `<span data-s="${TM.words[i].start}">${TM.words[i].text}</span>`).join(' ');
+  }
+  const since = t - ch[idx].start;
+  wrap.style.transform = `scale(${since < .15 ? .94 + .06 * clamp(since / .15) : 1})`;
+  cap.querySelectorAll('span').forEach(s => s.className = t >= +s.dataset.s - .02 ? '' : 'f');
+}
+
+window.setup = async function (timings) {
+  TM = timings;
+  TM.chunkMap = Object.fromEntries(TM.chunks.map(c => [c.id, c]));
+  await document.fonts.load('700 30px Kalam'); await document.fonts.load('400 30px Kalam');
+  await document.fonts.load('700 30px Caveat'); await document.fonts.load('700 40px Amiri');
+  await document.fonts.ready;
+  build();
+  // make every scene measurable before layout
+  layoutDynamic();
+  prepDraw();
+  render(0);
+  return true;
+};
+window.render = render;
+</script>
+</body>
+</html>
