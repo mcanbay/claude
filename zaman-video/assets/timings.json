@@ -1,0 +1,1992 @@
+{
+ "duration": 99.0966666666667,
+ "rate": 6.0,
+ "words": [
+  {
+   "i": 0,
+   "chunk": "saat",
+   "text": "Saatine",
+   "start": 0.3,
+   "end": 0.967
+  },
+  {
+   "i": 1,
+   "chunk": "saat",
+   "text": "bak.",
+   "start": 0.997,
+   "end": 1.163
+  },
+  {
+   "i": 2,
+   "chunk": "sence",
+   "text": "Sence",
+   "start": 1.713,
+   "end": 2.047
+  },
+  {
+   "i": 3,
+   "chunk": "sence",
+   "text": "zaman,",
+   "start": 2.077,
+   "end": 2.41
+  },
+  {
+   "i": 4,
+   "chunk": "herkes",
+   "text": "herkes",
+   "start": 2.71,
+   "end": 3.043
+  },
+  {
+   "i": 5,
+   "chunk": "herkes",
+   "text": "için",
+   "start": 3.073,
+   "end": 3.407
+  },
+  {
+   "i": 6,
+   "chunk": "herkes",
+   "text": "aynı",
+   "start": 3.437,
+   "end": 3.77
+  },
+  {
+   "i": 7,
+   "chunk": "herkes",
+   "text": "hızla",
+   "start": 3.8,
+   "end": 4.133
+  },
+  {
+   "i": 8,
+   "chunk": "herkes",
+   "text": "mı",
+   "start": 4.163,
+   "end": 4.33
+  },
+  {
+   "i": 9,
+   "chunk": "herkes",
+   "text": "akıyor?",
+   "start": 4.36,
+   "end": 4.86
+  },
+  {
+   "i": 10,
+   "chunk": "yuzyil",
+   "text": "Yüz",
+   "start": 5.41,
+   "end": 5.577
+  },
+  {
+   "i": 11,
+   "chunk": "yuzyil",
+   "text": "yılı",
+   "start": 5.607,
+   "end": 5.94
+  },
+  {
+   "i": 12,
+   "chunk": "yuzyil",
+   "text": "aşkın",
+   "start": 5.97,
+   "end": 6.303
+  },
+  {
+   "i": 13,
+   "chunk": "yuzyil",
+   "text": "bir",
+   "start": 6.333,
+   "end": 6.5
+  },
+  {
+   "i": 14,
+   "chunk": "yuzyil",
+   "text": "süre",
+   "start": 6.53,
+   "end": 6.863
+  },
+  {
+   "i": 15,
+   "chunk": "yuzyil",
+   "text": "önce",
+   "start": 6.893,
+   "end": 7.227
+  },
+  {
+   "i": 16,
+   "chunk": "einstein",
+   "text": "Einstein,",
+   "start": 7.257,
+   "end": 7.923
+  },
+  {
+   "i": 17,
+   "chunk": "einstein",
+   "text": "buna",
+   "start": 8.223,
+   "end": 8.557
+  },
+  {
+   "i": 18,
+   "chunk": "einstein",
+   "text": "hayır",
+   "start": 8.587,
+   "end": 8.92
+  },
+  {
+   "i": 19,
+   "chunk": "einstein",
+   "text": "dedi.",
+   "start": 8.95,
+   "end": 9.283
+  },
+  {
+   "i": 20,
+   "chunk": "hiz",
+   "text": "Hız",
+   "start": 9.833,
+   "end": 10.0
+  },
+  {
+   "i": 21,
+   "chunk": "hiz",
+   "text": "arttıkça",
+   "start": 10.03,
+   "end": 10.53
+  },
+  {
+   "i": 22,
+   "chunk": "kutle",
+   "text": "ve",
+   "start": 10.56,
+   "end": 10.727
+  },
+  {
+   "i": 23,
+   "chunk": "kutle",
+   "text": "kütleçekim",
+   "start": 10.757,
+   "end": 11.423
+  },
+  {
+   "i": 24,
+   "chunk": "kutle",
+   "text": "güçlendikçe,",
+   "start": 11.453,
+   "end": 12.12
+  },
+  {
+   "i": 25,
+   "chunk": "yavas",
+   "text": "zaman",
+   "start": 12.42,
+   "end": 12.753
+  },
+  {
+   "i": 26,
+   "chunk": "yavas",
+   "text": "yavaşlar.",
+   "start": 12.783,
+   "end": 13.283
+  },
+  {
+   "i": 27,
+   "chunk": "teori",
+   "text": "Bu,",
+   "start": 13.833,
+   "end": 14.0
+  },
+  {
+   "i": 28,
+   "chunk": "teori",
+   "text": "bir",
+   "start": 14.3,
+   "end": 14.467
+  },
+  {
+   "i": 29,
+   "chunk": "teori",
+   "text": "teori",
+   "start": 14.497,
+   "end": 14.997
+  },
+  {
+   "i": 30,
+   "chunk": "teori",
+   "text": "olarak",
+   "start": 15.027,
+   "end": 15.527
+  },
+  {
+   "i": 31,
+   "chunk": "teori",
+   "text": "kalmadı.",
+   "start": 15.557,
+   "end": 16.057
+  },
+  {
+   "i": 32,
+   "chunk": "gps",
+   "text": "Uzaydaki",
+   "start": 16.607,
+   "end": 17.273
+  },
+  {
+   "i": 33,
+   "chunk": "gps",
+   "text": "GPS",
+   "start": 17.303,
+   "end": 17.47
+  },
+  {
+   "i": 34,
+   "chunk": "gps",
+   "text": "uydularının",
+   "start": 17.5,
+   "end": 18.333
+  },
+  {
+   "i": 35,
+   "chunk": "gps",
+   "text": "saatleri,",
+   "start": 18.363,
+   "end": 19.03
+  },
+  {
+   "i": 36,
+   "chunk": "yerdeki",
+   "text": "yerdeki",
+   "start": 19.33,
+   "end": 19.83
+  },
+  {
+   "i": 37,
+   "chunk": "yerdeki",
+   "text": "saatlere",
+   "start": 19.86,
+   "end": 20.527
+  },
+  {
+   "i": 38,
+   "chunk": "yerdeki",
+   "text": "göre",
+   "start": 20.557,
+   "end": 20.89
+  },
+  {
+   "i": 39,
+   "chunk": "hergun",
+   "text": "her",
+   "start": 20.92,
+   "end": 21.087
+  },
+  {
+   "i": 40,
+   "chunk": "hergun",
+   "text": "gün",
+   "start": 21.117,
+   "end": 21.283
+  },
+  {
+   "i": 41,
+   "chunk": "hergun",
+   "text": "yaklaşık",
+   "start": 21.313,
+   "end": 21.813
+  },
+  {
+   "i": 42,
+   "chunk": "mikro",
+   "text": "otuz",
+   "start": 21.843,
+   "end": 22.177
+  },
+  {
+   "i": 43,
+   "chunk": "mikro",
+   "text": "sekiz",
+   "start": 22.207,
+   "end": 22.54
+  },
+  {
+   "i": 44,
+   "chunk": "mikro",
+   "text": "mikrosaniye",
+   "start": 22.57,
+   "end": 23.403
+  },
+  {
+   "i": 45,
+   "chunk": "mikro",
+   "text": "ileri",
+   "start": 23.433,
+   "end": 23.933
+  },
+  {
+   "i": 46,
+   "chunk": "mikro",
+   "text": "gidiyor.",
+   "start": 23.963,
+   "end": 24.463
+  },
+  {
+   "i": 47,
+   "chunk": "fark",
+   "text": "Bu",
+   "start": 25.013,
+   "end": 25.18
+  },
+  {
+   "i": 48,
+   "chunk": "fark",
+   "text": "fark",
+   "start": 25.21,
+   "end": 25.377
+  },
+  {
+   "i": 49,
+   "chunk": "fark",
+   "text": "düzeltilmeseydi,",
+   "start": 25.407,
+   "end": 26.407
+  },
+  {
+   "i": 50,
+   "chunk": "konum",
+   "text": "telefonundaki",
+   "start": 26.707,
+   "end": 27.707
+  },
+  {
+   "i": 51,
+   "chunk": "konum",
+   "text": "konum",
+   "start": 27.737,
+   "end": 28.07
+  },
+  {
+   "i": 52,
+   "chunk": "km",
+   "text": "her",
+   "start": 28.1,
+   "end": 28.267
+  },
+  {
+   "i": 53,
+   "chunk": "km",
+   "text": "gün",
+   "start": 28.297,
+   "end": 28.463
+  },
+  {
+   "i": 54,
+   "chunk": "km",
+   "text": "kilometrelerce",
+   "start": 28.493,
+   "end": 29.493
+  },
+  {
+   "i": 55,
+   "chunk": "km",
+   "text": "kayardı.",
+   "start": 29.523,
+   "end": 30.023
+  },
+  {
+   "i": 56,
+   "chunk": "yani",
+   "text": "Yani",
+   "start": 30.573,
+   "end": 30.907
+  },
+  {
+   "i": 57,
+   "chunk": "yani",
+   "text": "zaman,",
+   "start": 30.937,
+   "end": 31.27
+  },
+  {
+   "i": 58,
+   "chunk": "nerede",
+   "text": "nerede",
+   "start": 31.57,
+   "end": 32.07
+  },
+  {
+   "i": 59,
+   "chunk": "nerede",
+   "text": "olduğuna",
+   "start": 32.1,
+   "end": 32.767
+  },
+  {
+   "i": 60,
+   "chunk": "nerede",
+   "text": "göre",
+   "start": 32.797,
+   "end": 33.13
+  },
+  {
+   "i": 61,
+   "chunk": "nerede",
+   "text": "değişiyor.",
+   "start": 33.16,
+   "end": 33.827
+  },
+  {
+   "i": 62,
+   "chunk": "kuran",
+   "text": "Peki",
+   "start": 34.377,
+   "end": 34.71
+  },
+  {
+   "i": 63,
+   "chunk": "kuran",
+   "text": "Kur'an,",
+   "start": 34.74,
+   "end": 35.073
+  },
+  {
+   "i": 64,
+   "chunk": "nediyor",
+   "text": "zaman",
+   "start": 35.373,
+   "end": 35.707
+  },
+  {
+   "i": 65,
+   "chunk": "nediyor",
+   "text": "hakkında",
+   "start": 35.737,
+   "end": 36.237
+  },
+  {
+   "i": 66,
+   "chunk": "nediyor",
+   "text": "ne",
+   "start": 36.267,
+   "end": 36.433
+  },
+  {
+   "i": 67,
+   "chunk": "nediyor",
+   "text": "diyor?",
+   "start": 36.463,
+   "end": 36.797
+  },
+  {
+   "i": 68,
+   "chunk": "hac",
+   "text": "Hac",
+   "start": 37.347,
+   "end": 37.513
+  },
+  {
+   "i": 69,
+   "chunk": "hac",
+   "text": "suresi,",
+   "start": 37.543,
+   "end": 38.043
+  },
+  {
+   "i": 70,
+   "chunk": "ayet47",
+   "text": "kırk",
+   "start": 38.343,
+   "end": 38.51
+  },
+  {
+   "i": 71,
+   "chunk": "ayet47",
+   "text": "yedinci",
+   "start": 38.54,
+   "end": 39.04
+  },
+  {
+   "i": 72,
+   "chunk": "ayet47",
+   "text": "ayet:",
+   "start": 39.07,
+   "end": 39.403
+  },
+  {
+   "i": 73,
+   "chunk": "h1",
+   "text": "\"Ve",
+   "start": 39.953,
+   "end": 40.12
+  },
+  {
+   "i": 74,
+   "chunk": "h1",
+   "text": "inne",
+   "start": 40.15,
+   "end": 40.483
+  },
+  {
+   "i": 75,
+   "chunk": "h1",
+   "text": "yevmen",
+   "start": 40.513,
+   "end": 40.847
+  },
+  {
+   "i": 76,
+   "chunk": "h2",
+   "text": "ʿinde",
+   "start": 40.877,
+   "end": 41.21
+  },
+  {
+   "i": 77,
+   "chunk": "h2",
+   "text": "Rabbike,",
+   "start": 41.24,
+   "end": 41.74
+  },
+  {
+   "i": 78,
+   "chunk": "h3",
+   "text": "ke-elfi",
+   "start": 42.04,
+   "end": 42.54
+  },
+  {
+   "i": 79,
+   "chunk": "h3",
+   "text": "senetin",
+   "start": 42.57,
+   "end": 43.07
+  },
+  {
+   "i": 80,
+   "chunk": "h4",
+   "text": "mimmâ",
+   "start": 43.1,
+   "end": 43.433
+  },
+  {
+   "i": 81,
+   "chunk": "h4",
+   "text": "teuddûn.\"",
+   "start": 43.463,
+   "end": 43.963
+  },
+  {
+   "i": 82,
+   "chunk": "hm1",
+   "text": "Şüphesiz",
+   "start": 44.513,
+   "end": 45.013
+  },
+  {
+   "i": 83,
+   "chunk": "hm1",
+   "text": "Rabbinin",
+   "start": 45.043,
+   "end": 45.543
+  },
+  {
+   "i": 84,
+   "chunk": "hm1",
+   "text": "katında",
+   "start": 45.573,
+   "end": 46.073
+  },
+  {
+   "i": 85,
+   "chunk": "hm1",
+   "text": "bir",
+   "start": 46.103,
+   "end": 46.27
+  },
+  {
+   "i": 86,
+   "chunk": "hm1",
+   "text": "gün,",
+   "start": 46.3,
+   "end": 46.467
+  },
+  {
+   "i": 87,
+   "chunk": "hm2",
+   "text": "sizin",
+   "start": 46.767,
+   "end": 47.1
+  },
+  {
+   "i": 88,
+   "chunk": "hm2",
+   "text": "saydıklarınızdan",
+   "start": 47.13,
+   "end": 48.13
+  },
+  {
+   "i": 89,
+   "chunk": "hm3",
+   "text": "bin",
+   "start": 48.16,
+   "end": 48.327
+  },
+  {
+   "i": 90,
+   "chunk": "hm3",
+   "text": "yıl",
+   "start": 48.357,
+   "end": 48.523
+  },
+  {
+   "i": 91,
+   "chunk": "hm3",
+   "text": "gibidir.",
+   "start": 48.553,
+   "end": 49.053
+  },
+  {
+   "i": 92,
+   "chunk": "secde",
+   "text": "Secde",
+   "start": 49.603,
+   "end": 49.937
+  },
+  {
+   "i": 93,
+   "chunk": "secde",
+   "text": "suresi",
+   "start": 49.967,
+   "end": 50.467
+  },
+  {
+   "i": 94,
+   "chunk": "secde",
+   "text": "beşinci",
+   "start": 50.497,
+   "end": 50.997
+  },
+  {
+   "i": 95,
+   "chunk": "secde",
+   "text": "ayette",
+   "start": 51.027,
+   "end": 51.527
+  },
+  {
+   "i": 96,
+   "chunk": "secde",
+   "text": "ise,",
+   "start": 51.557,
+   "end": 51.89
+  },
+  {
+   "i": 97,
+   "chunk": "isler",
+   "text": "işlerin",
+   "start": 52.19,
+   "end": 52.69
+  },
+  {
+   "i": 98,
+   "chunk": "isler",
+   "text": "O'na",
+   "start": 52.72,
+   "end": 53.053
+  },
+  {
+   "i": 99,
+   "chunk": "isler",
+   "text": "yükseldiği",
+   "start": 53.083,
+   "end": 53.75
+  },
+  {
+   "i": 100,
+   "chunk": "birgun",
+   "text": "bir",
+   "start": 53.78,
+   "end": 53.947
+  },
+  {
+   "i": 101,
+   "chunk": "birgun",
+   "text": "gün",
+   "start": 53.977,
+   "end": 54.143
+  },
+  {
+   "i": 102,
+   "chunk": "birgun",
+   "text": "anlatılır:",
+   "start": 54.173,
+   "end": 54.84
+  },
+  {
+   "i": 103,
+   "chunk": "s1",
+   "text": "\"Fî",
+   "start": 55.39,
+   "end": 55.557
+  },
+  {
+   "i": 104,
+   "chunk": "s1",
+   "text": "yevmin",
+   "start": 55.587,
+   "end": 55.92
+  },
+  {
+   "i": 105,
+   "chunk": "s1",
+   "text": "kâne",
+   "start": 55.95,
+   "end": 56.283
+  },
+  {
+   "i": 106,
+   "chunk": "s2",
+   "text": "mikdâruhû",
+   "start": 56.313,
+   "end": 56.98
+  },
+  {
+   "i": 107,
+   "chunk": "s3",
+   "text": "elfe",
+   "start": 57.01,
+   "end": 57.343
+  },
+  {
+   "i": 108,
+   "chunk": "s3",
+   "text": "senetin",
+   "start": 57.373,
+   "end": 57.873
+  },
+  {
+   "i": 109,
+   "chunk": "s4",
+   "text": "mimmâ",
+   "start": 57.903,
+   "end": 58.237
+  },
+  {
+   "i": 110,
+   "chunk": "s4",
+   "text": "teuddûn.\"",
+   "start": 58.267,
+   "end": 58.767
+  },
+  {
+   "i": 111,
+   "chunk": "sm1",
+   "text": "Ölçüsü,",
+   "start": 59.317,
+   "end": 59.817
+  },
+  {
+   "i": 112,
+   "chunk": "sm2",
+   "text": "sizin",
+   "start": 60.117,
+   "end": 60.45
+  },
+  {
+   "i": 113,
+   "chunk": "sm2",
+   "text": "saydıklarınızdan",
+   "start": 60.48,
+   "end": 61.48
+  },
+  {
+   "i": 114,
+   "chunk": "sm3",
+   "text": "bin",
+   "start": 61.51,
+   "end": 61.677
+  },
+  {
+   "i": 115,
+   "chunk": "sm3",
+   "text": "yıl",
+   "start": 61.707,
+   "end": 61.873
+  },
+  {
+   "i": 116,
+   "chunk": "sm3",
+   "text": "olan",
+   "start": 61.903,
+   "end": 62.237
+  },
+  {
+   "i": 117,
+   "chunk": "sm3",
+   "text": "bir",
+   "start": 62.267,
+   "end": 62.433
+  },
+  {
+   "i": 118,
+   "chunk": "sm3",
+   "text": "gün.",
+   "start": 62.463,
+   "end": 62.63
+  },
+  {
+   "i": 119,
+   "chunk": "mearic",
+   "text": "Meâric",
+   "start": 63.18,
+   "end": 63.68
+  },
+  {
+   "i": 120,
+   "chunk": "mearic",
+   "text": "suresinde",
+   "start": 63.71,
+   "end": 64.377
+  },
+  {
+   "i": 121,
+   "chunk": "mearic",
+   "text": "ise,",
+   "start": 64.407,
+   "end": 64.74
+  },
+  {
+   "i": 122,
+   "chunk": "melek",
+   "text": "meleklerin",
+   "start": 65.04,
+   "end": 65.707
+  },
+  {
+   "i": 123,
+   "chunk": "melek",
+   "text": "yükseldiği",
+   "start": 65.737,
+   "end": 66.403
+  },
+  {
+   "i": 124,
+   "chunk": "melek",
+   "text": "bir",
+   "start": 66.433,
+   "end": 66.6
+  },
+  {
+   "i": 125,
+   "chunk": "melek",
+   "text": "gün",
+   "start": 66.63,
+   "end": 66.797
+  },
+  {
+   "i": 126,
+   "chunk": "melek",
+   "text": "için,",
+   "start": 66.827,
+   "end": 67.16
+  },
+  {
+   "i": 127,
+   "chunk": "elli",
+   "text": "elli",
+   "start": 67.46,
+   "end": 67.793
+  },
+  {
+   "i": 128,
+   "chunk": "elli",
+   "text": "bin",
+   "start": 67.823,
+   "end": 67.99
+  },
+  {
+   "i": 129,
+   "chunk": "elli",
+   "text": "yıl",
+   "start": 68.02,
+   "end": 68.187
+  },
+  {
+   "i": 130,
+   "chunk": "elli",
+   "text": "denir.",
+   "start": 68.217,
+   "end": 68.55
+  },
+  {
+   "i": 131,
+   "chunk": "dikkat",
+   "text": "Dikkat",
+   "start": 69.1,
+   "end": 69.433
+  },
+  {
+   "i": 132,
+   "chunk": "dikkat",
+   "text": "et.",
+   "start": 69.463,
+   "end": 69.63
+  },
+  {
+   "i": 133,
+   "chunk": "tek",
+   "text": "Ayetler,",
+   "start": 70.18,
+   "end": 70.68
+  },
+  {
+   "i": 134,
+   "chunk": "tek",
+   "text": "tek",
+   "start": 70.98,
+   "end": 71.147
+  },
+  {
+   "i": 135,
+   "chunk": "tek",
+   "text": "ve",
+   "start": 71.177,
+   "end": 71.343
+  },
+  {
+   "i": 136,
+   "chunk": "tek",
+   "text": "sabit",
+   "start": 71.373,
+   "end": 71.707
+  },
+  {
+   "i": 137,
+   "chunk": "bahsetmiyor",
+   "text": "bir",
+   "start": 71.737,
+   "end": 71.903
+  },
+  {
+   "i": 138,
+   "chunk": "bahsetmiyor",
+   "text": "zamandan",
+   "start": 71.933,
+   "end": 72.433
+  },
+  {
+   "i": 139,
+   "chunk": "bahsetmiyor",
+   "text": "bahsetmiyor.",
+   "start": 72.463,
+   "end": 73.13
+  },
+  {
+   "i": 140,
+   "chunk": "vurgu",
+   "text": "Ve",
+   "start": 73.68,
+   "end": 73.847
+  },
+  {
+   "i": 141,
+   "chunk": "vurgu",
+   "text": "hep",
+   "start": 73.877,
+   "end": 74.043
+  },
+  {
+   "i": 142,
+   "chunk": "vurgu",
+   "text": "aynı",
+   "start": 74.073,
+   "end": 74.407
+  },
+  {
+   "i": 143,
+   "chunk": "vurgu",
+   "text": "vurgu:",
+   "start": 74.437,
+   "end": 74.77
+  },
+  {
+   "i": 144,
+   "chunk": "mimma",
+   "text": "mimmâ",
+   "start": 75.32,
+   "end": 75.653
+  },
+  {
+   "i": 145,
+   "chunk": "mimma",
+   "text": "teuddûn.",
+   "start": 75.683,
+   "end": 76.183
+  },
+  {
+   "i": 146,
+   "chunk": "saydiginiz",
+   "text": "Sizin",
+   "start": 76.733,
+   "end": 77.067
+  },
+  {
+   "i": 147,
+   "chunk": "saydiginiz",
+   "text": "saydığınız.",
+   "start": 77.097,
+   "end": 77.763
+  },
+  {
+   "i": 148,
+   "chunk": "saatimiz",
+   "text": "Yani",
+   "start": 78.313,
+   "end": 78.647
+  },
+  {
+   "i": 149,
+   "chunk": "saatimiz",
+   "text": "bizim",
+   "start": 78.677,
+   "end": 79.01
+  },
+  {
+   "i": 150,
+   "chunk": "saatimiz",
+   "text": "saatimiz,",
+   "start": 79.04,
+   "end": 79.707
+  },
+  {
+   "i": 151,
+   "chunk": "olcu",
+   "text": "tek",
+   "start": 80.007,
+   "end": 80.173
+  },
+  {
+   "i": 152,
+   "chunk": "olcu",
+   "text": "ölçü",
+   "start": 80.203,
+   "end": 80.537
+  },
+  {
+   "i": 153,
+   "chunk": "olcu",
+   "text": "değil.",
+   "start": 80.567,
+   "end": 80.9
+  },
+  {
+   "i": 154,
+   "chunk": "yaratan",
+   "text": "Zamanı",
+   "start": 81.45,
+   "end": 81.95
+  },
+  {
+   "i": 155,
+   "chunk": "yaratan",
+   "text": "yaratan,",
+   "start": 81.98,
+   "end": 82.48
+  },
+  {
+   "i": 156,
+   "chunk": "icinde",
+   "text": "zamanın",
+   "start": 82.78,
+   "end": 83.28
+  },
+  {
+   "i": 157,
+   "chunk": "icinde",
+   "text": "içinde",
+   "start": 83.31,
+   "end": 83.81
+  },
+  {
+   "i": 158,
+   "chunk": "icinde",
+   "text": "değildir.",
+   "start": 83.84,
+   "end": 84.34
+  },
+  {
+   "i": 159,
+   "chunk": "anlatir",
+   "text": "Kur'an",
+   "start": 84.89,
+   "end": 85.223
+  },
+  {
+   "i": 160,
+   "chunk": "anlatir",
+   "text": "anlatır:",
+   "start": 85.253,
+   "end": 85.753
+  },
+  {
+   "i": 161,
+   "chunk": "ahiret",
+   "text": "Ahirette",
+   "start": 86.303,
+   "end": 86.97
+  },
+  {
+   "i": 162,
+   "chunk": "ahiret",
+   "text": "insanlara,",
+   "start": 87.0,
+   "end": 87.667
+  },
+  {
+   "i": 163,
+   "chunk": "nekadar",
+   "text": "dünyada",
+   "start": 87.967,
+   "end": 88.467
+  },
+  {
+   "i": 164,
+   "chunk": "nekadar",
+   "text": "ne",
+   "start": 88.497,
+   "end": 88.663
+  },
+  {
+   "i": 165,
+   "chunk": "nekadar",
+   "text": "kadar",
+   "start": 88.693,
+   "end": 89.027
+  },
+  {
+   "i": 166,
+   "chunk": "nekadar",
+   "text": "kaldınız",
+   "start": 89.057,
+   "end": 89.557
+  },
+  {
+   "i": 167,
+   "chunk": "sorulur",
+   "text": "diye",
+   "start": 89.587,
+   "end": 89.92
+  },
+  {
+   "i": 168,
+   "chunk": "sorulur",
+   "text": "sorulur.",
+   "start": 89.95,
+   "end": 90.45
+  },
+  {
+   "i": 169,
+   "chunk": "birgun2",
+   "text": "Bir",
+   "start": 91.0,
+   "end": 91.167
+  },
+  {
+   "i": 170,
+   "chunk": "birgun2",
+   "text": "gün,",
+   "start": 91.197,
+   "end": 91.363
+  },
+  {
+   "i": 171,
+   "chunk": "kismi",
+   "text": "ya",
+   "start": 91.663,
+   "end": 91.83
+  },
+  {
+   "i": 172,
+   "chunk": "kismi",
+   "text": "da",
+   "start": 91.86,
+   "end": 92.027
+  },
+  {
+   "i": 173,
+   "chunk": "kismi",
+   "text": "günün",
+   "start": 92.057,
+   "end": 92.39
+  },
+  {
+   "i": 174,
+   "chunk": "kismi",
+   "text": "bir",
+   "start": 92.42,
+   "end": 92.587
+  },
+  {
+   "i": 175,
+   "chunk": "kismi",
+   "text": "kısmı,",
+   "start": 92.617,
+   "end": 92.95
+  },
+  {
+   "i": 176,
+   "chunk": "derler",
+   "text": "derler.",
+   "start": 93.25,
+   "end": 93.583
+  },
+  {
+   "i": 177,
+   "chunk": "pekisen",
+   "text": "Peki",
+   "start": 94.133,
+   "end": 94.467
+  },
+  {
+   "i": 178,
+   "chunk": "pekisen",
+   "text": "sen,",
+   "start": 94.497,
+   "end": 94.663
+  },
+  {
+   "i": 179,
+   "chunk": "kisa",
+   "text": "sana",
+   "start": 94.963,
+   "end": 95.297
+  },
+  {
+   "i": 180,
+   "chunk": "kisa",
+   "text": "verilen",
+   "start": 95.327,
+   "end": 95.827
+  },
+  {
+   "i": 181,
+   "chunk": "kisa",
+   "text": "bu",
+   "start": 95.857,
+   "end": 96.023
+  },
+  {
+   "i": 182,
+   "chunk": "kisa",
+   "text": "kısa",
+   "start": 96.053,
+   "end": 96.387
+  },
+  {
+   "i": 183,
+   "chunk": "kisa",
+   "text": "zamanı,",
+   "start": 96.417,
+   "end": 96.917
+  },
+  {
+   "i": 184,
+   "chunk": "harca",
+   "text": "neye",
+   "start": 97.217,
+   "end": 97.55
+  },
+  {
+   "i": 185,
+   "chunk": "harca",
+   "text": "harcıyorsun?",
+   "start": 97.58,
+   "end": 98.247
+  }
+ ],
+ "chunks": [
+  {
+   "id": "saat",
+   "text": "Saatine bak.",
+   "start": 0.3,
+   "end": 1.163,
+   "words": [
+    0,
+    1
+   ]
+  },
+  {
+   "id": "sence",
+   "text": "Sence zaman,",
+   "start": 1.713,
+   "end": 2.41,
+   "words": [
+    2,
+    3
+   ]
+  },
+  {
+   "id": "herkes",
+   "text": "herkes için aynı hızla mı akıyor?",
+   "start": 2.71,
+   "end": 4.86,
+   "words": [
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+   ]
+  },
+  {
+   "id": "yuzyil",
+   "text": "Yüz yılı aşkın bir süre önce",
+   "start": 5.41,
+   "end": 7.227,
+   "words": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ]
+  },
+  {
+   "id": "einstein",
+   "text": "Einstein, buna hayır dedi.",
+   "start": 7.257,
+   "end": 9.283,
+   "words": [
+    16,
+    17,
+    18,
+    19
+   ]
+  },
+  {
+   "id": "hiz",
+   "text": "Hız arttıkça",
+   "start": 9.833,
+   "end": 10.53,
+   "words": [
+    20,
+    21
+   ]
+  },
+  {
+   "id": "kutle",
+   "text": "ve kütleçekim güçlendikçe,",
+   "start": 10.56,
+   "end": 12.12,
+   "words": [
+    22,
+    23,
+    24
+   ]
+  },
+  {
+   "id": "yavas",
+   "text": "zaman yavaşlar.",
+   "start": 12.42,
+   "end": 13.283,
+   "words": [
+    25,
+    26
+   ]
+  },
+  {
+   "id": "teori",
+   "text": "Bu, bir teori olarak kalmadı.",
+   "start": 13.833,
+   "end": 16.057,
+   "words": [
+    27,
+    28,
+    29,
+    30,
+    31
+   ]
+  },
+  {
+   "id": "gps",
+   "text": "Uzaydaki GPS uydularının saatleri,",
+   "start": 16.607,
+   "end": 19.03,
+   "words": [
+    32,
+    33,
+    34,
+    35
+   ]
+  },
+  {
+   "id": "yerdeki",
+   "text": "yerdeki saatlere göre",
+   "start": 19.33,
+   "end": 20.89,
+   "words": [
+    36,
+    37,
+    38
+   ]
+  },
+  {
+   "id": "hergun",
+   "text": "her gün yaklaşık",
+   "start": 20.92,
+   "end": 21.813,
+   "words": [
+    39,
+    40,
+    41
+   ]
+  },
+  {
+   "id": "mikro",
+   "text": "otuz sekiz mikrosaniye ileri gidiyor.",
+   "start": 21.843,
+   "end": 24.463,
+   "words": [
+    42,
+    43,
+    44,
+    45,
+    46
+   ]
+  },
+  {
+   "id": "fark",
+   "text": "Bu fark düzeltilmeseydi,",
+   "start": 25.013,
+   "end": 26.407,
+   "words": [
+    47,
+    48,
+    49
+   ]
+  },
+  {
+   "id": "konum",
+   "text": "telefonundaki konum",
+   "start": 26.707,
+   "end": 28.07,
+   "words": [
+    50,
+    51
+   ]
+  },
+  {
+   "id": "km",
+   "text": "her gün kilometrelerce kayardı.",
+   "start": 28.1,
+   "end": 30.023,
+   "words": [
+    52,
+    53,
+    54,
+    55
+   ]
+  },
+  {
+   "id": "yani",
+   "text": "Yani zaman,",
+   "start": 30.573,
+   "end": 31.27,
+   "words": [
+    56,
+    57
+   ]
+  },
+  {
+   "id": "nerede",
+   "text": "nerede olduğuna göre değişiyor.",
+   "start": 31.57,
+   "end": 33.827,
+   "words": [
+    58,
+    59,
+    60,
+    61
+   ]
+  },
+  {
+   "id": "kuran",
+   "text": "Peki Kur'an,",
+   "start": 34.377,
+   "end": 35.073,
+   "words": [
+    62,
+    63
+   ]
+  },
+  {
+   "id": "nediyor",
+   "text": "zaman hakkında ne diyor?",
+   "start": 35.373,
+   "end": 36.797,
+   "words": [
+    64,
+    65,
+    66,
+    67
+   ]
+  },
+  {
+   "id": "hac",
+   "text": "Hac suresi,",
+   "start": 37.347,
+   "end": 38.043,
+   "words": [
+    68,
+    69
+   ]
+  },
+  {
+   "id": "ayet47",
+   "text": "kırk yedinci ayet:",
+   "start": 38.343,
+   "end": 39.403,
+   "words": [
+    70,
+    71,
+    72
+   ]
+  },
+  {
+   "id": "h1",
+   "text": "\"Ve inne yevmen",
+   "start": 39.953,
+   "end": 40.847,
+   "words": [
+    73,
+    74,
+    75
+   ]
+  },
+  {
+   "id": "h2",
+   "text": "ʿinde Rabbike,",
+   "start": 40.877,
+   "end": 41.74,
+   "words": [
+    76,
+    77
+   ]
+  },
+  {
+   "id": "h3",
+   "text": "ke-elfi senetin",
+   "start": 42.04,
+   "end": 43.07,
+   "words": [
+    78,
+    79
+   ]
+  },
+  {
+   "id": "h4",
+   "text": "mimmâ teuddûn.\"",
+   "start": 43.1,
+   "end": 43.963,
+   "words": [
+    80,
+    81
+   ]
+  },
+  {
+   "id": "hm1",
+   "text": "Şüphesiz Rabbinin katında bir gün,",
+   "start": 44.513,
+   "end": 46.467,
+   "words": [
+    82,
+    83,
+    84,
+    85,
+    86
+   ]
+  },
+  {
+   "id": "hm2",
+   "text": "sizin saydıklarınızdan",
+   "start": 46.767,
+   "end": 48.13,
+   "words": [
+    87,
+    88
+   ]
+  },
+  {
+   "id": "hm3",
+   "text": "bin yıl gibidir.",
+   "start": 48.16,
+   "end": 49.053,
+   "words": [
+    89,
+    90,
+    91
+   ]
+  },
+  {
+   "id": "secde",
+   "text": "Secde suresi beşinci ayette ise,",
+   "start": 49.603,
+   "end": 51.89,
+   "words": [
+    92,
+    93,
+    94,
+    95,
+    96
+   ]
+  },
+  {
+   "id": "isler",
+   "text": "işlerin O'na yükseldiği",
+   "start": 52.19,
+   "end": 53.75,
+   "words": [
+    97,
+    98,
+    99
+   ]
+  },
+  {
+   "id": "birgun",
+   "text": "bir gün anlatılır:",
+   "start": 53.78,
+   "end": 54.84,
+   "words": [
+    100,
+    101,
+    102
+   ]
+  },
+  {
+   "id": "s1",
+   "text": "\"Fî yevmin kâne",
+   "start": 55.39,
+   "end": 56.283,
+   "words": [
+    103,
+    104,
+    105
+   ]
+  },
+  {
+   "id": "s2",
+   "text": "mikdâruhû",
+   "start": 56.313,
+   "end": 56.98,
+   "words": [
+    106
+   ]
+  },
+  {
+   "id": "s3",
+   "text": "elfe senetin",
+   "start": 57.01,
+   "end": 57.873,
+   "words": [
+    107,
+    108
+   ]
+  },
+  {
+   "id": "s4",
+   "text": "mimmâ teuddûn.\"",
+   "start": 57.903,
+   "end": 58.767,
+   "words": [
+    109,
+    110
+   ]
+  },
+  {
+   "id": "sm1",
+   "text": "Ölçüsü,",
+   "start": 59.317,
+   "end": 59.817,
+   "words": [
+    111
+   ]
+  },
+  {
+   "id": "sm2",
+   "text": "sizin saydıklarınızdan",
+   "start": 60.117,
+   "end": 61.48,
+   "words": [
+    112,
+    113
+   ]
+  },
+  {
+   "id": "sm3",
+   "text": "bin yıl olan bir gün.",
+   "start": 61.51,
+   "end": 62.63,
+   "words": [
+    114,
+    115,
+    116,
+    117,
+    118
+   ]
+  },
+  {
+   "id": "mearic",
+   "text": "Meâric suresinde ise,",
+   "start": 63.18,
+   "end": 64.74,
+   "words": [
+    119,
+    120,
+    121
+   ]
+  },
+  {
+   "id": "melek",
+   "text": "meleklerin yükseldiği bir gün için,",
+   "start": 65.04,
+   "end": 67.16,
+   "words": [
+    122,
+    123,
+    124,
+    125,
+    126
+   ]
+  },
+  {
+   "id": "elli",
+   "text": "elli bin yıl denir.",
+   "start": 67.46,
+   "end": 68.55,
+   "words": [
+    127,
+    128,
+    129,
+    130
+   ]
+  },
+  {
+   "id": "dikkat",
+   "text": "Dikkat et.",
+   "start": 69.1,
+   "end": 69.63,
+   "words": [
+    131,
+    132
+   ]
+  },
+  {
+   "id": "tek",
+   "text": "Ayetler, tek ve sabit",
+   "start": 70.18,
+   "end": 71.707,
+   "words": [
+    133,
+    134,
+    135,
+    136
+   ]
+  },
+  {
+   "id": "bahsetmiyor",
+   "text": "bir zamandan bahsetmiyor.",
+   "start": 71.737,
+   "end": 73.13,
+   "words": [
+    137,
+    138,
+    139
+   ]
+  },
+  {
+   "id": "vurgu",
+   "text": "Ve hep aynı vurgu:",
+   "start": 73.68,
+   "end": 74.77,
+   "words": [
+    140,
+    141,
+    142,
+    143
+   ]
+  },
+  {
+   "id": "mimma",
+   "text": "mimmâ teuddûn.",
+   "start": 75.32,
+   "end": 76.183,
+   "words": [
+    144,
+    145
+   ]
+  },
+  {
+   "id": "saydiginiz",
+   "text": "Sizin saydığınız.",
+   "start": 76.733,
+   "end": 77.763,
+   "words": [
+    146,
+    147
+   ]
+  },
+  {
+   "id": "saatimiz",
+   "text": "Yani bizim saatimiz,",
+   "start": 78.313,
+   "end": 79.707,
+   "words": [
+    148,
+    149,
+    150
+   ]
+  },
+  {
+   "id": "olcu",
+   "text": "tek ölçü değil.",
+   "start": 80.007,
+   "end": 80.9,
+   "words": [
+    151,
+    152,
+    153
+   ]
+  },
+  {
+   "id": "yaratan",
+   "text": "Zamanı yaratan,",
+   "start": 81.45,
+   "end": 82.48,
+   "words": [
+    154,
+    155
+   ]
+  },
+  {
+   "id": "icinde",
+   "text": "zamanın içinde değildir.",
+   "start": 82.78,
+   "end": 84.34,
+   "words": [
+    156,
+    157,
+    158
+   ]
+  },
+  {
+   "id": "anlatir",
+   "text": "Kur'an anlatır:",
+   "start": 84.89,
+   "end": 85.753,
+   "words": [
+    159,
+    160
+   ]
+  },
+  {
+   "id": "ahiret",
+   "text": "Ahirette insanlara,",
+   "start": 86.303,
+   "end": 87.667,
+   "words": [
+    161,
+    162
+   ]
+  },
+  {
+   "id": "nekadar",
+   "text": "dünyada ne kadar kaldınız",
+   "start": 87.967,
+   "end": 89.557,
+   "words": [
+    163,
+    164,
+    165,
+    166
+   ]
+  },
+  {
+   "id": "sorulur",
+   "text": "diye sorulur.",
+   "start": 89.587,
+   "end": 90.45,
+   "words": [
+    167,
+    168
+   ]
+  },
+  {
+   "id": "birgun2",
+   "text": "Bir gün,",
+   "start": 91.0,
+   "end": 91.363,
+   "words": [
+    169,
+    170
+   ]
+  },
+  {
+   "id": "kismi",
+   "text": "ya da günün bir kısmı,",
+   "start": 91.663,
+   "end": 92.95,
+   "words": [
+    171,
+    172,
+    173,
+    174,
+    175
+   ]
+  },
+  {
+   "id": "derler",
+   "text": "derler.",
+   "start": 93.25,
+   "end": 93.583,
+   "words": [
+    176
+   ]
+  },
+  {
+   "id": "pekisen",
+   "text": "Peki sen,",
+   "start": 94.133,
+   "end": 94.663,
+   "words": [
+    177,
+    178
+   ]
+  },
+  {
+   "id": "kisa",
+   "text": "sana verilen bu kısa zamanı,",
+   "start": 94.963,
+   "end": 96.917,
+   "words": [
+    179,
+    180,
+    181,
+    182,
+    183
+   ]
+  },
+  {
+   "id": "harca",
+   "text": "neye harcıyorsun?",
+   "start": 97.217,
+   "end": 98.247,
+   "words": [
+    184,
+    185
+   ]
+  }
+ ]
+}
