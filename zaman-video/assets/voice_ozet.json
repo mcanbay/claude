@@ -1,0 +1,169 @@
+{
+  "ses": "tok_anlatici",
+  "dil": "tr",
+  "kimlik_klasoru": "/home/user/alexturkey/voxcpm2-turkce-ses-tasarimi/hazir_sesler/tok_anlatici",
+  "tohum": 2092167506,
+  "adim": 16,
+  "cfg": 2.0,
+  "ses_sn": 105.2,
+  "sure_sn": 1067.6,
+  "vram_tepe_mb": null,
+  "wav": "/home/user/vox/zaman/okuma.wav",
+  "satirlar": [
+    {
+      "satir": 1,
+      "metin": "Saatine bak.",
+      "t0": 0.0,
+      "t1": 1.92
+    },
+    {
+      "satir": 2,
+      "metin": "Sence zaman, herkes için aynı hızla mı akıyor?",
+      "t0": 2.27,
+      "t1": 5.47
+    },
+    {
+      "satir": 3,
+      "metin": "Yüz yılı aşkın bir süre önce Aynştayn, buna hayır dedi.",
+      "t0": 5.82,
+      "t1": 9.18
+    },
+    {
+      "satir": 4,
+      "metin": "Hız arttıkça ve kütleçekim güçlendikçe, zaman yavaşlar.",
+      "t0": 9.53,
+      "t1": 13.53
+    },
+    {
+      "satir": 5,
+      "metin": "Bu, bir teori olarak kalmadı.",
+      "t0": 14.53,
+      "t1": 16.93
+    },
+    {
+      "satir": 6,
+      "metin": "Uzaydaki Ge Pe Se uydularının saatleri, yerdeki saatlere göre her gün yaklaşık otuz sekiz mikrosaniye ileri gidiyor.",
+      "t0": 17.28,
+      "t1": 24.0
+    },
+    {
+      "satir": 7,
+      "metin": "Bu fark düzeltilmeseydi, telefonundaki konum her gün kilometrelerce kayardı.",
+      "t0": 24.35,
+      "t1": 29.15
+    },
+    {
+      "satir": 8,
+      "metin": "Yani zaman, nerede olduğuna göre değişiyor.",
+      "t0": 29.5,
+      "t1": 32.38
+    },
+    {
+      "satir": 9,
+      "metin": "Peki Kuran, zaman hakkında ne diyor?",
+      "t0": 33.38,
+      "t1": 36.1
+    },
+    {
+      "satir": 10,
+      "metin": "Hac suresi, kırk yedinci ayet.",
+      "t0": 36.45,
+      "t1": 39.65
+    },
+    {
+      "satir": 11,
+      "metin": "Ve inne yevmen inde Rabbike, keelfi senetin mimmâ teuddûn.",
+      "t0": 40.15,
+      "t1": 45.27
+    },
+    {
+      "satir": 12,
+      "metin": "Şüphesiz Rabbinin katında bir gün, sizin saydıklarınızdan bin yıl gibidir.",
+      "t0": 45.77,
+      "t1": 50.25
+    },
+    {
+      "satir": 13,
+      "metin": "Secde suresi beşinci ayette ise, işlerin Ona yükseldiği bir gün anlatılır.",
+      "t0": 51.25,
+      "t1": 56.05
+    },
+    {
+      "satir": 14,
+      "metin": "Fî yevmin kâne mikdâruhû elfe senetin mimmâ teuddûn.",
+      "t0": 56.55,
+      "t1": 61.51
+    },
+    {
+      "satir": 15,
+      "metin": "Ölçüsü, sizin saydıklarınızdan bin yıl olan bir gün.",
+      "t0": 62.01,
+      "t1": 66.81
+    },
+    {
+      "satir": 16,
+      "metin": "Meâric suresinde ise, meleklerin yükseldiği bir gün için, elli bin yıl denir.",
+      "t0": 67.16,
+      "t1": 72.12
+    },
+    {
+      "satir": 17,
+      "metin": "Dikkat et.",
+      "t0": 73.12,
+      "t1": 74.24
+    },
+    {
+      "satir": 18,
+      "metin": "Ayetler, tek ve sabit bir zamandan bahsetmiyor.",
+      "t0": 74.59,
+      "t1": 78.43
+    },
+    {
+      "satir": 19,
+      "metin": "Ve hep aynı vurgu: mimmâ teuddûn.",
+      "t0": 78.78,
+      "t1": 82.78
+    },
+    {
+      "satir": 20,
+      "metin": "Sizin saydığınız.",
+      "t0": 83.13,
+      "t1": 84.89
+    },
+    {
+      "satir": 21,
+      "metin": "Yani bizim saatimiz, tek ölçü değil.",
+      "t0": 85.24,
+      "t1": 87.96
+    },
+    {
+      "satir": 22,
+      "metin": "Zamanı yaratan, zamanın içinde değildir.",
+      "t0": 88.96,
+      "t1": 92.16
+    },
+    {
+      "satir": 23,
+      "metin": "Kuran anlatır: Ahirette insanlara, dünyada ne kadar kaldınız diye sorulur.",
+      "t0": 92.51,
+      "t1": 97.63
+    },
+    {
+      "satir": 24,
+      "metin": "Bir gün, ya da günün bir kısmı, derler.",
+      "t0": 97.98,
+      "t1": 100.86
+    },
+    {
+      "satir": 25,
+      "metin": "Peki sen, sana verilen bu kısa zamanı, neye harcıyorsun?",
+      "t0": 101.36,
+      "t1": 105.2
+    }
+  ],
+  "supheli_satirlar": [
+    1
+  ],
+  "yapay": true,
+  "tarih": "2026-11-02 20:41"
+}

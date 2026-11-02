@@ -69,3 +69,16 @@ CHUNKS = [
     ("kisa", "sana verilen bu kısa zamanı,"),
     ("harca", "neye harcıyorsun?"),
 ]
+
+# Spoken lines (seslendirme_satirlar.txt) -> caption chunks they contain, in order.
+LINE_CHUNKS = [
+    ["saat"], ["sence", "herkes"], ["yuzyil", "einstein"], ["hiz", "kutle", "yavas"],
+    ["teori"], ["gps", "yerdeki", "hergun", "mikro"], ["fark", "konum", "km"], ["yani", "nerede"],
+    ["kuran", "nediyor"], ["hac", "ayet47"], ["h1", "h2", "h3", "h4"], ["hm1", "hm2", "hm3"],
+    ["secde", "isler", "birgun"], ["s1", "s2", "s3", "s4"], ["sm1", "sm2", "sm3"], ["mearic", "melek", "elli"],
+    ["dikkat"], ["tek", "bahsetmiyor"], ["vurgu", "mimma"], ["saydiginiz"], ["saatimiz", "olcu"],
+    ["yaratan", "icinde"], ["anlatir", "ahiret", "nekadar", "sorulur"], ["birgun2", "kismi", "derler"],
+    ["pekisen", "kisa", "harca"],
+]
+# syllable overrides for words whose spelling != pronunciation
+SYLLABLES = {"GPS": 3, "Einstein,": 2}
