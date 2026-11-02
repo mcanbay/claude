@@ -36,6 +36,8 @@ import numpy as np
 import requests
 from PIL import Image, ImageDraw, ImageFont
 
+from bina3d import Building
+
 TKGM_BASES = [
     "https://cbsapi.tkgm.gov.tr/megsiswebapi.v3.1/api",
     "https://cbsapi.tkgm.gov.tr/megsiswebapi.v3/api",
@@ -500,16 +502,20 @@ class Camera:
         self.hfov = 2 * math.atan((width / 2) / self.f)
         self.K = np.array([[self.f, 0, width / 2], [0, self.f, height / 2], [0, 0, 1]])
 
-    def ground_homography(self, target, dist, heading_deg, pitch_deg):
-        """Yer düzlemi (X, Y, 1) -> ekran pikseli homografisi."""
+    def camera_matrix(self, target, dist, heading_deg, pitch_deg):
+        """3x4 izdüşüm matrisi ve kamera konumu (X doğu, Y kuzey, Z yukarı)."""
         th, ps = math.radians(pitch_deg), math.radians(heading_deg)
         fwd = np.array([math.cos(th) * math.sin(ps), math.cos(th) * math.cos(ps), -math.sin(th)])
         right = np.array([math.cos(ps), -math.sin(ps), 0.0])
         up = np.cross(right, fwd)
         R = np.stack([right, -up, fwd])
         C = np.array([target[0], target[1], 0.0]) - dist * fwd
-        P = self.K @ np.column_stack([R[:, 0], R[:, 1], -R @ C])
-        return P
+        return self.K @ np.column_stack([R, -R @ C]), C
+
+    def ground_homography(self, target, dist, heading_deg, pitch_deg):
+        """Yer düzlemi (X, Y, 1) -> ekran pikseli homografisi."""
+        P, _ = self.camera_matrix(target, dist, heading_deg, pitch_deg)
+        return P[:, [0, 1, 3]]
 
     def visible_size(self, dist):
         return 2 * dist * math.tan(self.hfov / 2), 2 * dist * math.tan(self.vfov / 2)
@@ -754,6 +760,12 @@ class Video:
         self.props = parcel_props(props)
 
         self.cam = Camera(self.W, self.H, 62 if self.portrait else 44)
+        self.building = None
+        if args.render or args.bina:
+            self.building = Building(self.ring, floors=args.kat)
+        # Proje görseli varsa tepeden görünümden sonra araya girer; kapanış kartı ötelenir.
+        self.t_end = 54.3 if args.render else 47.3
+        self.DURATION = self.t_end + 4.7
         self._plan_camera()
 
     # -- kamera planı ----------------------------------------------------
@@ -927,6 +939,8 @@ class Video:
         self.spr_lower = panel
 
         self.spr_card = self._info_card(parcel_txt)
+        self._prepare_showcase()
+        self.spr_model_note = text_sprite(F, "Temsili 3B bina modeli", int(20 * S), False, (240, 240, 240))
         self.spr_compass = self._compass()
 
         end = [text_sprite(F, tr_upper(a.title), int(30 * S), True, (255, 205, 60), tracking=int(7 * S), max_width=maxw),
@@ -941,10 +955,61 @@ class Video:
         self.spr_credit = text_sprite(F, self.credit, small, False, (235, 235, 235))
         self.spr_end_credit = stack_sprites([
             text_sprite(F, f"{self.credit} · Parsel sınırı: TKGM", small, False, (200, 200, 200), max_width=maxw),
-            text_sprite(F, "Görüntüler uydu verisinden oluşturulmuştur, temsilidir; "
-                           "resmi bilgi için tapu kayıtlarını esas alınız.", small, False, (170, 170, 170),
+            text_sprite(F, ("Uydu görüntüsü, 3B bina modeli ve proje görseli temsilidir; " if self.building else
+                            "Görüntüler uydu verisinden oluşturulmuştur, temsilidir; ")
+                        + "resmi bilgi için tapu kayıtlarını esas alınız.", small, False, (170, 170, 170),
                         max_width=maxw),
         ], gap=int(2 * S), align="c")
+
+    def _prepare_showcase(self):
+        self.proj_img = None
+        if not self.args.render:
+            return
+        img = cv2.imread(self.args.render, cv2.IMREAD_COLOR)
+        if img is None:
+            sys.exit(f"HATA: Proje görseli okunamadı: {self.args.render}")
+        self.proj_img = img
+        W, H, S = self.W, self.H, self.S
+        ih, iw = img.shape[:2]
+        if self.portrait:
+            cover = max(W / iw, H / ih)
+            bg = cv2.resize(img, (int(iw * cover) + 1, int(ih * cover) + 1), interpolation=cv2.INTER_AREA)
+            y0, x0 = (bg.shape[0] - H) // 2, (bg.shape[1] - W) // 2
+            bg = cv2.GaussianBlur(bg[y0:y0 + H, x0:x0 + W], (0, 0), 28 * S)
+            self._proj_bg = (bg.astype(np.float32) * 0.45).astype(np.uint8)
+            self._proj_fg_h = ih * (W * 0.94 / iw)
+        label = "PROJE GÖRSELİ"
+        items = [text_sprite(self.fonts, label, int(22 * S), True, (255, 205, 60), tracking=int(5 * S))]
+        if self.args.proje:
+            items.append(text_sprite(self.fonts, self.args.proje, int(46 * S), True, max_width=int(W * 0.8)))
+        items.append(text_sprite(self.fonts, f"{self.args.ada} Ada · {self.args.parsel} Parsel · "
+                                 f"{tr_title(self.args.mahalle)}, {tr_title(self.args.ilce)}",
+                                 int(26 * S), False, (235, 235, 235), max_width=int(W * 0.86)))
+        self.spr_proj_caption = stack_sprites(items, gap=int(4 * S), align="c" if self.portrait else "l")
+
+    def _caption_shade(self):
+        if not hasattr(self, "_cap_shade"):
+            yy = np.linspace(0, 1, self.H, dtype=np.float32)
+            self._cap_shade = (np.clip((yy - 0.62) / 0.38, 0, 1) ** 1.5 * 0.6)[:, None, None]
+        return self._cap_shade
+
+    def _showcase(self, t):
+        """Proje görselini yavaş yakınlaşmayla (Ken Burns) kareye yerleştirir."""
+        img = self.proj_img
+        ih, iw = img.shape[:2]
+        W, H = self.W, self.H
+        k = min(max((t - 47.3) / (self.DURATION - 47.3), 0.0), 1.0)
+        zoom = 1.0 + 0.07 * k
+        if self.portrait:
+            sc = W * 0.94 / iw * (1 + 0.04 * k)
+            out = self._proj_bg.copy()
+            M = np.array([[sc, 0, W / 2 - iw * sc / 2], [0, sc, H / 2 - ih * sc / 2]])
+            cv2.warpAffine(img, M, (W, H), dst=out, flags=cv2.INTER_AREA, borderMode=cv2.BORDER_TRANSPARENT)
+            return out
+        sc = max(W / iw, H / ih) * zoom
+        dx = -0.02 * W * k
+        M = np.array([[sc, 0, W / 2 - iw * sc / 2 + dx], [0, sc, H / 2 - ih * sc / 2]])
+        return cv2.warpAffine(img, M, (W, H), flags=cv2.INTER_LINEAR, borderMode=cv2.BORDER_REFLECT)
 
     def _info_card(self, parcel_txt):
         a, S, F = self.args, self.S, self.fonts
@@ -1070,7 +1135,7 @@ class Video:
         meters = nice_length(170 * S * mpp)
         px = meters / mpp
         x0 = int(48 * S)
-        y0 = int(self.H - 70 * S) if not self.portrait else int(100 * S)
+        y0 = int(self.H - 70 * S) if not self.portrait else int(150 * S)
         key = ("scale", meters)
         if key not in self._edge_cache:
             self._edge_cache[key] = text_sprite(self.fonts, f"{meters} m", int(22 * S), True)
@@ -1082,15 +1147,25 @@ class Video:
 
     def render_frame(self, t):
         target, dist, heading, pitch = self.camera_at(t)
-        P = self.cam.ground_homography(target, dist, heading, pitch)
+        P34, cam_pos = self.cam.camera_matrix(target, dist, heading, pitch)
+        P = P34[:, [0, 1, 3]]
         img = self.render_ground(P, dist, pitch)
         img *= self._vignette()
         frame = np.clip(img, 0, 255).astype(np.uint8)
         S, W, H = self.S, self.W, self.H
 
+        # Bina, dron alçalırken kat kat yükselir.
+        grow = ease((t - 12.0) / 5.0)
+        b_alpha = ease((t - 11.8) / 0.6)
+        if self.building:
+            self.building.draw_shadow(frame, P, grow, b_alpha)
+
         # Parsel sınırı: alçalırken çizilir, sonra parlar.
         prog = ease((t - 9.0) / 4.0)
         self.draw_parcel(frame, P, prog, window(t, 8.6, 50.0, 0.5, 2.0), ease((t - 13.0) / 1.5))
+        if self.building:
+            self.building.draw(frame, P34, cam_pos, grow, b_alpha)
+            blit(frame, self.spr_model_note, 40 * S, 40 * S, 0.85 * window(t, 13.0, 47.5, 1.0, 0.8), "lt")
 
         # Açılış başlığı
         a = window(t, 0.6, 6.2, 1.0, 1.0)
@@ -1104,7 +1179,12 @@ class Video:
         # Parsel etiketi (pin)
         a = window(t, 15.0, 35.0, 1.2, 1.2)
         if a > 0:
-            c = project(P, [self.center])[0]
+            if self.building:
+                anchor = np.array([*self.center, self.building.top * grow + 3, 1.0])
+                ph = P34 @ anchor
+                c = ph[:2] / ph[2]
+            else:
+                c = project(P, [self.center])[0]
             top = c[1] - 120 * S
             line = frame.copy()
             cv2.line(line, (int(c[0]), int(c[1])), (int(c[0]), int(top)), WHITE, max(1, int(2 * S)), cv2.LINE_AA)
@@ -1140,15 +1220,28 @@ class Video:
         # Görüntü kaynağı (lisans gereği)
         blit(frame, self.spr_credit, W - 24 * S, H - 14 * S, 0.85 * (1 - ease((t - 47.0) / 1.0)), "rb")
 
+        # Proje görseli (render)
+        if self.proj_img is not None:
+            r = ease((t - 47.3) / 1.0)
+            if r > 0:
+                cv2.addWeighted(frame, 1 - r, self._showcase(t), r, 0, dst=frame)
+                a = window(t, 48.0, self.t_end + 0.4, 0.8, 0.6)
+                if not self.portrait and a > 0:
+                    frame[:] = (frame * (1 - self._caption_shade() * a)).astype(np.uint8)
+                if self.portrait:
+                    blit(frame, self.spr_proj_caption, W / 2, H * 0.5 + self._proj_fg_h / 2 + 30 * S, a, "ct")
+                else:
+                    blit(frame, self.spr_proj_caption, 56 * S, H - 50 * S, a, "lb")
+
         # Kapanış kartı
-        e = ease((t - 47.3) / 1.6)
+        e = ease((t - self.t_end) / 1.6)
         if e > 0:
             small = cv2.resize(frame, (W // 6, H // 6), interpolation=cv2.INTER_AREA)
             small = cv2.GaussianBlur(small, (0, 0), 1 + 3 * e)
             blurred = cv2.resize(small, (W, H), interpolation=cv2.INTER_LINEAR)
             mix = cv2.addWeighted(frame, 1 - e, blurred, e, 0)
             frame[:] = (mix.astype(np.float32) * (1 - 0.55 * e)).astype(np.uint8)
-            a = ease((t - 48.0) / 1.0)
+            a = ease((t - self.t_end - 0.7) / 1.0)
             blit(frame, self.spr_end, W / 2, H * 0.46 + (1 - a) * 24 * S, a, "cm")
             blit(frame, self.spr_end_credit, W / 2, H - 40 * S, a, "cb")
         fade = ease((self.DURATION - t) / 0.8)
@@ -1234,6 +1327,11 @@ def main(argv=None):
     v.add_argument("--no-music", action="store_true")
     v.add_argument("--font", help="Normal yazı tipi dosyası (.ttf/.otf)")
     v.add_argument("--font-bold", help="Kalın yazı tipi dosyası (.ttf/.otf)")
+    b = p.add_argument_group("Bina")
+    b.add_argument("--render", help="Proje görseli (render). Verilirse 3B bina modeli de eklenir")
+    b.add_argument("--bina", action="store_true", help="Render olmadan da 3B bina modelini ekle")
+    b.add_argument("--kat", type=int, default=9, help="Zemin kat üzerindeki kat sayısı")
+    b.add_argument("--proje", default="", help="Proje adı (proje görseli bölümünde gösterilir)")
     m = p.add_argument_group("Görüntü kaynağı")
     m.add_argument("--tile-url", help="Kendi XYZ karo adresiniz ({z}/{x}/{y}); verilmezse Esri Wayback "
                                       "arşivindeki en güncel çekim kullanılır")

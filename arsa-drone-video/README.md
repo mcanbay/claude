@@ -71,6 +71,26 @@ Diğer seçenekler:
 
 Tam çözünürlükte üretim sıradan bir bilgisayarda 5–10 dakika sürer. İlk çalıştırmada yaklaşık 1.000 uydu karosu indirilir ve `.karo_onbellek/` klasöründe saklanır. Sonraki denemeler bu sayede hızlıdır.
 
+## Proje görseli ve 3B bina
+
+Arsaya yapılacak binanın render'ı verilirse video iki şekilde zenginleşir:
+
+1. Dron alçalırken parselin üzerinde **temsili 3B bina kütlesi** kat kat yükselir. Kütle bir ticari zemin kat ve üzerindeki konut bloğundan oluşur; gölgesi de zemine düşer. Kütle, parselin çekme mesafeleri (varsayılan 3 m) içinde kalan en büyük dikdörtgene yerleştirilir. Orbit ve tepeden görünüm bu binayla birlikte gösterilir.
+2. Tepeden görünümden sonra **render tam ekran gösterilir** ("Proje Görseli"), kapanış kartı da bu görselin üzerine gelir.
+
+```bash
+python drone_video.py --kml parsel.kml --render proje.png --kat 9 --proje "Proje Adı"
+```
+
+| Seçenek | Açıklama |
+|---|---|
+| `--render dosya.png` | Proje görseli; 3B bina modelini de açar |
+| `--kat 9` | Zemin kat üzerindeki kat sayısı (kat yüksekliği 3,1 m, zemin kat 5 m) |
+| `--proje "..."` | Proje görseli bölümünde gösterilecek proje adı |
+| `--bina` | Render olmadan yalnızca 3B kütle |
+
+3B model mimari projenin birebir kopyası değildir; konum ve ölçeği göstermek için hazırlanmış bir kütle çalışmasıdır. Videoda "Temsili 3B bina modeli" notu yer alır.
+
 ## TKGM'ye erişilemezse
 
 TKGM servisi zaman zaman yurt dışı IP'leri veya yoğun istekleri engelleyebilir. Bu durumda sınırı kendiniz verebilirsiniz:
