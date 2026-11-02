@@ -91,6 +91,15 @@ python drone_video.py --kml parsel.kml --render proje.png --kat 9 --proje "Proje
 
 3B model mimari projenin birebir kopyası değildir; konum ve ölçeği göstermek için hazırlanmış bir kütle çalışmasıdır. Videoda "Temsili 3B bina modeli" notu yer alır.
 
+## Firma açılışı ve kapanışı
+
+`--marka "Firma Adı İnşaat"` verilirse video siyah zeminde animasyonlu bir firma girişiyle açılır ve aynı animasyonla kapanır. Önce monogram çerçevesi çizilir, ardından harfler sırayla netleşir. Son kelime (ör. *İnşaat*) altın renkli alt satıra yerleşir ve metnin üzerinden bir ışık geçer. Kapanışta proje adı ve konum da gösterilir.
+
+```bash
+python drone_video.py --kml parsel.kml --render proje.png --kat 7 \
+    --proje "TN Meydan" --title "TN Meydan" --marka "Taştan Neo İnşaat"
+```
+
 ## TKGM'ye erişilemezse
 
 TKGM servisi zaman zaman yurt dışı IP'leri veya yoğun istekleri engelleyebilir. Bu durumda sınırı kendiniz verebilirsiniz:

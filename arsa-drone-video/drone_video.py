@@ -37,6 +37,7 @@ import requests
 from PIL import Image, ImageDraw, ImageFont
 
 from bina3d import Building
+from marka import BrandAnim
 
 TKGM_BASES = [
     "https://cbsapi.tkgm.gov.tr/megsiswebapi.v3.1/api",
@@ -1245,6 +1246,8 @@ class Video:
             blit(frame, self.spr_end, W / 2, H * 0.46 + (1 - a) * 24 * S, a, "cm")
             blit(frame, self.spr_end_credit, W / 2, H - 40 * S, a, "cb")
         fade = ease((self.DURATION - t) / 0.8)
+        if self.args.marka:
+            fade *= ease(t / 0.8)  # firma açılışından siyahtan geçiş
         if fade < 1:
             frame[:] = (frame * fade).astype(np.uint8)
         return frame
@@ -1254,7 +1257,16 @@ class Video:
         self._edge_cache = {}
         self.prepare_overlays()
         fps = self.args.fps
-        n = int(self.DURATION * fps)
+        intro = outro = 0.0
+        brand = None
+        if self.args.marka:
+            intro, outro = 4.4, 5.2
+            a = self.args
+            tagline = f"{a.proje} · {tr_title(a.mahalle)}, {tr_title(a.ilce)}" if a.proje else None
+            brand = BrandAnim(self.fonts, a.marka, self.W, self.H)
+            brand_out = BrandAnim(self.fonts, a.marka, self.W, self.H, tagline=tagline)
+        total = intro + self.DURATION + outro
+        n = int(total * fps)
         out_path = Path(out_path)
         out_path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -1263,7 +1275,7 @@ class Video:
             audio = Path(self.args.music)
         elif not self.args.no_music:
             audio = out_path.with_suffix(".muzik.wav")
-            make_music(audio, self.DURATION)
+            make_music(audio, total)
 
         cmd = ["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "bgr24",
                "-s", f"{self.W}x{self.H}", "-r", str(fps), "-i", "-"]
@@ -1272,7 +1284,7 @@ class Video:
         cmd += ["-c:v", "libx264", "-preset", "medium", "-crf", str(self.args.crf),
                 "-pix_fmt", "yuv420p", "-movflags", "+faststart"]
         if audio:
-            cmd += ["-c:a", "aac", "-b:a", "192k", "-af", f"afade=t=out:st={self.DURATION - 2.5}:d=2.5",
+            cmd += ["-c:a", "aac", "-b:a", "192k", "-af", f"afade=t=out:st={total - 2.5}:d=2.5",
                     "-shortest"]
         cmd.append(str(out_path))
         proc = subprocess.Popen(cmd, stdin=subprocess.PIPE)
@@ -1280,8 +1292,14 @@ class Video:
         t0 = time.time()
         try:
             for i in range(n):
-                t = i / fps
-                frame = self.render_frame(t)
+                T = i / fps
+                t = T - intro
+                if brand and T < intro:
+                    frame = brand.frame(T, intro)
+                elif brand and t >= self.DURATION:
+                    frame = brand_out.frame(t - self.DURATION, outro, outro=True)
+                else:
+                    frame = self.render_frame(t)
                 if abs(t - poster_t) < 0.5 / fps:
                     cv2.imwrite(str(out_path.with_suffix(".kapak.jpg")), frame, [cv2.IMWRITE_JPEG_QUALITY, 92])
                 proc.stdin.write(frame.tobytes())
@@ -1332,6 +1350,8 @@ def main(argv=None):
     b.add_argument("--bina", action="store_true", help="Render olmadan da 3B bina modelini ekle")
     b.add_argument("--kat", type=int, default=9, help="Zemin kat üzerindeki kat sayısı")
     b.add_argument("--proje", default="", help="Proje adı (proje görseli bölümünde gösterilir)")
+    b.add_argument("--marka", default="", help="Firma adı: açılış ve kapanışta animasyonlu logo, "
+                                              "ör. 'Taştan Neo İnşaat'")
     m = p.add_argument_group("Görüntü kaynağı")
     m.add_argument("--tile-url", help="Kendi XYZ karo adresiniz ({z}/{x}/{y}); verilmezse Esri Wayback "
                                       "arşivindeki en güncel çekim kullanılır")
