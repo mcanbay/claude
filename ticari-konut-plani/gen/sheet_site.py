@@ -13,7 +13,7 @@ def _road_pts(off_a, off_b, ya=-8, yb=40):
 def tree(s, x, y, r=1.4):
     s.raw(f'<circle cx="{s.X(x):.1f}" cy="{s.Y(y):.1f}" r="{r*s.s:.1f}" class="tree"/>')
 
-def site_plan():
+def site_plan(saw=False):
     s = Svg(-5, -10, 118, 40, 10, pad=30)
     # yol ve kaldırım
     road, on = _road_pts(3.5, 17)
@@ -65,6 +65,10 @@ def site_plan():
         t = name.replace("LOBI_", "LOBİ ").replace("TEKNIK", "T").replace("DK", "DK")
         s.text((a + b) / 2, Y_GF_S + 2.0, t, 9, class_="lbl")
     s.rect(X0, Y_UP_S, X1, Y_N, class_="slab")
+    if saw:
+        for name, x0, _ in UP_MODULES:
+            if name.startswith("D"):
+                s.poly([(x0 + px, Y_UP_S + py) for px, py in SAW_BALC], class_="balc")
     s.text((X0 + X1) / 2, (Y_UP_S + Y_N) / 2 + 1.5, "ZEMİN: 7 DÜKKAN (770 m²)  ·  1.–5. KAT: KAT BAŞI 7 DAİRE = 35 DAİRE", 11, class_="lblb")
     # yapı yaklaşma sınırı
     s.poly(ENVELOPE, class_="env")

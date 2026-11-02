@@ -89,6 +89,13 @@ FLAT_ROOMS = [
     ("Antre", 3.8, 6.0, 5.8, 8.0),
 ]
 BALCONY = (5.8, -BALC_D, 10.0, 0.0)
+# testere dişi varyantı: salon önünde üçgen balkon; batı kenarı sağır duvar,
+# hipotenüs (açık yüz) yola doğru döner
+SAW_DEPTH = 3.0
+SAW_BALC = [(5.8, 0.0), (5.8, -SAW_DEPTH), (10.0, 0.0)]
+_n = (SAW_DEPTH, -(10.0 - 5.8)); _L = math.hypot(*_n)
+SAW_VIEW = (_n[0] / _L * 1.7, _n[1] / _L * 1.7)   # bakış oku (açık yüzün normali)
+SAW_ANGLE = math.degrees(math.atan2(_n[0], -_n[1]))  # güneyden doğuya dönüş açısı
 WALL_LOSS = 0.10   # duvar payı (net/brüt)
 
 # ---------------- SVG ----------------

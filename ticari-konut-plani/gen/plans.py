@@ -60,10 +60,18 @@ def ground_floor():
     s.text(X1 + 2.6, (Y_GF_S + Y_N) / 2, "CADDE TARAFI →", 10, rot=-90, class_="lblb")
     return s.svg("Zemin kat planı")
 
-def _flat(s, x0, label=None, small=True, corner=False):
+def _flat(s, x0, label=None, small=True, corner=False, saw=False):
     yb = Y_UP_S
-    bx0, by0, bx1, by1 = BALCONY
-    s.rect(x0 + bx0, yb + by0, x0 + bx1, yb + by1, class_="balc")
+    if saw:
+        (ax, ay), (bx, by), (cx, cy) = SAW_BALC
+        s.poly([(x0 + ax, yb + ay), (x0 + bx, yb + by), (x0 + cx, yb + cy)], class_="balc")
+        s.line((x0 + ax, yb + ay), (x0 + bx, yb + by), class_="privwall")
+        s.line((x0 + bx, yb + by), (x0 + cx, yb + cy), class_="rail")
+        mx, my = (bx + cx) / 2, (by + cy) / 2
+        s.raw(f'<path d="M{s.X(x0+mx):.1f},{s.Y(yb+my):.1f} L{s.X(x0+mx+SAW_VIEW[0]):.1f},{s.Y(yb+my+SAW_VIEW[1]):.1f}" class="viewarrow"/>')
+    else:
+        bx0, by0, bx1, by1 = BALCONY
+        s.rect(x0 + bx0, yb + by0, x0 + bx1, yb + by1, class_="balc")
     for name, a, b, c, d in FLAT_ROOMS:
         cls = "wet" if name in ("Banyo", "WC", "Kiler") else ("kitchen" if "Mutfak" in name else "room")
         s.rect(x0 + a, yb + b, x0 + c, yb + d, class_=cls)
@@ -91,28 +99,29 @@ def _flat(s, x0, label=None, small=True, corner=False):
     if label:
         s.text(x0 + 3.0, yb - 0.75, label, 10, class_="lblb")
 
-def typical_floor():
-    s = Svg(3, 13.5, 91, 30.5, 13, pad=30)
+def typical_floor(saw=False):
+    s = Svg(3, 11.6 if saw else 13.5, 91, 30.5, 13, pad=30)
     s.rect(X0, Y_CORR, X1, Y_N, class_="corr")
     s.text(50.0, Y_CORR + 1.0, "KAT KORİDORU (2.0 m) — kuzey cephede doğal ışık/duman tahliye pencereleri", 9, class_="lbls")
     i = 0
     for name, a, b in UP_MODULES:
         if name.startswith("D"):
             i += 1
-            _flat(s, a, f"DAİRE {i} · 2+1", corner=(name == "D7"))
+            _flat(s, a, f"DAİRE {i} · 2+1", corner=(name == "D7"), saw=saw)
         else:
             s.rect(a, Y_UP_S, b, Y_N, class_="lobby")
             _stair_core(s, a, Y_UP_S, Y_CORR)
             s.text((a + b) / 2, Y_UP_S - 0.75, "ÇEKİRDEK " + name[-1], 9, class_="lblb")
+    YD = Y_UP_S - (SAW_DEPTH + 0.3 if saw else BALC_D)
     for x in range(int(X0) + 3, int(X1), 6):
         _win(s, x, x + 1.6, y=Y_N)
     s.rect(X0, Y_UP_S, X1, Y_N, class_="outline")
     for name, a, b in UP_MODULES:
-        s.dim((a, Y_GF_S), (b, Y_GF_S), -1.3, f"{b - a:.1f}".rstrip("0").rstrip("."), 9)
+        s.dim((a, YD), (b, YD), -0.8, f"{b - a:.1f}".rstrip("0").rstrip("."), 9)
     s.dim((X0, Y_N), (X1, Y_N), 1.0, f"{X1 - X0:.1f} m", 10)
     s.dim((X1, Y_UP_S), (X1, Y_N), -1.4, "10 m", 10)
     s.text(X1 + 2.6, (Y_UP_S + Y_N) / 2, "CADDE TARAFI →", 10, rot=-90, class_="lblb")
-    s.text(50.0, 14.0, "Tüm salon + balkonlar güney-güneybatı ana cepheye ve yol tarafındaki köşeye bakar  ·  1.–5. katlar aynı (5 × 7 = 35 daire)", 10, class_="note")
+    s.text(50.0, YD - 2.0, ("Testere dişi balkonlar: açık yüzler yola doğru (≈35°) döner, batı yanları sağır mahremiyet duvarı" if saw else "Tüm salon + balkonlar güney-güneybatı ana cepheye ve yol tarafındaki köşeye bakar") + "  ·  1.–5. katlar aynı (5 × 7 = 35 daire)", 10, class_="note")
     return s.svg("Normal kat planı")
 
 LABEL_POS = {"Yatak 2": (2.05, 1.6), "Yatak 1": (4.3, 3.0), "Salon": (8.4, 1.6),
@@ -132,21 +141,32 @@ def _furn(s, x0, yb):
     R(1.7, 6.0, 2.25, 6.5)           # lavabo
     R(2.55, 7.3, 3.1, 7.9)           # wc
 
-def unit_plan():
-    s = Svg(-1.2, Y_UP_S - 2.9, 11.8, Y_N + 0.4, 52, pad=24)
+def unit_plan(saw=False):
+    dy = SAW_DEPTH - BALC_D if saw else 0
+    s = Svg(-1.2, Y_UP_S - 2.9 - dy, 11.8, Y_N + 0.4, 52, pad=24)
     x0 = 0.0
     s.rect(-1.2, Y_CORR, 11.6, Y_N, class_="corr")
     s.text(5.0, Y_CORR + 1.0, "KAT KORİDORU", 11, class_="lbls")
-    _flat(s, x0, small=False)
+    _flat(s, x0, small=False, saw=saw)
     _furn(s, x0, Y_UP_S)
-    s.text(7.9, Y_GF_S + 0.6, f"BALKON {(BALCONY[2]-BALCONY[0])*BALC_D:.1f} m²", 12, class_="lblb")
-    s.dim((0, Y_UP_S), (FLAT_W, Y_UP_S), -2.5, "10.00 m", 11)
+    if saw:
+        s.text(6.9, Y_UP_S - 0.75, "BALKON", 12, class_="lblb")
+        s.text(6.9, Y_UP_S - 1.2, f"{saw_balc_area():.1f} m²", 11, class_="lbl")
+        s.text(9.3, Y_UP_S - 2.6, "yol yönü bakış", 11, anchor="start", class_="note")
+        s.text(5.6, Y_UP_S - 1.6, "sağır duvar", 9, rot=-90, class_="note")
+    else:
+        s.text(7.9, Y_GF_S + 0.6, f"BALKON {(BALCONY[2]-BALCONY[0])*BALC_D:.1f} m²", 12, class_="lblb")
+    s.dim((0, Y_UP_S), (FLAT_W, Y_UP_S), -2.5 - dy, "10.00 m", 11)
     s.dim((FLAT_W, Y_UP_S), (FLAT_W, Y_CORR), -0.9, "8.00 m", 11)
     for a, b in [(0, 2.8), (2.8, 5.8), (5.8, 10.0)]:
-        s.dim((a, Y_UP_S), (b, Y_UP_S), -1.85, f"{b - a:.2f}", 10)
+        s.dim((a, Y_UP_S), (b, Y_UP_S), -1.85 - dy, f"{b - a:.2f}", 10)
     s.text(-0.8, Y_UP_S + 4, "← ARKA (komşu tarafı)", 10, rot=-90, class_="note")
     s.text(11.35, Y_UP_S + 4, "CADDE TARAFI →", 10, rot=-90, class_="lblb")
     return s.svg("Tip daire planı")
 
 def flat_net():
     return sum((c - a - 0.15) * (d - b - 0.15) for _, a, b, c, d in FLAT_ROOMS)
+
+def saw_balc_area():
+    (ax, ay), (bx, by), (cx, cy) = SAW_BALC
+    return abs((bx - ax) * (cy - ay) - (cx - ax) * (by - ay)) / 2

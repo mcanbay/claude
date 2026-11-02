@@ -80,7 +80,7 @@ Bina kuzey çekme hattına oturtuldu; tüm daireler aynı ana cepheye (güney-g�
 <li>Yangın yönetmeliği: 2 kaçış merdiveni, koridorda duman tahliyesi; bina yüksekliği 21,50 m altında (yüksek bina değil). Sığınak bodrumda.</li>
 <li>Bu çizim kütle/fizibilite taslağıdır; ruhsat projesi mimar tarafından hazırlanmalıdır.</li>
 </ol></section>
-<footer class="muted">Çizimler ölçeklidir (vaziyet ≈1/1000, katlar ≈1/750, daire ≈1/200 ekranda). Kaynak: gen/ klasöründeki Python betikleri.</footer>
+<footer class="muted"><a href="testere-disi.html">→ Varyant B: testere dişi cephe</a> · Çizimler ölçeklidir (vaziyet ≈1/1000, katlar ≈1/750, daire ≈1/200 ekranda). Kaynak: gen/ klasöründeki Python betikleri.</footer>
 </main></body></html>"""
 out = os.path.join(os.path.dirname(__file__), "..", "index.html")
 open(out, "w").write(html)
