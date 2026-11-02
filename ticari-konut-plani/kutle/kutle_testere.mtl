@@ -1,0 +1,112 @@
+newmtl cephe_beyaz
+Kd 0.920 0.910 0.880
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+d 1
+illum 2
+
+newmtl doseme_bandi
+Kd 0.550 0.560 0.580
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+d 1
+illum 2
+
+newmtl zemin_kat
+Kd 0.300 0.310 0.330
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+d 1
+illum 2
+
+newmtl tabela_bandi
+Kd 0.120 0.130 0.140
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+d 1
+illum 2
+
+newmtl cam
+Kd 0.450 0.620 0.720
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+d 0.45
+illum 2
+
+newmtl cam_vitrin
+Kd 0.550 0.700 0.780
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+d 0.4
+illum 2
+
+newmtl sagir_duvar
+Kd 0.780 0.550 0.420
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+d 1
+illum 2
+
+newmtl balkon_doseme
+Kd 0.850 0.840 0.800
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+d 1
+illum 2
+
+newmtl cekirdek
+Kd 0.800 0.800 0.800
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+d 1
+illum 2
+
+newmtl arsa_zemin
+Kd 0.860 0.830 0.770
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+d 1
+illum 2
+
+newmtl yesil
+Kd 0.470 0.640 0.360
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+d 1
+illum 2
+
+newmtl asfalt
+Kd 0.360 0.360 0.370
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+d 1
+illum 2
+
+newmtl kaldirim
+Kd 0.750 0.740 0.710
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+d 1
+illum 2
+
+newmtl rampa
+Kd 0.550 0.580 0.630
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+d 1
+illum 2
+
+newmtl agac_govde
+Kd 0.400 0.300 0.220
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+d 1
+illum 2
+
+newmtl agac_tac
+Kd 0.360 0.550 0.300
+Ka 0 0 0
+Ks 0.05 0.05 0.05
+d 1
+illum 2
+
