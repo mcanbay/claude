@@ -1,0 +1,29 @@
+{
+  "ses": "tok_anlatici",
+  "dil": "tr",
+  "kimlik_klasoru": "/home/user/alexturkey/voxcpm2-turkce-ses-tasarimi/hazir_sesler/tok_anlatici",
+  "tohum": 2092167506,
+  "adim": 16,
+  "cfg": 2.0,
+  "ses_sn": 4.2,
+  "sure_sn": 303.7,
+  "vram_tepe_mb": null,
+  "wav": "/home/user/vox/temel/okuma.wav",
+  "satirlar": [
+    {
+      "satir": 1,
+      "metin": "Herkes buraya bakıyor.",
+      "t0": 0.0,
+      "t1": 1.44
+    },
+    {
+      "satir": 2,
+      "metin": "Ama asıl mesele benim!",
+      "t0": 2.44,
+      "t1": 4.2
+    }
+  ],
+  "supheli_satirlar": [],
+  "yapay": true,
+  "tarih": "2026-11-03 09:51"
+}

@@ -6,13 +6,15 @@ ve kazıklar görünür hâle gelir. Temel gözlerini açar: **"Ama asıl mesele
 Kapanışta yük okları çatıdan temele ve kazıklardan zemine akar, *TEMEL* etiketi ve
 "Sağlam bina, sağlam temelle başlar." sloganı çıkar.
 
-| Zaman (taslak) | Sahne |
+| Zaman | Sahne |
 |---|---|
-| 0–1,7 sn | Başlık, cephe parıltısı, usta cepheyi gösterir |
-| 1,7–3,7 sn | Usta: "Herkes buraya bakıyor." (yoldan geçenler fotoğraf çeker) |
-| 4,1–6,4 sn | Kamera iner, yeraltı röntgen taramasıyla açılır |
-| 6,5–9,3 sn | Temel uyanır: "Ama asıl mesele benim!" (kahraman ışınları) |
-| 9,9–14,6 sn | Geri çekilme, yük okları, TEMEL etiketi, slogan |
+| 0–1,75 sn | Başlık, cephe parıltısı, usta cepheyi gösterir |
+| 1,75–2,94 sn | Usta: "Herkes buraya bakıyor." (yoldan geçenler fotoğraf çeker) |
+| 3,39–5,69 sn | Kamera iner, yeraltı röntgen taramasıyla açılır |
+| 5,81–7,66 sn | Temel uyanır: "Ama asıl mesele benim!" (kahraman ışınları) |
+| 8,21–12,91 sn | Geri çekilme, yük okları, TEMEL etiketi, slogan |
+
+Çıktı: `out/binanin_gorunmeyen_kahramani.mp4` (1080×1920, 12,9 sn).
 
 Kesin süreler seslendirmeden hesaplanır (`zamanla.py`); sahneler satırların sesteki
 uzunluğuna göre kayar. Ağızlar (usta ve temel) sesin kare başına genliğiyle oynar.
@@ -23,6 +25,10 @@ Bir önceki videoyla (`zaman-video`) aynı ses: yerel **VoxCPM2** motoru
 ([alexturkey/voxcpm2-turkce-ses-tasarimi](https://github.com/alexturkey/voxcpm2-turkce-ses-tasarimi)),
 hazır ses **"Tok Sesli Anlatıcı"** (`hazir/tok_anlatici`, metin tarifinden tasarlanmış yapay ses,
 kimsenin klonu değil). Sabit kalite: 16 adım, cfg 2.0. Motorun okuduğu metin `seslendirme_satirlar.txt`.
+
+Bu sürüm Linux sunucuda **CPU** ile üretildi: audio.cpp v0.7.2 + depodaki `patches/0001-voxcpm2-4gb-ve-hiz.patch`,
+`-DENGINE_ENABLE_CUDA=OFF` ile derlendi, `ayarlar.json` içinde `"backend": "cpu"`. Tohum 2092167506 (sesin kendi
+okuma tohumu); 4,2 sn ses ≈ 5 dk. Ham okuma `assets/okuma.mp3`, satır zamanları `assets/voice_ozet.json`.
 
 ## Akış
 
