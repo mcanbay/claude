@@ -1,0 +1,7 @@
+out/preview_*
+out/sheet*.png
+out/video_silent.mp4
+out/ses_mix.wav
+out/voice_yerlesik.wav
+out/taslak.mp4
+__pycache__/
