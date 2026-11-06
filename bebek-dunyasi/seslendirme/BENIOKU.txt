@@ -1,0 +1,12 @@
+Seslendirme kayıtlarını bu klasöre koyun (.wav, .mp3, .m4a, .ogg, .flac):
+
+01_anne_yemek_zamani            Haydi bakalım, yemek zamanı!
+02_bebek_mama_sandalyesi        Annem bunun sadece bir mama sandalyesi olduğunu düşünüyor…
+03_bebek_gorev_basliyor         Ama benim için… görev başlıyor.
+04_bebek_yasam_formu            Daha önce hiç karşılaşmadığım bir yaşam formu…
+05_bebek_hazir_degilim          Bunu araştırmak için henüz hazır değilim.
+06_anne_bir_kasik_daha          Hadi bir kaşık daha…
+07_bebek_hicbir_sey_bilmiyorsun Anne… sen hiçbir şey bilmiyorsun.
+
+Örnek: 01_anne_yemek_zamani.mp3
+Ayrıntılar için üst klasördeki README.md dosyasına bakın.
