@@ -29,6 +29,8 @@ await page.route('https://cdn.jsdelivr.net/npm/three@0.160.0/**', async r => {
   const yol = new URL(r.request().url()).pathname.replace('/npm/three@0.160.0/', '');
   await r.fulfill({ body: await readFile(path.join(THREE_DIZIN, yol)), contentType: tip(yol) });
 });
+// Google Fonts bu ortamda erişilemeyebilir: hemen iptal et, yedek yazı tipi kullanılır
+await page.route(/fonts\.(googleapis|gstatic)\.com/, r => r.abort());
 await page.route('http://kutle.yerel/**', async r => {
   const yol = new URL(r.request().url()).pathname.slice(1) || 'index.html';
   await r.fulfill({ body: await readFile(path.join(KOK, yol)), contentType: tip(yol) });

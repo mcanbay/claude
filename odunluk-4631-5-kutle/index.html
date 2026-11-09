@@ -4,36 +4,59 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Odunluk 4631/5 Kütle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:wght@400;600&display=swap">
 <style>
+  /* Yerleşim: tam ekran 3B sahne; üstte görünüm çubuğu, köşelerde pafta başlığı, kuzey oku ve lejant */
   :root {
-    --bg-top: #dfe7ef; --bg-bottom: #f4f2ee; --ink: #23262b; --muted: #6b7078;
-    --panel: rgba(255,255,255,0.86); --line: rgba(35,38,43,0.14); --accent: #b4542f;
+    --zemin: #e9ecee;              /* sahne yüklenene kadar görünen arka plan */
+    --panel: rgba(250,250,248,0.88);
+    --murekkep: #22262b;
+    --soluk: #5b626a;
+    --cizgi: rgba(34,38,43,0.16);
+    --vurgu: #a8502c;              /* dükkan tonundan türetilmiş seçim rengi */
+    --sahne-cizgi: #22262b;        /* sahne her temada açık renkli: etiket çizgileri koyu kalır */
+    --yazi: "IBM Plex Sans", "DejaVu Sans", "Liberation Sans", system-ui, sans-serif;
+    --etiket: "IBM Plex Sans Condensed", "DejaVu Sans Condensed", "Liberation Sans Narrow", "Arial Narrow", sans-serif;
+    --olcu: "IBM Plex Mono", "DejaVu Sans Mono", "Liberation Mono", ui-monospace, monospace;
   }
   @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) { --panel: rgba(28,30,34,0.86); --ink: #eceae6; --muted: #a3a7ad; --line: rgba(236,234,230,0.16); }
+    :root:not([data-theme="light"]) { --zemin: #1c1f22; --panel: rgba(27,30,33,0.88); --murekkep: #ecebe7; --soluk: #a6acb2; --cizgi: rgba(236,235,231,0.18); --vurgu: #e2926c; color-scheme: dark; }
   }
-  :root[data-theme="dark"] { --panel: rgba(28,30,34,0.86); --ink: #eceae6; --muted: #a3a7ad; --line: rgba(236,234,230,0.16); }
-  html, body { margin: 0; height: 100%; overflow: hidden; background: #e9edf1; font-family: "DejaVu Sans", "Liberation Sans", system-ui, sans-serif; color: var(--ink); }
+  :root[data-theme="dark"] { --zemin: #1c1f22; --panel: rgba(27,30,33,0.88); --murekkep: #ecebe7; --soluk: #a6acb2; --cizgi: rgba(236,235,231,0.18); --vurgu: #e2926c; color-scheme: dark; }
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+  body { background: var(--zemin); color: var(--murekkep); font-family: var(--yazi); }
   #sahne { position: fixed; inset: 0; }
-  canvas { display: block; }
+  canvas { display: block; touch-action: none; }
   .katman { position: fixed; inset: 0; pointer-events: none; }
-  .baslik { position: fixed; left: 24px; bottom: 20px; color: #23262b; pointer-events: none; background: rgba(255,255,255,0.84); border-radius: 6px; padding: 9px 13px; }
-  .baslik .ust { font-size: 13px; letter-spacing: 0.18em; font-weight: 700; }
-  .baslik .alt { font-size: 12px; letter-spacing: 0.06em; color: #5d636b; margin-top: 4px; }
-  .kuzey { position: fixed; right: 30px; top: 26px; width: 54px; height: 54px; pointer-events: none; }
-  .etiket { position: absolute; font-size: 12px; color: #23262b; white-space: nowrap; transform: translate(-100%, -50%); padding-right: 10px; }
-  .etiket b { font-weight: 700; letter-spacing: 0.08em; }
-  .etiket span { color: #5d636b; margin-left: 6px; }
-  .lejant { position: fixed; left: 28px; top: 24px; background: rgba(255,255,255,0.88); border: 1px solid rgba(35,38,43,0.12); border-radius: 6px; padding: 12px 14px; font-size: 12px; color: #23262b; line-height: 1.6; pointer-events: none; }
+  .kutu { background: var(--panel); border: 1px solid var(--cizgi); border-radius: 6px; color: var(--murekkep); backdrop-filter: blur(6px); }
+  .baslik { position: fixed; left: calc(20px + env(safe-area-inset-left, 0px)); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); pointer-events: none; padding: 9px 13px; }
+  .baslik .ust { font-family: var(--etiket); font-size: 13px; letter-spacing: 0.16em; font-weight: 600; }
+  .baslik .alt { font-size: 12px; color: var(--soluk); margin-top: 3px; }
+  .kuzey { position: fixed; right: calc(24px + env(safe-area-inset-right, 0px)); top: calc(22px + env(safe-area-inset-top, 0px)); width: 54px; height: 54px; pointer-events: none; }
+  .kuzey circle { fill: var(--panel); stroke: var(--murekkep); }
+  .kuzey path, .kuzey text { fill: var(--murekkep); }
+  .kuzey text { font-family: var(--etiket); }
+  .etiket { position: absolute; font-size: 12px; white-space: nowrap; padding: 3px 7px; }
+  .etiket b { font-family: var(--etiket); font-weight: 600; letter-spacing: 0.08em; }
+  .etiket span { font-family: var(--olcu); color: var(--soluk); margin-left: 6px; font-size: 11px; }
+  .lejant { position: fixed; left: calc(20px + env(safe-area-inset-left, 0px)); top: calc(20px + env(safe-area-inset-top, 0px)); padding: 12px 14px; font-size: 12px; line-height: 1.65; pointer-events: none; max-width: calc(100vw - 40px); }
   .lejant i { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 8px; vertical-align: -1px; }
-  .lejant .not { color: #5d636b; font-size: 11px; margin-top: 6px; }
-  .arac { position: fixed; left: 16px; top: 16px; right: 16px; display: flex; gap: 6px; pointer-events: auto; overflow-x: auto; scrollbar-width: none; }
+  .lejant .not { color: var(--soluk); font-size: 11px; margin-top: 6px; font-variant-numeric: tabular-nums; }
+  .arac { position: fixed; left: 0; right: 0; top: 0; padding: calc(14px + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 0 max(16px, env(safe-area-inset-left, 0px)); display: flex; gap: 6px; pointer-events: auto; overflow-x: auto; scrollbar-width: none; }
   .arac::-webkit-scrollbar { display: none; }
-  .arac button { flex: 0 0 auto; white-space: nowrap; }
-  body.ui .lejant { top: 64px; }
-  .arac button { font: inherit; font-size: 13px; padding: 7px 11px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer; backdrop-filter: blur(6px); }
-  .arac button[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
-  @media (max-width: 640px) { .baslik { left: 12px; bottom: 12px; } .lejant { left: 16px; top: 64px; font-size: 11px; } .kuzey { right: 16px; top: auto; bottom: 16px; width: 40px; height: 40px; } }
+  .arac button { flex: 0 0 auto; white-space: nowrap; font: inherit; font-size: 13px; padding: 7px 11px; border-radius: 6px; border: 1px solid var(--cizgi); background: var(--panel); color: var(--murekkep); cursor: pointer; backdrop-filter: blur(6px); }
+  .arac button:hover { border-color: var(--soluk); }
+  .arac button:focus-visible { outline: 2px solid var(--vurgu); outline-offset: 2px; }
+  .arac button[aria-pressed="true"] { border-color: var(--vurgu); color: var(--vurgu); }
+  .arac .ayrac { flex: 0 0 1px; background: var(--cizgi); margin: 4px 4px; }
+  body.ui .lejant { top: calc(64px + env(safe-area-inset-top, 0px)); }
+  body.ui .kuzey { top: auto; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); }
+  @media (max-width: 640px) {
+    .baslik { left: calc(12px + env(safe-area-inset-left, 0px)); bottom: calc(12px + env(safe-area-inset-bottom, 0px)); }
+    .lejant { left: calc(12px + env(safe-area-inset-left, 0px)); font-size: 11px; }
+    .kuzey { width: 42px; height: 42px; right: calc(12px + env(safe-area-inset-right, 0px)); }
+  }
 </style>
 <script type="importmap">
 { "imports": {
@@ -46,11 +69,11 @@
 <div id="sahne"></div>
 <div class="katman" id="etiketler"></div>
 <svg class="kuzey" id="kuzey" viewBox="-30 -30 60 60" aria-label="Kuzey">
-  <g id="kuzeyOk"><circle r="26" fill="rgba(255,255,255,0.85)" stroke="#23262b" stroke-width="1.2"/>
-  <path d="M0,-20 L7,8 L0,3 L-7,8 Z" fill="#23262b"/><text y="21" text-anchor="middle" font-size="10" font-weight="700" fill="#23262b">K</text></g>
+  <g id="kuzeyOk"><circle r="26" stroke-width="1.2"/>
+  <path d="M0,-20 L7,8 L0,3 L-7,8 Z"/><text y="21" text-anchor="middle" font-size="10" font-weight="600">K</text></g>
 </svg>
-<div class="baslik" id="baslik"><div class="ust">ODUNLUK · 4631 ADA 5 PARSEL</div><div class="alt" id="altBaslik">Kütle çalışması</div></div>
-<div class="lejant" id="lejant" hidden></div>
+<div class="baslik kutu" id="baslik"><div class="ust">ODUNLUK · 4631 ADA 5 PARSEL</div><div class="alt" id="altBaslik">Kütle çalışması</div></div>
+<div class="lejant kutu" id="lejant" hidden></div>
 <div class="arac" id="arac" hidden></div>
 
 <script type="module">
@@ -63,7 +86,8 @@ import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { sahneKur, etiketNoktalari, KOT } from './kutle.js';
 
 const q = new URLSearchParams(location.search);
-const MOD = q.get('mod') || 'render';
+const HASH = (location.hash || '').slice(1);
+let MOD = q.get('mod') || (HASH === 'sema' ? 'diyagram' : 'render');
 const UI = q.get('ui') !== '0';
 // ortam kapatma (AO): render modunda açık; etkileşimli görüntüleyicide ?ao=1 ile açılır
 let AO = q.has('ao') ? q.get('ao') !== '0' : !UI;
@@ -75,10 +99,10 @@ const GORUNUS = {
   kose:      { ad: '706. Sokak\'tan yaya bakışı', poz: [21, 1.7, -19], hedef: [-6, 6.2, -3], fov: 56, gunes: [70, 24] },
   guneybati: { ad: 'Güneybatı kuşbakışı', poz: [-40, 28, 40], hedef: [-3, 3.5, 0.5], fov: 34, gunes: [235, 36] },
   vaziyet:   { ad: 'Vaziyet (üstten)', ust: true, gunes: [225, 64], ortam: 0.75 },
-  diyagram:  { ad: 'Kullanım şeması', poz: [-44, 27, -36], hedef: [-5, 4, 7], fov: 35, gunes: [300, 34] },
+  diyagram:  { ad: 'Kuzeybatı kuşbakışı', poz: [-44, 27, -36], hedef: [-5, 4, 7], fov: 35, gunes: [300, 34] },
 };
 if (q.get('kam')) GORUNUS.ozel = { ad: 'Özel', poz: q.get('kam').split(',').map(Number), hedef: (q.get('hedef') || '0,4,0').split(',').map(Number), fov: Number(q.get('fov') || 30), gunes: (q.get('gunes') || '62,30').split(',').map(Number) };
-const viewKey = q.get('kam') ? 'ozel' : (q.get('gorunus') || (MOD === 'diyagram' ? 'diyagram' : 'kuzeydogu'));
+const viewKey = q.get('kam') ? 'ozel' : (q.get('gorunus') || (HASH === 'sema' ? 'diyagram' : (GORUNUS[HASH] && HASH !== 'ozel' ? HASH : (MOD === 'diyagram' ? 'diyagram' : 'kuzeydogu'))));
 
 // --- renderer
 const kap = document.getElementById('sahne');
@@ -186,10 +210,14 @@ function gorunusSec(k) {
     persp.position.set(...v.poz).sub(controls.target).multiplyScalar(k).add(controls.target);
     persp.lookAt(controls.target); persp.updateProjectionMatrix(); controls.enabled = UI; controls.update();
   }
-  document.getElementById('altBaslik').textContent = 'Kütle çalışması · ' + v.ad;
+  altBaslikYaz();
   yazilariCevir();
   composerKur();
   for (const b of document.querySelectorAll('#arac [data-g]')) b.setAttribute('aria-pressed', String(b.dataset.g === k));
+}
+
+function altBaslikYaz() {
+  document.getElementById('altBaslik').textContent = 'Kütle çalışması · ' + (MOD === 'diyagram' ? 'Kullanım şeması · ' : '') + GORUNUS[aktif].ad;
 }
 
 // sokak adlarını bakış yönünden okunacak şekilde çevir
@@ -243,17 +271,16 @@ function etiketler() {
   etiketKatmani.appendChild(svg);
   const cizgi = (x1, y1, x2, y2) => {
     const l = document.createElementNS(svg.namespaceURI, 'line');
-    Object.entries({ x1, y1, x2, y2, stroke: '#23262b', 'stroke-width': 1 }).forEach(([a, b]) => l.setAttribute(a, b));
+    Object.entries({ x1, y1, x2, y2, stroke: 'var(--sahne-cizgi)', 'stroke-width': 1 }).forEach(([a, b]) => l.setAttribute(a, b));
     svg.appendChild(l);
     const c = document.createElementNS(svg.namespaceURI, 'circle');
-    Object.entries({ cx: x1, cy: y1, r: 2.5, fill: '#23262b' }).forEach(([a, b]) => c.setAttribute(a, b));
+    Object.entries({ cx: x1, cy: y1, r: 2.5, fill: 'var(--sahne-cizgi)' }).forEach(([a, b]) => c.setAttribute(a, b));
     svg.appendChild(c);
   };
   const yazi = (x, y, html, sol) => {
-    const d = document.createElement('div'); d.className = 'etiket';
+    const d = document.createElement('div'); d.className = 'etiket kutu';
     d.style.left = x + 'px'; d.style.top = y + 'px';
     d.style.transform = sol ? 'translate(-100%,-50%)' : 'translate(0,-50%)';
-    d.style.padding = sol ? '0 8px 0 0' : '0 0 0 8px';
     d.innerHTML = html; etiketKatmani.appendChild(d);
   };
   for (const k of E.katlar) {
@@ -271,13 +298,20 @@ if (UI) {
   document.body.classList.add('ui');
   const arac = document.getElementById('arac'); arac.hidden = false;
   for (const [k, v] of Object.entries(GORUNUS)) {
-    if (k === 'diyagram') continue;
-    const b = document.createElement('button'); b.dataset.g = k; b.textContent = v.ad.split(' · ')[0].replace(' kuşbakışı', '');
-    b.onclick = () => { gorunusSec(k); }; arac.appendChild(b);
+    if (k === 'diyagram' || k === 'ozel') continue;
+    const b = document.createElement('button'); b.type = 'button'; b.dataset.g = k; b.textContent = v.ad.split(' · ')[0].replace(' kuşbakışı', '');
+    b.onclick = () => { gorunusSec(k); try { history.replaceState(null, '', '#' + (MOD === 'diyagram' ? 'sema' : k)); } catch (e) {} };
+    arac.appendChild(b);
   }
-  const m = document.createElement('button'); m.textContent = MOD === 'diyagram' ? 'Malzemeli görünüm' : 'Kullanım şeması';
-  m.onclick = () => { const u = new URL(location.href); u.searchParams.set('mod', MOD === 'diyagram' ? 'render' : 'diyagram'); u.searchParams.delete('gorunus'); location.href = u; };
-  arac.appendChild(m);
+  const ay = document.createElement('span'); ay.className = 'ayrac'; arac.appendChild(ay);
+  const m = document.createElement('button'); m.type = 'button'; m.id = 'modDugmesi';
+  const modYaz = () => { m.textContent = 'Kullanım şeması'; m.setAttribute('aria-pressed', String(MOD === 'diyagram')); };
+  m.onclick = () => {
+    MOD = MOD === 'diyagram' ? 'render' : 'diyagram';
+    modelKur(MOD); yazilariCevir(); modYaz(); altBaslikYaz(); etiketGerek = true; etiketler();
+    try { history.replaceState(null, '', '#' + (MOD === 'diyagram' ? 'sema' : aktif)); } catch (e) {}
+  };
+  modYaz(); arac.appendChild(m);
 }
 
 addEventListener('resize', () => {

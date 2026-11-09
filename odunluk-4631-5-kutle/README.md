@@ -15,7 +15,7 @@ Verilen üç AutoCAD çıktısından (vaziyet + zemin kat planı, normal kat pla
 | `05_vaziyet_ustten.png` | Üstten vaziyet: parsel, otoparklar, sokak adları |
 | `06_kullanim_semasi.png` | Kullanıma göre boyanmış kütle: kat etiketleri, kotlar, özet |
 
-`index.html` aynı modeli tarayıcıda döndürülebilir olarak açar (görünüm düğmeleri + "Kullanım şeması" geçişi).
+`index.html` aynı modeli tarayıcıda döndürülebilir olarak açar. Görünüm düğmeleri ve "Kullanım şeması" geçişi vardır. Adresin sonuna `#sokak`, `#kose`, `#guneybati`, `#vaziyet` ya da `#sema` eklenirse sayfa doğrudan o görünümle açılır.
 
 ## Çizimlerden alınan ölçüler
 
