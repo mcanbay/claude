@@ -88,8 +88,8 @@ import { sahneKur, etiketNoktalari, KOT } from './kutle.js';
 const q = new URLSearchParams(location.search);
 const HASH = (location.hash || '').slice(1);
 // kipler: 'tasarim' (cephe tasarımı, etkileşimli görüntüleyicide varsayılan), 'render' (beyaz kütle), 'diyagram' (kullanım şeması)
-let MOD = q.get('mod') || (HASH === 'sema' ? 'diyagram' : HASH === 'kutle' ? 'render' : (UI ? 'tasarim' : 'render'));
 const UI = q.get('ui') !== '0';
+let MOD = q.get('mod') || (HASH === 'sema' ? 'diyagram' : HASH === 'kutle' ? 'render' : (UI ? 'tasarim' : 'render'));
 // ortam kapatma (AO): render modunda açık; etkileşimli görüntüleyicide ?ao=1 ile açılır
 let AO = q.has('ao') ? q.get('ao') !== '0' : !UI;
 
