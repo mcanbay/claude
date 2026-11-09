@@ -117,6 +117,8 @@ python blender/render_cycles.py --glb blender/model_tasarim.glb --cikti renders/
     --ornek 192 --en 1920 --boy 1200         # --gorunus kose,sokak ile tek tek
 ```
 
+**Tek dosya:** `dagitim/index.html`, etkileşimli modelin bağımsız bir sürümüdür. three.js ve model kodu dosyanın içine gömülüdür. İnternetsiz açılır, istenen yere yüklenebilir ya da doğrudan gönderilebilir. Yeniden üretmek için: `node tek_dosya.mjs`.
+
 Etkileşimli görüntüleyici için klasörü herhangi bir statik sunucuyla açın (ör. `npx serve .`) ve `index.html`'i tarayıcıda görüntüleyin. three.js jsDelivr'dan yüklenir.
 
 Dosyalar:
