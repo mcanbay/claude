@@ -1,0 +1,16 @@
+{
+  "name": "odunluk-4631-5-kutle",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Odunluk 4631 ada 5 parsel kütle modeli ve render görüntüleri",
+  "type": "module",
+  "scripts": {
+    "render": "node render.mjs"
+  },
+  "dependencies": {
+    "three": "0.160.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.40.0"
+  }
+}
