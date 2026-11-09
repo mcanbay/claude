@@ -2,9 +2,42 @@
 
 Verilen üç AutoCAD çıktısından (vaziyet + zemin kat planı, normal kat planı, şematik görünüş) kurulmuş 3B kütle modeli ve render görüntüleri.
 
-**Kural:** Modelde çizimlerde olmayan hiçbir eleman yoktur: ağaç, insan, komşu bina, peyzaj, cephe rengi ya da ek kat eklenmedi. Çizimin söylemediği yerlerde en nötr seçenek kullanıldı; bunlar aşağıda tek tek listelenmiştir.
+**Kural:** Kütle modelinde çizimlerde olmayan hiçbir eleman yoktur: ağaç, insan, komşu bina, peyzaj, cephe rengi ya da ek kat eklenmedi. Çizimin söylemediği yerlerde en nötr seçenek kullanıldı; bunlar aşağıda tek tek listelenmiştir.
 
-## Görüntüler (`renders/`, 3200×2000)
+## Cephe tasarımı — fotogerçekçi render'lar (`renders/tasarim/`, 1920×1200)
+
+Kütle, kotlar, pencere ve balkon düzeni çizimdeki gibi kaldı. Üzerine çağdaş ve sade bir malzeme kompozisyonu giydirildi. Malzeme geçişleri kütlenin kendi kurgusunu izler:
+
+| Yüzey | Malzeme | Mantık |
+|---|---|---|
+| Çıkmalı kanatlar: köşe balkonu + 8,91 m²'lik oda kutusu | Açık, doğal tonlu dekoratif sıva | Cephenin ana yüzeyi; 1 m çıkma yapan kütleler açık okunur |
+| Geri çekilmiş orta akslar: 13,18 m²'lik oda pencereleri | Koyu gri kompozit panel. Derzler pencere üst/alt hizası ve kat çizgilerinde | Girinti koyu okunur, cephe dikeyde bölümlenir |
+| Yan cephelerin (doğu/batı) ortası, kat holü aksı | Aynı koyu gri panel bandı | Sağır yan duvarları ikiye böler; uzun cephelerdeki orta aksın karşılığı |
+| Merdiven yarığı / bina girişi ve balkon cepleri (arka, yan duvar, tavan) | Ahşap tonlu kompozit lambri (20 cm) | Boşluklar sıcak tonla okunur; giriş vurgulanır |
+| Otopark katı kaidesi ve dükkan | Antrasit kompozit panel | Konut kütlesi koyu bir kaidenin üzerinde durur; dükkan bu kaidenin devamıdır |
+| Doğrama, korkuluk profilleri, parapet harpuştası | Antrasit metal | İnce, koyu çizgi detayları |
+| Balkonlar | Çerçevesiz cam korkuluk: antrasit alt profil + küpeşte, 90 cm | Plandaki 90 cm korkuluk yüksekliği korundu |
+
+Ek olarak görünüşteki "BİNA GİRİŞİ" yazısının yerine, kuzey yarığın dibine antrasit kasalı cam bir giriş kapısı (1,20 × 2,40 m) konuldu.
+
+| Dosya | Görünüm |
+|---|---|
+| `kuzeydogu.png` | 706. Sokak – Odunluk Caddesi köşesinden kuşbakışı |
+| `kose.png` | 706. Sokak'tan, dükkan önünden göz hizası |
+| `sokak.png` | Kuzey cephe (şematik görünüşün karşılığı) |
+| `batikose.png` | 706. Sokak'ın batı ucundan göz hizası, akşamüstü ışığı |
+| `guneybati.png` | Arka (güney) cephe, kuşbakışı |
+| `giris.png` | Bina girişi ve orta aks, yakın plan |
+
+Render hattı: `kutle.js` "tasarim" kipinde modeli kurar. `blender/disa_aktar.mjs` modeli GLB'ye aktarır. `blender/render_cycles.py` ise Blender Cycles ile (yol izleme, fiziksel gökyüzü ve güneş, OpenImageDenoise) render alır. Malzemelerin hepsi prosedüreldir:
+- sıvada ince doku,
+- panellerde tek tek ton farkı,
+- lambride damar,
+- kilitli parke, asfalt.
+
+Ağaç, insan, araç ve komşu bina eklenmedi; çizimlerde yoklar. Yol genişlikleri temsilidir.
+
+## Kütle görüntüleri (`renders/`, 3200×2000)
 
 | Dosya | İçerik |
 |---|---|
@@ -15,7 +48,7 @@ Verilen üç AutoCAD çıktısından (vaziyet + zemin kat planı, normal kat pla
 | `05_vaziyet_ustten.png` | Üstten vaziyet: parsel, otoparklar, sokak adları |
 | `06_kullanim_semasi.png` | Kullanıma göre boyanmış kütle: kat etiketleri, kotlar, özet |
 
-`index.html` aynı modeli tarayıcıda döndürülebilir olarak açar. Görünüm düğmeleri ve "Kullanım şeması" geçişi vardır. Adresin sonuna `#sokak`, `#kose`, `#guneybati`, `#vaziyet` ya da `#sema` eklenirse sayfa doğrudan o görünümle açılır.
+`index.html` aynı modeli tarayıcıda döndürülebilir olarak açar. Üç kip vardır: "Cephe tasarımı" (varsayılan), "Kütle" ve "Kullanım şeması"; görünüm düğmeleri de bulunur. Adresin sonuna `#sokak`, `#kose`, `#guneybati` ya da `#vaziyet` eklenirse o görünüm açılır; `#kutle` ve `#sema` ise ilgili kipi açar.
 
 ## Çizimlerden alınan ölçüler
 
@@ -75,9 +108,19 @@ node render.mjs 1920 1080 1
 GORUNUS=vaziyet node render.mjs   # tek görünüm
 ```
 
+Fotogerçekçi cephe render'ları (Blender'ın Python modülü gerekir):
+
+```bash
+pip install bpy==5.2.3                       # Python 3.13; Blender 5.2 LTS
+node blender/disa_aktar.mjs                  # blender/model_tasarim.glb
+python blender/render_cycles.py --glb blender/model_tasarim.glb --cikti renders/tasarim \
+    --ornek 192 --en 1920 --boy 1200         # --gorunus kose,sokak ile tek tek
+```
+
 Etkileşimli görüntüleyici için klasörü herhangi bir statik sunucuyla açın (ör. `npx serve .`) ve `index.html`'i tarayıcıda görüntüleyin. three.js jsDelivr'dan yüklenir.
 
 Dosyalar:
 - `kutle.js`: bütün koordinatlar, kotlar ve geometri.
 - `index.html`: sahne, ışık, kameralar ve arayüz.
 - `render.mjs`: Playwright ile ekran görüntüsü alır.
+- `blender/disa_aktar.mjs`, `blender/render_cycles.py`: fotogerçekçi render hattı.

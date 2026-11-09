@@ -87,7 +87,8 @@ import { sahneKur, etiketNoktalari, KOT } from './kutle.js';
 
 const q = new URLSearchParams(location.search);
 const HASH = (location.hash || '').slice(1);
-let MOD = q.get('mod') || (HASH === 'sema' ? 'diyagram' : 'render');
+// kipler: 'tasarim' (cephe tasarımı, etkileşimli görüntüleyicide varsayılan), 'render' (beyaz kütle), 'diyagram' (kullanım şeması)
+let MOD = q.get('mod') || (HASH === 'sema' ? 'diyagram' : HASH === 'kutle' ? 'render' : (UI ? 'tasarim' : 'render'));
 const UI = q.get('ui') !== '0';
 // ortam kapatma (AO): render modunda açık; etkileşimli görüntüleyicide ?ao=1 ile açılır
 let AO = q.has('ao') ? q.get('ao') !== '0' : !UI;
@@ -217,7 +218,8 @@ function gorunusSec(k) {
 }
 
 function altBaslikYaz() {
-  document.getElementById('altBaslik').textContent = 'Kütle çalışması · ' + (MOD === 'diyagram' ? 'Kullanım şeması · ' : '') + GORUNUS[aktif].ad;
+  const onEk = { tasarim: 'Cephe tasarımı', diyagram: 'Kütle çalışması · Kullanım şeması', render: 'Kütle çalışması' }[MOD];
+  document.getElementById('altBaslik').textContent = onEk + ' · ' + GORUNUS[aktif].ad;
 }
 
 // sokak adlarını bakış yönünden okunacak şekilde çevir
@@ -259,6 +261,15 @@ const etiketKatmani = document.getElementById('etiketler');
 function etiketler() {
   etiketKatmani.innerHTML = '';
   const lej = document.getElementById('lejant');
+  if (MOD === 'tasarim') {
+    lej.hidden = false;
+    lej.innerHTML = `<div><i style="background:#e7e2d8;outline:1px solid var(--cizgi)"></i>Dekoratif sıva · çıkmalı kanatlar</div>
+      <div><i style="background:#565c60"></i>Koyu gri kompozit · geri çekilmiş orta akslar</div>
+      <div><i style="background:#9c6b43"></i>Ahşap tonlu kompozit · giriş yarığı, balkon cepleri</div>
+      <div><i style="background:#33383c"></i>Antrasit kompozit · kaide ve dükkan</div>
+      <div class="not">Antrasit doğrama ve korkuluk profilleri · cam korkuluk<br>Kütle, pencere ve balkon düzeni çizimdeki gibidir</div>`;
+    return;
+  }
   if (MOD !== 'diyagram') { lej.hidden = true; return; }
   lej.hidden = false;
   lej.innerHTML = `<div><i style="background:#f2d49b"></i>Konut katları · Zemin, 1. ve 2. kat</div>
@@ -300,18 +311,25 @@ if (UI) {
   for (const [k, v] of Object.entries(GORUNUS)) {
     if (k === 'diyagram' || k === 'ozel') continue;
     const b = document.createElement('button'); b.type = 'button'; b.dataset.g = k; b.textContent = v.ad.split(' · ')[0].replace(' kuşbakışı', '');
-    b.onclick = () => { gorunusSec(k); try { history.replaceState(null, '', '#' + (MOD === 'diyagram' ? 'sema' : k)); } catch (e) {} };
+    b.onclick = () => { gorunusSec(k); hashYaz(); };
     arac.appendChild(b);
   }
   const ay = document.createElement('span'); ay.className = 'ayrac'; arac.appendChild(ay);
-  const m = document.createElement('button'); m.type = 'button'; m.id = 'modDugmesi';
-  const modYaz = () => { m.textContent = 'Kullanım şeması'; m.setAttribute('aria-pressed', String(MOD === 'diyagram')); };
-  m.onclick = () => {
-    MOD = MOD === 'diyagram' ? 'render' : 'diyagram';
-    modelKur(MOD); yazilariCevir(); modYaz(); altBaslikYaz(); etiketGerek = true; etiketler();
-    try { history.replaceState(null, '', '#' + (MOD === 'diyagram' ? 'sema' : aktif)); } catch (e) {}
-  };
-  modYaz(); arac.appendChild(m);
+  const kipDugmeleri = [];
+  for (const [kip, ad] of [['tasarim', 'Cephe tasarımı'], ['render', 'Kütle'], ['diyagram', 'Kullanım şeması']]) {
+    const m = document.createElement('button'); m.type = 'button'; m.dataset.kip = kip; m.textContent = ad;
+    m.onclick = () => {
+      if (MOD === kip) return;
+      MOD = kip; modelKur(MOD); yazilariCevir(); altBaslikYaz(); etiketGerek = true; etiketler();
+      kipDugmeleri.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.kip === MOD)));
+      hashYaz();
+    };
+    m.setAttribute('aria-pressed', String(kip === MOD));
+    kipDugmeleri.push(m); arac.appendChild(m);
+  }
+}
+function hashYaz() {
+  try { history.replaceState(null, '', '#' + (MOD === 'diyagram' ? 'sema' : MOD === 'render' ? 'kutle' : aktif)); } catch (e) {}
 }
 
 addEventListener('resize', () => {
@@ -320,6 +338,18 @@ addEventListener('resize', () => {
   if (aktif === 'vaziyet') orthoAyarla();
   composerKur();
 });
+
+// Blender'a aktarım için modeli GLB olarak verir (fotogerçekçi render hattı: blender/)
+window.__glbAl = async () => {
+  const { GLTFExporter } = await import('three/addons/exporters/GLTFExporter.js');
+  const gizli = [];
+  model.traverse(o => { if (o.name === 'yazi' && o.visible) { o.visible = false; gizli.push(o); } });
+  const buf = await new GLTFExporter().parseAsync(model, { binary: true, onlyVisible: true });
+  gizli.forEach(o => { o.visible = true; });
+  let s = ''; const u8 = new Uint8Array(buf);
+  for (let i = 0; i < u8.length; i += 0x8000) s += String.fromCharCode.apply(null, u8.subarray(i, i + 0x8000));
+  return btoa(s);
+};
 
 gorunusSec(viewKey);
 let kare = 0, etiketGerek = true;

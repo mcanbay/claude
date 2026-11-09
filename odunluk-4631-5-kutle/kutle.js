@@ -33,6 +33,7 @@ const GS = 0.017544;
 export const KOT = {
   otoparkKati: 0.0,          // OTOPARK KATI ±0.00
   katlar: [3.0, 6.0, 9.0],   // ZEMİN KAT, 1. KAT, 2. KAT (300 cm)
+  kat: 3.0,
   cati: 12.0,
   parapet: 1.0,              // PARAPET DUVAR 100
   doseme: 0.30,              // görünüşte balkon döşeme kalınlığı
@@ -152,9 +153,24 @@ function malzemeler(mod) {
     m.otopark = std(0xa9b8c6, 0.85);
     m.dukkan = std(0xe0876a, 0.8);
     m.cati = std(0xd9d2c4, 0.95);
+  } else if (mod === 'tasarim') {
+    // Cephe tasarımı: açık doğal tonlu sıva + antrasit / koyu gri / ahşap tonlu kompozit
+    m.siva = std(0xe9e4da, 0.88);
+    m.antrasit = std(0x363b3f, 0.42, 0.35);
+    m.koyugri = std(0x555b5f, 0.4, 0.35);
+    m.ahsap = std(0x9c6b43, 0.62);
+    m.derz = std(0x141618, 0.8);
+    m.alu = std(0x2c3034, 0.35, 0.7, { envMapIntensity: 1.0 }); // antrasit metal doğrama/profil
+    m.icDuvar = std(0xd8d1c5, 0.9);
+    m.kapiCam = std(0x161a1d, 0.06, 0.2, { envMapIntensity: 1.2 });
+    m.korkulukCam = new THREE.MeshPhysicalMaterial({ color: 0xb9d3d6, roughness: 0.04, metalness: 0.2, transparent: true, opacity: 0.32, depthWrite: false, envMapIntensity: 1.4 });
+    m.konut = m.siva; m.otopark = m.siva; m.dukkan = m.siva; m.duvar = m.siva;
   } else {
     m.konut = m.duvar; m.otopark = m.duvar; m.dukkan = m.duvar;
   }
+  // Blender'da malzeme eşlemesi için adlar
+  for (const [k, v] of Object.entries(m)) if (!v.name) v.name = k;
+  if (m.siva) m.siva.name = 'siva';
   return m;
 }
 
@@ -179,8 +195,13 @@ function halka(pts, t, y0, y1, mat) {
     const n1 = icNormal(a, v, A), n2 = icNormal(v, b, A);
     return v.clone().addScaledVector(n1, t).addScaledVector(n2, t);
   });
-  const sh = new THREE.Shape(pts.map(p => new THREE.Vector2(p.x, -p.y)));
-  sh.holes.push(new THREE.Path(ic.map(p => new THREE.Vector2(p.x, -p.y))));
+  const dis2 = pts.map(p => new THREE.Vector2(p.x, -p.y));
+  let ic2 = ic.map(p => new THREE.Vector2(p.x, -p.y));
+  // three.js dış kontur saat yönündeyse deliği çevirmez: iç yüzlerin normalleri
+  // doğru (içe bakan) olsun diye delik her zaman dış konturun tersi yönde verilir
+  if (THREE.ShapeUtils.isClockWise(dis2) === THREE.ShapeUtils.isClockWise(ic2)) ic2 = ic2.reverse();
+  const sh = new THREE.Shape(dis2);
+  sh.holes.push(new THREE.Path(ic2));
   const g = new THREE.ExtrudeGeometry(sh, { depth: y1 - y0, bevelEnabled: false });
   g.rotateX(-Math.PI / 2); g.translate(0, y0, 0);
   return golge(new THREE.Mesh(g, mat));
@@ -196,6 +217,13 @@ function kutuKenar(a, b, y0, y1, t, nIc, mat, disTasma = 0) {
   m.position.set(mid.x, (y0 + y1) / 2, mid.y);
   m.rotation.y = -Math.atan2(d.y, d.x);
   return golge(m);
+}
+
+// i. köşe dış (dışbükey) köşe mi?
+function disKose(pts, i, alan) {
+  const n = pts.length, a = pts[(i - 1 + n) % n], v = pts[i], b = pts[(i + 1) % n];
+  const cr = (v.x - a.x) * (b.y - v.y) - (v.y - a.y) * (b.x - v.x);
+  return Math.sign(cr) === Math.sign(alan);
 }
 
 function isaretliAlan(pts) {
@@ -249,9 +277,10 @@ function pencere(grup, m, merkez, d, nDis, taban, tip) {
   // alüminyum kasa + orta kayıt (sürme iki kanat)
   parca(W, prof, 0.07, 0, taban + Hh - prof / 2, -cekme + 0.01, m.alu);
   parca(W, prof, 0.07, 0, taban + prof / 2, -cekme + 0.01, m.alu);
-  parca(prof, Hh, 0.07, -W / 2 + prof / 2, taban + Hh / 2, -cekme + 0.01, m.alu);
-  parca(prof, Hh, 0.07, W / 2 - prof / 2, taban + Hh / 2, -cekme + 0.01, m.alu);
-  parca(0.08, Hh, 0.07, 0, taban + Hh / 2, -cekme + 0.02, m.alu);
+  // köşelerde parçalar üst üste binmez (eş düzlem yüz bırakmamak için)
+  parca(prof, Hh - 2 * prof, 0.07, -W / 2 + prof / 2, taban + Hh / 2, -cekme + 0.01, m.alu);
+  parca(prof, Hh - 2 * prof, 0.07, W / 2 - prof / 2, taban + Hh / 2, -cekme + 0.01, m.alu);
+  parca(0.08, Hh - 2 * prof, 0.07, 0, taban + Hh / 2, -cekme + 0.02, m.alu);
   if (tip === 'f') {
     // 3 cm mermer denizlik
     parca(W + 0.3, 0.03, 0.26, 0, taban + 0.015, 0.0, m.mermer);
@@ -260,12 +289,12 @@ function pencere(grup, m, merkez, d, nDis, taban, tip) {
     parca(W - 0.06, kH - 0.08, 0.016, 0, taban + 0.03 + (kH - 0.08) / 2, o, m.korkulukCam);
     parca(W, 0.05, 0.05, 0, taban + kH - 0.025, o, m.alu);
     parca(W, 0.03, 0.04, 0, taban + 0.045, o, m.alu);
-    parca(0.04, kH, 0.04, -W / 2 + 0.02, taban + kH / 2, o, m.alu);
-    parca(0.04, kH, 0.04, W / 2 - 0.02, taban + kH / 2, o, m.alu);
+    parca(0.04, kH - 0.11, 0.04, -W / 2 + 0.02, taban + 0.06 + (kH - 0.11) / 2, o, m.alu);
+    parca(0.04, kH - 0.11, 0.04, W / 2 - 0.02, taban + 0.06 + (kH - 0.11) / 2, o, m.alu);
   }
 }
 
-function konutBlogu(m) {
+function konutBlogu(m, mod) {
   const g = new THREE.Group(); g.name = 'konut';
   const t = 0.25;
 
@@ -302,12 +331,18 @@ function konutBlogu(m) {
         }
       }
     }
-    g.add(bosukluDuvar(a, b, KOT.katlar[0], KOT.cati, t, nIc, bosluklar, m.konut));
+    // Duvarlar kat kat (döşeme araları) ve dış köşede kalınlık kadar kısaltılarak
+    // üretilir: aynı düzlemde çakışan yüz kalmaz (yol izlemeli render'da siyah leke yapar)
+    const bK = disKose(kap, (i + 1) % kap.length, A) ? b.clone().addScaledVector(d, -t) : b;
+    for (const k of KOT.katlar) {
+      const ust = k + KOT.kat - KOT.doseme;
+      g.add(bosukluDuvar(a, bK, k, ust, t, nIc, bosluklar.filter(h => h[2] >= k && h[3] <= ust), m.konut));
+    }
   }
 
-  // Balkon parapetleri (dolu, 90 cm)
+  // Balkon parapetleri (dolu, 90 cm) — tasarım modunda cam korkuluk kullanılır (cephe())
   const pt = 0.15;
-  for (const kenar of BALKON_KENARLARI) {
+  for (const kenar of (mod === 'tasarim' ? [] : BALKON_KENARLARI)) {
     const q = kenar.map(p => N(...p));
     // balkonun iç tarafını bulmak için kapalı hatta göre: balkon dikdörtgeninin merkezi
     const mx = (q[0].x + q[2].x) / 2, mz = (q[0].y + q[2].y) / 2;
@@ -344,7 +379,8 @@ function dukkanBlogu(m) {
       const u0 = Z(gx(VITRIN.x1), y0).sub(a).dot(d), u1 = Z(gx(VITRIN.x0), y0).sub(a).dot(d);
       bosluk = [[u0, u1, 0, gy(VITRIN.ust)]];
     }
-    g.add(bosukluDuvar(a, b, 0, H, t, nIc, bosluk, m.dukkan));
+    const bK = b.clone().addScaledVector(new THREE.Vector2().subVectors(b, a).normalize(), -t); // dikdörtgen: tüm köşeler dış köşe
+    g.add(bosukluDuvar(a, bK, 0, H - KOT.doseme, t, nIc, bosluk, m.dukkan));
   }
   g.add(yukselt(p, H - KOT.doseme, H - 0.02, m.dukkan));
   g.add(golge(yukselt(p, H - 0.02, H, m.cati), false, true));
@@ -359,7 +395,7 @@ function dukkanBlogu(m) {
   cam.position.set((vx0 + vx1) / 2, vH / 2, zc); g.add(cam);
   const pr = 0.06;
   const dikme = (x, yA, yB) => { const b = golge(new THREE.Mesh(new THREE.BoxGeometry(pr, yB - yA, 0.08), m.alu)); b.position.set(x, (yA + yB) / 2, zc - 0.02); g.add(b); };
-  const kayit = (xa, xb, y) => { const b = golge(new THREE.Mesh(new THREE.BoxGeometry(Math.abs(xb - xa), pr, 0.08), m.alu)); b.position.set((xa + xb) / 2, y, zc - 0.02); g.add(b); };
+  const kayit = (xa, xb, y) => { const b = golge(new THREE.Mesh(new THREE.BoxGeometry(Math.abs(xb - xa), pr, 0.07), m.alu)); b.position.set((xa + xb) / 2, y, zc - 0.02); g.add(b); };
   for (const xe of VITRIN.dikmeler) dikme(Z(gx(xe), 0).x, 0, vH);
   kayit(vx0, vx1, vH - pr / 2); kayit(vx0, vx1, pr / 2);
   const kapiUst = gy(VITRIN.kapiUst);
@@ -375,6 +411,238 @@ function dukkanBlogu(m) {
       segs = n;
     }
     for (const [s0, s1] of segs) kayit(Z(gx(s1), 0).x, Z(gx(s0), 0).x, y);
+  }
+  return g;
+}
+
+// ---------------------------------------------------------------------------
+// 6b. Cephe tasarımı (malzeme kompozisyonu) — kütle, pencere ve balkon düzeni
+//     çizimdeki gibi kalır; kaplamalar duvar yüzeyinin önüne giydirilir.
+//   • Çıkmalı kanatlar (köşe balkonu + 8,91 m² oda kutusu): açık tonlu dekoratif sıva
+//   • Geri çekilmiş orta akslar (13,18 m² oda pencereleri): koyu gri kompozit panel
+//   • Boşluklar (merdiven yarığı / bina girişi, balkon cepleri): ahşap tonlu kompozit
+//   • Otopark katı kaidesi ve dükkan: antrasit kompozit
+//   • Doğrama, korkuluk profilleri, harpuşta: antrasit metal; balkonlarda cam korkuluk
+// ---------------------------------------------------------------------------
+const KAPLAMA = { ofs: 0.03, kal: 0.02, derz: 0.012 };
+
+// [0, L] aralığını sabit noktalarda bölüp her parçayı ~modül genişliğinde eşit böl
+function bolum(L, sabit, modul) {
+  const s = [...new Set([0, L, ...sabit.filter(u => u > 0.02 && u < L - 0.02)])].sort((a, b) => a - b);
+  const out = [];
+  for (let i = 0; i < s.length - 1; i++) {
+    const a = s[i], b = s[i + 1], n = Math.max(1, Math.round((b - a) / modul));
+    for (let k = 0; k < n; k++) out.push(a + (b - a) * k / n);
+  }
+  out.push(L);
+  return out;
+}
+
+function kutuYerlestir(mesh, merkez, ex, ey, ez) {
+  mesh.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(ex, ey, ez));
+  mesh.position.copy(merkez);
+  return golge(mesh);
+}
+
+// Düşey cephe yüzeyine panel / lambri kaplama
+//  a,b: duvar dış yüzü çizgisi (dünya XZ), nDis: dış normal, y0..y1 kot aralığı
+//  bosluk: [u0,u1,v0,v1] pencere/kapı boşlukları, modul: panel genişliği
+function kaplama(g, m, { a, b, nDis, y0, y1, bosluk = [], modul = 1.2, vKes = [], mat, lambri = false, pervaz = true, uzat = [0, 0] }) {
+  const { ofs, kal, derz } = KAPLAMA;
+  // dış köşede panel köşeyi sarsın diye yüzey uçlarından uzatılabilir (uzat: [baş, son])
+  if (uzat[0] || uzat[1]) {
+    const e = new THREE.Vector2().subVectors(b, a).normalize();
+    bosluk = bosluk.map(([u0, u1, v0, v1]) => [u0 + uzat[0], u1 + uzat[0], v0, v1]);
+    a = a.clone().addScaledVector(e, -uzat[0]); b = b.clone().addScaledVector(e, uzat[1]);
+  }
+  const d = new THREE.Vector2().subVectors(b, a); const L = d.length(); d.normalize();
+  const n3 = new THREE.Vector3(nDis.x, 0, nDis.y), d3 = new THREE.Vector3(d.x, 0, d.y), up = new THREE.Vector3(0, 1, 0);
+  // sağ el sistemi: ex=d3, ey=up, ez=ex×ey (dış ya da iç normal olabilir; kutu simetrik)
+  const ez = new THREE.Vector3().crossVectors(d3, up);
+  const uKes = bolum(L, bosluk.flatMap(h => [h[0], h[1]]), modul);
+  const vs = [...new Set([y0, y1, ...vKes, ...bosluk.flatMap(h => [h[2], h[3]])].filter(v => v >= y0 - 1e-6 && v <= y1 + 1e-6))].sort((p, q) => p - q);
+  const icinde = (u, v) => bosluk.some(([u0, u1, v0, v1]) => u > u0 && u < u1 && v > v0 && v < v1);
+  for (let i = 0; i < uKes.length - 1; i++) {
+    for (let j = 0; j < vs.length - 1; j++) {
+      const u0 = uKes[i], u1 = uKes[i + 1], v0 = vs[j], v1 = vs[j + 1];
+      if (u1 - u0 < 0.03 || v1 - v0 < 0.03) continue;
+      const uc = (u0 + u1) / 2, vc = (v0 + v1) / 2;
+      if (icinde(uc, vc)) continue;
+      const pan = new THREE.Mesh(new THREE.BoxGeometry(u1 - u0 - derz, v1 - v0 - derz, kal), mat);
+      const c = new THREE.Vector3(a.x + d.x * uc + nDis.x * (ofs + kal / 2), vc, a.y + d.y * uc + nDis.y * (ofs + kal / 2));
+      g.add(kutuYerlestir(pan, c, d3, up, ez));
+    }
+  }
+  // arka zemin (derz görünümü için koyu) — duvar yüzü ile panel arası
+  const aO = a.clone().addScaledVector(nDis, ofs), bO = b.clone().addScaledVector(nDis, ofs);
+  g.add(bosukluDuvar(aO, bO, y0, y1, ofs, nDis.clone().negate(), bosluk, m.derz));
+  // pencere/kapı içlikleri (söve): kaplama malzemesiyle camın önüne kadar
+  if (pervaz) for (const [u0, u1, v0, v1] of bosluk) {
+    const D = ofs + kal + 0.11, t = 0.02, mid = ofs + kal - D / 2;
+    const parca = (w, h, uc, vc) => {
+      const p = new THREE.Mesh(new THREE.BoxGeometry(w, h, D), mat);
+      const c = new THREE.Vector3(a.x + d.x * uc + nDis.x * mid, vc, a.y + d.y * uc + nDis.y * mid);
+      g.add(kutuYerlestir(p, c, d3, up, ez));
+    };
+    parca(u1 - u0, t, (u0 + u1) / 2, v1 - t / 2);
+    parca(t, v1 - v0 - t, u0 + t / 2, (v0 + v1 - t) / 2);
+    parca(t, v1 - v0 - t, u1 - t / 2, (v0 + v1 - t) / 2);
+  }
+}
+
+// Balkon tavanı (alt yüz) ahşap lambri: dikdörtgen [p0,p1] (dünya XZ köşeleri), kot y
+function tavanLambri(g, m, p0, p1, y, mat) {
+  const x0 = Math.min(p0.x, p1.x), x1 = Math.max(p0.x, p1.x), z0 = Math.min(p0.y, p1.y), z1 = Math.max(p0.y, p1.y);
+  const { ofs, kal, derz } = KAPLAMA;
+  const zs = bolum(z1 - z0, [], 0.2);
+  const ex = new THREE.Vector3(0, 0, 1), ey = new THREE.Vector3(1, 0, 0), ez = new THREE.Vector3(0, 1, 0); // uzun eksen (yerel Y) X boyunca
+  for (let i = 0; i < zs.length - 1; i++) {
+    const w = zs[i + 1] - zs[i];
+    const p = new THREE.Mesh(new THREE.BoxGeometry(w - derz, x1 - x0 - 0.01, kal), mat);
+    g.add(kutuYerlestir(p, new THREE.Vector3((x0 + x1) / 2, y - ofs - kal / 2, z0 + zs[i] + w / 2), ex, ey, ez));
+  }
+  const arka = new THREE.Mesh(new THREE.BoxGeometry(x1 - x0, ofs, z1 - z0), m.derz);
+  arka.position.set((x0 + x1) / 2, y - ofs / 2, (z0 + z1) / 2); g.add(golge(arka));
+}
+
+// Çerçevesiz cam korkuluk: alt profil + cam + küpeşte (antrasit)
+function camKorkuluk(g, m, a, b, nIc, taban, H = KOT.korkuluk, kisalt = [0, 0]) {
+  { const e = new THREE.Vector2().subVectors(b, a).normalize(); a = a.clone().addScaledVector(e, kisalt[0]); b = b.clone().addScaledVector(e, -kisalt[1]); }
+  const d = new THREE.Vector2().subVectors(b, a); const L = d.length(); d.normalize();
+  const d3 = new THREE.Vector3(d.x, 0, d.y), up = new THREE.Vector3(0, 1, 0), ez = new THREE.Vector3().crossVectors(d3, up);
+  const at = (ofs, y, w, h, dz, mat) => {
+    const p = new THREE.Mesh(new THREE.BoxGeometry(w, h, dz), mat);
+    const mid = new THREE.Vector2().addVectors(a, b).multiplyScalar(0.5).addScaledVector(nIc, ofs);
+    g.add(kutuYerlestir(p, new THREE.Vector3(mid.x, y, mid.y), d3, up, ez));
+  };
+  at(0.07, taban + 0.05, L, 0.10, 0.07, m.alu);                    // alt U profil
+  at(0.07, taban + 0.10 + (H - 0.14) / 2, L - 0.02, H - 0.14, 0.017, m.korkulukCam);
+  at(0.07, taban + H - 0.02, L, 0.04, 0.05, m.alu);                // küpeşte
+}
+
+function disOfset(pts, t) { // dik açılı çokgeni t kadar dışa kaydır
+  const A = isaretliAlan(pts), n = pts.length;
+  return pts.map((v, i) => {
+    const a = pts[(i - 1 + n) % n], b = pts[(i + 1) % n];
+    return v.clone().addScaledVector(icNormal(a, v, A), -t).addScaledVector(icNormal(v, b, A), -t);
+  });
+}
+
+function cephe(m) {
+  const g = new THREE.Group(); g.name = 'cephe';
+  const KUZEY = new THREE.Vector2(0, -1), GUNEY = new THREE.Vector2(0, 1), DOGU = new THREE.Vector2(1, 0), BATI = new THREE.Vector2(-1, 0);
+  const ust = KOT.cati + KOT.parapet;
+  const pencereBoslugu = (a, b, x0, x1, y, katlar = KOT.katlar) => {
+    const d = new THREE.Vector2().subVectors(b, a).normalize();
+    const uc = N((x0 + x1) / 2, y).sub(a).dot(d);
+    return katlar.map(k => [uc - KOT.pencereG / 2, uc + KOT.pencereG / 2, k, k + KOT.pencereY]);
+  };
+
+  // 1) Geri çekilmiş orta akslar — koyu gri kompozit (+2.70 … parapet üstü)
+  for (const [x0, x1, y, n, wx0, wx1] of [
+    [904.7, 1057.4, 1099.6, KUZEY, 930.9, 1032.5], [1186.8, 1339.5, 1099.6, KUZEY, 1211.7, 1313.3],
+    [904.7, 1057.4, 1687.0, GUNEY, 930.9, 1032.5], [1186.8, 1339.5, 1687.0, GUNEY, 1211.7, 1313.3],
+  ]) {
+    const a = N(x0, y), b = N(x1, y);
+    kaplama(g, m, { a, b, nDis: n, y0: KOT.katlar[0] - KOT.doseme, y1: ust, bosluk: pencereBoslugu(a, b, wx0, wx1, y), modul: 1.0, vKes: [...KOT.katlar, KOT.cati], mat: m.koyugri });
+  }
+
+  // 1b) Yan cepheler (doğu/batı sağır duvarlar): ortadaki kat holü aksında aynı genişlikte
+  //     koyu gri bant — uzun cephelerdeki koyu orta aksın yan yüzlerdeki karşılığı
+  {
+    const yarim = (1339.5 - 1186.8) / 2, yc = 1393.4;
+    for (const [x, n] of [[472.8, BATI], [1771.4, DOGU]]) {
+      kaplama(g, m, { a: N(x, yc - yarim), b: N(x, yc + yarim), nDis: n, y0: KOT.katlar[0] - KOT.doseme, y1: ust, modul: 1.0, vKes: [...KOT.katlar, KOT.cati], mat: m.koyugri });
+    }
+  }
+
+  // 2) Otopark katı kaidesi — antrasit kompozit (±0.00 … +2.70)
+  const kH = KOT.katlar[0] - KOT.doseme;
+  const KS = KAPLAMA.ofs + KAPLAMA.kal; // köşe sarma payı
+  for (const [p, q, n, uz] of [
+    [[448.4, 1037.5], [1024.1, 1037.5], KUZEY, [KS, 0]], [[1151.4, 1037.5], [1727.2, 1037.5], KUZEY, [0, 0]],
+    [[448.4, 1616.0], [1024.1, 1616.0], GUNEY, [KS, 0]], [[1151.4, 1616.0], [1727.2, 1616.0], GUNEY, [0, KS]],
+    [[448.4, 1037.5], [448.4, 1616.0], BATI, [0, 0]], [[1727.2, 1230.2], [1727.2, 1616.0], DOGU, [0, 0]],
+  ]) kaplama(g, m, { a: Z(...p), b: Z(...q), nDis: n, y0: 0, y1: kH, modul: 1.25, mat: m.antrasit, uzat: uz });
+
+  // 3) Merdiven yarıkları (bina girişi) — ahşap tonlu kompozit lambri, ±0.00 … parapet üstü
+  const lambriKot = [...KOT.katlar, KOT.cati];
+  const girisKapi = (a, b) => { const L = b.clone().sub(a).length(); return [[L / 2 - 0.6, L / 2 + 0.6, 0, 2.4]]; };
+  {
+    const a = N(1057.4, 1168.0), b = N(1186.8, 1168.0);
+    kaplama(g, m, { a, b, nDis: KUZEY, y0: 0, y1: ust, bosluk: girisKapi(a, b), modul: 0.2, vKes: lambriKot, mat: m.ahsap, lambri: true });
+    kaplama(g, m, { a: N(1057.4, 1099.6), b: N(1057.4, 1168.0), nDis: DOGU, y0: 0, y1: ust, modul: 0.2, vKes: lambriKot, mat: m.ahsap, lambri: true, uzat: [KS, 0] });
+    kaplama(g, m, { a: N(1186.8, 1099.6), b: N(1186.8, 1168.0), nDis: BATI, y0: 0, y1: ust, modul: 0.2, vKes: lambriKot, mat: m.ahsap, lambri: true, uzat: [KS, 0] });
+    // giriş kapısı: antrasit kasa + koyu cam (görünüşteki "BİNA GİRİŞİ")
+    const c = N(1122.1, 1168.0), z = c.y - KAPLAMA.ofs * 0.5;
+    const kp = (w, h, x, y, dz, mat) => { const b2 = golge(new THREE.Mesh(new THREE.BoxGeometry(w, h, dz), mat)); b2.position.set(x, y, z); g.add(b2); };
+    kp(1.2, 2.4, c.x, 1.2, 0.03, m.kapiCam);
+    kp(1.2, 0.07, c.x, 2.365, 0.06, m.alu); kp(0.07, 2.33, c.x - 0.565, 1.165, 0.055, m.alu); kp(0.07, 2.33, c.x + 0.565, 1.165, 0.055, m.alu);
+    kp(0.03, 1.2, c.x + 0.4, 1.1, 0.12, m.alu);
+  }
+  kaplama(g, m, { a: N(1057.4, 1561.5), b: N(1186.8, 1561.5), nDis: GUNEY, y0: 0, y1: ust, modul: 0.2, vKes: lambriKot, mat: m.ahsap, lambri: true });
+  kaplama(g, m, { a: N(1057.4, 1561.5), b: N(1057.4, 1687.0), nDis: DOGU, y0: 0, y1: ust, modul: 0.2, vKes: lambriKot, mat: m.ahsap, lambri: true, uzat: [0, KS] });
+  kaplama(g, m, { a: N(1186.8, 1561.5), b: N(1186.8, 1687.0), nDis: BATI, y0: 0, y1: ust, modul: 0.2, vKes: lambriKot, mat: m.ahsap, lambri: true, uzat: [0, KS] });
+
+  // 4) Balkon cepleri — arka duvar, yan duvar ve tavan ahşap tonlu kompozit; dış kenarlarda cam korkuluk
+  const balkonlar = [
+    { arka: [[472.8, 1125.6], [702.9, 1125.6], KUZEY], yan: [[702.9, 1047.9], [702.9, 1125.6], BATI], kose: [[472.8, 1047.9], [702.9, 1125.6]], pen: [531.6, 633.3, 1125.6] },
+    { arka: [[1541.3, 1125.6], [1771.4, 1125.6], KUZEY], yan: [[1541.3, 1047.9], [1541.3, 1125.6], DOGU], kose: [[1541.3, 1047.9], [1771.4, 1125.6]], pen: [1610.9, 1712.6, 1125.6] },
+    { arka: [[472.8, 1661.2], [702.9, 1661.2], GUNEY], yan: [[702.9, 1661.2], [702.9, 1738.9], BATI], kose: [[472.8, 1661.2], [702.9, 1738.9]], pen: [531.6, 633.3, 1661.2] },
+    { arka: [[1541.3, 1661.2], [1771.4, 1661.2], GUNEY], yan: [[1541.3, 1661.2], [1541.3, 1738.9], DOGU], kose: [[1541.3, 1661.2], [1771.4, 1738.9]], pen: [1610.9, 1712.6, 1661.2] },
+  ];
+  for (const bk of balkonlar) {
+    const a = N(...bk.arka[0]), b = N(...bk.arka[1]);
+    for (const k of KOT.katlar) {
+      const tavan = k + KOT.kat - KOT.doseme;
+      kaplama(g, m, { a, b, nDis: bk.arka[2], y0: k, y1: tavan, bosluk: pencereBoslugu(a, b, bk.pen[0], bk.pen[1], bk.pen[2], [k]), modul: 0.2, mat: m.ahsap, lambri: true });
+      kaplama(g, m, { a: N(...bk.yan[0]), b: N(...bk.yan[1]), nDis: bk.yan[2], y0: k, y1: tavan, modul: 0.2, mat: m.ahsap, lambri: true });
+      tavanLambri(g, m, N(...bk.kose[0]), N(...bk.kose[1]), tavan, m.ahsap);
+    }
+  }
+  for (const kenar of BALKON_KENARLARI) {
+    const q = kenar.map(p => N(...p));
+    const mx = (q[0].x + q[2].x) / 2, mz = (q[0].y + q[2].y) / 2;
+    for (let i = 0; i < 2; i++) {
+      const a = q[i], b = q[i + 1], mid = new THREE.Vector2().addVectors(a, b).multiplyScalar(0.5);
+      const nIc = new THREE.Vector2(mx - mid.x, mz - mid.y);
+      if (Math.abs(nIc.x) > Math.abs(nIc.y)) nIc.set(Math.sign(nIc.x), 0); else nIc.set(0, Math.sign(nIc.y));
+      // köşede iki kol üst üste binmeden birleşir: ilk kol 3,5 cm, ikinci kol 10,5 cm kısalır
+      for (const k of KOT.katlar) camKorkuluk(g, m, a, b, nIc, k, KOT.korkuluk, i === 0 ? [0, 0.035] : [0.105, 0]);
+    }
+  }
+
+  // 5) Dükkan — antrasit kompozit (vitrin boşluğu hariç)
+  {
+    const { x0, x1, y0, y1 } = DUKKAN, H = KOT.dukkan + KOT.dukkanParapet;
+    const a = Z(x0, y0), b = Z(x1, y0);
+    const gx = xe => x0 + (VITRIN.batiUcu - xe) * GS / S;
+    const u0 = Z(gx(VITRIN.x1), y0).x - a.x, u1 = Z(gx(VITRIN.x0), y0).x - a.x, vH = (VITRIN.zemin - VITRIN.ust) * GS;
+    kaplama(g, m, { a, b, nDis: KUZEY, y0: 0, y1: H, bosluk: [[u0, u1, 0, vH]], modul: 1.25, vKes: [vH], mat: m.antrasit, uzat: [KS, KS] });
+    kaplama(g, m, { a: Z(x1, y0), b: Z(x1, y1), nDis: DOGU, y0: 0, y1: H, modul: 1.2, vKes: [2.7], mat: m.antrasit });
+    kaplama(g, m, { a: Z(1727.2, y1), b: Z(x1, y1), nDis: GUNEY, y0: 0, y1: H, modul: 1.25, vKes: [2.7], mat: m.antrasit, uzat: [0, KS] });
+    kaplama(g, m, { a: Z(x0, y0), b: Z(x0, 986.4), nDis: BATI, y0: 0, y1: H, modul: 1.0, vKes: [2.7], mat: m.antrasit });
+    kaplama(g, m, { a: Z(x0, 986.4), b: Z(x0, 1037.5), nDis: BATI, y0: 0, y1: kH, modul: 1.0, mat: m.antrasit });
+    const p = [Z(x0, y0), Z(x1, y0), Z(x1, y1), Z(x0, y1)];
+    g.add(halka(disOfset(p, 0.06), 0.28, H, H + 0.03, m.alu)); // harpuşta
+  }
+
+  // 6) Konut çatı parapeti harpuştası (antrasit metal)
+  g.add(halka(disOfset(NORMAL_DIS.map(p => N(...p)), 0.06), 0.28, ust, ust + 0.03, m.alu));
+
+  // 7) Pencere arkasında oda hacmi (camdan bakınca bina içi boş görünmesin)
+  for (const [x0, x1, y] of PENCERELER) {
+    const c = N((x0 + x1) / 2, y), kuzey = y < 1393.4;
+    const nIc = kuzey ? GUNEY : KUZEY;
+    for (const k of KOT.katlar) {
+      const h = KOT.kat - KOT.doseme, D = 3.0, W = 2.5;
+      const arka = golge(new THREE.Mesh(new THREE.BoxGeometry(W, h, 0.05), m.icDuvar), false, true);
+      arka.position.set(c.x, k + h / 2, c.y + nIc.y * D); g.add(arka);
+      for (const sx of [-1, 1]) {
+        const yan = golge(new THREE.Mesh(new THREE.BoxGeometry(0.05, h, D - 0.25), m.icDuvar), false, true);
+        yan.position.set(c.x + sx * W / 2, k + h / 2, c.y + nIc.y * (0.25 + (D - 0.25) / 2)); g.add(yan);
+      }
+    }
   }
   return g;
 }
@@ -400,7 +668,7 @@ function metinDokusu(metin, w = 2048, h = 256, renk = 'rgba(255,255,255,0.92)') 
 
 export const MAKET = { x0: -42, x1: 42, z0: -24, z1: 24, kalinlik: 0.02 };
 
-function arsa(m) {
+function arsa(m, uzunYol = false) {
   const g = new THREE.Group(); g.name = 'arsa';
   const { x0, x1, z0, z1, kalinlik } = MAKET;
 
@@ -414,11 +682,26 @@ function arsa(m) {
   const dir = new THREE.Vector2().subVectors(F, E).normalize();
   const tGuney = (z1 - F.y) / dir.y;
   const Fg = F.clone().addScaledVector(dir, tGuney);
-  const yol = [
-    new THREE.Vector2(x0, z0), new THREE.Vector2(x1, z0), new THREE.Vector2(x1, z1), Fg,
-    F, E, pr[3], pr[2], pr[1], pr[0], new THREE.Vector2(x0, pr[0].y),
-  ];
-  g.add(golge(yukselt(yol, 0, 0.012, m.asfalt), false, true));
+  if (!uzunYol) {
+    const yol = [
+      new THREE.Vector2(x0, z0), new THREE.Vector2(x1, z0), new THREE.Vector2(x1, z1), Fg,
+      F, E, pr[3], pr[2], pr[1], pr[0], new THREE.Vector2(x0, pr[0].y),
+    ];
+    g.add(golge(yukselt(yol, 0, 0.012, m.asfalt), false, true));
+  } else {
+    // Fotogerçekçi görünüşler için yollar boyuna uzatılır; genişlik (maket payı) temsilidir
+    const U = 400, kG = pr[0].y - z0;            // 706. Sokak: parsel sınırından kuzeye
+    const nE = new THREE.Vector2(-dir.y, dir.x); if (nE.x < 0) nE.negate();
+    const dG = Fg.clone().sub(F).length();
+    const cG = 13;                                // Odunluk Caddesi şeridi (temsili)
+    const kuzey = [new THREE.Vector2(-U, pr[0].y - kG), new THREE.Vector2(U, pr[0].y - kG), new THREE.Vector2(U, pr[0].y), pr[1], pr[0], new THREE.Vector2(-U, pr[0].y)];
+    const Eu = E.clone().addScaledVector(dir, -U), Fu = F.clone().addScaledVector(dir, U);
+    const dogu = [Eu, Fu, Fu.clone().addScaledVector(nE, cG), Eu.clone().addScaledVector(nE, cG)];
+    // köşe: parsel köşe eğrisi ile iki şerit arasını doldur
+    const kose = [pr[1], pr[2], pr[3], E, E.clone().addScaledVector(nE, cG), new THREE.Vector2(E.x + cG + 30, pr[0].y - kG), new THREE.Vector2(pr[1].x, pr[0].y - kG)];
+    [[kuzey, 0.012], [dogu, 0.0125], [kose, 0.013]].forEach(([q, h]) => g.add(golge(yukselt(q, 0, h, m.asfalt), false, true)));
+    void dG;
+  }
 
   // parsel zemini
   g.add(golge(yukselt(pr, 0, 0.02, m.zemin), false, true));
@@ -432,14 +715,18 @@ function arsa(m) {
   }
 
   // otopark çizgileri
-  const cw = 0.1;
+  const cw = 0.1, cizilen = new Set();
   for (const yer of OTOPARK_YERLERI) {
     const q = yer.map(p => Z(...p));
     for (let i = 0; i < 4; i++) {
       const a = q[i], b = q[(i + 1) % 4];
+      // komşu park yerlerinin ortak kenarı bir kez çizilir (üst üste iki kutu olmasın)
+      const anahtar = [a, b].map(v => `${v.x.toFixed(1)},${v.y.toFixed(1)}`).sort().join('|');
+      if (cizilen.has(anahtar)) continue;
+      cizilen.add(anahtar);
       const d = new THREE.Vector2().subVectors(b, a); const L = d.length(); d.normalize();
       const bx = golge(new THREE.Mesh(new THREE.BoxGeometry(L + cw, 0.01, cw), m.cizgi), false, true);
-      bx.position.set((a.x + b.x) / 2, 0.026, (a.y + b.y) / 2); bx.rotation.y = -Math.atan2(d.y, d.x);
+      bx.position.set((a.x + b.x) / 2, 0.026 + (cizilen.size % 2) * 0.0015, (a.y + b.y) / 2); bx.rotation.y = -Math.atan2(d.y, d.x);
       g.add(bx);
     }
   }
@@ -467,9 +754,10 @@ function arsa(m) {
 export function sahneKur(mod = 'render') {
   const m = malzemeler(mod);
   const kok = new THREE.Group();
-  kok.add(arsa(m));
-  kok.add(konutBlogu(m));
+  kok.add(arsa(m, mod === 'tasarim'));
+  kok.add(konutBlogu(m, mod));
   kok.add(dukkanBlogu(m));
+  if (mod === 'tasarim') kok.add(cephe(m));
   return { kok, m };
 }
 
