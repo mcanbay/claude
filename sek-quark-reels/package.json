@@ -1,0 +1,26 @@
+{
+  "name": "sek-quark-reels",
+  "version": "1.0.0",
+  "description": "RAF ANALİZ #01 — SEK Protein Quark Reels/TikTok videosu (Remotion)",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "build": "bash scripts/build.sh",
+    "stills": "node scripts/preview-stills.mjs",
+    "typecheck": "tsc -p ."
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fontsource/bricolage-grotesque": "^5.3.0",
+    "@fontsource/inter": "^5.3.0",
+    "@remotion/cli": "^4.0.543",
+    "@remotion/renderer": "^4.0.543",
+    "@remotion/transitions": "^4.0.543",
+    "@types/react": "^18.3.31",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.543",
+    "typescript": "^5.9.3"
+  },
+  "private": true
+}

@@ -1,0 +1,199 @@
+{
+  "fps": 30,
+  "durationInFrames": 900,
+  "width": 1080,
+  "height": 1920,
+  "scenes": {
+    "hook": {
+      "from": 0,
+      "duration": 96
+    },
+    "product": {
+      "from": 90,
+      "duration": 156
+    },
+    "nutrition": {
+      "from": 240,
+      "duration": 276
+    },
+    "who": {
+      "from": 510,
+      "duration": 216
+    },
+    "outro": {
+      "from": 720,
+      "duration": 180
+    }
+  },
+  "sfx": [
+    {
+      "f": 0,
+      "type": "impact",
+      "gain": 0.9
+    },
+    {
+      "f": 0,
+      "type": "pop",
+      "gain": 0.5
+    },
+    {
+      "f": 10,
+      "type": "pop",
+      "gain": 0.45
+    },
+    {
+      "f": 22,
+      "type": "slam",
+      "gain": 0.7
+    },
+    {
+      "f": 46,
+      "type": "pop",
+      "gain": 0.45
+    },
+    {
+      "f": 54,
+      "type": "riser",
+      "gain": 0.45,
+      "dur": 1.2
+    },
+    {
+      "f": 84,
+      "type": "whoosh",
+      "gain": 0.56
+    },
+    {
+      "f": 92,
+      "type": "impact",
+      "gain": 0.55
+    },
+    {
+      "f": 132,
+      "type": "shimmer",
+      "gain": 0.35
+    },
+    {
+      "f": 186,
+      "type": "pop",
+      "gain": 0.5
+    },
+    {
+      "f": 234,
+      "type": "whoosh",
+      "gain": 0.52
+    },
+    {
+      "f": 252,
+      "type": "ticks",
+      "gain": 0.32,
+      "dur": 0.9
+    },
+    {
+      "f": 280,
+      "type": "ding",
+      "gain": 0.4
+    },
+    {
+      "f": 300,
+      "type": "pop",
+      "gain": 0.45
+    },
+    {
+      "f": 312,
+      "type": "pop",
+      "gain": 0.45
+    },
+    {
+      "f": 324,
+      "type": "pop",
+      "gain": 0.45
+    },
+    {
+      "f": 384,
+      "type": "whoosh",
+      "gain": 0.38
+    },
+    {
+      "f": 404,
+      "type": "pop",
+      "gain": 0.5
+    },
+    {
+      "f": 416,
+      "type": "pop",
+      "gain": 0.5
+    },
+    {
+      "f": 444,
+      "type": "whoosh",
+      "gain": 0.41
+    },
+    {
+      "f": 474,
+      "type": "ticks",
+      "gain": 0.25,
+      "dur": 0.4
+    },
+    {
+      "f": 490,
+      "type": "ding",
+      "gain": 0.5
+    },
+    {
+      "f": 504,
+      "type": "whoosh",
+      "gain": 0.52
+    },
+    {
+      "f": 540,
+      "type": "pop",
+      "gain": 0.5
+    },
+    {
+      "f": 566,
+      "type": "pop",
+      "gain": 0.5
+    },
+    {
+      "f": 592,
+      "type": "pop",
+      "gain": 0.5
+    },
+    {
+      "f": 636,
+      "type": "alert",
+      "gain": 0.4
+    },
+    {
+      "f": 690,
+      "type": "riser",
+      "gain": 0.35,
+      "dur": 1.0
+    },
+    {
+      "f": 714,
+      "type": "whoosh",
+      "gain": 0.56
+    },
+    {
+      "f": 720,
+      "type": "impact",
+      "gain": 0.6
+    },
+    {
+      "f": 790,
+      "type": "tap",
+      "gain": 0.7
+    },
+    {
+      "f": 794,
+      "type": "ding",
+      "gain": 0.45
+    },
+    {
+      "f": 816,
+      "type": "shimmer",
+      "gain": 0.3
+    }
+  ]
+}

@@ -1,0 +1,110 @@
+RAF ANALİZ — ÜRÜN İNCELEMESİ #01
+Başlık: "Market rafında gördüğümüz bu yoğurt gerçekten sağlıklı mı?"
+Ürün: SEK Protein Quark (Sade) 165 g
+Format: 9:16 dikey, 1080x1920, 30 fps, 30,0 saniye
+Ses: Seslendirme yok. Özgün (kodla üretilmiş) arka plan müziği + senkron ses efektleri.
+     Müzik: 120 BPM, Am–F–C–G, hafif house/pop groove. Tüm metinler ekranda.
+
+Not: Videoda yalnızca iki bağımsız market sayfasında (Migros + Şok) birebir
+aynı görünen etiket verisi kullanılmıştır. Ayrıntılar: KAYNAKLAR.md
+
+======================================================================
+SAHNE 1 — HOOK (0:00 – 0:03)
+======================================================================
+Görsel: Koyu zemin, arkada dev "kcal" kontur yazısı kayar. İlk karede metin
+ve ürün zaten ekranda (boş açılış yok). Hafif kamera "punch" zoom-out.
+Ürün sağ alttan eğik şekilde yükselir.
+
+Ekran metni (satır satır):
+  0:00  "Yoğurt alırken"
+  0:00  "sadece"
+  0:00.7 "KALORİSİNE"   ← lime kutu içinde, "slam" efekti + kamera sarsıntısı
+  0:01.5 "mi bakıyorsun?"
+  0:01.9 Çipler: "PROTEİN?"  "ŞEKER?"  "İÇİNDEKİLER?"
+
+Ses: Açılış darbesi (impact) + pop'lar, 0:00.7'de slam, 0:01.8'den itibaren
+riser, 0:02.8'de whoosh. Müzik filtreli pad ile başlar.
+
+Geçiş: Lime + koyu eğik bant aşağıdan yukarı süpürür (0:03).
+
+======================================================================
+SAHNE 2 — ÜRÜN TANITIMI (0:03 – 0:08)
+======================================================================
+Görsel: Stüdyo ışığı, dönen ince odak halkası. Gerçek ambalaj fotoğrafı
+(dekupe) aşağıdan yay animasyonuyla girer, havada hafifçe süzülür, üzerinden
+ışık parlaması geçer. Yavaş push-in.
+
+Üst etiket (sahne 2-4 boyunca): "● BAĞIMSIZ İNCELEME"  |  "RAF ANALİZ · #01"
+
+Ekran metni:
+  0:03.2 "Bugün market rafından"
+  0:03.4 "farklı bir ürün seçtik:"
+  0:04.3 "SEK" / "PROTEİN QUARK" / "Sade · 165 g"
+  0:06.2 Kart → "BİLİYOR MUYDUN?
+                 Yoğurt gibi kaşıklanıyor ama quark aslında bir taze peynir türü."
+
+Ses: Müzikte "drop" (kick + bas + akor stab'ları başlar), impact, isim
+belirirken shimmer, bilgi kartında pop.
+
+======================================================================
+SAHNE 3 — ETİKET ANALİZİ (0:08 – 0:17)
+======================================================================
+Görsel: Açık krem zemin, yavaş kayan ızgara. Üç alt panel sağdan sola kayar.
+
+3A (0:08 – 0:13) "ETİKETİ OKUYALIM"  [100 g'da]
+  - Protein kahraman kartı: 0 → 12 g sayaç; "Her 100 g ürünün 12 g'ı protein"
+    ilerleme çubuğu.
+  - Küçük kartlar sırayla: KALORİ 84 kcal | ŞEKER 1,2 g | YAĞ 2 g (Doymuş: 1,3 g)
+  - Alt not: "Karbonhidrat 4 g · Tuz 0,1 g
+              Kaynak: ürün etiket bilgisi (Migros, Şok ürün sayfaları)"
+
+3B (0:13 – 0:15) "İÇİNDEKİLER"
+  - "2 bileşen. Hepsi bu kadar."
+  - 1 Pastörize inek sütü
+  - 2 Peynir kültürü
+  - ✓ "Listede ilave şeker yok."
+
+3C (0:15 – 0:17) "KAPAKTA YAZAN"
+  - Gerçek kapaktaki "20g PROTEIN" rozetinin yakın planı
+  - "Etiketle sağlamasını yapalım:
+     100 g'da 12 g ise 165 g'lık pakette = 19,8 g"
+  - Damga: ✓ "Etiketle tutarlı"
+
+Ses: Sayaç tıkırtıları + "ding", her kartta pop, panel geçişlerinde hafif
+whoosh, sağlamada tik sesleri + "ding". Müzikte clap ve arpej katmanı girer.
+
+======================================================================
+SAHNE 4 — KİMLER İÇİN? (0:17 – 0:24)
+======================================================================
+Görsel: Koyu zemin, köşede ürün. İkonlu maddeler soldan kayar.
+
+Ekran metni:
+  "Kimler için mantıklı bir seçenek olabilir?"
+  ◎ Protein alımını takip edenler — "Paket başına ≈ 20 g protein"
+  ◷ Pratik ara öğün arayanlar     — "Kaşıkla, hazır tüketilir"
+  ☰ Kısa içerik listesi sevenler  — "Süt + peynir kültürü"
+
+  0:21.2 Uyarı kartı (turuncu çerçeve):
+  "⚠ DİKKAT
+   Süt ve laktoz içerir. Meyveli çeşitlerin değerleri farklı; içinde şeker olabilir.
+   Raftan alırken etiketi kontrol et."
+
+Not: Sağlık iddiası yoktur ("kilo verdirir", "kas yapar" vb. kullanılmadı).
+Ses: Maddelerde pop, uyarıda iki tonlu "alert", sonda riser. Müzik sakinleşir
+(pad öne çıkar), 0:23'te fill.
+
+======================================================================
+SAHNE 5 — KAPANIŞ / CTA (0:24 – 0:30)
+======================================================================
+Görsel: Lime zemin, noktalı desen. Büyük tipografi; marka kartı, "TAKİP ET"
+butonuna parmak imleci dokunur → "✓ TAKİPTESİN" olur.
+
+Ekran metni:
+  "Marketin sağlıklı tarafını birlikte keşfedelim."
+  [RA] RAF ANALİZ — "Etiketi biz okuyoruz."   [ + TAKİP ET ] → [ ✓ TAKİPTESİN ]
+  "Daha fazla ürün incelemesi için takip et!"
+  "Sıradaki ürünü yorumlarda sen seç ↓"
+  Dipnot: "Bağımsız inceleme · Sponsorlu değildir · Değerler 100 g içindir
+           (Kasım 2026, Migros & Şok ürün sayfaları). Tıbbi tavsiye değildir."
+
+Ses: Impact, butonda tık + "ding", shimmer; final Am akoru ile kapanış.
