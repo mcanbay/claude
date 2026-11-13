@@ -235,6 +235,37 @@ def main():
     gap = max(notch, key=lambda g: g.area) if notch else None
     core = unary_union(stair + lift_n).envelope.buffer(0.25 / k, join_style=2)
 
+    # İç mekanlar: en az 0.6 m genişliği olan poligonlar oda/hol/dükkan; geri kalanı duvar gövdesi
+    def is_room(g):
+        return not g.buffer(-0.3 / k).is_empty
+
+    def opened(g):
+        # duvar gövdelerine sızan ince şeritleri at (30 cm'den dar kısımlar), köşeleri koru
+        r = 0.15 / k
+        return g.buffer(-r, join_style=2).buffer(r, join_style=2).intersection(g)
+
+    def room_list(polys, skip):
+        out = []
+        for g, lab in polys:
+            if any(s_ in lab for s_ in skip) or not is_room(g):
+                continue
+            for part in as_list(opened(g)):
+                if part.area * k * k > 0.8:
+                    out.append((part, lab))
+        return out
+
+    def wall_body(outline, rooms, ext_t):
+        w = outline.difference(unary_union([g for g, _ in rooms]).buffer(0.002 / k, join_style=2))
+        # dış duvar: planda iç çizgisi kopuk olan yerler için garanti halka
+        ring = outline.difference(outline.buffer(-ext_t / k, join_style=2))
+        w = unary_union([w, ring])
+        return unary_union([p for p in as_list(clean(w, eps * 0.25)) if p.area * k * k > 0.05])
+
+    rooms_n = room_list(tower_polys, ("Balkon",))
+    walls_n = wall_body(enclosed, rooms_n, 0.20)
+    rooms_g = room_list(gpolys, ("TERAS",))
+    walls_g = wall_body(ground_body, rooms_g, 0.25)
+
     # --- cephe açıklıkları (normal kat)
     ext = enclosed.exterior
     bal_u = unary_union(balconies)
@@ -313,12 +344,16 @@ def main():
             "teras_bolmeleri": [poly_w(f) for f in ground_fins],
             "teraslar": [poly_w(t) for t in terraces],
             "teras_alani": polys_w(terrace_zone),
+            "duvarlar": polys_w(walls_g),
+            "mekanlar": [dict(poly_w(g), ad=lab) for g, lab in rooms_g],
             "etiketler": labels_w,
         },
         "normal": {
             "ayak_izi": polys_w(tower_fp),
             "doseme": polys_w(slab),
             "kapali": poly_w(enclosed),
+            "duvarlar": polys_w(walls_n),
+            "odalar": [dict(poly_w(g), ad=lab) for g, lab in rooms_n],
             "balkonlar": [poly_w(b) for b in balconies],
             "giris_boslugu": poly_w(gap) if gap is not None else None,
             "cekirdek": poly_w(core),
@@ -336,6 +371,8 @@ def main():
     print(f"Zemin kat oturumu: {area(ground_fp):.0f} m² (kapalı gövde {area(ground_body):.0f} m², {len(terraces)} teras)")
     print(f"Normal kat: döşeme {area(slab):.0f} m², kapalı {area(enclosed):.0f} m², {len(balconies)} balkon, "
           f"giriş boşluğu {area(gap) if gap is not None else 0:.1f} m², {len(openings)} cephe açıklığı")
+    print(f"İç mekan: normal katta {len(rooms_n)} oda/hol, duvar {area(walls_n):.0f} m²; "
+          f"zemin katta {len(rooms_g)} mekan, duvar {area(walls_g):.0f} m²")
     print(f"Otopark yeri: {len(stalls)}")
     with open(args.out, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
