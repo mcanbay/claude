@@ -10,6 +10,14 @@ tarayıcıda gezilebilir Three.js modeli. Tek dosya: `index.html`.
 - Havuz + ahşap deck, servi sırası, fıstık çamları, pergolalar, çevre duvarı, N pilonu
 - Kavisli yol, aydınlatma direkleri, park ve hareket eden araçlar, çevre ormanı
 
+## Görsel kalite
+- Pencerelerde interior mapping: her pencerenin ardında tavan lambası, perde ve mobilyalı sanal oda
+- Yaprak kartlarından ağaçlar (fıstık çamı, servi, yapraklı, iğne yapraklı), çalılar, çim öbekleri
+- Gökyüzünden üretilen ortam haritası (IBL), GTAO ortam gölgesi, MSAA, bloom, vinyet
+- Göz hizasında iki noktalı perspektif (dikey çizgiler düz)
+- Soyut beyaz ölçek figürleri, clearcoat boyalı araçlar
+- `HD` düğmesi (`K`): ortam gölgesi ve yüksek çözünürlüğü açar/kapatır; telefonda varsayılan kapalı
+
 ## Gezinme
 - **Gezin**: sürükle döndür, sağ tık kaydır, tekerlek yakınlaş, çift tık odaklan
 - **Yürü** (`M`): WASD / ok tuşları, Shift koş, sürükleyerek bak; dokunmatikte sanal çubuk
