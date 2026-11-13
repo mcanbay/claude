@@ -35,9 +35,11 @@ VAR = os.path.join(HERE, "varliklar")
 DOKU = os.path.join(VAR, "doku")
 MODEL = os.path.join(VAR, "model")
 HDRI = os.path.join(VAR, "hdri", "kloofendal_48d_partly_cloudy_puresky_4k.hdr")
-HDRI_SUN = (145.8, 47.9)       # HDRI'daki güneşin yatay açısı ve yüksekliği (derece)
+# HDRI'daki güneşin yatay açısı (atan2(y, x), derece) ve yüksekliği. Blender eşdikdörtgen eşlemesi:
+# u = 0.5 - atan2(y, x) / 2π  →  açı = (0.5 - u) · 360
+HDRI_SUN = (-34.2, 47.9)
 HDRI_AKSAM = os.path.join(VAR, "hdri", "evening_road_01_puresky_4k.hdr")
-HDRI_AKSAM_SUN = (145.2, 10.0)
+HDRI_AKSAM_SUN = (-34.8, 10.0)
 AKSAM_HEADING = 162.0          # akşam güneşi göz hizası kamerasından bakınca binanın arkasında
 SUN_HEADING = -55.3            # istenen güneş yönü: cadde (+x) ve güney (-y) cepheleri aydınlık
 
