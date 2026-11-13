@@ -2,3 +2,4 @@ __pycache__/
 varliklar/
 # gerçekçi sahne varliklar/ klasöründeki dokulara bağlı ve büyük; betikle yeniden üretilir
 cikti_gercekci/*.blend
+*.blend1
