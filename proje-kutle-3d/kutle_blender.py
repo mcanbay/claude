@@ -404,7 +404,7 @@ def build_scene(D, M, args):
         mb.build("Merdiven_Asansor_Kulesi", M["duvar"], bina)
         mb = MeshBuilder()
         mb.prism(core.buffer(0.15, join_style=2), TOPLAM_H + KULE - 0.25, TOPLAM_H + KULE)
-        mb.build("Kule_Saçak", M["bant"], bina)
+        mb.build("Kule_Sacak", M["bant"], bina)
 
     # ----------------------------------------------------------- çevre
     build_site(D, M, cevre, parcel, ground_fp, rnd, avoid=[eye_camera_pos(D)])
@@ -842,6 +842,22 @@ def export(out):
             ob.data = me
     for ob in list(bpy.data.collections["Yardimci"].objects):
         bpy.data.objects.remove(ob)
+    # Render'da ufka uzanan zemin ve yol, dışa aktarımda parsel çevresine kırpılır
+    import bmesh
+    x0, x1, y0, y1 = -165, 135, -150, 150
+    for ob in bpy.data.collections["Cevre"].objects:
+        if ob.type != "MESH":
+            continue
+        bb = [ob.matrix_world @ Vector(c) for c in ob.bound_box]
+        if min(v.x for v in bb) >= x0 and max(v.x for v in bb) <= x1 and min(v.y for v in bb) >= y0 and max(v.y for v in bb) <= y1:
+            continue
+        bm = bmesh.new()
+        bm.from_mesh(ob.data)
+        for co, no in (((x0, 0, 0), (-1, 0, 0)), ((x1, 0, 0), (1, 0, 0)), ((0, y0, 0), (0, -1, 0)), ((0, y1, 0), (0, 1, 0))):
+            geom = bm.verts[:] + bm.edges[:] + bm.faces[:]
+            bmesh.ops.bisect_plane(bm, geom=geom, plane_co=co, plane_no=no, clear_outer=True)
+        bm.to_mesh(ob.data)
+        bm.free()
     for ob in list(sc.objects):
         ob.select_set(ob.type == "MESH")
     import addon_utils
@@ -851,8 +867,9 @@ def export(out):
     bpy.ops.wm.obj_export(filepath=os.path.join(out, "proje_kutle.obj"), export_selected_objects=True,
                           apply_modifiers=True, export_materials=True, forward_axis="NEGATIVE_Z", up_axis="Y")
     try:  # SketchUp için Collada (.dae)
-        import trimesh
-        trimesh.load(os.path.join(out, "proje_kutle.glb")).export(os.path.join(out, "proje_kutle.dae"))
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        from dae_yaz import glb_to_dae
+        glb_to_dae(os.path.join(out, "proje_kutle.glb"), os.path.join(out, "proje_kutle.dae"))
     except Exception as e:
         print("DAE dışa aktarılamadı:", e)
     print("Dışa aktarıldı:", out, flush=True)
