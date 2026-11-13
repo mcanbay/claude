@@ -18,6 +18,8 @@ Kütle, kotlar, pencere ve balkon düzeni çizimdeki gibi kaldı. Üzerine çağ
 | Doğrama, korkuluk profilleri, parapet harpuştası | Antrasit metal | İnce, koyu çizgi detayları |
 | Balkonlar | Çerçevesiz cam korkuluk: antrasit alt profil + küpeşte, 90 cm | Plandaki 90 cm korkuluk yüksekliği korundu |
 
+Yol cephesi olmayan parsel sınırlarına (güney, batı ve güneydoğudaki kademe; plandaki çift çizgi) 20 cm kalınlığında, 1,00 m yüksekliğinde sıvalı bahçe duvarı yapıldı. Duvarın üstünde antrasit harpuşta var. Yükseklik çizimde verilmediği için 1,00 m alındı. 706. Sokak ve Odunluk Caddesi cepheleri açık kaldı.
+
 Ek olarak görünüşteki "BİNA GİRİŞİ" yazısının yerine, kuzey yarığın dibine antrasit kasalı cam bir giriş kapısı (1,20 × 2,40 m) konuldu.
 
 | Dosya | Görünüm |
@@ -95,7 +97,7 @@ Görünüşte en alt kata "OTOPARK KATI", üstündekine "ZEMİN KAT" deniyor. Bu
 - **Doğu / batı cepheler:** Planlarda bu cephelerde pencere yok, sağır bırakıldı. Dükkanın kuzey dışındaki cepheleri de sağır.
 - **Bina girişi:** Görünüşte "BİNA GİRİŞİ" yazısı var ama kapı çizilmemiş. Çekirdek önündeki girinti boş bırakıldı.
 - **Yollar:** Genişlikleri çizimde yok. Asfalt, parsel sınırından maket tablasının kenarına kadar temsili olarak gösterildi.
-- **Sınır duvarı:** Çift çizginin yüksekliği verilmediği için zeminde ince bir bant olarak gösterildi.
+- **Sınır duvarı:** Plandaki çift çizgi, yol cephesi olmayan sınırlarda 1,00 m yüksekliğinde bahçe duvarı olarak modellendi. Yükseklik çizimde verilmediği için kabul edilen değerdir.
 - **İç mekân** modellenmedi; otopark katındaki 3 kapalı araç yeri de buna dahil. Duvar kalınlığı yalnızca pencere derinliği için 25 cm alındı.
 - **Görünüş ile plan arasındaki fark:** Şematik görünüşte konut genişliği 24,92 m, planda 25,06 m (14 cm fark). Plan esas alındı.
 

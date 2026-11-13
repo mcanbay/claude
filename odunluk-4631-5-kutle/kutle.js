@@ -706,13 +706,14 @@ function arsa(m, uzunYol = false) {
   // parsel zemini
   g.add(golge(yukselt(pr, 0, 0.02, m.zemin), false, true));
 
-  // komşu sınırındaki çift çizgi (sınır duvarı hattı)
+  // Bahçe duvarı: yol cephesi olmayan sınırlarda (plandaki çift çizgi; ~20 cm kalınlık).
+  // Yükseklik çizimde yok: 1,00 m alındı. Tek parça çokgen (dış çizgi + ters iç çizgi),
+  // parke üstünden başlar (eş düzlem yüz kalmasın).
   const dis = SINIR_DIS.map(p => Z(...p)), ic = SINIR_IC.map(p => Z(...p));
-  for (let i = 0; i < dis.length - 1; i++) {
-    const q = [dis[i], dis[i + 1], ic[i + 1], ic[i]];
-    if (isaretliAlan(q) < 0) q.reverse();
-    g.add(golge(yukselt(q, 0.02, 0.06, m.sinir), false, true));
-  }
+  const duvar = [...dis, ...ic.slice().reverse()];
+  const BD = 1.0, duvarMat = uzunYol ? m.siva : m.sinir;
+  g.add(golge(yukselt(duvar, 0.02, uzunYol ? BD - 0.03 : BD, duvarMat)));
+  if (uzunYol) g.add(golge(yukselt(duvar, BD - 0.03, BD, m.alu))); // antrasit harpuşta
 
   // otopark çizgileri
   const cw = 0.1, cizilen = new Set();
