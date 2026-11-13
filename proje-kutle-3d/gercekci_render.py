@@ -278,8 +278,8 @@ def context_mat(night=False):
         wn.noise_dimensions = "3D"
         L.new(cell.outputs["Vector"], wn.inputs["Vector"])
         lit = math_("MULTIPLY", win, math_("GREATER_THAN", wn.outputs["Value"], v2=0.5))
-        b.inputs["Emission Color"].default_value = (1.0, 0.72, 0.45, 1)
-        L.new(math_("MULTIPLY", lit, v2=2.5), b.inputs["Emission Strength"])
+        b.inputs["Emission Color"].default_value = (1.0, 0.62, 0.32, 1)
+        L.new(math_("MULTIPLY", lit, v2=0.45), b.inputs["Emission Strength"])
     return m
 
 
