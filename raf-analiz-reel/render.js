@@ -7,6 +7,8 @@
 //   node render.js --preview            → yarı çözünürlük, 15 fps hızlı deneme
 //   node render.js --sessiz             → efekt sesi olmadan (sessiz ses kanalı)
 //   node render.js --ses-wav            → efekt sesini ayrıca .wav olarak da kaydet
+//   node render.js --yalnizca-ses       → video üretmeden yalnızca son ses karışımını (.m4a) çıkar
+//   node render.js --seslendirmesiz     → seslendirme dosyası olsa bile yalnızca efektler
 const fs = require('fs');
 const path = require('path');
 const { spawn } = require('child_process');
@@ -64,24 +66,49 @@ function wrapped() {
   }
 
   // Ses: sayfadaki sentezleyici, animasyonla aynı zaman çizelgesinden efekt kanalını üretir.
+  // seslendirme/seslendirme.wav varsa (node seslendirme.js ile üretilir) efektler konuşmanın altında kısılarak karıştırılır.
   let audioIn = ['-f', 'lavfi', '-i', 'anullsrc=channel_layout=stereo:sample_rate=48000'];
+  let graph = base => ({ filter: null, map: `${base}:a` });
+  const vo = path.join(HERE, 'seslendirme', 'seslendirme.wav');
+  const useVo = !has('sessiz') && !has('seslendirmesiz') && fs.existsSync(vo);
   if (!has('sessiz')) {
     const b64 = await page.evaluate(() => window.__reel.audio(48000));
     const pcm = path.join(OUT_DIR, '.ses.pcm');
     fs.writeFileSync(pcm, Buffer.from(b64, 'base64'));
     audioIn = ['-f', 's16le', '-ar', '48000', '-ac', '2', '-i', pcm];
-    if (has('ses-wav')) {
-      await new Promise((res, rej) => spawn('ffmpeg', ['-y', '-loglevel', 'error', ...audioIn, out.replace(/\.mp4$/, '.ses.wav')], { stdio: 'inherit' })
-        .on('close', c => (c === 0 ? res() : rej(new Error('ses dışa aktarılamadı')))));
+    if (useVo) {
+      audioIn.push('-i', vo);
+      graph = base => ({
+        filter: `[${base + 1}:a]aformat=sample_rates=48000:channel_layouts=stereo,asplit=2[v1][v2];` +
+          `[${base}:a][v1]sidechaincompress=threshold=0.02:ratio=8:attack=15:release=350[s];[s]volume=0.75[s2];` +
+          `[s2][v2]amix=inputs=2:normalize=0:duration=first,loudnorm=I=-15:TP=-1.5:LRA=11,aresample=48000[a]`,
+        map: '[a]',
+      });
+    }
+    const audioOnly = (file, codec) => new Promise((res, rej) => {
+      const g = graph(0);
+      spawn('ffmpeg', ['-y', '-loglevel', 'error', ...audioIn, ...(g.filter ? ['-filter_complex', g.filter] : []), '-map', g.map, ...codec, file], { stdio: 'inherit' })
+        .on('close', c => (c === 0 ? res() : rej(new Error('ses dışa aktarılamadı'))));
+    });
+    if (has('ses-wav')) await audioOnly(out.replace(/\.mp4$/, '.ses.wav'), []);
+    if (has('yalnizca-ses')) {
+      const file = out.replace(/\.mp4$/, '.ses.m4a');
+      await audioOnly(file, ['-c:a', 'aac', '-b:a', '160k']);
+      console.log(`Ses: ${file}${useVo ? ' (seslendirme + efektler)' : ' (yalnızca efektler)'}`);
+      await browser.close(); fs.unlinkSync(tmp); fs.unlinkSync(pcm);
+      return;
     }
   }
+  if (useVo) console.log('Seslendirme ekleniyor: seslendirme/seslendirme.wav');
 
   const N = Math.round(duration * fps);
+  const g = graph(1);
   const ff = spawn('ffmpeg', [
     '-y', '-loglevel', 'error',
     '-f', 'image2pipe', '-framerate', String(fps), '-i', '-',
     ...audioIn,
-    '-map', '0:v', '-map', '1:a', '-t', String(N / fps),
+    ...(g.filter ? ['-filter_complex', g.filter] : []),
+    '-map', '0:v', '-map', g.map, '-t', String(N / fps),
     '-c:v', 'libx264', '-preset', preview ? 'veryfast' : 'slow', '-crf', preview ? '24' : '17',
     '-pix_fmt', 'yuv420p', '-profile:v', 'high', '-level', '4.1',
     '-c:a', 'aac', '-b:a', '128k',

@@ -1,6 +1,6 @@
 # Raf Analiz Reel: 100 TL Altında Sağlıklı Ara Öğünler
 
-**Raf Analiz** için hazırlanmış 45 saniyelik dikey Instagram Reel (1080×1920, 30 fps). Bütün animasyon tek bir HTML dosyasında, tek bir zaman çizelgesinden üretilir. Aynı dosya hem tarayıcıda oynatılabilen bir önizleme hem de MP4'e dönüştürülen kaynaktır.
+**Raf Analiz** için hazırlanmış 47,5 saniyelik dikey Instagram Reel (1080×1920, 30 fps). Bütün animasyon tek bir HTML dosyasında, tek bir zaman çizelgesinden üretilir. Aynı dosya hem tarayıcıda oynatılabilen bir önizleme hem de MP4'e dönüştürülen kaynaktır.
 
 | Süre | Sahne | İçerik |
 |---|---|---|
@@ -8,9 +8,20 @@
 | 5–11 sn | Kural | Bölünmüş ekran. Solda **paketin önü**: "FIT", "LIGHT", "%100 DOĞAL" gibi etiketler, altında *Sadece 'FIT' yazıyor diye alma*. Sağda **paketin arkası**: besin değerleri tablosu, büyüteç, *İçeriğe ve tok tutma gücüne bak*. Tarama geçince sol taraftaki iddia etiketleri düşer. |
 | 11–31 sn | Analiz | Dört kategori kartı (her biri 5 sn): örnek raf fiyatı etiketi, porsiyon başı fiyat, 100 TL altı rozeti; pratiklik, tokluk ve içerik kalitesi puan çubukları; raf notu ve "etikette bak" maddeleri. |
 | 31–38 sn | Karar | Dört ürün aynı rafta. *EN İYİ ARA ÖĞÜN = TEK BİR ÜRÜN DEĞİL*, ardından *PROTEİN + LİF + DENGELİ PORSİYON*. |
-| 38–45 sn | Soru | *Bir sonraki Raf Analiz hangi ürün grubunu incelesin?* A) Proteinli içecekler, B) Çikolatalar, C) Granolalar. Kapanış logosu ve bilgilendirme notu. |
+| 38–47,5 sn | Soru | *Bir sonraki Raf Analiz hangi ürün grubunu incelesin?* A) Proteinli içecekler, B) Çikolatalar, C) Granolalar. Kapanış logosu ve bilgilendirme notu. |
 
 Videoda kasa okuyucusu bip sesi, geçiş sesleri, puan çubuğu tıkları ve fiyat zili gibi efektler de var. Bunlar da aynı zaman çizelgesinden üretilir. Müzik eklenmedi: Instagram'da müzik kitaplığından parça seçip orijinal sesin seviyesini ayarlayabilirsiniz.
+
+## Seslendirme
+
+Seslendirme metni, sahne zamanlaması ve kayıt notları [`seslendirme/README.md`](seslendirme/README.md) dosyasında. Kayıt (tek dosya ya da satır başına dosyalar) hazır olduğunda:
+
+```bash
+node seslendirme.js kayit.wav
+node render.js
+```
+
+`seslendirme.js` satırları ayırıp videodaki yerlerine koyar ve `seslendirme/seslendirme.wav` dosyasını yazar. `render.js` bu dosya varsa efektleri konuşmanın altında kısarak karıştırır ve sesi Instagram'ın ses seviyesine (−15 LUFS) getirir.
 
 ## Kurulum
 
@@ -41,7 +52,9 @@ node render.js
 | `--cover 3.0` | Kapak görselinin alınacağı saniye |
 | `--frames 3,14,33` | Yalnızca seçilen saniyelerin PNG karelerini üret |
 | `--sessiz` | Efekt sesleri olmadan (sessiz ses kanalıyla) |
-| `--ses-wav` | Efekt sesini ayrıca `.wav` olarak da kaydet |
+| `--ses-wav` | Son ses karışımını ayrıca `.wav` olarak da kaydet |
+| `--yalnizca-ses` | Video üretmeden yalnızca son ses karışımını `.m4a` olarak çıkar |
+| `--seslendirmesiz` | Seslendirme dosyası olsa bile yalnızca efektler |
 | `--out dosya.mp4` | Çıktı dosyasının adı |
 
 Tam çözünürlükte üretim birkaç dakika sürer. Yazı tipleri (Archivo, IBM Plex Mono) Google Fonts'tan yüklendiği için internet bağlantısı gerekir.

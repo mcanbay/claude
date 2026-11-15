@@ -1,0 +1,90 @@
+{
+  "aciklama": "Seslendirme satırları ve videodaki yerleri (saniye). 'bas' satırın başlayacağı an, 'son' bir sonraki görsel olaydan önceki son an. seslendirme.js kayıttaki satırları bu aralıklara yerleştirir.",
+  "sure": 47.5,
+  "satirlar": [
+    {
+      "no": 1,
+      "sahne": "Kanca",
+      "bas": 0.2,
+      "son": 5.1,
+      "metin": "100 TL altına sağlıklı bir ara öğün bulabilir miyiz?"
+    },
+    {
+      "no": 2,
+      "sahne": "Kural",
+      "bas": 5.6,
+      "son": 7.75,
+      "metin": "Sadece “fit” yazıyor diye alma."
+    },
+    {
+      "no": 3,
+      "sahne": "Kural",
+      "bas": 7.9,
+      "son": 11.35,
+      "metin": "Paketi çevir: içeriğe ve tok tutma gücüne bak."
+    },
+    {
+      "no": 4,
+      "sahne": "Analiz 1/4",
+      "bas": 11.7,
+      "son": 16.5,
+      "metin": "Meyve ve kuruyemiş barı çok pratik. Hurma ağırlıklıysa şekere dikkat."
+    },
+    {
+      "no": 5,
+      "sahne": "Analiz 2/4",
+      "bas": 16.7,
+      "son": 21.5,
+      "metin": "Protein bar tokluğa katkı sağlayabilir, ama 100 TL sınırında."
+    },
+    {
+      "no": 6,
+      "sahne": "Analiz 3/4",
+      "bas": 21.7,
+      "son": 26.5,
+      "metin": "Karabuğday patlağının içeriği sade, ama tek başına hafif kalır."
+    },
+    {
+      "no": 7,
+      "sahne": "Analiz 4/4",
+      "bas": 26.7,
+      "son": 31.4,
+      "metin": "Pirinç ve mısır patlağında lif ve protein düşük. Yanına protein ekle."
+    },
+    {
+      "no": 8,
+      "sahne": "Karar",
+      "bas": 31.55,
+      "son": 33.85,
+      "metin": "En iyi ara öğün, tek bir ürün değil."
+    },
+    {
+      "no": 9,
+      "sahne": "Karar",
+      "bas": 34.0,
+      "son": 37.7,
+      "metin": "Protein… lif… ve dengeli porsiyon."
+    },
+    {
+      "no": 10,
+      "sahne": "Soru",
+      "bas": 38.45,
+      "son": 40.45,
+      "metin": "Sıradaki Raf Analiz ne olsun?"
+    },
+    {
+      "no": 11,
+      "sahne": "Soru",
+      "bas": 40.6,
+      "son": 44.75,
+      "metin": "Proteinli içecekler mi… çikolatalar mı… granolalar mı?"
+    },
+    {
+      "no": 12,
+      "sahne": "Soru",
+      "bas": 44.9,
+      "son": 46.8,
+      "metin": "Yorumlara yaz!"
+    }
+  ]
+}
