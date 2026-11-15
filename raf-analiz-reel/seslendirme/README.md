@@ -13,7 +13,7 @@ Güvenilir, sıcak ve enerjik bir reklam spikeri. Abartılı satış tonu yok; b
 | 1 | Kanca | 0,2 sn | 4,9 sn | 100 TL altına sağlıklı bir ara öğün bulabilir miyiz? |
 | 2 | Kural | 5,6 sn | 2,1 sn | Sadece “fit” yazıyor diye alma. |
 | 3 | Kural | 7,9 sn | 3,4 sn | Paketi çevir: içeriğe ve tok tutma gücüne bak. |
-| 4 | Analiz 1/4 | 11,7 sn | 4,8 sn | Meyve ve kuruyemiş barı çok pratik. Hurma ağırlıklıysa şekere dikkat. |
+| 4 | Analiz 1/4 | 11,7 sn | 4,8 sn | Meyve ve kuruyemiş barı çok pratik. Hurma ağırlıklıysa şeker oranı yükselir. |
 | 5 | Analiz 2/4 | 16,7 sn | 4,8 sn | Protein bar tokluğa katkı sağlayabilir, ama 100 TL sınırında. |
 | 6 | Analiz 3/4 | 21,7 sn | 4,8 sn | Karabuğday patlağının içeriği sade, ama tek başına hafif kalır. |
 | 7 | Analiz 4/4 | 26,7 sn | 4,7 sn | Pirinç ve mısır patlağında lif ve protein düşük. Yanına protein ekle. |
@@ -33,6 +33,34 @@ Güvenilir, sıcak ve enerjik bir reklam spikeri. Abartılı satış tonu yok; b
 2. **Satır başına dosya:** `01.wav`, `02.wav` … `12.wav` (mp3, m4a ve flac da olur).
 
 Mono, 44,1 veya 48 kHz, arka plan müziği olmadan.
+
+## Kullanılan ses: Enerjik Spiker (VoxCPM2)
+
+Videodaki seslendirme [alexturkey/voxcpm2-turkce-ses-tasarimi](https://github.com/alexturkey/voxcpm2-turkce-ses-tasarimi) projesinin `hazir_sesler/cekici_spiker` sesiyle (görünen adı *Enerjik Spiker*) VoxCPM2 modeliyle üretildi. Bu ses bir metin tarifinden yapay olarak tasarlanmıştır, hiçbir kişinin kaydından klonlanmamıştır. Proje ve model Apache-2.0 lisanslıdır. Projenin sorumlu kullanım notu gereği yayımlarken içeriğin yapay zekâ ile üretildiğini belirtin: kapanıştaki bilgilendirme notunda bu yazıyor, Instagram'da da paylaşırken "Yapay zekâ bilgisi" etiketini açın.
+
+Motor bu metni okur: [`okuma_metni.txt`](okuma_metni.txt). Motor rakam ve tırnak kabul etmediği için "100 TL" orada "yüz lira" olarak yazılıdır.
+
+Yeniden üretmek için, ses tasarımı projesi kurulduktan sonra (GPU yoksa `ayarlar.json` içinde `"backend": "cpu"`):
+
+```bash
+# voxcpm2-turkce-ses-tasarimi klasöründe
+.venv/bin/python -m ses_tasarim.oku --ses hazir/cekici_spiker \
+  --metin @<raf-analiz-reel>/seslendirme/okuma_metni.txt --cikti cikti/raf
+# raf-analiz-reel klasöründe
+node seslendirme.js <voxcpm2-turkce-ses-tasarimi>/cikti/raf
+node render.js
+```
+
+Sesin okuma tohumu sabit (42) olduğu için aynı metin aynı sesi verir. Bir satırı beğenmezseniz o satırın yazımını değiştirip yeniden okutun.
+
+Kullanılan satırların ham kayıtları `satirlar/01.flac … 12.flac` olarak saklanır. Zamanlamayı değiştirdiyseniz motoru yeniden çalıştırmadan yerleştirmeyi tekrarlayın:
+
+```bash
+node seslendirme.js seslendirme/satirlar/
+node render.js
+```
+
+4. satır ilk okumada cümle sonunda yutulduğu için "şeker oranı yükselir" biçiminde yeniden okutuldu; bu, karttaki raf notuyla da aynı.
 
 ## Videoya ekleme
 

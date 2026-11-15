@@ -14,7 +14,9 @@ Videoda kasa okuyucusu bip sesi, geçiş sesleri, puan çubuğu tıkları ve fiy
 
 ## Seslendirme
 
-Seslendirme metni, sahne zamanlaması ve kayıt notları [`seslendirme/README.md`](seslendirme/README.md) dosyasında. Kayıt (tek dosya ya da satır başına dosyalar) hazır olduğunda:
+Videoda **Enerjik Spiker** (`cekici_spiker`) sesiyle yapılmış bir seslendirme var. Ses, [alexturkey/voxcpm2-turkce-ses-tasarimi](https://github.com/alexturkey/voxcpm2-turkce-ses-tasarimi) projesinin yapay olarak tasarlanmış hazır seslerinden biri; VoxCPM2 modeliyle okutuldu. Satırların ham kayıtları `seslendirme/satirlar/` klasöründe, videoya yerleştirilmiş hali `seslendirme/seslendirme.wav` dosyasında. Metin, sahne zamanlaması, yeniden üretme adımları ve kayıt notları [`seslendirme/README.md`](seslendirme/README.md) dosyasında.
+
+Kendi kaydınızla (tek dosya ya da satır başına dosyalar) değiştirmek için:
 
 ```bash
 node seslendirme.js kayit.wav

@@ -3,6 +3,7 @@
 //
 //   node seslendirme.js kayit.mp3      → tek dosya: satırlar sırayla, aralarında ~1 sn sessizlik
 //   node seslendirme.js satirlar/      → satır başına ayrı dosya: 01.wav, 02.wav … (mp3/wav/m4a)
+//   node seslendirme.js cikti/raf/     → VoxCPM2 ses tasarımı aracının çıktısı (okuma.wav + ozet.json)
 //
 // Çıktı: seslendirme/seslendirme.wav (render.js kullanır) ve seslendirme/seslendirme.mp3 (önizleme sayfası).
 // Satır başlangıçları ve süre sınırları seslendirme/zamanlama.json dosyasındadır.
@@ -78,7 +79,15 @@ function fade(x) {
 
 // --- satırları çıkar ---
 let segs = [];
-if (fs.statSync(src).isDirectory()) {
+const ozet = path.join(src, 'ozet.json');
+if (fs.statSync(src).isDirectory() && fs.existsSync(ozet)) {
+  // VoxCPM2 ses tasarımı aracının çıktı klasörü: okuma.wav + ozet.json (satır başına t0/t1)
+  const sum = JSON.parse(fs.readFileSync(ozet, 'utf8'));
+  if (sum.satirlar.length !== lines.length) throw new Error(`${lines.length} satır bekleniyordu, ozet.json içinde ${sum.satirlar.length} satır var.`);
+  const x = decode(path.join(src, 'okuma.wav'));
+  segs = sum.satirlar.map(r => trim(x.slice(Math.round(r.t0 * SR), Math.round(r.t1 * SR))));
+  console.log(`VoxCPM2 okuması: ${sum.ses} · ${sum.ses_sn} sn${sum.supheli_satirlar && sum.supheli_satirlar.length ? ' · kontrol edilecek satırlar: ' + sum.supheli_satirlar.join(', ') : ''}`);
+} else if (fs.statSync(src).isDirectory()) {
   const files = fs.readdirSync(src).filter(f => /\.(wav|mp3|m4a|aac|flac|ogg)$/i.test(f)).sort();
   if (files.length !== lines.length) throw new Error(`${lines.length} satır bekleniyordu, klasörde ${files.length} ses dosyası var.`);
   segs = files.map(f => trim(decode(path.join(src, f))));
