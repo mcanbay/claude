@@ -1,0 +1,13 @@
+{
+  "name": "raf-analiz-reel",
+  "private": true,
+  "description": "Raf Analiz · 100 TL altında sağlıklı ara öğünler: dikey Instagram Reel (1080×1920)",
+  "scripts": {
+    "render": "node render.js",
+    "onizleme": "node render.js --preview",
+    "kareler": "node render.js --frames 3,8.5,14,33,41"
+  },
+  "dependencies": {
+    "playwright": "^1.50.0"
+  }
+}

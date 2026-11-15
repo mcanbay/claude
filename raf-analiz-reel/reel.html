@@ -1,0 +1,1200 @@
+<title>100 TL Altı Ara Öğünler</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  /* Layout: 1080×1920 reel stage, 60px margins, left-aligned condensed headlines.
+     Product cards read like a shelf price label stapled to a test sheet. The player sits in a dark viewing room. */
+  --ink:#0E1116;
+  --paper:#F2F3EF;
+  --card:#FFFFFF;
+  --label:#FFD21F;   /* raf etiketi sarısı */
+  --scan:#2340FF;    /* analiz kobaltı */
+  --claim:#FF4B2B;   /* paketin önündeki iddia */
+  --mute:#686E7A;
+  --hair:rgba(14,17,22,.14);
+  --forest:#1E5A43;
+  --room:#0A0C10;
+  --room-2:#15181E;
+  --room-fg:#ECEDF1;
+  --room-mute:#8C93A0;
+  --room-line:rgba(255,255,255,.10);
+  --display:"Archivo","Arial Narrow","Roboto Condensed","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  color-scheme:dark;
+}
+html,body{height:100%}
+body{background:var(--room);color:var(--room-fg);font-family:var(--display);-webkit-font-smoothing:antialiased}
+*{box-sizing:border-box}
+
+/* ---------- player ---------- */
+.app{height:100%;display:grid;grid-template-columns:minmax(0,1fr) 330px;grid-template-rows:minmax(0,1fr);gap:36px;padding-block:20px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));max-width:1180px;margin:0 auto}
+.viewer{min-width:0;min-height:0;display:flex;align-items:center;justify-content:center}
+.frame{position:relative;overflow:hidden;border-radius:20px;box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08);flex:none;cursor:pointer}
+.panel{min-width:0;align-self:center;display:flex;flex-direction:column;gap:22px;max-height:100%;overflow:auto;padding-block:6px}
+.p-kicker{display:flex;align-items:center;gap:12px;font:500 11.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--room-mute)}
+.mini-logo{background:var(--label);color:var(--ink);font:900 13px/1 var(--display);font-stretch:78%;letter-spacing:.03em;padding:6px 9px 5px 16px;clip-path:polygon(9px 0,100% 0,100% 100%,9px 100%,0 50%);position:relative}
+.mini-logo::before{content:"";position:absolute;left:6px;top:50%;width:5px;height:5px;margin-top:-2.5px;border-radius:50%;background:var(--ink)}
+.panel h1{margin:0;font:850 36px/1 var(--display);font-stretch:76%;letter-spacing:-.005em;text-wrap:balance;color:var(--room-fg)}
+.p-meta{margin:-10px 0 0;font:400 12.5px/1.5 var(--mono);color:var(--room-mute)}
+.transport{display:flex;align-items:center;gap:8px}
+.btn{appearance:none;border:1px solid var(--room-line);background:var(--room-2);color:var(--room-fg);font:650 14px/1 var(--display);padding:11px 16px;border-radius:999px;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.btn svg{width:15px;height:15px;flex:none}
+.btn{white-space:nowrap}
+.btn.icon{padding:11px 13px}
+.btn.primary{background:var(--label);color:var(--ink);border-color:transparent;min-width:122px;justify-content:center}
+.btn:hover{border-color:rgba(255,255,255,.28)}
+.btn.primary:hover{filter:brightness(1.05)}
+.btn:focus-visible,.chapters button:focus-visible,.toggle input:focus-visible,#scrub:focus-visible{outline:2px solid var(--label);outline-offset:3px}
+.clock{font:500 12.5px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--room-mute);white-space:nowrap}
+.scrub-meta{display:flex;justify-content:space-between;align-items:baseline;margin-top:6px;font:600 13px/1 var(--display);color:var(--room-fg)}
+.btn[aria-pressed="true"]{border-color:var(--label);color:var(--label)}
+.scrub{position:relative;padding-top:4px}
+#scrub{width:100%;margin:0;accent-color:var(--label);cursor:pointer}
+.ticks{position:relative;height:10px;margin:2px 7px 0}
+.ticks i{position:absolute;top:0;width:1px;height:7px;background:var(--room-mute)}
+.chapters{list-style:none;margin:0;padding:0;border-top:1px solid var(--room-line)}
+.chapters button{width:100%;display:grid;grid-template-columns:30px minmax(0,1fr) auto;column-gap:8px;row-gap:3px;align-items:baseline;padding:11px 2px;background:none;border:0;border-bottom:1px solid var(--room-line);color:var(--room-fg);font:700 15px/1.2 var(--display);font-stretch:90%;text-align:left;cursor:pointer}
+.chapters .n,.chapters .tc{font:500 11.5px/1 var(--mono);color:var(--room-mute);font-variant-numeric:tabular-nums}
+.chapters .d{grid-column:2/4;font:400 12.5px/1.35 var(--display);font-stretch:100%;color:var(--room-mute)}
+.chapters button[aria-current="true"]{color:var(--label)}
+.chapters button[aria-current="true"] .n{color:var(--label)}
+.toggle{display:flex;gap:10px;align-items:center;font:500 14px/1.3 var(--display);color:var(--room-fg);cursor:pointer}
+.toggle input{width:16px;height:16px;accent-color:var(--label);margin:0}
+.p-note{margin:0;font:400 12px/1.55 var(--mono);color:var(--room-mute)}
+.p-note b{color:var(--room-fg);font-weight:600}
+@media (max-width:860px){
+  html,body{height:auto}
+  .app{height:auto;grid-template-columns:minmax(0,1fr);grid-template-rows:auto;gap:24px}
+  .panel{max-height:none;overflow:visible}
+}
+
+/* ---------- stage ---------- */
+.stage{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0;overflow:hidden;background:var(--ink);font-family:var(--display);color:var(--ink)}
+.scene{position:absolute;inset:0;overflow:hidden;visibility:hidden}
+.ln{display:block;overflow:hidden;padding:.14em 0 .1em;margin:-.14em 0 -.1em}
+.ln>span{display:inline-block;will-change:transform}
+.eyebrow{font:600 24px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+svg{display:block}
+
+/* brand bar */
+.brandbar{position:absolute;left:60px;right:60px;top:192px;height:56px;display:flex;align-items:center;justify-content:space-between;z-index:30;pointer-events:none}
+.logo{position:relative;display:inline-flex;align-items:center;height:56px;padding:4px 20px 0 44px;background:var(--label);color:var(--ink);font:900 31px/1 var(--display);font-stretch:76%;letter-spacing:.035em;clip-path:polygon(22px 0,100% 0,100% 100%,22px 100%,0 50%)}
+.logo::before{content:"";position:absolute;left:17px;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:var(--ink)}
+.bb-r{display:flex;align-items:center;gap:16px;font:600 22px/1 var(--mono);letter-spacing:.14em;color:#fff}
+.bb-dots{display:flex;gap:6px}
+.bb-dots i{width:12px;height:12px;border:2px solid currentColor;opacity:.55}
+.bb-dots i.on{background:currentColor;opacity:1}
+.brandbar[data-tone="light"] .bb-r,.brandbar[data-tone="yellow"] .bb-r{color:var(--ink)}
+.brandbar[data-tone="yellow"] .logo{background:var(--ink);color:var(--label)}
+.brandbar[data-tone="yellow"] .logo::before{background:var(--label)}
+
+/* wipe */
+.wipe{position:absolute;left:-260px;top:-240px;width:1600px;height:2400px;background:var(--label);z-index:20;transform:translate3d(0,2600px,0) rotate(-7deg);pointer-events:none}
+.wipe::before{content:"";position:absolute;left:0;right:0;top:0;height:14px;background:var(--ink)}
+
+/* ---------- S1 hook ---------- */
+.s1{background:#1E232A}
+.cam{position:absolute;left:-60px;top:-60px;width:1200px;height:2040px;transform-origin:50% 50%;will-change:transform,filter}
+.world{position:absolute;left:0;top:0;width:2400px;height:2820px;transform-origin:0 0;will-change:transform;
+  background:
+    radial-gradient(circle,rgba(14,17,22,.22) 0 3px,transparent 3.6px) 0 0/34px 34px,
+    linear-gradient(180deg,#CBD0D6,#AEB4BC);}
+.post{position:absolute;top:0;bottom:0;width:30px;background:linear-gradient(90deg,#5B626C,#8B929B 40%,#4A5058)}
+.row{position:absolute;left:0;width:2400px;height:540px}
+.row::before{content:"";position:absolute;left:0;right:0;top:0;height:440px;background:linear-gradient(180deg,rgba(255,255,255,.22),transparent 30%,rgba(14,17,22,.12))}
+.board{position:absolute;left:0;right:0;top:440px;height:30px;background:linear-gradient(180deg,#F7F8FA,#C3C8CF);box-shadow:0 -8px 18px rgba(14,17,22,.28)}
+.rail{position:absolute;left:0;right:0;top:470px;height:70px;background:linear-gradient(180deg,#2E333B,#1B1F25)}
+.grp{position:absolute;display:flex;gap:12px;align-items:flex-end}
+.tag{position:absolute;top:476px;width:150px;height:58px;background:#FAFAF6;color:var(--ink);border-radius:3px;display:flex;align-items:flex-start;justify-content:center;padding-top:5px;font-weight:900;font-stretch:78%;transform-origin:50% 0}
+.tag .ti{font-size:48px;line-height:1}
+.tag .td{font-size:23px;line-height:1.15}
+.tag .tc{font:600 15px/1 var(--mono);align-self:flex-end;margin:0 0 9px 3px}
+.tag .tk{position:absolute;right:-13px;top:-15px;width:36px;height:36px;border-radius:50%;background:var(--scan);color:#fff;display:grid;place-items:center;transform:scale(0)}
+.tag .tk svg{width:20px;height:20px}
+.tag .tx{position:absolute;left:8px;right:8px;top:27px;height:5px;background:var(--claim);transform:scaleX(0);transform-origin:left}
+.tag.ok{background:var(--label)}
+.fgpack{position:absolute;left:0;top:1280px;filter:blur(14px);will-change:transform}
+.s1-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,17,22,.60) 0%,rgba(14,17,22,.28) 15%,rgba(14,17,22,.70) 29%,rgba(14,17,22,.80) 62%,rgba(14,17,22,.42) 80%,rgba(14,17,22,.72) 100%)}
+.beam{position:absolute;left:0;right:0;top:0;height:6px;background:#7F92FF;box-shadow:0 0 0 2px rgba(35,64,255,.7),0 0 40px 12px rgba(35,64,255,.55),0 0 120px 40px rgba(35,64,255,.25);opacity:0;will-change:transform}
+.hook{position:absolute;left:60px;top:418px;color:#fff;font-weight:900;font-stretch:70%;line-height:.9;text-shadow:0 6px 40px rgba(0,0,0,.35)}
+.h-line{display:block;white-space:nowrap;transform-origin:0 60%;will-change:transform}
+.h-tag{margin-bottom:22px}
+.bigtag{position:relative;display:inline-block;background:var(--label);color:var(--ink);font-size:214px;line-height:1;padding:14px 40px 0 86px;clip-path:polygon(52px 0,100% 0,100% 100%,52px 100%,0 50%);text-shadow:none;transform-origin:10% 50%}
+.bigtag::before{content:"";position:absolute;left:34px;top:50%;width:28px;height:28px;margin-top:-14px;border-radius:50%;background:#1E232A}
+.bigtag small{font-size:.46em;margin-left:.08em;letter-spacing:.01em}
+.h-a{font-size:168px}
+.h-b{font-size:212px;margin-top:16px}
+.h-q{font-size:146px;color:var(--label);margin-top:26px}
+.hook-sub{position:absolute;left:60px;top:1446px;display:flex;flex-direction:column;gap:18px;opacity:0}
+.hook-sub .eyebrow{color:#fff}
+.crit{display:flex;gap:10px}
+.crit span{font:700 30px/1 var(--display);font-stretch:85%;color:#fff;border:2px solid rgba(255,255,255,.55);padding:10px 16px 8px;border-radius:999px}
+
+/* ---------- packs ---------- */
+.pk{position:relative;flex:none}
+.pk>*{position:absolute}
+.pk .gloss{inset:0;background:linear-gradient(100deg,transparent 0 18%,rgba(255,255,255,.30) 25%,transparent 33%,transparent 78%,rgba(0,0,0,.10) 100%)}
+.pk-bar{background:linear-gradient(90deg,#AE7A46 0%,#D5A66C 36%,#E3BA80 50%,#C08B55 100%)}
+.pk-bar .crimp,.pk-pro .crimp{left:0;right:0;height:9%;background:repeating-linear-gradient(90deg,rgba(0,0,0,.18) 0 2px,rgba(255,255,255,.14) 2px 4px,transparent 4px 9px)}
+.crimp.t{top:0}.crimp.b{bottom:0}
+.pk-bar .win{left:13%;right:13%;top:16%;height:43%;border-radius:46%/30%;background:#F3E7CF;box-shadow:inset 0 0 0 calc(var(--u)*2.6) rgba(80,40,10,.16);overflow:hidden}
+.nut{position:absolute;border-radius:50%}
+.pk-bar .band{left:0;right:0;top:64%;height:22%;background:var(--forest);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font:700 calc(var(--u)*10.5)/1.18 var(--mono);letter-spacing:.05em}
+.pk-pro{background:linear-gradient(90deg,#0A0C11,#272C38 46%,#10131A)}
+.pk-pro .stripe{left:-10%;right:-10%;top:58%;height:13%;background:var(--scan);transform:skewY(-16deg)}
+.pk-pro .word{left:50%;top:44%;transform:translate(-50%,-50%) rotate(-90deg);font:900 calc(var(--u)*31)/1 var(--display);font-stretch:66%;color:#fff;letter-spacing:.02em;white-space:nowrap}
+.pk-pro .dot{right:13%;top:13%;width:17%;aspect-ratio:1;border-radius:50%;background:var(--label)}
+.pk-pro .sub{left:0;right:0;bottom:13%;text-align:center;font:700 calc(var(--u)*10)/1 var(--mono);letter-spacing:.12em;color:var(--label)}
+.pk-cake{border-radius:calc(var(--u)*18)/calc(var(--u)*9);overflow:hidden}
+.pk-buck{background:
+   radial-gradient(circle,rgba(36,16,4,.45) 0 1.2px,transparent 1.8px) 0 0/calc(var(--u)*7) calc(var(--u)*5.5),
+   repeating-linear-gradient(180deg,#8E5934 0 calc(var(--u)*10),#9C6740 calc(var(--u)*10) calc(var(--u)*11),#5B361E calc(var(--u)*11) calc(var(--u)*12.5))}
+.pk-rice{background:
+   radial-gradient(circle,rgba(214,160,40,.55) 0 1.4px,transparent 2px) 0 0/calc(var(--u)*8) calc(var(--u)*6),
+   repeating-linear-gradient(180deg,#F1E8D0 0 calc(var(--u)*10),#FAF4E2 calc(var(--u)*10) calc(var(--u)*11),#CDBB92 calc(var(--u)*11) calc(var(--u)*12.5))}
+.pk-cake .film{inset:0;background:linear-gradient(90deg,rgba(0,0,0,.14) 0,rgba(255,255,255,.42) 9%,rgba(255,255,255,.06) 17%,transparent 60%,rgba(255,255,255,.22) 80%,rgba(0,0,0,.18) 100%)}
+.pk-cake .seal{left:0;right:0;height:5%;background:repeating-linear-gradient(90deg,rgba(255,255,255,.55) 0 2px,rgba(255,255,255,.25) 2px 5px)}
+.seal.t{top:0}.seal.b{bottom:0}
+.pk-cake .lbl{left:0;right:0;top:35%;height:32%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:calc(var(--u)*3.5)}
+.pk-buck .lbl{background:#FAFAF6;color:var(--ink);box-shadow:inset 0 calc(var(--u)*-4) 0 var(--forest)}
+.pk-rice .lbl{background:var(--scan);color:#fff;box-shadow:inset 0 calc(var(--u)*-4) 0 var(--label)}
+.pk-cake .lbl b{font:900 calc(var(--u)*14.5)/1 var(--display);font-stretch:70%;letter-spacing:.01em;white-space:nowrap}
+.pk-rice .lbl b{font-size:calc(var(--u)*12.6)}
+.pk-cake .lbl span{font:600 calc(var(--u)*8.5)/1 var(--mono);letter-spacing:.1em}
+.pk-fit{border-radius:calc(var(--u)*2.5);overflow:hidden;background:linear-gradient(165deg,var(--c1),var(--c2))}
+.pk-fit .burst{right:6%;top:6%;width:44%;aspect-ratio:1;background:var(--label);display:grid;place-items:center;font:900 calc(var(--u)*13)/1 var(--display);font-stretch:70%;color:var(--ink)}
+.pk-fit .name{left:8%;bottom:9%;font:900 calc(var(--u)*17)/.9 var(--display);font-stretch:68%;color:#fff}
+.pk-fit .light{left:8%;top:12%;font:700 calc(var(--u)*7.5)/1 var(--mono);letter-spacing:.12em;color:#fff;border:calc(var(--u)*.8) solid #fff;padding:calc(var(--u)*2) calc(var(--u)*3)}
+.pk-gra{border-radius:calc(var(--u)*2);overflow:hidden;background:linear-gradient(90deg,#E4D5B5,#F2E8D2 50%,#DDCBA6)}
+.pk-gra .top{left:0;right:0;top:0;height:23%;background:var(--ink);color:var(--label);display:grid;place-items:center;font:900 calc(var(--u)*15)/1 var(--display);font-stretch:70%;letter-spacing:.02em}
+.pk-gra .win{left:14%;right:14%;top:33%;height:42%;border-radius:calc(var(--u)*7);background:
+  radial-gradient(circle at 30% 40%,#9C6A38 0 12%,transparent 13%),
+  radial-gradient(circle at 62% 30%,#B47F48 0 10%,transparent 11%),
+  radial-gradient(circle at 48% 70%,#8A5A2E 0 13%,transparent 14%),
+  radial-gradient(circle at 78% 66%,#7B2C2C 0 7%,transparent 8%),
+  radial-gradient(circle at 20% 76%,#C9955A 0 9%,transparent 10%),#F6EEDC;box-shadow:inset 0 0 0 calc(var(--u)*2) rgba(0,0,0,.1)}
+.pk-gra .bot{left:0;right:0;bottom:7%;text-align:center;font:600 calc(var(--u)*7)/1 var(--mono);letter-spacing:.12em;color:var(--ink)}
+
+/* ---------- S2 rule ---------- */
+.col{position:absolute;top:0;width:540px;height:1920px;will-change:transform}
+.col-l{left:0;background:var(--claim);color:#fff}
+.col-r{left:540px;background:var(--paper);color:var(--ink)}
+.col-tag{position:absolute;left:50px;top:300px;display:flex;flex-direction:column;gap:12px}
+.col-tag b{align-self:flex-start;font:700 24px/1 var(--mono);letter-spacing:.12em;padding:10px 14px 8px}
+.col-l .col-tag b{background:#fff;color:var(--claim)}
+.col-r .col-tag b{background:var(--scan);color:#fff}
+.col-tag span{font:500 22px/1 var(--mono);letter-spacing:.06em;opacity:.85}
+.cpack{position:absolute;left:90px;top:480px;width:360px;height:500px;border-radius:6px;background:linear-gradient(165deg,#FFFFFF,#ECEAE6);box-shadow:0 30px 60px rgba(90,10,0,.35);overflow:hidden;will-change:transform}
+.cpack .top{position:absolute;left:0;right:0;top:0;height:132px;background:var(--ink);color:#fff;display:flex;align-items:center;padding-left:26px;font:900 94px/1 var(--display);font-stretch:68%}
+.cpack .crack{position:absolute;left:44px;top:178px;width:196px;height:196px;border-radius:50%;background:
+  radial-gradient(circle,rgba(120,70,20,.35) 0 3px,transparent 3.5px) 0 0/26px 26px,
+  radial-gradient(circle at 40% 35%,#F2D08E,#D9A65A 70%);box-shadow:0 10px 20px rgba(0,0,0,.18)}
+.cpack .sm{position:absolute;left:26px;bottom:26px;font:600 18px/1.2 var(--mono);letter-spacing:.1em;color:var(--ink)}
+.cpack .back{position:absolute;left:26px;right:26px;bottom:66px;display:flex;align-items:center;gap:10px;font:700 20px/1 var(--mono);letter-spacing:.06em;color:var(--scan);opacity:0}
+.cpack .back svg{width:26px;height:26px}
+.cpack .gloss{position:absolute;inset:0;background:linear-gradient(105deg,transparent 0 30%,rgba(255,255,255,.55) 38%,transparent 48%)}
+.stk{position:absolute;display:grid;place-items:center;text-align:center;will-change:transform;transform:scale(0)}
+.stk-fit{left:270px;top:410px;width:232px;height:232px;background:var(--label);color:var(--ink);font:900 96px/1 var(--display);font-stretch:70%}
+.stk-light{left:40px;top:676px;padding:16px 26px 12px;background:var(--ink);color:#fff;font:900 52px/1 var(--display);font-stretch:74%;letter-spacing:.04em;border-radius:999px}
+.stk-dogal{left:316px;top:770px;width:170px;height:170px;border-radius:50%;background:#fff;color:var(--claim);font:900 40px/.95 var(--display);font-stretch:72%;box-shadow:0 0 0 6px var(--claim),0 0 0 9px #fff}
+.stk-seker{left:66px;top:880px;padding:14px 20px 10px;background:#fff;color:var(--ink);font:900 46px/1 var(--display);font-stretch:72%;border:4px solid var(--ink)}
+.col-h{position:absolute;left:50px;top:1118px;width:470px;margin:0;font-weight:900;font-stretch:66%;font-size:93px;line-height:.98;letter-spacing:-.005em}
+.col-l .col-h .q{color:var(--ink)}
+.col-r .col-h .hl{color:var(--scan)}
+.uline{position:absolute;left:50px;top:1418px;width:400px;height:10px;background:var(--scan);transform:scaleX(0);transform-origin:left}
+.nlabel{position:absolute;left:50px;top:480px;width:440px;background:var(--card);border:3px solid var(--ink);padding:22px 24px 10px;will-change:transform}
+.nl-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:8px solid var(--ink);padding-bottom:12px}
+.nl-head b{font:900 40px/1 var(--display);font-stretch:72%}
+.nl-head span{font:500 17px/1 var(--mono);color:var(--mute)}
+.nl-row{display:flex;align-items:center;gap:12px;height:76px;border-bottom:2px solid var(--hair);font:700 33px/1 var(--display);font-stretch:86%}
+.nl-row:last-child{border-bottom:0}
+.nl-row span{white-space:nowrap}
+.nl-row i{flex:1;border-bottom:3px dotted rgba(14,17,22,.25);height:0;margin-top:12px}
+.chk{flex:none;width:40px;height:40px;border-radius:50%;border:3px solid rgba(14,17,22,.22);position:relative}
+.chk em{position:absolute;inset:-3px;border-radius:50%;background:var(--scan);color:#fff;display:grid;place-items:center;transform:scale(0)}
+.chk svg{width:24px;height:24px}
+.lens{position:absolute;left:190px;top:0;width:150px;height:150px;opacity:0;will-change:transform;pointer-events:none}
+.lens .glass{position:absolute;inset:0;border-radius:50%;border:9px solid var(--scan);background:rgba(35,64,255,.08);box-shadow:0 10px 30px rgba(14,17,22,.2)}
+.lens .handle{position:absolute;left:122px;top:118px;width:22px;height:78px;background:var(--ink);border-radius:8px;transform:rotate(-45deg);transform-origin:50% 0}
+.divider{position:absolute;left:536px;top:0;width:8px;height:1920px;background:var(--ink);transform:scaleY(0);transform-origin:50% 50%}
+.rule-pill{position:absolute;left:540px;top:1048px;transform:translate(-50%,-50%) scale(0);background:var(--ink);color:#fff;font:700 26px/1 var(--mono);letter-spacing:.18em;padding:16px 22px 14px 26px;white-space:nowrap}
+.neq{position:absolute;left:540px;top:730px;width:120px;height:120px;margin:-60px 0 0 -60px;border-radius:50%;background:var(--ink);color:var(--label);display:grid;place-items:center;transform:scale(0)}
+.neq svg{width:62px;height:62px}
+.sweep{position:absolute;left:0;width:540px;top:0;height:8px;background:#9AA8FF;box-shadow:0 0 0 2px rgba(35,64,255,.6),0 0 40px 10px rgba(35,64,255,.45);opacity:0}
+
+/* ---------- S3 analysis ---------- */
+.s3{background:var(--paper)}
+.gridbg{position:absolute;inset:0;background:
+  linear-gradient(rgba(14,17,22,.055) 2px,transparent 2px) 0 0/60px 60px,
+  linear-gradient(90deg,rgba(14,17,22,.055) 2px,transparent 2px) 0 0/60px 60px}
+.card{position:absolute;left:60px;top:296px;width:960px;height:1236px;background:var(--card);box-shadow:0 2px 0 rgba(14,17,22,.08),0 40px 80px rgba(14,17,22,.14);display:flex;flex-direction:column;will-change:transform;visibility:hidden;transform-origin:50% 60%}
+.c-band{background:var(--ink);color:#fff;height:250px;padding:30px 44px 30px;display:flex;flex-direction:column;justify-content:space-between;flex:none}
+.c-meta{display:flex;justify-content:space-between;font:600 22px/1 var(--mono);letter-spacing:.14em}
+.c-meta span:last-child{color:var(--label)}
+.c-name{margin:0;font-weight:900;font-stretch:70%;font-size:82px;line-height:.94;letter-spacing:-.005em}
+.c-body{flex:1;display:flex;flex-direction:column;padding:34px 44px 26px;min-height:0}
+.c-top{display:grid;grid-template-columns:380px 1fr;gap:32px;height:384px;flex:none}
+.c-spec{position:relative;border:2px solid var(--hair);background:
+  linear-gradient(rgba(14,17,22,.045) 1px,transparent 1px) 0 0/24px 24px,
+  linear-gradient(90deg,rgba(14,17,22,.045) 1px,transparent 1px) 0 0/24px 24px,#FBFBF9;display:grid;place-items:center;overflow:hidden}
+.c-spec .cm{position:absolute;width:26px;height:26px;border:0 solid var(--ink)}
+.cm.tl{left:12px;top:12px;border-left-width:3px;border-top-width:3px}
+.cm.tr{right:12px;top:12px;border-right-width:3px;border-top-width:3px}
+.cm.bl{left:12px;bottom:12px;border-left-width:3px;border-bottom-width:3px}
+.cm.br{right:12px;bottom:12px;border-right-width:3px;border-bottom-width:3px}
+.c-spec .cap{position:absolute;left:18px;bottom:48px;font:600 15px/1 var(--mono);letter-spacing:.14em;color:var(--mute);writing-mode:vertical-rl;transform:rotate(180deg)}
+.c-spec .ruler{position:absolute;right:20px;top:52px;bottom:52px;width:16px;background:
+  repeating-linear-gradient(180deg,rgba(14,17,22,.45) 0 2px,transparent 2px 14px) right/8px 100% no-repeat,
+  repeating-linear-gradient(180deg,rgba(14,17,22,.6) 0 2px,transparent 2px 70px) right/16px 100% no-repeat}
+.spec-pk{will-change:transform;filter:drop-shadow(0 22px 22px rgba(14,17,22,.22))}
+.c-price{display:flex;flex-direction:column;gap:16px;min-width:0}
+.slabel{position:relative;background:var(--label);color:var(--ink);padding:18px 22px 0;flex:1;display:flex;flex-direction:column;transform-origin:50% 0;will-change:transform;box-shadow:0 14px 24px rgba(120,90,0,.16)}
+.slabel::before{content:"";position:absolute;left:50%;top:-11px;width:60px;height:14px;margin-left:-30px;background:rgba(14,17,22,.18);border-radius:3px}
+.sl-top{display:flex;justify-content:space-between;font:700 17px/1 var(--mono);letter-spacing:.12em}
+.sl-price{display:flex;align-items:flex-start;margin-top:10px;font-weight:900;font-stretch:76%;font-variant-numeric:tabular-nums}
+.sl-price .int{font-size:148px;line-height:.86;letter-spacing:-.01em}
+.sl-price .dec{font-size:62px;line-height:1;margin-left:4px}
+.sl-price .cur{font:700 30px/1 var(--mono);align-self:flex-end;margin:0 0 12px -58px}
+.sl-range{font:600 19px/1.2 var(--mono);margin-top:12px}
+.sl-unit{margin-top:auto;border-top:2px solid rgba(14,17,22,.35);display:flex;justify-content:space-between;align-items:center;height:62px}
+.sl-unit span{font:600 17px/1.15 var(--mono);letter-spacing:.04em}
+.sl-unit b{font:900 38px/1 var(--display);font-stretch:80%;font-variant-numeric:tabular-nums}
+.badge{align-self:flex-start;display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 20px 0 14px;background:var(--ink);color:#fff;font:700 22px/1 var(--mono);letter-spacing:.08em;transform-origin:0 50%;will-change:transform}
+.badge svg{width:26px;height:26px;color:var(--label)}
+.badge.edge{background:var(--claim)}
+.badge.edge svg{color:#fff}
+.c-rates{margin-top:36px;display:flex;flex-direction:column;gap:0;flex:none}
+.rate{display:grid;grid-template-columns:236px 96px minmax(0,1fr);align-items:center;height:78px;border-top:2px solid var(--hair);will-change:transform}
+.rate:last-child{border-bottom:2px solid var(--hair)}
+.r-l{font:700 22px/1.1 var(--mono);letter-spacing:.1em}
+.r-v{font:900 46px/1 var(--display);font-stretch:76%;font-variant-numeric:tabular-nums}
+.r-v small{font-size:.5em;color:var(--mute);margin-left:2px}
+.segs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;height:30px;padding-right:30px}
+.seg{position:relative;background:rgba(14,17,22,.08)}
+.seg i{position:absolute;inset:0;background:var(--scan);transform:scaleX(0);transform-origin:left}
+.seg.x i{background:repeating-linear-gradient(-45deg,var(--scan) 0 5px,transparent 5px 11px);box-shadow:inset 0 0 0 3px var(--scan)}
+.r-ext{grid-column:1/-1;margin:-6px 0 12px;font:600 18px/1.2 var(--mono);color:var(--scan);display:flex;gap:10px;align-items:center;opacity:0}
+.r-ext b{width:30px;height:16px;flex:none;background:repeating-linear-gradient(-45deg,var(--scan) 0 4px,transparent 4px 8px);box-shadow:inset 0 0 0 2px var(--scan)}
+.rate.has-ext{height:auto;padding-top:24px;row-gap:14px}
+.c-note{margin-top:28px;display:flex;flex-direction:column;gap:12px;flex:1;min-height:0;will-change:transform}
+.c-note .eyebrow{font-size:19px;color:var(--mute)}
+.c-note p{margin:0;font:560 34px/1.22 var(--display);font-stretch:88%;text-wrap:pretty;max-width:860px}
+.chips{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:4px}
+.chips .lead{font:700 19px/1 var(--mono);letter-spacing:.08em;margin-right:4px}
+.chip{font:700 25px/1 var(--display);font-stretch:88%;border:3px solid var(--ink);padding:9px 16px 7px;border-radius:999px;will-change:transform}
+.c-foot{display:flex;justify-content:space-between;font:500 17px/1 var(--mono);color:var(--mute);letter-spacing:.04em;border-top:2px dashed var(--hair);padding-top:16px;flex:none}
+
+/* ---------- S4 verdict ---------- */
+.s4{background:var(--ink);color:#fff}
+.s4 .gridbg{background:
+  linear-gradient(rgba(255,255,255,.04) 2px,transparent 2px) 0 0/60px 60px,
+  linear-gradient(90deg,rgba(255,255,255,.04) 2px,transparent 2px) 0 0/60px 60px}
+.s4in,.s5in{position:absolute;inset:0;transform-origin:50% 40%;will-change:transform}
+.verdict{position:absolute;left:60px;top:320px;margin:0;font-weight:900;font-stretch:68%;line-height:.92}
+.verdict .v1{font-size:118px}
+.verdict .v1 em{font-style:normal;color:var(--label)}
+.verdict .v2{font-size:188px;color:var(--label)}
+.formula{position:absolute;left:60px;top:808px;display:flex;flex-direction:column;gap:12px}
+.kw{position:relative;display:flex;align-items:center;gap:22px;height:88px}
+.kw .pl{width:60px;font:900 84px/1 var(--display);color:var(--label);transform:scale(0)}
+.kw .wd{position:relative;font:900 84px/1 var(--display);font-stretch:70%;padding:8px 18px 0;overflow:hidden;white-space:nowrap}
+.kw .wd span{display:inline-block;opacity:0}
+.kw .wd i{position:absolute;inset:0;background:var(--scan);transform:scaleX(0);transform-origin:left}
+.kw.k1 .wd{margin-left:82px}
+.shelf4{position:absolute;left:0;right:0;top:1164px;height:390px}
+.s4-slots{position:absolute;left:60px;right:60px;top:0;height:286px;display:grid;grid-template-columns:repeat(4,1fr);align-items:end;justify-items:center}
+.s4p{will-change:transform;filter:drop-shadow(0 16px 14px rgba(0,0,0,.45))}
+.s4-board{position:absolute;left:0;right:0;top:286px;height:24px;background:linear-gradient(180deg,#F7F8FA,#9DA3AB);will-change:transform}
+.s4-rail{position:absolute;left:0;right:0;top:310px;height:84px;background:#22262E;will-change:transform}
+.s4-tags{position:absolute;left:60px;right:60px;top:318px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.s4t{background:var(--label);color:var(--ink);height:68px;padding:8px 12px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;transform-origin:50% 0;will-change:transform}
+.s4t span{font:600 14.5px/1.15 var(--mono);letter-spacing:.02em}
+.s4t b{font:900 34px/1 var(--display);font-stretch:76%;white-space:nowrap;font-variant-numeric:tabular-nums}
+.s4t b small{font-size:.55em}
+
+/* ---------- S5 ask ---------- */
+.s5{background:var(--label);color:var(--ink)}
+.ask{position:absolute;left:60px;top:318px;margin:0;font-weight:900;font-stretch:70%;font-size:112px;line-height:.95;letter-spacing:-.005em}
+.opts{position:absolute;left:60px;right:60px;top:836px;display:flex;flex-direction:column;gap:22px}
+.opt{display:flex;align-items:center;height:128px;background:#fff;border:4px solid var(--ink);will-change:transform;position:relative}
+.opt .lt{width:120px;height:100%;background:var(--ink);color:var(--label);display:grid;place-items:center;font:900 76px/1 var(--display);font-stretch:80%;flex:none}
+.opt .tx{flex:1;padding:6px 0 0 34px;font:850 58px/1 var(--display);font-stretch:78%}
+.opt .rd{width:52px;height:52px;margin-right:34px;border-radius:50%;border:4px solid var(--ink);position:relative;flex:none}
+.opt .rd i{position:absolute;inset:7px;border-radius:50%;background:var(--scan);transform:scale(0)}
+.howto{position:absolute;left:60px;top:1316px;display:flex;align-items:center;gap:14px;font:700 28px/1 var(--mono);letter-spacing:.04em;opacity:0}
+.howto svg{width:40px;height:40px}
+.signoff{position:absolute;left:60px;right:60px;top:1394px;display:flex;align-items:center;justify-content:space-between;opacity:0;border-top:4px solid var(--ink);padding-top:26px}
+.signoff .logo{background:var(--ink);color:var(--label);height:64px;font-size:36px;padding-left:50px}
+.signoff .logo::before{background:var(--label)}
+.signoff p{margin:0;font:700 24px/1.25 var(--mono);text-align:right;letter-spacing:.03em}
+.disc{position:absolute;left:60px;right:160px;top:1512px;margin:0;font:500 18px/1.4 var(--mono);color:rgba(14,17,22,.72);opacity:0}
+
+/* ---------- safe-zone overlay ---------- */
+.safe{position:absolute;inset:0;z-index:40;pointer-events:none}
+.sf-top{position:absolute;left:0;right:0;top:0;height:176px;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0));display:flex;align-items:center;padding:40px 48px 0;font:800 52px/1 var(--display);color:#fff;justify-content:space-between}
+.sf-top i{width:56px;height:56px;border:5px solid #fff;border-radius:14px}
+.sf-right{position:absolute;right:34px;top:1190px;display:flex;flex-direction:column;gap:46px;align-items:center}
+.sf-right i{width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.88);box-shadow:0 0 0 3px rgba(0,0,0,.25)}
+.sf-bottom{position:absolute;left:0;right:0;bottom:0;height:360px;background:linear-gradient(0deg,rgba(0,0,0,.7),rgba(0,0,0,0));padding:110px 170px 0 48px;display:flex;flex-direction:column;gap:20px}
+.sf-bottom .who{display:flex;align-items:center;gap:20px}
+.sf-bottom .who i{width:76px;height:76px;border-radius:50%;background:rgba(255,255,255,.9)}
+.sf-bottom .who span,.sf-bottom .cap{height:26px;border-radius:13px;background:rgba(255,255,255,.85)}
+.sf-bottom .who span{width:260px}
+.sf-bottom .cap{width:620px}
+.sf-bottom .cap.s{width:420px}
+.sf-label{position:absolute;left:50%;top:1000px;transform:translateX(-50%);font:700 26px/1 var(--mono);letter-spacing:.08em;color:#fff;background:rgba(14,17,22,.82);padding:14px 20px;border:2px dashed rgba(255,255,255,.6);white-space:nowrap}
+.sf-zone{position:absolute;left:60px;right:140px;top:250px;bottom:330px;border:3px dashed rgba(255,210,31,.85)}
+
+/* export mode: bare 1080×1920 stage */
+.export .app{display:block;padding:0;max-width:none;height:auto}
+.export .panel{display:none}
+.export .viewer{display:block}
+.export .frame{border-radius:0;box-shadow:none;width:1080px;height:1920px;cursor:default}
+.export .stage{transform:none!important}
+</style>
+
+<div class="app" id="app">
+  <div class="viewer" id="viewer">
+    <div class="frame" id="frame" title="Oynat / duraklat">
+      <div class="stage" id="stage" lang="tr" aria-label="Raf Analiz reel önizlemesi">
+
+        <!-- SCENE 1 · HOOK -->
+        <section class="scene s1" id="s1">
+          <div class="cam" id="cam"><div class="world" id="world"></div></div>
+          <div class="fgpack" id="fgpack"></div>
+          <div class="s1-shade"></div>
+          <div class="beam" id="beam"></div>
+          <div class="hook" id="hook">
+            <div class="h-line h-tag"><span class="bigtag" id="bigtag">100<small>TL</small></span></div>
+            <div class="h-line h-a">ALTINA</div>
+            <div class="h-line h-b">SAĞLIKLI</div>
+            <div class="h-line h-b">ARA ÖĞÜN</div>
+            <div class="h-line h-q">BULABİLİR Mİ?</div>
+          </div>
+          <div class="hook-sub" id="hookSub">
+            <span class="eyebrow">4 kategori · 4 kriter · marka yok</span>
+            <div class="crit"><span>Fiyat</span><span>Pratiklik</span><span>Tokluk</span><span>İçerik</span></div>
+          </div>
+        </section>
+
+        <!-- SCENE 2 · RULE -->
+        <section class="scene s2" id="s2">
+          <div class="col col-l" id="colL">
+            <div class="col-tag" id="tagL"><b>PAKETİN ÖNÜ</b><span>pazarlama iddiası</span></div>
+            <div class="cpack" id="cpack">
+              <div class="top">ÇITIR</div>
+              <div class="crack"></div>
+              <div class="back" id="cpBack"><span>İÇİNDEKİLER ARKADA</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></div>
+              <div class="sm">ATIŞTIRMALIK · 40 G</div>
+              <div class="gloss"></div>
+            </div>
+            <div class="stk stk-fit" id="stkFit">FIT</div>
+            <div class="stk stk-light">LIGHT</div>
+            <div class="stk stk-dogal">%100<br>DOĞAL</div>
+            <div class="stk stk-seker">ŞEKERSİZ*</div>
+            <div class="sweep" id="sweep"></div>
+            <h2 class="col-h" id="hL"><span class="ln"><span>Sadece</span></span><span class="ln"><span><span class="q">‘FIT’</span> yazıyor</span></span><span class="ln"><span>diye alma</span></span></h2>
+          </div>
+          <div class="col col-r" id="colR">
+            <div class="col-tag" id="tagR"><b>PAKETİN ARKASI</b><span>ürün verisi</span></div>
+            <div class="nlabel" id="nlabel">
+              <div class="nl-head"><b>BESİN DEĞERLERİ</b><span>porsiyon / 100 g</span></div>
+              <div class="nl-row"><span>Protein</span><i></i><span class="chk"><em></em></span></div>
+              <div class="nl-row"><span>Lif</span><i></i><span class="chk"><em></em></span></div>
+              <div class="nl-row"><span>Eklenmiş şeker</span><i></i><span class="chk"><em></em></span></div>
+              <div class="nl-row"><span>Porsiyon gramajı</span><i></i><span class="chk"><em></em></span></div>
+              <div class="nl-row"><span>İçindekiler listesi</span><i></i><span class="chk"><em></em></span></div>
+              <div class="lens" id="lens"><div class="handle"></div><div class="glass"></div></div>
+            </div>
+            <h2 class="col-h" id="hR"><span class="ln"><span>İçeriğe ve</span></span><span class="ln"><span class="hl">tok tutma</span></span><span class="ln"><span class="hl">gücüne bak</span></span></h2>
+            <div class="uline" id="uline"></div>
+          </div>
+          <div class="divider" id="divider"></div>
+          <div class="neq" id="neq"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"><path d="M7 15h26M7 25h26M26 6L14 34"/></svg></div>
+          <div class="rule-pill" id="rulePill">RAF ANALİZ KURALI</div>
+        </section>
+
+        <!-- SCENE 3 · ANALYSIS -->
+        <section class="scene s3" id="s3">
+          <div class="gridbg"></div>
+          <div id="cards"></div>
+        </section>
+
+        <!-- SCENE 4 · VERDICT -->
+        <section class="scene s4" id="s4">
+          <div class="s4in" id="s4in">
+            <div class="gridbg"></div>
+            <h2 class="verdict" id="verdict">
+              <span class="ln v1"><span>EN İYİ ARA ÖĞÜN <em>=</em></span></span>
+              <span class="ln v2"><span>TEK BİR</span></span>
+              <span class="ln v2"><span>ÜRÜN DEĞİL</span></span>
+            </h2>
+            <div class="formula" id="formula">
+              <div class="kw k1"><span class="wd"><span>PROTEİN</span><i></i></span></div>
+              <div class="kw"><span class="pl">+</span><span class="wd"><span>LİF</span><i></i></span></div>
+              <div class="kw"><span class="pl">+</span><span class="wd"><span>DENGELİ PORSİYON</span><i></i></span></div>
+            </div>
+            <div class="shelf4">
+              <div class="s4-slots" id="s4slots"></div>
+              <div class="s4-board" id="s4board"></div>
+              <div class="s4-rail" id="s4rail"></div>
+              <div class="s4-tags" id="s4tags"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- SCENE 5 · CTA -->
+        <section class="scene s5" id="s5">
+          <div class="s5in" id="s5in">
+            <h2 class="ask" id="ask">
+              <span class="ln"><span>Bir sonraki</span></span>
+              <span class="ln"><span>Raf Analiz hangi</span></span>
+              <span class="ln"><span>ürün grubunu</span></span>
+              <span class="ln"><span>incelesin?</span></span>
+            </h2>
+            <div class="opts" id="opts">
+              <div class="opt"><span class="lt">A</span><span class="tx">Proteinli içecekler</span><span class="rd"><i></i></span></div>
+              <div class="opt"><span class="lt">B</span><span class="tx">Çikolatalar</span><span class="rd"><i></i></span></div>
+              <div class="opt"><span class="lt">C</span><span class="tx">Granolalar</span><span class="rd"><i></i></span></div>
+            </div>
+            <div class="howto" id="howto"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg><span>Yorumlara harfini yaz: A, B ya da C</span></div>
+            <div class="signoff" id="signoff"><span class="logo">RAF ANALİZ</span><p>Bağımsız ürün analizi<br>Kaydet, markette aç.</p></div>
+            <p class="disc" id="disc">Genel bilgilendirme içindir; tıbbi ya da beslenme tavsiyesi değildir. Fiyatlar örnektir, market ve gramaja göre değişir.</p>
+          </div>
+        </section>
+
+        <div class="wipe" id="wipe"></div>
+        <div class="brandbar" id="brandbar" data-tone="dark">
+          <span class="logo">RAF ANALİZ</span>
+          <span class="bb-r"><span id="bbLabel">ARA ÖĞÜN DOSYASI</span><span class="bb-dots" id="bbDots"><i></i><i></i><i></i><i></i><i></i></span></span>
+        </div>
+        <div class="safe" id="safe" hidden>
+          <div class="sf-top"><span>Reels</span><i></i></div>
+          <div class="sf-zone"></div>
+          <div class="sf-right"><i></i><i></i><i></i><i></i></div>
+          <div class="sf-bottom"><div class="who"><i></i><span></span></div><div class="cap"></div><div class="cap s"></div></div>
+          <div class="sf-label">Instagram arayüzü (yaklaşık)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <aside class="panel" id="panel">
+    <div class="p-kicker"><span class="mini-logo">RAF ANALİZ</span><span>Reel · 9:16</span></div>
+    <h1>100 TL altında sağlıklı ara öğünler</h1>
+    <p class="p-meta">1080 × 1920 · <span id="durLabel">45</span> sn · 5 sahne</p>
+    <div class="transport">
+      <button class="btn primary" id="playBtn" type="button"></button>
+      <button class="btn icon" id="restartBtn" type="button" aria-label="Baştan başlat" title="Baştan başlat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v5h5"/></svg></button>
+      <button class="btn" id="soundBtn" type="button" aria-pressed="false"></button>
+    </div>
+    <div class="scrub">
+      <input type="range" id="scrub" min="0" max="1000" step="1" value="0" aria-label="Zaman çizelgesi">
+      <div class="ticks" id="ticks"></div>
+      <div class="scrub-meta"><span id="chapNow">Kanca</span><span class="clock" id="clock">00:00 / 00:45</span></div>
+    </div>
+    <ol class="chapters" id="chapters"></ol>
+    <label class="toggle" for="safeToggle"><input type="checkbox" id="safeToggle">Instagram arayüzünü göster</label>
+    <p class="p-note"><b>Fiyatlar örnektir.</b> Paylaşmadan önce raftaki güncel fiyatlarla değiştirin. Puanlar kategori geneli içindir, tek tek ürünleri değerlendirmez.</p>
+  </aside>
+</div>
+
+<script>
+(() => {
+/* =========================================================
+   İçerik — fiyatları ve puanları buradan güncelleyin
+   ========================================================= */
+const CATS = [
+  { key:'bar', pack:'bar', name:['Meyve ve','kuruyemiş barı'], short:['Meyve-','kuruyemiş barı'],
+    unit:'ADET', price:44.90, range:'35–65 TL / adet', serving:'Porsiyon (1 adet)', perServing:'45 TL',
+    edge:false, rates:[5,3,3], ext:[0,0,0],
+    note:'Kuruyemiş payı yüksekse daha dengeli. Hurma ağırlıklıysa şeker oranı yükselir.',
+    look:['Kuruyemiş oranı','Eklenmiş şeker'] },
+  { key:'protein', pack:'pro', name:['Protein bar'], short:['Protein','bar'],
+    unit:'ADET', price:89.90, range:'70–99 TL / adet', serving:'Porsiyon (1 adet)', perServing:'90 TL',
+    edge:true, rates:[5,4,3], ext:[0,0,0],
+    note:'Protein tokluğa katkı sağlayabilir. İçerik listesi markadan markaya çok değişir.',
+    look:['Porsiyon başı protein','Şeker alkolleri'] },
+  { key:'buck', pack:'buck', name:['Karabuğday','patlağı'], short:['Karabuğday','patlağı'],
+    unit:'PAKET', price:64.90, range:'45–85 TL / paket', serving:'Porsiyon (2 adet)', perServing:'11 TL',
+    edge:false, rates:[3,2,4], ext:[0,2,0],
+    note:'Genelde kısa içerikli. Tek başına hafif kalır; yanına yoğurt ya da peynir eklenebilir.',
+    look:['Tuz','Aroma verici'] },
+  { key:'rice', pack:'rice', name:['Pirinç ve','mısır patlağı'], short:['Pirinç-mısır','patlağı'],
+    unit:'PAKET', price:39.90, range:'30–70 TL / paket', serving:'Porsiyon (2 adet)', perServing:'7 TL',
+    edge:false, rates:[3,1,3], ext:[0,2,0],
+    note:'Sade çeşitler basit içerikli; lif ve protein düşük olduğu için tek başına tok tutması sınırlı.',
+    look:['Aroma','Şeker ve tuz'] },
+];
+const RATE_LABELS = ['PRATİKLİK','TOKLUK','İÇERİK<br>KALİTESİ'];
+
+/* =========================================================
+   Zaman çizelgesi (saniye)
+   ========================================================= */
+const DUR = 45.0;
+const CARD_T = [11.45, 16.45, 21.45, 26.45];
+const CH = [
+  { t:0,     n:'01', title:'Kanca',  d:'100 TL altına sağlıklı ara öğün bulabilir mi?', bar:'ARA ÖĞÜN DOSYASI' },
+  { t:5.30,  n:'02', title:'Kural',  d:'Paketin önündeki iddia, arkasındaki veri', bar:'KURAL' },
+  { t:11.0,  n:'03', title:'Analiz', d:'4 kategori: fiyat, pratiklik, tokluk, içerik', bar:'ANALİZ' },
+  { t:31.3,  n:'04', title:'Karar',  d:'Protein + lif + dengeli porsiyon', bar:'KARAR' },
+  { t:38.0,  n:'05', title:'Soru',   d:'Sıradaki analizi takipçiler seçsin', bar:'SIRADAKİ' },
+];
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const $$ = (s, r=document) => Array.from(r.querySelectorAll(s));
+const clamp = (x,a=0,b=1) => x<a?a:x>b?b:x;
+const P = (t,a,d) => clamp((t-a)/d);
+const lerp = (a,b,p) => a+(b-a)*p;
+const E = {
+  o3: p => 1-Math.pow(1-p,3),
+  i3: p => p*p*p,
+  io3: p => p<.5 ? 4*p*p*p : 1-Math.pow(-2*p+2,3)/2,
+  oX: p => p>=1 ? 1 : 1-Math.pow(2,-10*p),
+  oB: p => { const c1=1.6, c3=c1+1; return 1+c3*Math.pow(p-1,3)+c1*Math.pow(p-1,2); },
+};
+const f2 = v => v.toFixed(2);
+function tf(el,x=0,y=0,s=1,r=0){ el.style.transform = `translate3d(${f2(x)}px,${f2(y)}px,0) scale(${s.toFixed(4)}) rotate(${f2(r)}deg)`; }
+function op(el,o){ el.style.opacity = o.toFixed(3); }
+function lineIn(el,p){ el.style.transform = `translate3d(0,${f2((1-p)*150)}%,0)`; }
+function rng(seed){ return () => { seed = (seed*1664525 + 1013904223) >>> 0; return seed/4294967296; }; }
+const CHECK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l4.6 4.6L19.5 6.8"/></svg>';
+function priceParts(v){ const [i,d] = v.toFixed(2).split('.'); return [i, ','+d]; }
+
+/* ---------- pack illustrations ---------- */
+function zig(n=12, depth=2.6){
+  const pts=[];
+  for(let i=0;i<=n;i++) pts.push(`${(i/n*100).toFixed(2)}% ${i%2?0:depth}%`);
+  for(let i=n;i>=0;i--) pts.push(`${(i/n*100).toFixed(2)}% ${i%2?100:100-depth}%`);
+  return `polygon(${pts.join(',')})`;
+}
+const ZIG = zig();
+function starburst(n=16, inner=40){
+  const pts=[];
+  for(let i=0;i<n*2;i++){ const a=Math.PI*i/n - Math.PI/2, r=i%2?inner:50; pts.push(`${(50+r*Math.cos(a)).toFixed(2)}% ${(50+r*Math.sin(a)).toFixed(2)}%`); }
+  return `polygon(${pts.join(',')})`;
+}
+const BURST = starburst();
+const NUTS = [[18,20,28,16,'#9A5F33',-20],[52,12,22,22,'#B07A45',0],[30,48,26,15,'#8A522A',25],[64,44,24,24,'#6B2A1E',0],[12,66,22,22,'#B98A55',0],[46,72,30,16,'#9A5F33',-35],[74,72,18,18,'#C99A60',0],[40,30,14,14,'#7B3A22',0]];
+function pack(kind, w, h){
+  const st = `width:${w}px;height:${h}px;--u:${(w/100).toFixed(3)}px`;
+  if(kind==='bar'){
+    const nuts = NUTS.map(([x,y,nw,nh,c,r]) => `<i class="nut" style="left:${x}%;top:${y}%;width:${nw}%;height:${nh*1.6}%;background:${c};transform:rotate(${r}deg)"></i>`).join('');
+    return `<div class="pk pk-bar" style="${st};clip-path:${ZIG}"><div class="crimp t"></div><div class="crimp b"></div><div class="win">${nuts}</div><div class="band"><span>MEYVE</span><span>KURUYEMİŞ</span></div><div class="gloss"></div></div>`;
+  }
+  if(kind==='pro') return `<div class="pk pk-pro" style="${st};clip-path:${ZIG}"><div class="crimp t"></div><div class="crimp b"></div><div class="stripe"></div><div class="dot"></div><div class="word">PROTEİN</div><div class="sub">BAR</div><div class="gloss"></div></div>`;
+  if(kind==='buck') return `<div class="pk pk-cake pk-buck" style="${st}"><div class="seal t"></div><div class="seal b"></div><div class="lbl"><b>KARABUĞDAY</b><span>PATLAĞI</span></div><div class="film"></div></div>`;
+  if(kind==='rice') return `<div class="pk pk-cake pk-rice" style="${st}"><div class="seal t"></div><div class="seal b"></div><div class="lbl"><b>PİRİNÇ·MISIR</b><span>PATLAĞI</span></div><div class="film"></div></div>`;
+  if(kind==='fit'){
+    const [c1,c2,nm] = arguments[3] || ['#FF4B2B','#FF7A45','ÇITIR'];
+    return `<div class="pk pk-fit" style="${st};--c1:${c1};--c2:${c2}"><div class="light">LIGHT</div><div class="burst" style="clip-path:${BURST}">FIT</div><div class="name">${nm}</div><div class="gloss"></div></div>`;
+  }
+  if(kind==='gra') return `<div class="pk pk-gra" style="${st}"><div class="top">GRANOLA</div><div class="win"></div><div class="bot">KARIŞIK · 400 G</div><div class="gloss"></div></div>`;
+  return '';
+}
+
+/* ---------- build: shelf world (scene 1) ---------- */
+const world = $('#world');
+const TYPES = {
+  bar:{w:116,h:296,n:3,prices:[39.90,44.90,52.50]},
+  pro:{w:116,h:296,n:3,prices:[84.90,94.90,109.90]},
+  buck:{w:148,h:350,n:2,prices:[59.90,64.90,72.50]},
+  rice:{w:148,h:350,n:2,prices:[34.90,39.90,42.90]},
+  fit:{w:226,h:316,n:2,prices:[112.90,124.90,99.90]},
+  gra:{w:236,h:350,n:1,prices:[139.90,164.90,149.90]},
+};
+const FITC = [['#FF4B2B','#FF8A50','ÇITIR'],['#1B1F27','#3A4150','KRAKER'],['#F7F5EF','#E2DDD2','CIPS'],['#2340FF','#5A70FF','MIX']];
+const tags = [];
+(function buildWorld(){
+  const R = rng(7);
+  let html = '';
+  [380, 1180, 1980].forEach(x => html += `<div class="post" style="left:${x}px"></div>`);
+  const order = ['bar','buck','fit','pro','rice','gra','bar','rice','pro','fit','buck','gra','pro','bar','rice','fit'];
+  for(let r=0;r<5;r++){
+    const top = 60 + r*540;
+    let row = `<div class="row" style="top:${top}px"><div class="board"></div><div class="rail"></div>`;
+    let x = 40 + Math.floor(R()*90), k = (r*5)%order.length;
+    while(x < 2300){
+      const type = order[k++ % order.length], T = TYPES[type];
+      const n = T.n, gw = n*T.w + (n-1)*12;
+      if(x + gw > 2380) break;
+      let items = '';
+      for(let i=0;i<n;i++){
+        items += type==='fit' ? pack('fit',T.w,T.h,FITC[(r+k)%FITC.length]) : pack(type,T.w,T.h);
+      }
+      row += `<div class="grp" style="left:${x}px;top:${440-T.h}px">${items}</div>`;
+      const price = T.prices[Math.floor(R()*T.prices.length)];
+      const [pi,pd] = priceParts(price);
+      const tx = x + gw/2 - 75;
+      row += `<div class="tag" data-i="${tags.length}" style="left:${tx}px"><span class="ti">${pi}</span><span class="td">${pd}</span><span class="tc">TL</span><span class="tx"></span><span class="tk">${CHECK}</span></div>`;
+      tags.push({ wy: top + 505, price, ok: price < 100, ts: Infinity });
+      x += gw + 40 + Math.floor(R()*30);
+    }
+    row += `</div>`;
+    html += row;
+  }
+  world.innerHTML = html;
+  $$('.tag', world).forEach((el,i) => { tags[i].el = el; tags[i].tk = el.querySelector('.tk'); tags[i].tx = el.querySelector('.tx'); });
+  $('#fgpack').innerHTML = pack('fit', 420, 600, ['#FF4B2B','#FF8A50','ÇITIR']);
+})();
+
+/* scene-1 camera, beam */
+function cam1(t){
+  const a = E.oX(P(t,0,1.2)), b = E.io3(P(t,1.2,3.8));
+  return {
+    s:  lerp(1.62,1.12,a) - 0.07*b,
+    cx: lerp(1900,1150,a) - 180*b,
+    cy: lerp(1540,1400,a) - 70*b,
+    r:  lerp(-4.5,0,a),
+    blur: 18*Math.pow(1-a,2),
+  };
+}
+const beamY = t => lerp(-80, 2000, E.io3(P(t,1.35,1.15)));
+(function precomputeScan(){
+  for(const tg of tags){
+    for(let t=1.35; t<=2.55; t+=1/240){
+      const c = cam1(t);
+      const sy = 960 + (tg.wy - c.cy)*c.s;
+      if(beamY(t) >= sy){ tg.ts = t; break; }
+    }
+  }
+})();
+
+/* ---------- build: cards (scene 3) ---------- */
+const cardsEl = $('#cards');
+const SPEC = { bar:[132,330,-9], pro:[132,330,8], buck:[146,340,-6], rice:[146,340,6] };
+cardsEl.innerHTML = CATS.map((c,k) => {
+  const [pi,pd] = priceParts(c.price);
+  const [sw,sh,sr] = SPEC[c.pack];
+  const rates = c.rates.map((v,j) => {
+    const ext = c.ext[j];
+    const segs = [0,1,2,3,4].map(i => `<span class="seg${i>=v && i<v+ext ? ' x':''}"><i></i></span>`).join('');
+    const extRow = ext ? `<div class="r-ext"><b></b><span>Taralı: yanına yoğurt, peynir gibi bir protein kaynağı eklenince</span></div>` : '';
+    return `<div class="rate${ext?' has-ext':''}"><span class="r-l">${RATE_LABELS[j]}</span><span class="r-v"><span class="num">0</span><small>/5</small></span><div class="segs">${segs}</div>${extRow}</div>`;
+  }).join('');
+  return `<article class="card" data-k="${k}">
+    <header class="c-band">
+      <div class="c-meta"><span>KATEGORİ ${k+1}/4</span><span>RAF ANALİZ</span></div>
+      <h3 class="c-name">${c.name.map(n => `<span class="ln"><span>${n}</span></span>`).join('')}</h3>
+    </header>
+    <div class="c-body">
+      <div class="c-top">
+        <div class="c-spec"><span class="cm tl"></span><span class="cm tr"></span><span class="cm bl"></span><span class="cm br"></span><span class="ruler"></span><span class="cap">TEMSİLİ ÇİZİM</span><div class="spec-pk" style="transform:rotate(${sr}deg)">${pack(c.pack,sw,sh)}</div></div>
+        <div class="c-price">
+          <div class="slabel">
+            <div class="sl-top"><span>ÖRNEK RAF FİYATI</span><span>${c.unit}</span></div>
+            <div class="sl-price"><span class="int">${pi}</span><span class="dec">${pd}</span><span class="cur">TL</span></div>
+            <div class="sl-range">Aralık: ${c.range}</div>
+            <div class="sl-unit"><span>${c.serving.replace(' (','<br>(')}</span><b>~${c.perServing}</b></div>
+          </div>
+          <div class="badge${c.edge?' edge':''}">${CHECK}<span>${c.edge?'100 TL ALTI · SINIRDA':'100 TL ALTI'}</span></div>
+        </div>
+      </div>
+      <div class="c-rates">${rates}</div>
+      <div class="c-note">
+        <span class="eyebrow">Raf notu</span>
+        <p>${c.note}</p>
+        <div class="chips"><span class="lead">ETİKETTE BAK:</span>${c.look.map(l => `<span class="chip">${l}</span>`).join('')}</div>
+      </div>
+      <footer class="c-foot"><span>Kategori geneli değerlendirme</span><span>Ürüne göre değişir</span></footer>
+    </div>
+  </article>`;
+}).join('');
+const cards = $$('.card', cardsEl).map((el,k) => ({
+  el, k,
+  meta: el.querySelector('.c-meta'),
+  name: $$('.c-name .ln>span', el),
+  spec: el.querySelector('.spec-pk'), specRot: SPEC[CATS[k].pack][2],
+  cms: $$('.cm', el),
+  slabel: el.querySelector('.slabel'),
+  int: el.querySelector('.sl-price .int'), dec: el.querySelector('.sl-price .dec'),
+  badge: el.querySelector('.badge'),
+  rates: $$('.rate', el).map((r,j) => ({ el:r, num:r.querySelector('.num'), segs:$$('.seg i', r), v:CATS[k].rates[j], ext:CATS[k].ext[j], extRow:r.querySelector('.r-ext') })),
+  note: el.querySelector('.c-note'),
+  chips: $$('.chip', el),
+  foot: el.querySelector('.c-foot'),
+}));
+
+/* ---------- build: verdict shelf (scene 4) ---------- */
+const S4P = { bar:[96,244], pro:[96,244], buck:[112,268], rice:[112,268] };
+$('#s4slots').innerHTML = CATS.map(c => `<div class="s4p">${pack(c.pack, ...S4P[c.pack])}</div>`).join('');
+$('#s4tags').innerHTML = CATS.map(c => { const [pi,pd] = priceParts(c.price); return `<div class="s4t"><span>${c.short.join('<br>')}</span><b>${pi}<small>${pd}</small></b></div>`; }).join('');
+const s4p = $$('.s4p'), s4t = $$('.s4t');
+
+/* ---------- refs ---------- */
+const S = ['#s1','#s2','#s3','#s4','#s5'].map($);
+const cam = $('#cam'), fg = $('#fgpack'), beam = $('#beam'), bigtag = $('#bigtag'), hookSub = $('#hookSub');
+const hookLines = $$('#hook .h-line');
+const wipe = $('#wipe');
+const colL = $('#colL'), colR = $('#colR'), divider = $('#divider'), neq = $('#neq'), rulePill = $('#rulePill');
+const tagL = $('#tagL'), tagR = $('#tagR'), cpack = $('#cpack'), cpBack = $('#cpBack'), sweep = $('#sweep');
+const stks = $$('.stk'), STK_R = [-12, 7, -8, -4];
+const hL = $$('#hL .ln>span'), hR = $$('#hR .ln>span'), hRwrap = $('#hR'), uline = $('#uline');
+const nlabel = $('#nlabel'), nlRows = $$('.nl-row', nlabel), lens = $('#lens');
+nlRows.forEach(r => { r.querySelector('em').innerHTML = CHECK; });
+const s4in = $('#s4in'), vLines = $$('#verdict .ln>span'), kws = $$('#formula .kw'), s4board = $('#s4board'), s4rail = $('#s4rail');
+const s5in = $('#s5in'), askLines = $$('#ask .ln>span'), opts = $$('#opts .opt'), howto = $('#howto'), signoff = $('#signoff'), disc = $('#disc');
+const brandbar = $('#brandbar'), bbLabel = $('#bbLabel'), bbDots = $$('#bbDots i');
+
+/* =========================================================
+   Sahneler
+   ========================================================= */
+function scene1(t){
+  const c = cam1(t);
+  world.style.transform = `translate3d(${f2(600 - c.cx*c.s)}px,${f2(1020 - c.cy*c.s)}px,0) scale(${c.s.toFixed(4)})`;
+  cam.style.transform = `rotate(${f2(c.r)}deg)`;
+  cam.style.filter = c.blur > .25 ? `blur(${f2(c.blur)}px)` : 'none';
+
+  const fp = P(t,0,.8);
+  tf(fg, lerp(520,-1500,E.io3(fp)), lerp(40,-80,fp), 1, lerp(-8,-22,fp));
+  fg.style.visibility = fp < 1 ? 'visible' : 'hidden';
+
+  const by = beamY(t);
+  tf(beam, 0, by); op(beam, t>1.35 && t<2.5 ? 1 : 0);
+  for(const tg of tags){
+    const on = t >= tg.ts;
+    tg.el.classList.toggle('ok', on && tg.ok);
+    if(!on){ tg.el.style.transform=''; tg.el.style.opacity=''; tg.tk.style.transform='scale(0)'; tg.tx.style.transform='scaleX(0)'; continue; }
+    const p = P(t,tg.ts,.35);
+    if(tg.ok){
+      tg.el.style.transform = `scale(${(1 + .2*Math.sin(Math.PI*p)).toFixed(3)})`;
+      tg.tk.style.transform = `scale(${E.oB(p).toFixed(3)})`;
+      tg.el.style.opacity = '1';
+    } else {
+      tg.el.style.transform = '';
+      tg.tx.style.transform = `scaleX(${E.o3(p).toFixed(3)})`;
+      tg.el.style.opacity = lerp(1,.45,p).toFixed(3);
+    }
+  }
+
+  hookLines.forEach((el,i) => {
+    const p = E.oX(P(t, i*.06, .9));
+    const out = E.i3(P(t, 4.72 + i*.035, .4));
+    tf(el, -26*(1-p), 22*(1-p) - 90*out, 1 + .07*(1-p));
+  });
+  let rr = lerp(-15,-3,E.oB(P(t,.04,.75)));
+  if(t > 1.75){ const d = t-1.75; rr += 5*Math.sin(d*11)*Math.exp(-d*3.2); }
+  bigtag.style.transform = `rotate(${f2(rr)}deg)`;
+
+  const sp = E.oX(P(t,2.55,.7)), so = E.i3(P(t,4.75,.35));
+  op(hookSub, sp*(1-so)); tf(hookSub, 0, 40*(1-sp) - 60*so);
+}
+
+function scene2(t){
+  const a = E.oX(P(t,5.3,.75));
+  const xo = -540*E.io3(P(t,11.0,.55));
+  tf(colL, xo, -300*(1-a)); tf(colR, 0, 300*(1-a));
+
+  divider.style.transform = `scaleY(${E.oX(P(t,5.62,.6)).toFixed(4)})`;
+  op(divider, 1 - P(t,10.8,.2));
+  const np = E.oB(P(t,6.0,.5)), nOut = P(t,10.75,.25);
+  neq.style.transform = `scale(${(np*(1-nOut)).toFixed(4)}) rotate(${f2((1-np)*-90)}deg)`;
+  const rp = E.oB(P(t,6.15,.45));
+  rulePill.style.transform = `translate(-50%,-50%) scale(${(rp*(1-nOut)).toFixed(4)})`;
+
+  [tagL,tagR].forEach((el,i) => { const p = E.o3(P(t,5.8+i*.1,.45)); op(el,p); tf(el,0,24*(1-p)); });
+
+  const cp = E.oB(P(t,5.85,.65));
+  tf(cpack, 0, 90*(1-cp), .6 + .4*cp, -8*(1-cp));
+  op(cpack, P(t,5.85,.12));
+
+  stks.forEach((el,i) => {
+    const p = E.oB(P(t, 6.2 + i*.15, .5));
+    const f = E.i3(P(t, 9.65 + i*.1, .65));
+    tf(el, (i%2?1:-1)*120*f, 980*f, p, STK_R[i] + (1-p)*-30 + f*(i%2?70:-70));
+    el.style.visibility = p > 0 && f < 1 ? 'visible' : 'hidden';
+  });
+  const sw = P(t,9.4,.55);
+  tf(sweep, 0, lerp(380, 1000, E.io3(sw))); op(sweep, sw>0 && sw<1 ? 1 : 0);
+  const bp = E.o3(P(t,10.15,.4)); op(cpBack,bp); tf(cpBack, -20*(1-bp), 0);
+
+  hL.forEach((el,i) => lineIn(el, E.oX(P(t, 6.6 + i*.1, .75))));
+
+  const rOut = 1 - P(t,10.72,.26);
+  const nl = E.oX(P(t,7.05,.6));
+  tf(nlabel, 0, 70*(1-nl)); op(nlabel, nl*rOut);
+  nlRows.forEach((row,i) => {
+    const p = E.oB(P(t, 7.5 + i*.2, .38));
+    row.querySelector('em').style.transform = `scale(${p.toFixed(3)})`;
+    row.style.opacity = (.42 + .58*P(t, 7.45 + i*.2, .15)).toFixed(3);
+  });
+  const lp = E.io3(P(t,7.35,1.15));
+  tf(lens, 0, lerp(45, 45 + 4*76, lp)); op(lens, P(t,7.25,.2)*(1-P(t,8.6,.3)));
+
+  hR.forEach((el,i) => lineIn(el, E.oX(P(t, 7.95 + i*.1, .75))));
+  op(hRwrap, rOut);
+  uline.style.transform = `scaleX(${E.o3(P(t,9.95,.5)).toFixed(4)})`; op(uline, rOut);
+  op(tagR, E.o3(P(t,5.9,.45))*rOut);
+}
+
+function scene3(t){
+  const clip = 1 - E.io3(P(t,11.0,.55));
+  S[2].style.clipPath = clip > 0 ? `inset(0 0 0 ${f2(540*clip)}px)` : 'none';
+  const tail = E.io3(P(t,31.3,.5));
+  for(const c of cards){
+    const lt = t - CARD_T[c.k];
+    const vis = lt > -.02 && (c.k === 3 || lt < 5.5);
+    c.el.style.visibility = vis ? 'visible' : 'hidden';
+    if(!vis) continue;
+    const pin = E.oX(P(lt,0,.72));
+    const out = c.k < 3 ? E.i3(P(lt,4.95,.5)) : 0;
+    const drift = .014*E.io3(P(lt,.7,4.2));
+    tf(c.el, 1160*(1-pin) - 1160*out, 30*tail, 1 + drift - .06*out - .06*tail, 6*(1-pin) - 5*out);
+
+    op(c.meta, P(lt,.2,.3));
+    c.name.forEach((el,i) => lineIn(el, E.oX(P(lt,.22 + i*.09,.6))));
+
+    const sp = E.oB(P(lt,.36,.7));
+    c.spec.style.transform = `translate3d(0,${f2(70*(1-sp))}px,0) scale(${(.5+.5*sp).toFixed(4)}) rotate(${f2(c.specRot + (1-sp)*-18)}deg)`;
+    c.cms.forEach(el => { const p = E.o3(P(lt,.3,.4)); el.style.transform = `scale(${(1.6-.6*p).toFixed(3)})`; op(el,p); });
+
+    const lp = E.oB(P(lt,.46,.7));
+    c.slabel.style.transform = `perspective(1100px) rotateX(${f2(-82*(1-lp))}deg)`;
+    op(c.slabel, P(lt,.46,.12));
+    const cnt = CATS[c.k].price * E.o3(P(lt,.55,.7));
+    const [pi,pd] = priceParts(cnt);
+    if(c.int.textContent !== pi) c.int.textContent = pi;
+    if(c.dec.textContent !== pd) c.dec.textContent = pd;
+
+    const bp = E.oB(P(lt,1.15,.4));
+    c.badge.style.transform = `scale(${bp.toFixed(4)})`;
+
+    c.rates.forEach((r,j) => {
+      const t0 = .95 + j*.24;
+      const rp = E.o3(P(lt,t0,.35));
+      op(r.el, rp); r.el.style.transform = `translate3d(${f2(-30*(1-rp))}px,0,0)`;
+      let shown = 0;
+      r.segs.forEach((seg,i) => {
+        const isExt = i >= r.v && i < r.v + r.ext;
+        if(i >= r.v + r.ext){ seg.style.transform = 'scaleX(0)'; return; }
+        const st = t0 + .12 + i*.08 + (isExt ? .35 : 0);
+        const p = E.o3(P(lt, st, .2));
+        seg.style.transform = `scaleX(${p.toFixed(4)})`;
+        if(!isExt && p > .5) shown = i+1;
+      });
+      const txt = String(shown);
+      if(r.num.textContent !== txt) r.num.textContent = txt;
+      if(r.extRow) op(r.extRow, E.o3(P(lt, t0 + .7, .35)));
+    });
+
+    const np = E.oX(P(lt,1.9,.55));
+    op(c.note, np); c.note.style.transform = `translate3d(0,${f2(30*(1-np))}px,0)`;
+    c.chips.forEach((el,i) => { const p = E.oB(P(lt,2.15 + i*.12,.4)); el.style.transform = `scale(${p.toFixed(4)})`; });
+    op(c.foot, P(lt,2.4,.4));
+  }
+}
+
+function scene4(t){
+  const clip = 1 - E.io3(P(t,31.3,.5));
+  S[3].style.clipPath = clip > 0 ? `inset(${f2(clip*100)}% 0 0 0)` : 'none';
+  const up = E.io3(P(t,38.0,.5));
+  s4in.style.transform = `translate3d(0,${f2(-140*up)}px,0) scale(${(1 + .02*P(t,31.8,6.2)).toFixed(4)})`;
+
+  const bp = E.oX(P(t,31.6,.55));
+  [s4board, s4rail].forEach(el => el.style.transform = `translate3d(0,${f2(180*(1-bp))}px,0)`);
+  s4p.forEach((el,i) => {
+    const p = E.oB(P(t, 31.78 + i*.12, .6));
+    tf(el, 0, -360*(1-p), 1, (i%2?6:-6)*(1-p));
+    op(el, P(t, 31.78 + i*.12, .1));
+  });
+  s4t.forEach((el,i) => {
+    const p = E.oB(P(t, 32.0 + i*.12, .55));
+    el.style.transform = `perspective(900px) rotateX(${f2(-85*(1-p))}deg)`;
+    op(el, P(t, 32.0 + i*.12, .1));
+  });
+
+  vLines.forEach((el,i) => lineIn(el, E.oX(P(t, 32.3 + i*.13, .7))));
+
+  kws.forEach((kw,i) => {
+    const t0 = 33.5 + i*.6;
+    const wd = kw.querySelector('.wd'), span = wd.querySelector('span'), blk = wd.querySelector('i');
+    const a = P(t,t0,.26), b = P(t,t0+.26,.3);
+    if(b <= 0){ blk.style.transformOrigin = 'left'; blk.style.transform = `scaleX(${E.o3(a).toFixed(4)})`; }
+    else { blk.style.transformOrigin = 'right'; blk.style.transform = `scaleX(${(1-E.io3(b)).toFixed(4)})`; }
+    span.style.opacity = t >= t0 + .26 ? '1' : '0';
+    const pl = kw.querySelector('.pl');
+    if(pl) pl.style.transform = `scale(${E.oB(P(t,t0-.08,.4)).toFixed(4)})`;
+  });
+}
+
+function scene5(t){
+  const clip = 1 - E.io3(P(t,38.0,.5));
+  S[4].style.clipPath = clip > 0 ? `inset(${f2(clip*100)}% 0 0 0)` : 'none';
+  s5in.style.transform = `scale(${(1 + .015*P(t,38.5,6.5)).toFixed(4)})`;
+  askLines.forEach((el,i) => lineIn(el, E.oX(P(t, 38.45 + i*.09, .7))));
+  opts.forEach((el,i) => {
+    const p = E.oX(P(t, 39.1 + i*.15, .6));
+    const sel = P(t, 40.35 + i*.55, .2) * (1 - P(t, 40.35 + i*.55 + .5, .15));
+    tf(el, 420*(1-p), -10*sel, 1 + .025*sel);
+    op(el, P(t, 39.1 + i*.15, .2));
+    el.querySelector('.rd i').style.transform = `scale(${E.oB(clamp(sel*1.0)).toFixed(4)})`;
+    el.style.boxShadow = sel > 0 ? `${f2(12*sel)}px ${f2(12*sel)}px 0 var(--ink)` : 'none';
+  });
+  const hp = E.o3(P(t,39.75,.45)); op(howto,hp); tf(howto, 0, 20*(1-hp));
+  const sp = E.oX(P(t,42.05,.6)); op(signoff,sp); tf(signoff, 0, 30*(1-sp));
+  op(disc, P(t,42.35,.5));
+}
+
+function chapterAt(t){ let k=0; CH.forEach((c,i) => { if(t >= c.t) k=i; }); return k; }
+function brand(t){
+  const tone = t < 5.30 ? 'dark' : t < 31.45 ? 'light' : t < 38.15 ? 'dark' : 'yellow';
+  if(brandbar.dataset.tone !== tone) brandbar.dataset.tone = tone;
+  const k = chapterAt(t);
+  let label = CH[k].bar;
+  if(k === 2){ let n = 1; CARD_T.forEach((ct,i) => { if(t >= ct + .2) n = i+1; }); label = `ANALİZ ${n}/4`; }
+  if(bbLabel.textContent !== label) bbLabel.textContent = label;
+  bbDots.forEach((d,i) => d.classList.toggle('on', i === k));
+  const bo = (t>4.9 && t<5.7) ? 1 - Math.sin(Math.PI*P(t,4.9,.8)) : 1;
+  op(brandbar, clamp(bo));
+}
+
+const WIN = [[0,5.30],[5.30,11.62],[10.98,31.85],[31.28,38.55],[37.98,DUR+1]];
+const FN = [scene1, scene2, scene3, scene4, scene5];
+function render(t){
+  t = clamp(t, 0, DUR);
+  for(let i=0;i<5;i++){
+    const on = t >= WIN[i][0] && t < WIN[i][1];
+    S[i].style.visibility = on ? 'visible' : 'hidden';
+    if(on) FN[i](t);
+  }
+  const wp = P(t,4.95,.7);
+  wipe.style.transform = `translate3d(0,${f2(lerp(2600,-2700,E.io3(wp)))}px,0) rotate(-7deg)`;
+  wipe.style.visibility = wp > 0 && wp < 1 ? 'visible' : 'hidden';
+  brand(t);
+}
+
+/* =========================================================
+   Ses tasarımı — animasyonla aynı zaman çizelgesinden üretilir
+   (tarayıcıda önizlenir, render.js ile MP4'e yazılır)
+   ========================================================= */
+function buildCues(){
+  const c = [];
+  const W = (t,g,d,f0,f1,pan=0,sweep=0) => c.push({ t, k:'whoosh', g, d, f0, f1, pan, sweep });
+  W(0, 1, .95, 300, 5200, .4, -1);                       // kamera savrulması
+  c.push({ t:.04, k:'thud', g:.9 });                       // başlık oturuyor
+  c.push({ t:1.62, k:'beep', g:1, pan:-.1 });              // kasa okuyucusu
+  W(4.95, 1, .75, 200, 3400);                              // sarı geçiş
+  [0,1,2,3].forEach(i => c.push({ t:6.2 + i*.15 + .06, k:'pop', g:1, pan:-.45, f:700 + i*90 }));
+  [0,1,2,3,4].forEach(i => c.push({ t:7.5 + i*.2 + .07, k:'tick', g:1, f:1700 + i*110, pan:.45 }));
+  c.push({ t:9.42, k:'beep', g:.7, pan:-.4 });
+  W(9.65, .55, .8, 700, 1800, -.4);                        // etiketler düşüyor
+  W(10.97, .8, .6, 300, 4200, .3, -1);
+  CARD_T.forEach((T,k) => {
+    W(T - .06, .75, .62, 300, 4400, .5, -1);
+    c.push({ t:T + .52, k:'pop', g:.55, f:520 });
+    c.push({ t:T + 1.2, k:'pop', g:.6, f:900 });
+    c.push({ t:T + 1.25, k:'ding', g:1, pan:.3 });
+    CATS[k].rates.forEach((v,j) => {
+      const t0 = .95 + j*.24, ext = CATS[k].ext[j];
+      for(let i=0;i<v+ext;i++){
+        const isExt = i >= v;
+        c.push({ t:T + t0 + .12 + i*.08 + (isExt ? .35 : 0), k:'tick', g:isExt ? .55 : .85, f:1250 + i*130 + j*60, pan:.15 });
+      }
+    });
+    CATS[k].look.forEach((_,i) => c.push({ t:T + 2.15 + i*.12 + .05, k:'pop', g:.45, f:800 + i*120 }));
+  });
+  W(31.28, .9, .62, 150, 2600);
+  [0,1,2,3].forEach(i => c.push({ t:31.78 + i*.12 + .3, k:'thud', g:.45, pan:-.45 + i*.3 }));
+  [0,1,2].forEach(i => c.push({ t:32.3 + i*.13 + .06, k:'thud', g:.75 }));
+  [0,1,2].forEach(i => { W(33.5 + i*.6, .35, .3, 900, 3600, -.2, 1); c.push({ t:33.5 + i*.6 + .26, k:'thud', g:1 }); });
+  W(37.98, .9, .62, 150, 2800);
+  [0,1,2].forEach(i => W(39.1 + i*.15, .32, .42, 800, 3200, .5, -1));
+  [0,1,2].forEach(i => c.push({ t:40.37 + i*.55, k:'tick', g:1, f:2100 }));
+  c.push({ t:42.05, k:'chime', g:1 });
+  return c.sort((a,b) => a.t - b.t);
+}
+function synthesize(sr){
+  const N = Math.ceil(DUR*sr), L = new Float32Array(N), R = new Float32Array(N);
+  let seed = 90210;
+  const noise = () => { seed = (seed*1664525 + 1013904223) >>> 0; return seed/2147483648 - 1; };
+  const put = (i,v,pan) => {
+    if(i < 0 || i >= N) return;
+    const a = (clamp(pan,-1,1) + 1)*Math.PI/4;
+    L[i] += v*Math.cos(a); R[i] += v*Math.sin(a);
+  };
+  const TAU = Math.PI*2;
+  for(const q of buildCues()){
+    const s0 = Math.round(q.t*sr), pan = q.pan || 0;
+    if(q.k === 'whoosh'){
+      const n = Math.round(q.d*sr); let low = 0, band = 0;
+      for(let k=0;k<n;k++){
+        const x = k/n;
+        const env = Math.pow(Math.sin(Math.PI*Math.pow(x,.65)),2);
+        const fc = q.f0 + (q.f1 - q.f0)*Math.sin(Math.PI*Math.min(1,x*1.1)*.9);
+        const f = 2*Math.sin(Math.PI*Math.min(fc, sr/6)/sr);
+        low += f*band; const high = noise() - low - .6*band; band += f*high;
+        put(s0+k, band*env*.55*q.g, pan + q.sweep*(x - .5));
+      }
+    } else if(q.k === 'beep'){
+      const d = .12, n = Math.round(d*sr), f = 2730;
+      for(let k=0;k<n;k++){
+        const tt = k/sr, env = Math.min(1, tt/.003)*Math.min(1, (d-tt)/.012);
+        put(s0+k, (Math.sin(TAU*f*tt) + .22*Math.sin(TAU*3*f*tt))*env*.16*q.g, pan);
+      }
+    } else if(q.k === 'tick'){
+      const n = Math.round(.05*sr), f = q.f || 1500;
+      for(let k=0;k<n;k++){
+        const tt = k/sr;
+        put(s0+k, (Math.sin(TAU*f*tt)*Math.exp(-tt/.008) + noise()*.35*Math.exp(-tt/.0012))*.2*q.g, pan);
+      }
+    } else if(q.k === 'pop'){
+      const n = Math.round(.11*sr), f1 = q.f || 800; let ph = 0;
+      for(let k=0;k<n;k++){
+        const tt = k/sr, f = 220 + f1*Math.exp(-tt/.018); ph += TAU*f/sr;
+        put(s0+k, Math.sin(ph)*(1 - Math.exp(-tt/.0015))*Math.exp(-tt/.035)*.42*q.g, pan);
+      }
+    } else if(q.k === 'thud'){
+      const n = Math.round(.4*sr); let ph = 0, lp = 0;
+      for(let k=0;k<n;k++){
+        const tt = k/sr, f = 62 + 150*Math.exp(-tt/.028); ph += TAU*f/sr;
+        lp += .18*(noise() - lp);
+        put(s0+k, (Math.sin(ph)*Math.exp(-tt/.13) + lp*1.4*Math.exp(-tt/.006))*.75*q.g, pan);
+      }
+    } else if(q.k === 'ding' || q.k === 'chime'){
+      const notes = q.k === 'ding' ? [[0,1318.5]] : [[0,783.99],[.09,1174.66],[.18,1567.98]];
+      for(const [dt,base] of notes){
+        const s1 = s0 + Math.round(dt*sr), n = Math.round(1.1*sr);
+        for(let k=0;k<n;k++){
+          const tt = k/sr, at = Math.min(1, tt/.002);
+          const v = Math.sin(TAU*base*tt)*Math.exp(-tt/.38) + .45*Math.sin(TAU*base*2.01*tt)*Math.exp(-tt/.18) + .22*Math.sin(TAU*base*2.76*tt)*Math.exp(-tt/.1);
+          put(s1+k, v*at*.16*q.g, pan + (q.k === 'chime' ? (dt*4 - .35) : 0));
+        }
+      }
+    }
+  }
+  let peak = 0;
+  for(let i=0;i<N;i++){ L[i] = Math.tanh(L[i]*1.2); R[i] = Math.tanh(R[i]*1.2); peak = Math.max(peak, Math.abs(L[i]), Math.abs(R[i])); }
+  const g = peak > 0 ? .79/peak : 1;
+  for(let i=0;i<N;i++){ L[i] *= g; R[i] *= g; }
+  return [L, R];
+}
+function pcm16base64(sr){
+  const [L,R] = synthesize(sr), N = L.length, b = new Uint8Array(N*4), dv = new DataView(b.buffer);
+  for(let i=0;i<N;i++){ dv.setInt16(i*4, Math.round(L[i]*32767), true); dv.setInt16(i*4+2, Math.round(R[i]*32767), true); }
+  let s = ''; for(let i=0;i<b.length;i+=0x8000) s += String.fromCharCode.apply(null, b.subarray(i, i+0x8000));
+  return btoa(s);
+}
+
+/* =========================================================
+   Oynatıcı
+   ========================================================= */
+const EXPORT = !!window.__REEL_EXPORT__;
+const stage = $('#stage'), frame = $('#frame'), viewer = $('#viewer');
+window.__reel = { duration: DUR, fps: 30, seek: t => render(t), ready: false, audio: pcm16base64 };
+document.fonts.ready.then(() => { window.__reel.ready = true; render(cur); });
+
+let cur = 0;
+if(EXPORT){
+  document.body.classList.add('export');
+  render(0);
+  return;
+}
+
+function fit(){
+  const mobile = matchMedia('(max-width: 860px)').matches;
+  const w = viewer.clientWidth;
+  const h = mobile ? Math.min(window.innerHeight*.84, w*16/9) : viewer.clientHeight;
+  const s = Math.max(.1, Math.min(w/1080, h/1920));
+  frame.style.width = (1080*s).toFixed(1)+'px';
+  frame.style.height = (1920*s).toFixed(1)+'px';
+  stage.style.transform = `scale(${s})`;
+  viewer.style.height = mobile ? (1920*s).toFixed(1)+'px' : '';
+}
+addEventListener('resize', fit); fit();
+
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let playing = !reduce, last = null;
+if(reduce) cur = 3.2;
+const playBtn = $('#playBtn'), scrub = $('#scrub'), clock = $('#clock');
+const ICON_PLAY = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>';
+const ICON_PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg>';
+const mmss = s => { s = Math.floor(s); return String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0'); };
+$('#durLabel').textContent = Math.round(DUR);
+
+const chapList = $('#chapters');
+chapList.innerHTML = CH.map((c,i) => `<li><button type="button" data-i="${i}"><span class="n">${c.n}</span><span>${c.title}</span><span class="tc">${mmss(c.t)}</span><span class="d">${c.d}</span></button></li>`).join('');
+const chapBtns = $$('button', chapList);
+$('#ticks').innerHTML = CH.map(c => `<i style="left:${(c.t/DUR*100).toFixed(2)}%"></i>`).join('');
+
+/* ses: varsayılan kapalı; açılınca aynı zaman çizelgesinden üretilen tampon çalınır */
+const soundBtn = $('#soundBtn');
+const ICON_SOUND = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h4l5-4v13l-5-4H4z"/><path d="M16.5 9a4.5 4.5 0 0 1 0 6M19 6.5a8 8 0 0 1 0 11"/></svg>';
+const ICON_MUTE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h4l5-4v13l-5-4H4z"/><path d="M17 9.5l5 5M22 9.5l-5 5"/></svg>';
+let soundOn = false, actx = null, abuf = null, asrc = null, aStart = 0, again = null;
+function ensureAudio(){
+  try {
+    if(!actx){
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if(!AC) return false;
+      actx = new AC();
+      again = actx.createGain(); again.gain.value = .9; again.connect(actx.destination);
+      const [L,R] = synthesize(actx.sampleRate);
+      abuf = actx.createBuffer(2, L.length, actx.sampleRate);
+      abuf.getChannelData(0).set(L); abuf.getChannelData(1).set(R);
+    }
+    if(actx.state === 'suspended') actx.resume();
+    return true;
+  } catch(e){ return false; }
+}
+function audioStop(){ if(asrc){ try { asrc.stop(); } catch(e){} asrc.disconnect(); asrc = null; } }
+function audioStart(){
+  audioStop();
+  if(!soundOn || !playing || !actx) return;
+  asrc = actx.createBufferSource(); asrc.buffer = abuf; asrc.connect(again);
+  asrc.start(0, Math.min(cur, DUR - .01)); aStart = actx.currentTime - cur;
+}
+function soundUI(){
+  soundBtn.setAttribute('aria-pressed', soundOn ? 'true' : 'false');
+  soundBtn.innerHTML = (soundOn ? ICON_SOUND : ICON_MUTE) + (soundOn ? 'Ses açık' : 'Ses kapalı');
+}
+soundBtn.addEventListener('click', () => {
+  soundOn = !soundOn;
+  if(soundOn && !ensureAudio()) soundOn = false;
+  if(soundOn) audioStart(); else audioStop();
+  soundUI();
+});
+soundUI();
+
+function setPlaying(v){ playing = v; last = null; playBtn.innerHTML = (v ? ICON_PAUSE : ICON_PLAY) + (v ? 'Duraklat' : 'Oynat'); if(v) audioStart(); else audioStop(); }
+function seek(t){ cur = clamp(t,0,DUR); render(cur); ui(); if(asrc) audioStart(); }
+function ui(){
+  const v = Math.round(cur/DUR*1000);
+  if(+scrub.value !== v && document.activeElement !== scrub) scrub.value = v;
+  clock.textContent = `${mmss(cur)} / ${mmss(DUR)}`;
+  const k = chapterAt(cur);
+  chapBtns.forEach((b,i) => b.setAttribute('aria-current', i===k ? 'true' : 'false'));
+  if(chapNow.textContent !== CH[k].title) chapNow.textContent = CH[k].title;
+}
+const chapNow = $('#chapNow');
+playBtn.addEventListener('click', () => setPlaying(!playing));
+frame.addEventListener('click', () => setPlaying(!playing));
+$('#restartBtn').addEventListener('click', () => { seek(0); setPlaying(true); });
+scrub.addEventListener('input', () => seek(scrub.value/1000*DUR));
+chapBtns.forEach((b,i) => b.addEventListener('click', () => { seek(CH[i].t + (i ? .02 : 0)); setPlaying(true); }));
+const safeToggle = $('#safeToggle'), safe = $('#safe');
+safeToggle.addEventListener('change', () => { safe.hidden = !safeToggle.checked; });
+addEventListener('keydown', e => {
+  if(e.target.closest && e.target.closest('input,button')) return;
+  if(e.key === ' '){ e.preventDefault(); setPlaying(!playing); }
+  else if(e.key === 'ArrowRight') seek(cur + 2);
+  else if(e.key === 'ArrowLeft') seek(cur - 2);
+});
+
+setPlaying(playing);
+function tick(now){
+  if(playing){
+    if(asrc){ cur = actx.currentTime - aStart; if(cur >= DUR){ cur = 0; audioStart(); } }
+    else if(last !== null){ cur += (now - last)/1000; if(cur >= DUR) cur = 0; }
+    last = now;
+    render(cur); ui();
+  }
+  requestAnimationFrame(tick);
+}
+render(cur); ui();
+requestAnimationFrame(tick);
+})();
+</script>
