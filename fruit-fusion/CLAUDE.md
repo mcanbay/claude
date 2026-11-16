@@ -5,8 +5,8 @@ Primary UI language Turkish, English also shipped. Offline, no ads, no backend, 
 
 ## Commands (run from `fruit-fusion/`)
 - Import assets (needed after adding/changing assets or CSV): `godot --headless --path . --import`
-- Run all tests: `godot --headless --path . -s tests/run_tests.gd` (exit code 0 = pass)
-- Parse-check everything: `godot --headless --path . --check-only -s <file>` or just run the tests
+- Run all tests: `godot --headless --fixed-fps 60 --path . res://tests/run_tests.tscn` (exit code 0 = pass)
+- iOS Xcode project: `TEAM_ID=… BUNDLE_ID=… tools/export_ios_project.sh` (templates in `~/.local/share/godot/export_templates/4.7.1.stable/`)
 - Regenerate art/audio: `python3 tools/gen_art.py && python3 tools/gen_audio.py`
 - Store screenshots (needs xvfb): `tools/make_screenshots.sh`
 - Godot binary in cloud sessions: `/usr/local/bin/godot` (not committed; download 4.7.1 from GitHub releases)
@@ -42,7 +42,7 @@ Autoloads: `Settings`, `SaveData`, `AudioManager`, `Haptics`, `AdService` (see `
   `game_over(score:int, is_new_best:bool)`, `state_changed(state:int)`
 - enum `State { IDLE, PLAYING, PAUSED, GAME_OVER }`
 - methods: `start_new_game()`, `resume_saved_game() -> bool`, `pause()`, `resume()`, `quit_to_menu()` (saves),
-  `set_layout(play_rect: Rect2)`; properties `score:int`, `state:int`
+  `set_layout(play_rect: Rect2)`, `aim(x)`, `drop()`; properties `score:int`, `state:int`
 
 Asset file names (all optional at runtime; code falls back to vector drawing / silence):
 - `assets/fruits/fruit_01.png` … `fruit_11.png` — 512×512, transparent, fruit body is a circle touching all four edges
@@ -50,3 +50,5 @@ Asset file names (all optional at runtime; code falls back to vector drawing / s
   `sfx_gameover.wav`, `sfx_newbest.wav`, `music_loop.ogg`
 - `assets/fonts/ui_font.ttf` (OFL, must cover Turkish), `assets/ui/jar_bg.png` optional backdrop
 - `assets/icon/icon_1024.png` (no alpha), `assets/icon/launch_logo.png`
+
+`UIRoot` (`src/ui/ui_root.gd`, CanvasLayer): `bind(game)`, `apply_layout(viewport_size, safe_top, safe_bottom)`. UI translation keys are prefixed `UI_`.

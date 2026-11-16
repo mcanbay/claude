@@ -400,7 +400,7 @@ func test_localization_csv_complete() -> void:
 			if not file.ends_with(".gd"):
 				continue
 			var text := FileAccess.get_file_as_string(src + "/" + file)
-			var re := RegEx.create_from_string("tr\\(\"([A-Z0-9_]+)\"")
+			var re := RegEx.create_from_string("\"((?:UI|FRUIT)_[A-Z0-9_]+)\"")
 			for m in re.search_all(text):
 				ok(keys.has(m.get_string(1)), "key %s used in %s exists" % [m.get_string(1), file])
 

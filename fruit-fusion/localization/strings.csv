@@ -10,3 +10,32 @@ FRUIT_8,Quince,Ayva
 FRUIT_9,Coconut,Hindistan cevizi
 FRUIT_10,Melon,Kavun
 FRUIT_11,Dragon fruit,Ejder meyvesi
+UI_PLAY,Play,Oyna
+UI_CONTINUE,Continue,Devam et
+UI_HOW_TO_PLAY,How to play,Nasıl oynanır
+UI_SETTINGS,Settings,Ayarlar
+UI_SCORE,Score,Puan
+UI_BEST,Best,En iyi
+UI_NEXT,Next,Sıradaki
+UI_PAUSE,Pause,Duraklat
+UI_PAUSED,Paused,Duraklatıldı
+UI_RESUME,Resume,Sürdür
+UI_RESTART,Restart,Yeniden başla
+UI_MAIN_MENU,Main menu,Ana menü
+UI_SOUND,Sound effects,Ses efektleri
+UI_MUSIC,Music,Müzik
+UI_HAPTICS,Vibration,Titreşim
+UI_LANGUAGE,Language,Dil
+UI_ON,On,Açık
+UI_OFF,Off,Kapalı
+UI_CLOSE,Close,Kapat
+UI_GOT_IT,Got it!,Anladım!
+UI_TUT_1,Drag left or right to aim. Lift your finger to drop the fruit.,Nişan almak için sağa sola sürükle. Meyveyi bırakmak için parmağını kaldır.
+UI_TUT_2,Two identical fruits fuse into a bigger one. Chain fusions for bonus points!,Aynı iki meyve birleşip daha büyüğüne dönüşür. Zincirleme birleşimler ek puan kazandırır!
+UI_TUT_3,Keep the pile below the dashed line. If fruit stays above it the game ends.,Yığını kesikli çizginin altında tut. Meyveler çizginin üstünde kalırsa oyun biter.
+UI_GAME_OVER,Game over,Oyun bitti
+UI_NEW_BEST,New best score!,Yeni rekor!
+UI_PLAY_AGAIN,Play again,Tekrar oyna
+UI_DANGER,Too high!,Çok yükseldi!
+UI_COMBO,Combo,Kombo
+UI_TAGLINE,Drop. Fuse. Grow.,Bırak. Birleştir. Büyüt.
