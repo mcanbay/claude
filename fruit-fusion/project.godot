@@ -1,0 +1,54 @@
+; Engine configuration file.
+config_version=5
+
+[application]
+
+config/name="Fruit Fusion"
+config/name_localized={
+"tr": "Fruit Fusion"
+}
+config/version="1.0.0"
+run/main_scene="res://src/main.tscn"
+config/features=PackedStringArray("4.7", "Mobile")
+boot_splash/bg_color=Color(0.99, 0.95, 0.87, 1)
+boot_splash/image="res://assets/icon/launch_logo.png"
+boot_splash/fullsize=false
+config/icon="res://assets/icon/icon_1024.png"
+
+[autoload]
+
+Settings="*res://src/autoload/settings.gd"
+SaveData="*res://src/autoload/save_data.gd"
+AudioManager="*res://src/autoload/audio_manager.gd"
+Haptics="*res://src/autoload/haptics.gd"
+AdService="*res://src/autoload/ad_service.gd"
+
+[display]
+
+window/size/viewport_width=720
+window/size/viewport_height=1280
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[internationalization]
+
+locale/translations=PackedStringArray("res://localization/strings.en.translation", "res://localization/strings.tr.translation")
+locale/fallback="en"
+
+[physics]
+
+common/physics_ticks_per_second=60
+common/physics_interpolation=true
+2d/default_gravity=1800.0
+2d/solver/solver_iterations=24
+
+[rendering]
+
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
+environment/defaults/default_clear_color=Color(0.99, 0.95, 0.87, 1)

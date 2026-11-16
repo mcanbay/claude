@@ -1,0 +1,6 @@
+.godot/
+*.tmp
+build/
+*.xcarchive
+*.ipa
+__pycache__/
