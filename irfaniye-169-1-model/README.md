@@ -56,7 +56,43 @@ Dışa aktarılan dosyalarda birim metredir, Y ekseni yukarıdır. Katmanlar: `Z
 - **Bloğa tıklama:** kat dağılımı, daire ve blok emsal/brüt toplamları
 - **Katmanlar:** çatılar, ağaçlar, blok adları, araçlar · güneş konumu
 
-## Yeniden üretme
+## Gerçekçi render (Blender + Cycles)
+
+`render/` klasöründeki betik, aynı plan verisinden açık kaynak **Blender 5.3** (Cycles yol izleme motoru) ile ayrıntılı bir sahne kurar ve fotogerçekçi görseller üretir.
+
+![Kuş bakışı](gorseller/render/kus_bakisi.png)
+
+| Görsel | |
+|---|---|
+| `gorseller/render/kus_bakisi.png` | Güneydoğudan kuş bakışı |
+| `gorseller/render/kus_bakisi_alcak.png` | Alçak açı kuş bakışı, ufuk çizgisiyle |
+| `gorseller/render/kus_bakisi_kuzeybati.png` | Kuzeybatıdan kuş bakışı |
+| `gorseller/render/avlu.png` | İç avlu, yaya gözü |
+| `gorseller/render/cephe.png` | B Blok giriş cephesi |
+| `gorseller/render/giris.png` | Doğu yolundan site girişi |
+| `gorseller/render/sokak.png` | Güney yolundan F–J blokları ve otopark girişleri |
+
+**Cephe ayrıntıları:** antrasit alüminyum doğramalar (kasa, kayıt, orta dikme), mermer denizlikler, sürme balkon kapıları, iç tarafta tül ve fon perdeler, kat silmeleri, taş kaplı subasman, açık renkli kompozit kaplamalı merdiven kuleleri ve blok uç cepheleri, giriş saçağı ve blok tabelası, cam korkuluklu balkonlar (paslanmaz dikme ve küpeşte), balkonlarda klima dış üniteleri, saksılar, masa-sandalye; kil kiremitli kırma çatı, mahya ve kırma mahyaları, oluklar ve iniş boruları, bacalar, güneş enerjili su ısıtıcıları.
+
+**Çevre:** gerçek ağaç ve çalı modelleri, tek tek çim sapları (yaklaşık 200 bin tutam), çit önü ve teras önü çalı sıraları, aydınlatma direkleri, bolarlar, banklar, taş kaplı çevre duvarı ve demir korkuluk, güvenlik kulübesi ve bariyerler, yaya geçidi, park etmiş ve seyir hâlindeki araçlar (sedan, hatchback ve SUV, 7 renk), otoparkta çizgiler ve LED armatürler, komşu binalar ve park.
+
+> Cephe malzemeleri ve renkleri, araç ve peyzaj donatıları paftalarda yer almıyor. Bunlar görselleştirme için benim seçtiğim örnek bir malzeme kurgusu. Bina ölçüleri, pencere yerleri, balkonlar, merdivenler ve yerleşim paftalardan alınmıştır.
+
+### Render'ı yeniden üretme
+
+```bash
+cd render
+pip install bpy                 # Blender 5.x Python modülü
+python indir.py assets          # Poly Haven'dan CC0 doku, model ve HDRI (~450 MB)
+python sahne.py --kaydet sahne.blend \
+    --render kus_bakisi,avlu,cephe,giris,sokak --cozunurluk 1920x1080 --ornek 128 --cikti ../gorseller/render
+```
+
+`sahne.blend` dosyası Blender'da açılıp düzenlenebilir (yaklaşık 280 MB olduğu için depoya eklenmedi). Güneş açısı `--gunes` (derece, azimut) ile değiştirilebilir.
+
+Kullanılan Poly Haven varlıkları (CC0): `kloofendal_48d_partly_cloudy_puresky` HDRI; `plastered_wall_02`, `exterior_wall_cladding_03`, `granite_tile_04`, `clay_roof_tiles_02`, `concrete_pavers_02`, `rectangular_paving`, `asphalt_02`, `leafy_grass`, `concrete_tile_facade` dokuları; `jacaranda_tree`, `island_tree_01`, `island_tree_02`, `shrub_02`, `shrub_03`, `searsia_lucida` modelleri.
+
+## Yeniden üretme (etkileşimli model)
 
 ```bash
 cd kaynak
