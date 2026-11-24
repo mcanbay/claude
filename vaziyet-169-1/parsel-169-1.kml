@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Placemark>
+    <name>İrfaniye Mahallesi 169-ada-1-parsel</name>
+    <ExtendedData>
+      <Data name="İl">
+        <value>Bursa</value>
+      </Data>
+      <Data name="İlçe">
+        <value>Nilüfer</value>
+      </Data>
+      <Data name="Mahalle">
+        <value>İrfaniye</value>
+      </Data>
+      <Data name="Ada">
+        <value>169</value>
+      </Data>
+      <Data name="ParselNo">
+        <value>1</value>
+      </Data>
+      <Data name="Alan">
+        <value>5.717,80</value>
+      </Data>
+      <Data name="Pafta">
+        <value>H21c02a3a-3D</value>
+      </Data>
+      <Data name="Nitelik">
+        <value>Arsa</value>
+      </Data>
+      <Data name="Mevkii">
+        <value>Karaçalılık</value>
+      </Data>
+    </ExtendedData>
+    <Polygon>
+      <outerBoundaryIs>
+        <LinearRing>
+          <coordinates>28.814889999999998,40.230739999999997
+28.814699999999998,40.230319999999999
+28.814990000000002,40.23019
+28.815079999999998,40.230400000000003
+28.815359999999998,40.230269999999997
+28.81541,40.230379999999997
+28.815709999999999,40.231009999999998
+28.81569,40.231059999999999
+28.815180000000002,40.231270000000002
+28.815110000000001,40.231250000000003
+28.814889999999998,40.230739999999997</coordinates>
+        </LinearRing>
+      </outerBoundaryIs>
+    </Polygon>
+  </Placemark>
+</kml>
