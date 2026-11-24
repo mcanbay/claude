@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 """
-Bursa / Nilüfer / İrfaniye, 169 ada 1 parsel: 32 bitişik villa vaziyet planı (ön çalışma)
+Bursa / Nilüfer / İrfaniye, 169 ada 1 + 2 parseller (tevhit): 32 bitişik villa vaziyet planı (ön çalışma)
 
-Çıktılar:
-  vaziyet_169-1.pdf   A3 yatay, 1/400 ölçekli pafta
-  vaziyet_169-1.png   önizleme
-  vaziyet_169-1.dxf   TM30 (ITRF96, EPSG:5254) koordinatlı CAD çizimi
+Çıktılar (A: dönüş cepli, önerilen; B: dönüş cebi yok, daha geniş villa):
+  vaziyet_169-1-2_A.pdf / .png / .dxf
+  vaziyet_169-1-2_B.pdf / .png / .dxf
+PDF: A3 yatay 1/400 pafta. DXF: TM30 (ITRF96, EPSG:5254) koordinatlı.
 
-Çalıştırma: python vaziyet.py
+Çalıştırma: python vaziyet.py          (iki varyantı da üretir)
+            python vaziyet.py A
 """
+import sys
 import math
 import re
 
@@ -23,28 +25,39 @@ from shapely.geometry import Polygon, LineString, box
 from shapely.ops import unary_union
 
 # ---------------------------------------------------------------- parametreler
-KML = "parsel-169-1.kml"
+KMLS = ["parsel-169-1.kml", "parsel-169-2.kml"]   # tevhit edilecek parseller
 CEKME = 3.0          # parsel sınırından bina çekme mesafesi (varsayım; imar durumundan teyit edilmeli)
-W = 5.85             # villa cephe genişliği
-D = 12.0             # villa derinliği
 OTOPARK = 5.0        # her villanın önündeki otopark derinliği
 YOL = 6.0            # site içi yol genişliği (çift yön)
-UST_ARKA = 51.0      # üst sıra villaların arka cephe hattı (yerel v)
-N_UST, N_ALT = 18, 14
+N_UST, N_ALT = 16, 16
+VARYANTLAR = {
+    # ad: (villa derinliği D, sol uçta dönüş cebi genişliği, açıklama)
+    "A": (11.5, 6.0, "sol uçta dönüş cebi var (önerilen)"),
+    "B": (11.0, 0.0, "dönüş cebi yok, villa cephesi en geniş"),
+}
+VARYANT = sys.argv[1] if len(sys.argv) > 1 else "A"
+D, CEP, VARYANT_ACIKLAMA = VARYANTLAR[VARYANT]
 BALKON = 1.5         # arka balkon çıkması (1. kat, kesikli gösterilir)
 BRUT = 165.0         # villa başı brüt alan (balkon dahil)
 EKSEN_ACI = 69.6     # parsel uzun ekseninin doğudan açısı (derece)
 
 # ---------------------------------------------------------------- parsel
-txt = open(KML, encoding="utf-8").read()
-def kml_data(name):
-    m = re.search(r'<Data name="%s">\s*<value>(.*?)</value>' % name, txt, re.S)
-    return m.group(1).strip() if m else ""
-coords = re.search(r"<coordinates>(.*?)</coordinates>", txt, re.S).group(1).split()
-lonlat = [tuple(map(float, c.split(",")[:2])) for c in coords][:-1]
 to_tm = Transformer.from_crs(4326, 5254, always_xy=True)
-tm = [to_tm.transform(*p) for p in lonlat]
-P_tm = Polygon(tm)
+TXTS = [open(k, encoding="utf-8").read() for k in KMLS]
+
+
+def kml_data(name, txt=None):
+    m = re.search(r'<Data name="%s">\s*<value>(.*?)</value>' % name, txt or TXTS[0], re.S)
+    return m.group(1).strip() if m else ""
+
+
+def kml_poly(txt):
+    coords = re.search(r"<coordinates>(.*?)</coordinates>", txt, re.S).group(1).split()
+    return Polygon([to_tm.transform(*map(float, c.split(",")[:2])) for c in coords])
+
+
+P_tm = unary_union([kml_poly(t) for t in TXTS]).simplify(0.05)
+PARSEL_NO = " + ".join(kml_data("ParselNo", t) for t in TXTS)
 OX, OY = P_tm.centroid.x, P_tm.centroid.y
 _tmp = affinity.rotate(affinity.translate(P_tm, -OX, -OY), -EKSEN_ACI, origin=(0, 0))
 MX, MY = _tmp.bounds[0], _tmp.bounds[1]
@@ -61,27 +74,52 @@ def to_world(x, y):
 BUILD = PARSEL.buffer(-CEKME, join_style=2)          # yapı yaklaşma sınırı
 
 # ---------------------------------------------------------------- şeritler (v ekseni)
-ust = (UST_ARKA - D, UST_ARKA)
-ust_otp = (ust[0] - OTOPARK, ust[0])
-yol = (ust_otp[0] - YOL, ust_otp[0])
-alt_otp = (yol[0] - OTOPARK, yol[0])
-alt = (alt_otp[0] - D, alt_otp[0])
+def seritler(ust_arka):
+    ust = (ust_arka - D, ust_arka)
+    ust_otp = (ust[0] - OTOPARK, ust[0])
+    yol = (ust_otp[0] - YOL, ust_otp[0])
+    alt_otp = (yol[0] - OTOPARK, yol[0])
+    alt = (alt_otp[0] - D, alt_otp[0])
+    return ust, ust_otp, yol, alt_otp, alt
 
 
-def first_fit(v0, v1, n):
-    for i in range(0, 1200):
-        x = i * 0.05
-        if all(BUILD.contains(box(x + k * W, v0, x + (k + 1) * W, v1)) for k in (0, n - 1)):
-            if all(BUILD.contains(box(x + k * W, v0, x + (k + 1) * W, v1)) for k in range(n)):
-                return round(x + 0.05, 2)   # küçük pay
-    raise SystemExit("Sıra sığmadı: v=%s..%s n=%d" % (v0, v1, n))
+def sol_kenar(v):
+    """parsel sol (giriş karşısı) kenarının v yüksekliğindeki x değeri"""
+    s = PARSEL.intersection(LineString([(-1, v), (BIG, v)]))
+    return s.bounds[0]
 
 
-X_UST = first_fit(*ust, N_UST)
-X_ALT = first_fit(*alt, N_ALT)
+def bant(v0, v1, xmin):
+    """[v0,v1] bandında yapı yaklaşma sınırı içindeki en sol/en sağ x"""
+    xs = [x * 0.05 for x in range(int(xmin / 0.05), 3000)]
+    ok = [x for x in xs if BUILD.contains(box(x, v0, x + 0.05, v1))]
+    return ok[0], ok[-1] + 0.05
+
+
+BIG = 200
+# en geniş villa cephesini ve iki yandaki bahçeleri dengeleyen yol konumunu ara
+_best = None
+for _t10 in range(400, 560, 5):
+    _ua = _t10 / 10
+    _u, _uo, _y, _ao, _a = seritler(_ua)
+    _cep_x = (sol_kenar(_uo[1]) + CEP) if CEP else 0.0
+    try:
+        _su, _sa = bant(*_u, _cep_x), bant(*_a, _cep_x)
+    except IndexError:
+        continue
+    _w = math.floor(min((_su[1] - _su[0]) / N_UST, (_sa[1] - _sa[0]) / N_ALT) * 20) / 20
+    _ust_bahce = PARSEL.bounds[3] - 1.0 - _ua
+    _denge = abs(_ust_bahce - _a[0])
+    _key = (_w, -_denge)
+    if _best is None or _key > _best[0]:
+        _best = (_key, _ua, _su, _sa, _cep_x)
+(W, _), UST_ARKA, SU, SA, CEP_X = _best
+ust, ust_otp, yol, alt_otp, alt = seritler(UST_ARKA)
+# sıraları giriş (sağ) ucuna yaslamak yerine bant içinde ortala
+X_UST = round(SU[0] + ((SU[1] - SU[0]) - N_UST * W) / 2, 2)
+X_ALT = round(SA[0] + ((SA[1] - SA[0]) - N_ALT * W) / 2, 2)
 
 villas = []   # dict: no, ev, otopark, park_yeri, yuruyus, bahce, balkon, sira
-BIG = 200
 
 
 def make_row(x0, n, ev, otp, bahce_side, no0, sira):
@@ -105,15 +143,16 @@ def make_row(x0, n, ev, otp, bahce_side, no0, sira):
                            bahce=g, balkon=bal, sira=sira))
 
 
-# numaralandırma: üst sıra soldan sağa V1..V18, alt sıra sağdan sola V19..V32 (döngü sırası)
+# numaralandırma girişten (sağ uç) başlar: A sırası sağdan sola V1..V16, B sırası soldan sağa V17..V32
 make_row(X_UST, N_UST, ust, ust_otp, "ust", 1, "A")
-tmp = []
-make_row(X_ALT, N_ALT, alt, alt_otp, "alt", 0, "B")
-alt_list = villas[N_UST:]
-for i, v in enumerate(reversed(alt_list)):
-    v["no"] = N_UST + 1 + i
+for i, v in enumerate(reversed(villas)):
+    v["no"] = i + 1
+make_row(X_ALT, N_ALT, alt, alt_otp, "alt", N_UST + 1, "B")
 
 YOL_POLY = box(-BIG, yol[0], BIG, yol[1]).intersection(PARSEL)
+CEP_POLY = box(-BIG, alt_otp[0], min(X_UST, X_ALT), ust_otp[1]).intersection(PARSEL) if CEP else Polygon()
+if CEP:
+    YOL_POLY = unary_union([YOL_POLY, CEP_POLY])
 SETBACK_LINE = BUILD.exterior
 
 # ortak alan = parsel - (yol + villa lotları)
@@ -124,7 +163,8 @@ ORTAK = PARSEL.difference(unary_union([lots, YOL_POLY]))
 for v in villas:
     assert BUILD.contains(v["ev"]), v["no"]
     assert PARSEL.buffer(0.01).contains(v["otopark"]), v["no"]
-tapu_alan = float(kml_data("Alan").replace(".", "").replace(",", "."))
+tapu_alanlar = [float(kml_data("Alan", t).replace(".", "").replace(",", ".")) for t in TXTS]
+tapu_alan = sum(tapu_alanlar)
 geo_alan = PARSEL.area
 oturum = W * D
 taban_top = oturum * len(villas)
@@ -138,7 +178,7 @@ bahce_min = min(v["bahce"].area for v in villas)
 bahce_max = max(v["bahce"].area for v in villas)
 
 ozet = [
-    ("Parsel alanı (tapu)", f"{tapu_alan:,.2f} m²"),
+    ("Parsel alanı (tapu)", f"{tapu_alan:,.2f} m² ({' + '.join(f'{a:,.2f}' for a in tapu_alanlar)})"),
     ("Villa sayısı", f"{len(villas)} adet (A sırası {N_UST} + B sırası {N_ALT})"),
     ("Villa tipi", f"{W:.2f} × {D:.2f} m, bitişik nizam, Z+1"),
     ("Taban oturumu / villa", f"{oturum:.1f} m²"),
@@ -146,7 +186,7 @@ ozet = [
     ("Toplam taban oturumu", f"{taban_top:,.0f} m²  →  TAKS ≈ {taban_top / tapu_alan:.2f}"),
     ("Toplam brüt inşaat", f"{brut_top:,.0f} m²  →  KAKS ≈ {brut_top / tapu_alan:.2f}"),
     ("Otopark", f"{len(villas)} araç (her villanın önünde 2,6 × 5,0 m)"),
-    ("Site içi yol", f"{YOL:.1f} m genişlik, {yol_alan:,.0f} m²"),
+    ("Site içi yol", f"{YOL:.1f} m genişlik, {yol_alan:,.0f} m²" + (" (dönüş cebi dahil)" if CEP else "")),
     ("Özel bahçeler", f"{bahce_alan:,.0f} m² (villa başı {bahce_min:.0f}–{bahce_max:.0f} m²)"),
     ("Ortak alan / artık", f"{ortak_alan:,.0f} m²"),
 ]
@@ -199,7 +239,7 @@ def render(path_pdf, path_png):
     ym = (yol[0] + yol[1]) / 2
     ax.plot([PARSEL.bounds[0], PARSEL.bounds[2]], [ym, ym], ls=(0, (6, 4)), lw=0.5, color="white", zorder=3)
     ax.plot([X_ALT, X_ALT + N_ALT * W], [ym, ym], lw=0, zorder=3)
-    ax.text(60, ym, f"SİTE İÇİ YOL  ({YOL:.0f} m)", ha="center", va="center", fontsize=7,
+    ax.text(X_ALT + N_ALT * W / 2, ym, f"SİTE İÇİ YOL  ({YOL:.0f} m)", ha="center", va="center", fontsize=7,
             color="#44403c", zorder=6, bbox=dict(fc=C["yol"], ec="none", pad=0.6))
 
     # parsel ve çekme hattı
@@ -211,7 +251,10 @@ def render(path_pdf, path_png):
     pts = list(PARSEL.exterior.coords)
     for a, b in zip(pts[:-1], pts[1:]):
         L = math.dist(a, b)
-        mx_, my_ = (a[0] + b[0]) / 2, (a[1] + b[1]) / 2
+        tt = 0.5
+        if yol[0] - 3 < (a[1] + b[1]) / 2 < yol[1] + 3:     # yol ağzındaki kenar: ölçüyü kaydır
+            tt = 0.8 if a[1] < b[1] else 0.2
+        mx_, my_ = a[0] + (b[0] - a[0]) * tt, a[1] + (b[1] - a[1]) * tt
         nx, ny = -(b[1] - a[1]) / L, (b[0] - a[0]) / L     # sola normal
         if (mx_ + nx - cen.x) ** 2 + (my_ + ny - cen.y) ** 2 < (mx_ - cen.x) ** 2 + (my_ - cen.y) ** 2:
             nx, ny = -nx, -ny
@@ -222,25 +265,25 @@ def render(path_pdf, path_png):
                 ha="center", va="center", rotation=ang, zorder=9)
 
     # ölçü: tipik villa
-    v = villas[8]
+    v = villas[N_UST // 2]
     e = v["ev"].bounds
     ax.annotate("", (e[0], e[3] + 6.2), (e[2], e[3] + 6.2),
                 arrowprops=dict(arrowstyle="<->", lw=0.5, color="#374151"))
     ax.text((e[0] + e[2]) / 2, e[3] + 6.9, f"{W:.2f}", fontsize=5.5, ha="center", color="#374151")
 
     # sıra etiketleri, giriş notları
-    ax.text(X_UST + N_UST * W / 2, PARSEL.bounds[3] + 2.5, "A SIRASI · 18 VİLLA · arka bahçeler",
+    ax.text(X_UST + N_UST * W / 2, PARSEL.bounds[3] + 2.5, f"A SIRASI · {N_UST} VİLLA · arka bahçeler",
             fontsize=6.5, ha="center", color="#166534", zorder=9)
-    ax.text(X_ALT + N_ALT * W / 2, alt[0] - 5.0, "B SIRASI · 14 VİLLA · arka bahçeler",
+    ax.text(X_ALT + N_ALT * W / 2, alt[0] - BALKON - 1.6, f"B SIRASI · {N_ALT} VİLLA · arka bahçeler",
             fontsize=6.5, ha="center", color="#166534", zorder=9)
-    gx0 = PARSEL.bounds[0]
-    ax.annotate("GİRİŞ ?", (gx0 + 1.2, ym), (gx0 - 4.5, ym + 9), fontsize=7, color="#b91c1c",
-                fontweight="bold", ha="center",
-                arrowprops=dict(arrowstyle="->", color="#b91c1c", lw=1.0), zorder=10)
     gx1 = YOL_POLY.bounds[2]
-    ax.annotate("GİRİŞ ?", (gx1 - 1.2, ym), (gx1 + 3.5, ym + 9), fontsize=7, color="#b91c1c",
-                fontweight="bold", ha="center",
-                arrowprops=dict(arrowstyle="->", color="#b91c1c", lw=1.0), zorder=10)
+    ax.annotate("SİTE GİRİŞİ", (gx1 - 1.0, ym), (gx1 + 9.5, ym), fontsize=7.5, color="#b91c1c",
+                fontweight="bold", ha="left", va="center",
+                arrowprops=dict(arrowstyle="-|>", color="#b91c1c", lw=1.4), zorder=10)
+    if CEP:
+        cc = CEP_POLY.centroid
+        ax.text(cc.x + 1.0, (alt_otp[0] + alt_otp[1]) / 2, "DÖNÜŞ\nCEBİ", fontsize=6, ha="center",
+                va="center", color="#44403c", zorder=6)
 
     # kuzey oku (yerel çerçevede kuzey yönü)
     a = math.radians(EKSEN_ACI)
@@ -262,12 +305,12 @@ def render(path_pdf, path_png):
         ax.text(sx0 + m, sy0 - 1.6, f"{m} m", fontsize=5.5, ha="center")
 
     # başlık ve tablo
-    fig.text(20 / 420, 1 - 9 / 297, "VAZİYET PLANI (ÖN ÇALIŞMA): 32 BİTİŞİK VİLLA", fontsize=15,
+    fig.text(20 / 420, 1 - 9 / 297, f"VAZİYET PLANI (ÖN ÇALIŞMA): {len(villas)} BİTİŞİK VİLLA · VARYANT {VARYANT}", fontsize=15,
              fontweight="bold", color="#111827")
     fig.text(20 / 420, 1 - 14.5 / 297,
              f"{kml_data('İl')} / {kml_data('İlçe')} / {kml_data('Mahalle')} Mah. · "
-             f"{kml_data('Ada')} Ada {kml_data('ParselNo')} Parsel · Mevkii: {kml_data('Mevkii')} · "
-             f"Pafta: {kml_data('Pafta')} · Nitelik: {kml_data('Nitelik')}",
+             f"{kml_data('Ada')} Ada {PARSEL_NO} Parseller (tevhit) · Mevkii: {kml_data('Mevkii')} · "
+             f"Pafta: {kml_data('Pafta')} · Varyant {VARYANT}: {VARYANT_ACIKLAMA}",
              fontsize=8.5, color="#374151")
     tx, ty = 20 / 420, 1 - (18 + ax_h * 297 + 10) / 297
     fig.text(tx, ty, "ALAN ÖZETİ", fontsize=9, fontweight="bold")
@@ -303,13 +346,13 @@ def render(path_pdf, path_png):
     notes = [
         "1. Ön çalışmadır; imar durumu (emsal, TAKS, kat adedi, çekme",
         "    mesafeleri, blok boyu) belediyeden alınıp teyit edilmelidir.",
-        "2. Parsel sınırı TKGM KML'inden alınmıştır. Koordinat yuvarlaması",
-        f"    nedeniyle çizim alanı {geo_alan:,.0f} m², tapu alanı {tapu_alan:,.0f} m².",
-        "3. Yola cephe bilinmiyor; giriş iki uçtan biri varsayılmıştır.",
-        "    Tek uçtan girişte diğer uçta dönüş cebi gerekir.",
-        "4. 32 villa ancak 5,85 m cephe ve kesintisiz bloklarla sığıyor;",
-        "    misafir otoparkı ve ortak alan için yer kalmıyor. A sırası",
-        "    bahçeleri dar (4–6 m), balkonlar çekme hattına taşıyor.",
+        "2. Sınır TKGM KML'lerinden alınmış, 1 ve 2 parseller birleştirilmiştir.",
+        f"    Koordinat yuvarlaması: çizim {geo_alan:,.0f} m², tapu {tapu_alan:,.0f} m².",
+        "3. Site girişi sağ (kuzeydoğu) uçtan; yol sol uçta çıkmaz.",
+        ("    Sol uçta 16 m × 6 m dönüş cebi bırakılmıştır." if CEP else
+         "    Dönüş cebi YOK: itfaiye erişimi için uygun değildir."),
+        f"4. Villalar kesintisiz iki blok ({N_UST}+{N_ALT}); misafir otoparkı",
+        "    ve ortak alan için yer kalmıyor.",
         "5. Ölçek 1/400 (A3). DXF dosyası TM30 / ITRF96 koordinatlıdır.",
     ]
     for i, n in enumerate(notes):
@@ -354,15 +397,21 @@ def write_dxf(path):
                      dxfattribs={"layer": "YAZI"}).set_placement(
             to_world(c.x, c.y), align=ezdxf.enums.TextEntityAlignment.MIDDLE_CENTER)
     c = PARSEL.centroid
-    msp.add_text(f"{kml_data('Ada')} ADA {kml_data('ParselNo')} PARSEL", height=2.0,
+    msp.add_text(f"{kml_data('Ada')} ADA {PARSEL_NO} PARSEL", height=2.0,
                  rotation=EKSEN_ACI, dxfattribs={"layer": "YAZI"}).set_placement(
         to_world(c.x, PARSEL.bounds[1] - 5), align=ezdxf.enums.TextEntityAlignment.MIDDLE_CENTER)
     doc.saveas(path)
 
 
 if __name__ == "__main__":
-    render("vaziyet_169-1.pdf", "vaziyet_169-1.png")
-    write_dxf("vaziyet_169-1.dxf")
-    print(f"A sırası x0={X_UST}, B sırası x0={X_ALT}")
+    if len(sys.argv) == 1:      # varsayılan: her iki varyantı ayrı süreçte üret
+        import subprocess
+        for k in VARYANTLAR:
+            subprocess.run([sys.executable, __file__, k], check=True)
+        raise SystemExit
+    ad = f"vaziyet_169-1-2_{VARYANT}"
+    render(ad + ".pdf", ad + ".png")
+    write_dxf(ad + ".dxf")
+    print(f"--- Varyant {VARYANT}: W={W:.2f} D={D:.2f} üst arka={UST_ARKA} A x0={X_UST} B x0={X_ALT}")
     for k, v in ozet:
         print(f"{k:24s} {v}")
