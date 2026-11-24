@@ -20,6 +20,7 @@ from mathutils import Vector
 HERE = os.path.dirname(os.path.abspath(__file__))
 ASSETS = os.path.join(HERE, 'assets')
 UNITS = json.load(open(os.path.join(HERE, '..', 'kaynak', 'units.json'), encoding='utf-8'))
+RING = json.load(open(os.path.join(HERE, '..', 'kaynak', 'ring.json'), encoding='utf-8'))   # ring road + pool (kaynak/ring.py)
 
 rng = random.Random(169)
 
@@ -59,7 +60,7 @@ TYPE = {
     'u21': dict(balcony=(-1.994, 0.0), core=(7.091, 9.686)),
 }
 PARCEL = [(196.0, 143.7), (1072.0, 143.6), (1105.9, 183.4), (1044.4, 573.2), (1007.2, 604.2), (401.3, 587.4), (102.5, 587.5)]
-FENCE = [(1071.4, 392.1), (1042.9, 572.2), (1006.6, 602.5), (401.3, 585.7), (104.4, 585.8), (197.3, 145.3), (1071.2, 145.2), (1104.2, 183.9), (1080.4, 335.4)]
+FENCE = [tuple(RING['gate']['fence_south_end']), (1042.9, 572.2), (1006.6, 602.5), (401.3, 585.7), (104.4, 585.8), (197.3, 145.3), (1071.2, 145.2), (1104.2, 183.9), tuple(RING['gate']['fence_north_end'])]
 GREEN = [
     [(197.3, 145.3), (620.6, 145.3), (620.6, 306.7), (612.6, 314.7), (161.6, 314.7)],
     [(636.8, 173.1), (1037, 173.1), (1061.4, 197.4), (1061.4, 290.5), (1037.3, 314.7), (644.9, 314.7), (636.8, 306.7)],
@@ -87,11 +88,10 @@ PATHS = [
     prect(418.4, 544, 463.6, 561.4), prect(731.5, 544, 776.6, 561.4), prect(865.8, 544, 910.9, 561.4),
 ]
 TREES = [
-    (579, 167, 1.1), (605, 167, 1.0), (596, 196, 1.2),
+    (579, 167, 1.1), (605, 167, 1.0),
     (173, 347, 1.0), (200, 353, 0.9), (196, 376, 1.0),
     (523, 363, 1.0), (546, 344, 1.15), (569, 376, 1.0),
     (723, 376, 1.0), (753, 350, 1.15), (779, 380, 1.0),
-    (982, 347, 1.0), (998, 360, 0.95), (991, 383, 1.0),
     (134, 540, 1.0), (128, 569, 0.9), (157, 566, 1.0),
 ]
 
@@ -295,7 +295,80 @@ def build_materials():
     for i, col in enumerate(((0.6, 0.57, 0.52), (0.66, 0.6, 0.5), (0.55, 0.55, 0.54))):
         M[f'kont_cephe{i}'] = context_facade(f'cevre_bina{i}', col)
     M['tabela'] = pmat('tabela', (0.75, 0.74, 0.72), 0.3, 1.0)
+    M['su'] = water_mat()
+    M['havuz_fayans'] = pool_tile_mat()
+    M['havuz_lamba'] = emit_mat('havuz_lamba', (0.75, 0.9, 1.0), 4.0)
     return M
+
+
+def water_mat():
+    m, nt, b = new_mat('su')
+    N, L = nt.nodes, nt.links
+    b.inputs['Base Color'].default_value = (0.62, 0.88, 0.92, 1)
+    b.inputs['Roughness'].default_value = 0.0
+    b.inputs['Transmission Weight'].default_value = 1.0
+    b.inputs['IOR'].default_value = 1.333
+    tc = N.new('ShaderNodeTexCoord')
+    nz = N.new('ShaderNodeTexNoise')
+    nz.inputs['Scale'].default_value = 1.6
+    nz.inputs['Detail'].default_value = 3.0
+    bump = N.new('ShaderNodeBump')
+    bump.inputs['Strength'].default_value = 0.08
+    L.new(tc.outputs['Object'], nz.inputs['Vector'])
+    L.new(nz.outputs['Fac'], bump.inputs['Height'])
+    L.new(bump.outputs['Normal'], b.inputs['Normal'])
+    return m
+
+
+def pool_tile_mat():
+    """Blue glass mosaic: (x, y) mapping on the floor, (x + y, z) on the walls."""
+    m, nt, b = new_mat('havuz_mozaik')
+    N, L = nt.nodes, nt.links
+    tc = N.new('ShaderNodeTexCoord')
+    sep = N.new('ShaderNodeSeparateXYZ')
+    L.new(tc.outputs['Object'], sep.inputs[0])
+    add = N.new('ShaderNodeMath')
+    add.operation = 'ADD'
+    L.new(sep.outputs['X'], add.inputs[0])
+    L.new(sep.outputs['Y'], add.inputs[1])
+    zoff = N.new('ShaderNodeMath')
+    zoff.operation = 'ADD'
+    zoff.inputs[1].default_value = 0.013
+    L.new(sep.outputs['Z'], zoff.inputs[0])
+    wall_v = N.new('ShaderNodeCombineXYZ')
+    L.new(add.outputs[0], wall_v.inputs['X'])
+    L.new(zoff.outputs[0], wall_v.inputs['Y'])
+    floor_v = N.new('ShaderNodeCombineXYZ')
+    L.new(sep.outputs['X'], floor_v.inputs['X'])
+    L.new(sep.outputs['Y'], floor_v.inputs['Y'])
+
+    def brick(vec):
+        br = N.new('ShaderNodeTexBrick')
+        br.offset = 0.0
+        br.inputs['Scale'].default_value = 1.0
+        br.inputs['Brick Width'].default_value = 0.05
+        br.inputs['Row Height'].default_value = 0.05
+        br.inputs['Mortar Size'].default_value = 0.004
+        br.inputs['Color1'].default_value = (0.08, 0.42, 0.68, 1)
+        br.inputs['Color2'].default_value = (0.14, 0.52, 0.76, 1)
+        br.inputs['Mortar'].default_value = (0.7, 0.8, 0.84, 1)
+        L.new(vec.outputs[0], br.inputs['Vector'])
+        return br
+    bw, bf = brick(wall_v), brick(floor_v)
+    geo = N.new('ShaderNodeNewGeometry')
+    sn = N.new('ShaderNodeSeparateXYZ')
+    L.new(geo.outputs['Normal'], sn.inputs[0])
+    ab = N.new('ShaderNodeMath')
+    ab.operation = 'ABSOLUTE'
+    L.new(sn.outputs['Z'], ab.inputs[0])
+    mix = N.new('ShaderNodeMix')
+    mix.data_type = 'RGBA'
+    L.new(ab.outputs[0], sock(mix.inputs, 'Factor', 'VALUE'))
+    L.new(bw.outputs['Color'], sock(mix.inputs, 'A', 'RGBA'))
+    L.new(bf.outputs['Color'], sock(mix.inputs, 'B', 'RGBA'))
+    L.new(sock(mix.outputs, 'Result', 'RGBA'), b.inputs['Base Color'])
+    b.inputs['Roughness'].default_value = 0.12
+    return m
 
 
 def context_facade(name, wall):
@@ -359,6 +432,30 @@ class MB:
         nx, ny = -dy / ln * t / 2, dx / ln * t / 2
         q = [(ax + nx, ay + ny), (bx + nx, by + ny), (bx - nx, by - ny), (ax - nx, ay - ny)]
         self.prism(q, z0, z1)
+
+    def poly(self, pj, z0, z1, top=True, sides=True):
+        """Extruded plan polygon with holes ({'ext': [...], 'holes': [[...]]} in plan points)."""
+        from mathutils.geometry import tessellate_polygon
+        loops = [[P(p) for p in pj['ext']]] + [[P(p) for p in h] for h in pj['holes']]
+        if top:
+            tris = tessellate_polygon([[Vector((x, y, 0)) for x, y in lp] for lp in loops])
+            flat = [pt for lp in loops for pt in lp]
+            i = len(self.v)
+            self.v.extend([(x, y, z1) for x, y in flat])
+            for t in tris:
+                a, b, c = (flat[k] for k in t)
+                cr = (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0])
+                self.f.append([i + t[0], i + t[1], i + t[2]] if cr > 0 else [i + t[0], i + t[2], i + t[1]])
+                self.uv.append(None)
+        if sides:
+            for lp in loops:
+                n = len(lp)
+                i = len(self.v)
+                self.v.extend([(x, y, z0) for x, y in lp] + [(x, y, z1) for x, y in lp])
+                for k in range(n):
+                    k2 = (k + 1) % n
+                    self.f.append([i + k, i + k2, i + n + k2, i + n + k])
+                    self.uv.append(None)
 
     def prism(self, pts, z0, z1, top=True, sides=True, bottom=False):
         a = sum(pts[i][0] * pts[(i + 1) % len(pts)][1] - pts[(i + 1) % len(pts)][0] * pts[i][1] for i in range(len(pts)))
@@ -863,6 +960,35 @@ def make_bench(M):
     return c
 
 
+def make_lounger(M):
+    c = hidden_collection('sezlong')
+    m = MB()
+    for sx in (-0.3, 0.3):
+        m.box(-0.95, sx - 0.02, 0.0, 0.95, sx + 0.02, 0.32)
+    m.to_object('sezlong_kasa', M['beyaz'], c)
+    m = MB()
+    m.box(-0.95, -0.31, 0.3, 0.35, 0.31, 0.38)
+    m.face([(0.35, -0.31, 0.38), (0.35, 0.31, 0.38), (0.95, 0.31, 0.85), (0.95, -0.31, 0.85)])
+    m.face([(0.35, 0.31, 0.3), (0.35, -0.31, 0.3), (0.95, -0.31, 0.77), (0.95, 0.31, 0.77)])
+    m.to_object('sezlong_minder', M['klima'], c)
+    return c
+
+
+def make_umbrella(M):
+    c = hidden_collection('semsiye')
+    m = MB()
+    m.cyl((0, 0, 0), (0, 0, 2.45), 0.03, 10)
+    m.cyl((0, 0, 0), (0, 0, 0.08), 0.28, 16)
+    m.to_object('semsiye_direk', M['dograma'], c, smooth=True)
+    m = MB()
+    n, r, z0, z1 = 16, 1.5, 2.05, 2.5
+    for k in range(n):
+        a0, a1 = 2 * math.pi * k / n, 2 * math.pi * (k + 1) / n
+        m.face([(r * math.cos(a0), r * math.sin(a0), z0), (r * math.cos(a1), r * math.sin(a1), z0), (0, 0, z1)])
+    m.to_object('semsiye_kumas', M['perde'], c)
+    return c
+
+
 def make_pot(M, plant_cols):
     c = hidden_collection('saksi')
     m = MB()
@@ -891,12 +1017,20 @@ def build_block(B, M, props):
             core_side = 'E' if side == 'L' else 'W'
             end_free = not touching(me, end_side)
             if parking:
-                B.box('otopark_zemin', ux0, uz0, ux1, uz1, 0.0, e)
+                B.box('otopark_zemin', ux0, uz0, ux1, uz1, 0.0, 0.12)
+                # street side closed (cars reach the parking from the ring only): low wall + steel louvres
+                sz, sd = (uz0, 0.2) if b['type'] == 'u31' else (uz1, -0.2)
+                B.box('seramik', ux0, sz, ux1, sz + sd, 0.0, 1.0)
+                B.box('dograma', ux0, sz + sd / 2 - 0.03, ux1, sz + sd / 2 + 0.03, 1.0, 1.06)
+                nl = int((ux1 - ux0) / 0.16)
+                for k in range(nl):
+                    lx = ux0 + 0.08 + k * (ux1 - ux0 - 0.16) / max(nl - 1, 1)
+                    B.box('dograma', lx - 0.025, sz + sd / 2 - 0.06, lx + 0.025, sz + sd / 2 + 0.06, 1.06, e + WH - 0.05)
                 xs = [ux0 + 0.2, (ux0 + ux1) / 2, ux1 - 0.2]
                 zs = [uz0 + 0.25, (uz0 + uz1) / 2, uz1 - 0.25]
                 for cx in xs:
                     for cz in zs:
-                        B.box('beton', cx - 0.18, cz - 0.25, cx + 0.18, cz + 0.25, e, e + WH)
+                        B.box('beton', cx - 0.18, cz - 0.25, cx + 0.18, cz + 0.25, 0.12, e + WH)
                 # painted bays
                 nb = int((ux1 - ux0 - 0.4) // 2.6)
                 for i in range(nb + 1):
@@ -920,10 +1054,8 @@ def build_block(B, M, props):
                         if rng.random() < 0.22:
                             continue
                         lx = ux0 + 0.2 + (i + 0.5) * 2.6 + ((ux1 - ux0 - 0.4) - nb * 2.6) / 2
-                        rot = -math.pi / 2 if ri == 0 else math.pi / 2
-                        if b['type'] == 'u21':
-                            rot = -rot
-                        props['cars'].append((B.X(lx), B.Y(rz), e, rot + rng.uniform(-0.03, 0.03)))
+                        rot = math.pi / 2 if b['type'] == 'u31' else -math.pi / 2   # nose-in from the ring
+                        props['cars'].append((B.X(lx), B.Y(rz), 0.12, rot + rng.uniform(-0.03, 0.03)))
                 continue
             # slab + floor finish
             if lvl == 0:
@@ -1151,6 +1283,41 @@ def build_roof(B, M, props):
         mb('klima').cyl((px - 1.05, south_y + 1.15, pz + 1.35), (px + 1.05, south_y + 1.15, pz + 1.35), 0.27, 16)
 
 
+def build_pool(S_):
+    """Pool basin with mosaic tiles, water volume, stone coping, ladder and glass safety fence."""
+    x0, y0, x1, y1 = RING['pool']
+    (ax_, ay1), (bx_, ay0) = P((x0, y0)), P((x1, y1))     # Blender XY: ay0 < ay1
+    top, depth, t = 0.1, 1.45, 0.25
+    S_('havuz_fayans').box(ax_ - t, ay0 - t, top - depth - 0.2, bx_ + t, ay0, top)
+    S_('havuz_fayans').box(ax_ - t, ay1, top - depth - 0.2, bx_ + t, ay1 + t, top)
+    S_('havuz_fayans').box(ax_ - t, ay0, top - depth - 0.2, ax_, ay1, top)
+    S_('havuz_fayans').box(bx_, ay0, top - depth - 0.2, bx_ + t, ay1, top)
+    S_('havuz_fayans').box(ax_, ay0, top - depth - 0.2, bx_, ay1, top - depth)
+    S_('su').box(ax_ + 0.002, ay0 + 0.002, top - depth, bx_ - 0.002, ay1 - 0.002, top - 0.1)
+    for (a0, b0, a1, b1) in ((ax_ - 0.4, ay0 - 0.4, bx_ + 0.4, ay0), (ax_ - 0.4, ay1, bx_ + 0.4, ay1 + 0.4),
+                             (ax_ - 0.4, ay0, ax_, ay1), (bx_, ay0, bx_ + 0.4, ay1)):
+        S_('denizlik').box(a0, b0, top + 0.08, a1, b1, top + 0.15)
+    # steps into the shallow end (south) and a steel ladder at the deep end
+    for k in range(3):
+        S_('havuz_fayans').box(ax_, ay0, top - 0.3 * (k + 1), bx_, ay0 + 0.35 * (3 - k), top - 0.3 * k - 0.05)
+    lx = (ax_ + bx_) / 2
+    for dx in (-0.25, 0.25):
+        S_('celik').cyl((lx + dx, ay1 - 0.05, top - 1.0), (lx + dx, ay1 - 0.05, top + 0.2), 0.022, 10)
+        S_('celik').cyl((lx + dx, ay1 - 0.05, top + 0.2), (lx + dx, ay1 + 0.3, top + 0.75), 0.022, 10)
+        S_('celik').cyl((lx + dx, ay1 + 0.3, top + 0.75), (lx + dx, ay1 + 0.45, top + 0.15), 0.022, 10)
+    # underwater lights
+    for fy in (0.3, 0.7):
+        y = ay0 + (ay1 - ay0) * fy
+        for xx in (ax_ + 0.003, bx_ - 0.003):
+            S_('havuz_lamba').cyl((xx, y, top - 0.6), (xx + (0.01 if xx < lx else -0.01), y, top - 0.6), 0.1, 16)
+    # frameless glass safety fence with steel top rail
+    for line in RING['pool_fence']:
+        pts = [P(p) for p in line]
+        for (pa, pb) in zip(pts, pts[1:]):
+            S_('korkuluk_cam').obox(pa[0], pa[1], pb[0], pb[1], 0.012, 0.22, 1.3)
+            S_('celik').obox(pa[0], pa[1], pb[0], pb[1], 0.03, 1.3, 1.33)
+
+
 def build_signs(M, coll):
     for B, outward, zf, h in props_sign:
         cx0, cx1 = B.TT['core']
@@ -1175,7 +1342,12 @@ def build_signs(M, coll):
 def build_site(M):
     S_ = mb
     # ground
-    S_('arazi').box(-600, -600, -0.5, 600, 600, -0.02)
+    # terrain slab with an opening for the pool basin
+    px0, py0, px1, py1 = RING['pool']
+    (hx0, hy1), (hx1, hy0) = P((px0, py0)), P((px1, py1))
+    hx0, hy0, hx1, hy1 = hx0 - 0.3, hy0 - 0.3, hx1 + 0.3, hy1 + 0.3
+    for (a0, b0, a1, b1) in ((-600, -600, hx0, 600), (hx1, -600, 600, 600), (hx0, -600, hx1, hy0), (hx0, hy1, hx1, 600)):
+        S_('arazi').box(a0, b0, -0.5, a1, b1, -0.02)
     ex = edge_x
     roads = [
         [(-2600, 52), (3200, 52), (3200, 128), (-2600, 128)],
@@ -1188,7 +1360,8 @@ def build_site(M):
         [(-2600, 128), (ex(128) + 18, 128), (ex(143.5) + 18, 143.5), (-2600, 143.5)],
         [(-2600, 587.6), (401.3, 587.5), (1007.2, 604.3), (ex(604.3) + 18, 604.3), (ex(620.2) + 18, 620.2), (1007.2, 620.2), (401.3, 603.4), (-2600, 603.5)],
         [(-2600, 677.6), (ex(677.6) + 18, 677.6), (ex(693.6) + 18, 693.6), (-2600, 693.6)],
-        [(ex(143.5), 143.5), (ex(143.5) + 18, 143.5), (ex(604.3) + 18, 604.3), (ex(604.3), 604.3)],
+        [(ex(143.5), 143.5), (ex(143.5) + 18, 143.5), (ex(318) + 18, 318), (ex(318), 318)],
+        [(ex(402), 402), (ex(402) + 18, 402), (ex(604.3) + 18, 604.3), (ex(604.3), 604.3)],
         [(ex(128) + 114, 128), (ex(128) + 130, 128), (ex(604.3) + 130, 604.3), (ex(604.3) + 114, 604.3)],
         [(-2600, 36), (3200, 36), (3200, 52), (-2600, 52)],
     ]
@@ -1211,17 +1384,44 @@ def build_site(M):
         y += 48
     # crosswalk at the site entrance
     for i in range(7):
-        y0 = 345 + i * 6.2
+        y0 = 425 + i * 6.2
         a, c = P((ex(y0) + 20, y0)), P((ex(y0) + 112, y0))
         S_('cizgi').obox(a[0], a[1], c[0], c[1], 0.45, 0.02, 0.026)
-    # parcel paving, lawns, paths
-    S_('parke_tasi').prism([P(p) for p in PARCEL], -0.05, 0.1)
-    for g in GREEN:
-        S_('cim').prism([P(p) for p in g], 0.05, 0.2, sides=False)
-        S_('bordur').prism([P(p) for p in g], 0.0, 0.2, top=False)
-    for p in PATHS:
-        S_('kaldirim').prism([P(q) for q in p], 0.1, 0.21, sides=False)
-        S_('bordur').prism([P(q) for q in p], 0.1, 0.21, top=False)
+    # parcel paving (cut around the ring), ring road with curbs, lawns, median path, pool deck
+    for pj in RING['paving']:
+        S_('parke_tasi').poly(pj, -0.05, 0.1, sides=False)
+        S_('bordur').poly(pj, -0.05, 0.13, top=False)
+    for pj in RING['road']:
+        S_('asfalt').poly(pj, -0.05, 0.03, sides=False)
+    for pj in RING['greens'] + RING['median_green']:
+        S_('cim').poly(pj, 0.05, 0.2, sides=False)
+        S_('bordur').poly(pj, 0.0, 0.2, top=False)
+    for pj in RING['median_path']:
+        S_('kaldirim').poly(pj, 0.1, 0.21, sides=False)
+    for pj in RING['deck']:
+        S_('balkon_zemin').poly(pj, 0.1, 0.22, sides=False)
+    build_pool(S_)
+    # zebra crossings and one-way arrows on the ring
+    for c in RING['crossings']:
+        (ax_, ay_), (bx_, by_) = P(c['a']), P(c['b'])
+        ln = math.hypot(bx_ - ax_, by_ - ay_)
+        ux, uy = (bx_ - ax_) / ln, (by_ - ay_) / ln
+        w = c['w'] / S
+        t = 0.3
+        while t < ln - 0.3:
+            cx, cy = ax_ + ux * t, ay_ + uy * t
+            S_('cizgi').obox(cx - uy * w / 2, cy + ux * w / 2, cx + uy * w / 2, cy - ux * w / 2, 0.5, 0.03, 0.036)
+            t += 1.0
+    for (x, y, ang) in RING['arrows']:
+        cx, cy = P((x, y))
+        dx, dy = math.cos(ang), -math.sin(ang)          # plan y points south
+        nx, ny = -dy, dx
+        tail = (cx - dx * 1.7, cy - dy * 1.7)
+        neck = (cx + dx * 0.5, cy + dy * 0.5)
+        S_('cizgi').obox(tail[0], tail[1], neck[0], neck[1], 0.3, 0.03, 0.036)
+        tip = (cx + dx * 1.7, cy + dy * 1.7)
+        S_('cizgi').face([(neck[0] + nx * 0.6, neck[1] + ny * 0.6, 0.036), (tip[0], tip[1], 0.036), (neck[0] - nx * 0.6, neck[1] - ny * 0.6, 0.036)])
+        S_('cizgi').face([(neck[0] - nx * 0.6, neck[1] - ny * 0.6, 0.036), (tip[0], tip[1], 0.036), (neck[0] + nx * 0.6, neck[1] + ny * 0.6, 0.036)])
     # perimeter wall with steel railing
     for i in range(len(FENCE) - 1):
         a, c = P(FENCE[i]), P(FENCE[i + 1])
@@ -1239,22 +1439,25 @@ def build_site(M):
         for k in range(m + 1):
             px, py = a[0] + ux * k * ln / max(m, 1), a[1] + uy * k * ln / max(m, 1)
             S_('dograma').box(px - 0.04, py - 0.04, 0.72, px + 0.04, py + 0.04, 1.82)
-    # gatehouse and barriers
-    gh = [P(p) for p in [(1067.6, 416.0), (1071.4, 392.1), (1047.5, 388.4), (1043.6, 412.3)]]
-    S_('siva').prism(gh, 0.1, 2.9, bottom=False)
-    cx = sum(p[0] for p in gh) / 4
-    cy = sum(p[1] for p in gh) / 4
-    S_('silme').prism([(cx + (x - cx) * 1.3, cy + (y - cy) * 1.3) for x, y in gh], 2.9, 3.15, bottom=True)
-    S_('cam').prism([(cx + (x - cx) * 1.01, cy + (y - cy) * 1.01) for x, y in gh], 1.0, 2.3, top=False)
-    for (a, c) in (((1081.3, 339.7), (1055.8, 335.6)), ((1078.8, 355.6), (1053.2, 351.6))):
-        pa, pc = P(a), P(c)
+    # gate island with guard booth and barriers
+    for pj in RING['gate']['island']:
+        S_('kaldirim').poly(pj, 0.0, 0.18, sides=False)
+        S_('bordur').poly(pj, 0.0, 0.18, top=False)
+    x0, y0, x1, y1 = RING['gate']['booth']
+    (bx0, by1), (bx1, by0) = P((x0, y0)), P((x1, y1))
+    S_('siva').box(bx0, by0, 0.18, bx1, by1, 1.0)
+    S_('cam').box(bx0 + 0.02, by0 + 0.02, 1.0, bx1 - 0.02, by1 - 0.02, 2.3)
+    S_('dograma').box(bx0, by0, 1.0, bx0 + 0.08, by1, 2.3)
+    S_('dograma').box(bx1 - 0.08, by0, 1.0, bx1, by1, 2.3)
+    S_('siva').box(bx0, by0, 2.3, bx1, by1, 2.75)
+    S_('silme').box(bx0 - 0.5, by0 - 0.5, 2.75, bx1 + 0.5, by1 + 0.5, 2.95)
+    for (pa, pc) in RING['gate']['barriers']:
+        (ax_, ay_), (cx_, cy_) = P(pa), P(pc)
         n = 6
         for k in range(n):
             t0, t1 = k / n, (k + 1) / n
-            S_('kirmizi' if k % 2 else 'beyaz').obox(pa[0] + (pc[0] - pa[0]) * t0, pa[1] + (pc[1] - pa[1]) * t0, pa[0] + (pc[0] - pa[0]) * t1, pa[1] + (pc[1] - pa[1]) * t1, 0.1, 0.95, 1.06)
-        S_('dograma').box(pc[0] - 0.18, pc[1] - 0.18, 0.1, pc[0] + 0.18, pc[1] + 0.18, 1.15)
-    ia, ic = P((1066.1, 353.6)), P((1060.2, 390.3))
-    S_('bordur').obox(ia[0], ia[1], ic[0], ic[1], 1.2, 0, 0.18)
+            S_('kirmizi' if k % 2 else 'beyaz').obox(ax_ + (cx_ - ax_) * t0, ay_ + (cy_ - ay_) * t0, ax_ + (cx_ - ax_) * t1, ay_ + (cy_ - ay_) * t1, 0.1, 0.95, 1.06)
+        S_('dograma').box(ax_ - 0.18, ay_ - 0.18, 0.18, ax_ + 0.18, ay_ + 0.18, 1.15)
     # neighbouring buildings (context), generated on a jittered grid around the parcel
     r = random.Random(42)
     spots = []
@@ -1392,6 +1595,9 @@ def build_scene():
     for k, m in BUILD.items():
         m.to_object(k, M[k], arch, smooth=(k in ('oluk', 'mahya')))
     build_signs(M, arch)
+    w = bpy.data.objects.get('su')
+    if w:  # no caustics on CPU: let light reach the pool floor through the water
+        w.visible_shadow = False
 
     # ---- assets
     veg = bpy.data.collections.new('Bitki_ve_donati')
@@ -1421,6 +1627,7 @@ def build_scene():
         return rng.choices([c for _, c in car_cols], weights)[0]
     ac, table, lamp, bollard, bench = make_ac(M), make_table_set(M), make_lamp(M), make_bollard(M), make_bench(M)
     pot = make_pot(M, small)
+    lounger, umbrella = make_lounger(M), make_umbrella(M)
 
     for (x, y, z, r) in props['cars']:
         instance(car(), (x, y, z), r, 1.0, veg)
@@ -1484,35 +1691,60 @@ def build_scene():
             if not any(p[0][0] - 3 <= x <= p[1][0] + 3 and p[0][1] - 3 <= y <= p[2][1] + 3 for p in PATHS):
                 instance(rng.choice(bushes), (wx(x), wy(y + rng.uniform(-1.5, 1.5)), 0.2), rng.uniform(0, 6.28), rng.uniform(0.38, 0.5), veg)
             x += step * rng.uniform(0.8, 1.2)
-    hedge(170, 610, 309)
-    hedge(650, 1035, 309)
-    hedge(150, 1010, 419)
+    hedge(150, 240, 423)
     for (x0, x1, y) in ((212, 540, 160), (190, 312, 568)):
         x = x0
         while x < x1:
             instance(rng.choice(shrubs), (wx(x), wy(y + rng.uniform(-4, 4)), 0.2), rng.uniform(0, 6.28), rng.uniform(0.7, 0.95), veg)
             x += 14
-    for g in GREEN[2:9]:  # island planting
-        cx = sum(p[0] for p in g) / len(g)
-        cy = sum(p[1] for p in g) / len(g)
-        for k in range(5):
-            instance(rng.choice(bushes + shrubs), (wx(cx + rng.uniform(-25, 25)), wy(cy + rng.uniform(-18, 18)), 0.2), rng.uniform(0, 6.28), rng.uniform(0.35, 0.6), veg)
-    for (x, y) in ((690, 180), (800, 180), (930, 180), (1045, 300), (1040, 230)):
+    SEC = RING['section']
+    cross_x = [c['a'][0] for c in RING['crossings']]
+
+    def free(x, margin=26):
+        return not (540 < x < 720) and all(abs(x - cx) > margin for cx in cross_x)
+    k = 0
+    x = SEC['X_W'] + 16
+    while x < SEC['X_E']:  # median trees in the lawn strips either side of the path
+        if free(x):
+            yy = SEC['YC'] + (-15 if k % 2 else 15)
+            instance(trees['island_tree_02'], (wx(x), wy(yy), 0.2), rng.uniform(0, 6.28), rng.uniform(1.15, 1.35), veg)
+            for j in range(2):
+                instance(rng.choice(small), (wx(x + rng.uniform(-12, 12)), wy(yy + rng.uniform(-4, 4)), 0.2), rng.uniform(0, 6.28), rng.uniform(1.6, 2.2), veg)
+        k += 1
+        x += 58
+    for (x, y) in ((690, 180), (800, 180), (930, 180), (1040, 230), (870, 160), (990, 165)):
         instance(rng.choice(shrubs), (wx(x), wy(y), 0.2), rng.uniform(0, 6.28), 0.7, veg)
 
-    # lamps, bollards, benches
-    for x in range(180, 1030, 62):
-        instance(lamp, (wx(x), wy(329.4), 0.1), 0, 1.0, veg)
-        instance(lamp, (wx(x + 31), wy(398.4), 0.1), 0, 1.0, veg)
+    # lamps, benches, pool furniture
+    x = SEC['X_W'] + 10
+    k = 0
+    while x < SEC['X_E']:
+        if free(x, 14):
+            instance(lamp, (wx(x), wy(SEC['Y_I0'] + 5 if k % 2 else SEC['Y_I1'] - 5), 0.2), 0, 1.0, veg)
+        k += 1
+        x += 40
     for x in range(-100, 1150, 110):
         instance(lamp, (wx(x), wy(593), 0.15), 0, 1.25, veg)
-    for p in PATHS[:13]:
-        (a, b_), (c, d) = p[0], p[2]
-        instance(bollard, (wx(a) - 0.3, wy((b_ + d) / 2), 0.2), 0, 1.0, veg)
-        instance(bollard, (wx(c) + 0.3, wy((b_ + d) / 2), 0.2), 0, 1.0, veg)
-    for x in range(250, 1000, 95):
-        instance(bench, (wx(x), wy(333.2), 0.2), math.pi, 1.0, veg)
-        instance(bench, (wx(x + 45), wy(394.6), 0.2), 0, 1.0, veg)
+    x = SEC['X_W'] + 40
+    while x < SEC['X_E'] - 20:
+        if free(x, 20):
+            instance(bench, (wx(x), wy(SEC['YC'] - 10), 0.2), 0, 1.0, veg)
+            instance(bench, (wx(x + 30), wy(SEC['YC'] + 10), 0.2), math.pi, 1.0, veg)
+        x += 105
+    px0, py0, px1, py1 = RING['pool']
+    for side in (-1, 1):
+        for j in range(4):
+            xx = px0 - 9.5 if side < 0 else px1 + 9.5
+            instance(lounger, (wx(xx), wy(py0 + 16 + j * 22), 0.22), math.pi / 2, 1.0, veg)
+    for xx in (px0 - 4, px1 + 4):
+        instance(umbrella, (wx(xx), wy(py0 - 12), 0.22), 0, 1.0, veg)
+    for (xx, yy) in ((px0 - 9, py1 + 10), (px1 + 9, py1 + 10)):
+        instance(rng.choice(small), (wx(xx), wy(yy), 0.22), 0, 2.4, veg)
+    # cars driving on the ring (one-way)
+    LANE_PT = 3.5 * S
+    for (x, y, r_) in ((450, SEC['Y_N0'] + LANE_PT / 2, math.pi), (840, SEC['Y_I1'] + LANE_PT / 2, 0.0),
+                       (SEC['BX'] + SEC['BHW'] + LANE_PT / 2, 268, math.pi / 2)):
+        instance(car(), (wx(x), wy(y), 0.03), r_, 1.0, veg)
 
     # grass scatter on lawns, excluding buildings and paths
     excl = []
@@ -1520,12 +1752,9 @@ def build_scene():
         bz0, bz1 = B.TT['balcony']
         zs = [0, B.D, bz0, bz1, 12.23 if B.b['type'] == 'u31' else 0]
         excl.append((B.X(-0.5), B.Y(max(zs) + 0.5), B.X(B.W + 0.5), B.Y(min(zs) - 0.5)))
-    for p in PATHS:
-        q = [P(x) for x in p]
-        excl.append((min(a for a, _ in q) - 0.2, min(b for _, b in q) - 0.2, max(a for a, _ in q) + 0.2, max(b for _, b in q) + 0.2))
     pts = []
-    for i, g in enumerate(GREEN):
-        pts += scatter_points_in([P(p) for p in g], 45.0, excl, 100 + i)
+    for i, g in enumerate(RING['greens'] + RING['median_green']):
+        pts += scatter_points_in([P(p) for p in g['ext']], 45.0, excl, 100 + i)
     grass_system(pts, 0.2, grass, 'cim_sacilim')
     print('grass instances', len(pts))
     return M
@@ -1537,7 +1766,10 @@ VIEWS = {
     'kus_bakisi': ((70, -100, 78), (-3, 4, 0), 30),
     'kus_bakisi_alcak': ((96, -72, 40), (-6, 6, 0), 28),
     'kus_bakisi_kuzeybati': ((-88, 70, 46), (2, -2, 2), 30),
-    'avlu': ((wx(955), wy(405), 1.65), (wx(640), wy(374), 5.0), 22),
+    'avlu': ((wx(1030), wy(305), 1.7), (wx(700), wy(366), 3.5), 22),
+    'havuz': ((wx(628.75), wy(378), 3.2), (wx(628.75), wy(240), 0.8), 22),
+    'havuz_ust': ((wx(560), wy(420), 16), (wx(628.75), wy(268), 0.0), 26),
+    'plan': ((0.0, 2.0, 220.0), (0.0, 2.001, 0.0), ('ORTHO', 132.0)),
     'sokak': ((wx(985), wy(690), 1.7), (wx(760), wy(520), 6.0), 24),
     'giris': ((wx(edge_x(362) + 126), wy(362), 1.7), (wx(990), wy(340), 4.5), 24),
     'cephe': ((wx(868), wy(324), 1.7), (wx(784), wy(292), 4.8), 22),
@@ -1588,7 +1820,12 @@ def set_camera(name):
     cam.location = loc
     d = Vector(tgt) - Vector(loc)
     cam.rotation_euler = d.to_track_quat('-Z', 'Y').to_euler()
-    cam.data.lens = lens
+    if isinstance(lens, tuple):
+        cam.data.type = 'ORTHO'
+        cam.data.ortho_scale = lens[1]
+    else:
+        cam.data.type = 'PERSP'
+        cam.data.lens = lens
     cam.data.clip_start = 0.1
     cam.data.clip_end = 2000
     cam.data.sensor_width = 36

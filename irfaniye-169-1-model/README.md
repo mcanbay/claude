@@ -56,6 +56,32 @@ Dışa aktarılan dosyalarda birim metredir, Y ekseni yukarıdır. Katmanlar: `Z
 - **Bloğa tıklama:** kat dağılımı, daire ve blok emsal/brüt toplamları
 - **Katmanlar:** çatılar, ağaçlar, blok adları, araçlar · güneş konumu
 
+## Ring yolu ve merkezi havuz (öneri)
+
+![Ring ve havuz planı](gorseller/ring_plani.png)
+
+**Mantık:** Otoparklı bloklara (A, B, F, G, H, I, J) araçlar artık caddeden değil, güvenlikli site girişinden girip site içi ring üzerinden ulaşıyor. Ring avlu boyunca dönen **tek yönlü bir döngü** (haritada saat yönünün tersine, sağdan trafiğe uygun):
+
+1. Araç doğudaki site girişinden (bariyerli giriş şeridi) girer ve kuzey şeritten batıya ilerler. A ve B otoparklarına bu şeritten girilir.
+2. Batı ucunda (E–F blokları önü) U dönüşü yapar ve güney şeritten doğuya döner. F, G, H, I ve J otoparklarına bu şeritten girilir.
+3. Doğu ucunda ya tekrar döngüye girer ya da çıkış şeridinden çıkar.
+
+Otoparkların cadde tarafındaki eski girişleri kapatıldı: alçak duvar üstünde çelik lamel perde. Bütün araç trafiği tek bir kontrollü kapıdan geçiyor.
+
+| Ölçü | Değer |
+|---|---|
+| Şerit genişliği | 3,50 m (tek yön) |
+| Kuzey / güney kaldırım | 1,75 m / 1,60 m |
+| Orta ada (yeşil, yürüyüş yolu, ağaç, bank, aydınlatma) | 5,87 m |
+| Ring eksen uzunluğu | ≈ 228 m |
+| U dönüşlerinde eksen yarıçapı | ≈ 4,7 m (binek araç için yeterli) |
+| Giriş / çıkış şeritleri | 3,50 m + ortada güvenlik kabini adası |
+| Havuz | 5,00 × 12,50 m (62,5 m²), 1,45 m derinlik, merdivenli sığ uç |
+
+**Havuz:** Avlu iki blok sırası arasında yalnızca 16,2 m. İki şerit ve kaldırımlardan sonra ortada kalan 5,87 m'lik adaya havuz sığmıyor. Bu yüzden ring, sitenin tam ortasında C ve B blokları arasındaki boşluğa doğru kuzeye kıvrılıyor ("Ω") ve oluşan 8,7 m genişliğindeki adaya havuz yerleşiyor. Havuz adası cam güvenlik korkuluğuyla çevrili. Ada; batı ve doğu kollarındaki ve kuzey bahçedeki yaya geçitlerinden ve güney şeritteki geçitten orta ada yürüyüş yoluna bağlanıyor. Yol, hiçbir bina, teras ya da giriş saçağıyla çakışmayacak şekilde otomatik olarak kontrol edildi (`kaynak/ring.py`).
+
+**Dikkat edilmesi gerekenler:** U dönüşleri binek araçlar için uygun ancak itfaiye aracı için dar. Binalara itfaiye erişimi dış cephelerdeki kamu yollarından sağlanıyor; bunun yangın yönetmeliği açısından projeci ve itfaiye ile teyit edilmesi gerekir. Havuz adasına ulaşmak için ring şeridini yaya geçidinden geçmek gerekiyor; ring üzerinde hız sınırı (10 km/s) ve yükseltilmiş yaya geçitleri önerilir. Otopark içi park yeri yerleşimi temsilîdir.
+
 ## Gerçekçi render (Blender + Cycles)
 
 `render/` klasöründeki betik, aynı plan verisinden açık kaynak **Blender 5.3** (Cycles yol izleme motoru) ile ayrıntılı bir sahne kurar ve fotogerçekçi görseller üretir.
@@ -64,17 +90,20 @@ Dışa aktarılan dosyalarda birim metredir, Y ekseni yukarıdır. Katmanlar: `Z
 
 | Görsel | |
 |---|---|
+| `gorseller/render/plan.png` | Tepeden ortografik plan render |
 | `gorseller/render/kus_bakisi.png` | Güneydoğudan kuş bakışı |
 | `gorseller/render/kus_bakisi_alcak.png` | Alçak açı kuş bakışı, ufuk çizgisiyle |
 | `gorseller/render/kus_bakisi_kuzeybati.png` | Kuzeybatıdan kuş bakışı |
-| `gorseller/render/avlu.png` | İç avlu, yaya gözü |
+| `gorseller/render/havuz_ust.png` | Havuz adası ve ringin kıvrımı, yukarıdan |
+| `gorseller/render/havuz.png` | Havuz, yaya gözü |
+| `gorseller/render/avlu.png` | Ring yolu, kuzey kaldırımından batıya bakış |
 | `gorseller/render/cephe.png` | B Blok giriş cephesi |
-| `gorseller/render/giris.png` | Doğu yolundan site girişi |
-| `gorseller/render/sokak.png` | Güney yolundan F–J blokları ve otopark girişleri |
+| `gorseller/render/giris.png` | Site girişi: giriş/çıkış şeritleri, kabin, bariyerler |
+| `gorseller/render/sokak.png` | Güney yolundan F–J blokları (kapatılmış otopark cepheleri) |
 
 **Cephe ayrıntıları:** antrasit alüminyum doğramalar (kasa, kayıt, orta dikme), mermer denizlikler, sürme balkon kapıları, iç tarafta tül ve fon perdeler, kat silmeleri, taş kaplı subasman, açık renkli kompozit kaplamalı merdiven kuleleri ve blok uç cepheleri, giriş saçağı ve blok tabelası, cam korkuluklu balkonlar (paslanmaz dikme ve küpeşte), balkonlarda klima dış üniteleri, saksılar, masa-sandalye; kil kiremitli kırma çatı, mahya ve kırma mahyaları, oluklar ve iniş boruları, bacalar, güneş enerjili su ısıtıcıları.
 
-**Çevre:** gerçek ağaç ve çalı modelleri, tek tek çim sapları (yaklaşık 200 bin tutam), çit önü ve teras önü çalı sıraları, aydınlatma direkleri, bolarlar, banklar, taş kaplı çevre duvarı ve demir korkuluk, güvenlik kulübesi ve bariyerler, yaya geçidi, park etmiş ve seyir hâlindeki araçlar (sedan, hatchback ve SUV, 7 renk), otoparkta çizgiler ve LED armatürler, komşu binalar ve park.
+**Çevre:** tek yönlü ring yolu (yön okları, yaya geçitleri, bordürler), mozaik kaplı havuz, şezlonglar, şemsiyeler, cam güvenlik korkuluğu, güvenlik kabini; gerçek ağaç ve çalı modelleri, tek tek çim sapları (yaklaşık 200 bin tutam), çit önü ve teras önü çalı sıraları, aydınlatma direkleri, bolarlar, banklar, taş kaplı çevre duvarı ve demir korkuluk, güvenlik kulübesi ve bariyerler, yaya geçidi, park etmiş ve seyir hâlindeki araçlar (sedan, hatchback ve SUV, 7 renk), otoparkta çizgiler ve LED armatürler, komşu binalar ve park.
 
 > Cephe malzemeleri ve renkleri, araç ve peyzaj donatıları paftalarda yer almıyor. Bunlar görselleştirme için benim seçtiğim örnek bir malzeme kurgusu. Bina ölçüleri, pencere yerleri, balkonlar, merdivenler ve yerleşim paftalardan alınmıştır.
 
@@ -82,10 +111,11 @@ Dışa aktarılan dosyalarda birim metredir, Y ekseni yukarıdır. Katmanlar: `Z
 
 ```bash
 cd render
-pip install bpy                 # Blender 5.x Python modülü
+pip install bpy shapely matplotlib   # Blender 5.x Python modülü, geometri ve plan çizimi
 python indir.py assets          # Poly Haven'dan CC0 doku, model ve HDRI (~450 MB)
+python ../kaynak/ring.py        # ring yolu ve havuz geometrisi -> kaynak/ring.json, gorseller/ring_plani.png
 python sahne.py --kaydet sahne.blend \
-    --render kus_bakisi,avlu,cephe,giris,sokak --cozunurluk 1920x1080 --ornek 128 --cikti ../gorseller/render
+    --render plan,kus_bakisi,havuz,avlu,giris --cozunurluk 1920x1080 --ornek 128 --cikti ../gorseller/render
 ```
 
 `sahne.blend` dosyası Blender'da açılıp düzenlenebilir (yaklaşık 280 MB olduğu için depoya eklenmedi). Güneş açısı `--gunes` (derece, azimut) ile değiştirilebilir.
