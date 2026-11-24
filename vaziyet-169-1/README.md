@@ -30,3 +30,16 @@ Betik, verilen villa sayısı için en geniş cepheyi ve iki sıranın bahçeler
 Villalar zemin + 1 kattır. Kat yüksekliği 3,15 m, subasman 0,45 m. Saçak +6,75 m, mahya +8,40 m.
 Çatı %30 eğimli beşik çatıdır ve mahyası sıra boyunca uzanır.
 1. katta 1,5 m'lik arka balkon var. Model temsili bir kütle çalışmasıdır; cephe düzeni mimari projede netleşecek.
+
+### Mahremiyet duvarları
+
+Komşu villalar arasında, `vaziyet.py` içinde tanımlıdır (`MAH`). Aynı geometri 2B paftada, DXF'te ve 3B modelde kullanılır:
+
+| Yer | Yükseklik | Boy |
+|---|---|---|
+| Arka bahçe, teras boyunca | 2,4 m | cepheden itibaren 3,5 m |
+| Arka bahçe, teras sonrası | 1,9 m | bahçe sonuna (çevre duvarına) kadar |
+| Ön bahçe, yan yana gelen iki giriş yolu arasında | 1,4 m | cepheden itibaren 4,0 m |
+| 1. kat, balkonlar arasında | balkon döşemesinden saçağa kadar | 1,6 m (balkon derinliği + 0,1 m) |
+
+Duvarlar 20 cm kalınlığındadır. DXF'te `MAHREMIYET_DUVARI` ve `MAHREMIYET_BALKON` katmanlarındadır.

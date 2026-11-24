@@ -135,10 +135,10 @@ def make_row(x0, n, ev, otp, bahce_side, no0, sira):
         walk = box(wx, otp[0], wx + 1.2, otp[1])
         if bahce_side == "ust":
             g = box(x, ev[1], x + W, BIG).intersection(PARSEL)
-            bal = box(x + 0.3, ev[1], x + W - 0.3, ev[1] + BALKON)
+            bal = box(x + 0.1, ev[1], x + W - 0.1, ev[1] + BALKON)
         else:
             g = box(x, -BIG, x + W, ev[0]).intersection(PARSEL)
-            bal = box(x + 0.3, ev[0] - BALKON, x + W - 0.3, ev[0])
+            bal = box(x + 0.1, ev[0] - BALKON, x + W - 0.1, ev[0])
         villas.append(dict(no=no0 + k, ev=house, otopark=front, park=stall, yuruyus=walk,
                            bahce=g, balkon=bal, sira=sira))
 
@@ -158,6 +158,48 @@ SETBACK_LINE = BUILD.exterior
 # ortak alan = parsel - (yol + villa lotları)
 lots = unary_union([unary_union([v["ev"], v["otopark"], v["bahce"]]) for v in villas])
 ORTAK = PARSEL.difference(unary_union([lots, YOL_POLY]))
+
+# ---------------------------------------------------------------- mahremiyet duvarları
+# Komşu villalar arasında: arka bahçede teras boyunca yüksek, bahçe sonuna kadar alçak duvar;
+# 1. katta balkonlar arasında saçağa kadar yan duvar; önde iki giriş yolu yan yana gelen sınırda alçak duvar.
+MAH_T = 0.20            # duvar kalınlığı
+MAH_TERAS = 3.5         # arka cepheden itibaren yüksek (teras) duvar boyu
+MAH_H_TERAS, MAH_H_BAHCE, MAH_H_ON = 2.4, 1.9, 1.4
+MAH_ON_BOY = 4.0        # ön bahçede giriş yolları arasındaki duvar boyu
+CEVRE_DUVAR_KAL = 0.25  # parsel çevre duvarı kalınlığı
+MAH = []                # dict: tip (teras / bahce / on / balkon), poly, h (yükseklik; balkon için saçağa kadar)
+
+
+def _vband(a, b, u0, u1):
+    return box(u0, min(a, b), u1, max(a, b))
+
+
+def _mahremiyet_duvarlari():
+    ic = PARSEL.buffer(-CEVRE_DUVAR_KAL, join_style=2)
+    for row in ("A", "B"):
+        vs = sorted([v for v in villas if v["sira"] == row], key=lambda v: v["ev"].bounds[0])
+        for i, v in enumerate(vs):
+            u0, v0, u1, v1 = v["ev"].bounds
+            arka, on = (v1, v0) if row == "A" else (v0, v1)
+            dis = 1 if row == "A" else -1           # arka cepheden bahçeye doğru v yönü
+            for uu in [u0] + ([u1] if i == len(vs) - 1 else []):
+                ln = LineString([(uu, arka), (uu, arka + dis * 500)]).intersection(ic)
+                if not ln.is_empty:
+                    duvar = ln.buffer(MAH_T / 2, cap_style=2)
+                    teras = _vband(arka, arka + dis * MAH_TERAS, uu - 1, uu + 1)
+                    MAH.append(dict(tip="teras", poly=duvar.intersection(teras), h=MAH_H_TERAS))
+                    MAH.append(dict(tip="bahce", poly=duvar.difference(teras), h=MAH_H_BAHCE))
+                MAH.append(dict(tip="balkon", poly=_vband(arka, arka + dis * (BALKON + 0.1),
+                                                          uu - MAH_T / 2, uu + MAH_T / 2), h=None))
+            if i > 0:
+                once = vs[i - 1]
+                ou0, _, ou1, _ = once["ev"].bounds
+                if v["yuruyus"].centroid.x < (u0 + u1) / 2 and once["yuruyus"].centroid.x > (ou0 + ou1) / 2:
+                    MAH.append(dict(tip="on", poly=_vband(on, on - dis * MAH_ON_BOY,
+                                                          u0 - MAH_T / 2, u0 + MAH_T / 2), h=MAH_H_ON))
+
+
+_mahremiyet_duvarlari()
 
 # ---------------------------------------------------------------- kontroller / tablo
 for v in villas:
@@ -193,7 +235,8 @@ ozet = [
 
 # ---------------------------------------------------------------- çizim (matplotlib)
 C = dict(parsel="#1f2937", cekme="#dc2626", yol="#d6d3d1", otopark="#e7e5e4", park="#a8a29e",
-         ev="#b45309", ev_fill="#fde68a", bahce="#dcfce7", ortak="#bbf7d0", yazi="#111827")
+         ev="#b45309", ev_fill="#fde68a", bahce="#dcfce7", ortak="#bbf7d0", yazi="#111827",
+         mah="#44403c")
 
 
 def draw_poly(ax, g, **kw):
@@ -228,6 +271,10 @@ def render(path_pdf, path_png):
         draw_poly(ax, v["park"], facecolor=C["park"], edgecolor="#78716c", lw=0.3, zorder=3)
         draw_poly(ax, v["yuruyus"], facecolor="#ffffff", edgecolor="#a8a29e", lw=0.3, zorder=3)
         draw_poly(ax, v["ev"], facecolor=C["ev_fill"], edgecolor=C["ev"], lw=0.8, zorder=4)
+    for m in MAH:   # balkon yan duvarları zemindeki teras duvarıyla aynı izde, ayrıca çizilmez
+        if m["tip"] != "balkon":
+            draw_poly(ax, m["poly"], facecolor=C["mah"], edgecolor="none", zorder=6)
+    for v in villas:
         bx = list(v["balkon"].exterior.coords)
         ax.plot([p[0] for p in bx], [p[1] for p in bx], ls=(0, (2, 1.5)), lw=0.5, color=C["ev"], zorder=5)
         c = v["ev"].centroid
@@ -326,7 +373,9 @@ def render(path_pdf, path_png):
              (C["otopark"], "#a8a29e", "Villa ön bahçesi / araç girişi"),
              (C["yol"], "#78716c", "Site içi yol"),
              (C["bahce"], "#86efac", "Villa özel bahçesi"),
-             (C["ortak"], "none", "Ortak yeşil / artık alan")]
+             (C["ortak"], "none", "Ortak yeşil / artık alan"),
+             (C["mah"], C["mah"], "Mahremiyet duvarı (h: teras {}, bahçe {}, giriş {} m) + 1. kat balkon yan duvarı"
+              .format(*(f"{h:.1f}".replace(".", ",") for h in (MAH_H_TERAS, MAH_H_BAHCE, MAH_H_ON))))]
     for i, (fc, ec, lab) in enumerate(items):
         yy = ty - (5 + i * 4.3) / 297
         fig.patches.append(matplotlib.patches.Rectangle((lx, yy - 0.3 / 297), 6 / 420, 2.6 / 297,
@@ -370,11 +419,13 @@ def write_dxf(path):
     doc.units = ezdxf.units.M
     msp = doc.modelspace()
     layers = {"PARSEL": 7, "CEKME": 1, "YOL": 8, "OTOPARK": 9, "PARK_YERI": 252, "VILLA": 30,
-              "BALKON": 30, "BAHCE": 3, "ORTAK_ALAN": 82, "YAZI": 7}
+              "BALKON": 30, "BAHCE": 3, "ORTAK_ALAN": 82, "YAZI": 7, "MAHREMIYET_DUVARI": 251,
+              "MAHREMIYET_BALKON": 251}
     for n, col in layers.items():
         doc.layers.add(n, color=col)
     doc.layers.get("CEKME").dxf.linetype = "DASHDOT"
     doc.layers.get("BALKON").dxf.linetype = "DASHED"
+    doc.layers.get("MAHREMIYET_BALKON").dxf.linetype = "DASHED"
 
     def poly(g, layer):
         for p in getattr(g, "geoms", [g]):
@@ -386,6 +437,8 @@ def write_dxf(path):
     poly(BUILD, "CEKME")
     poly(YOL_POLY, "YOL")
     poly(ORTAK, "ORTAK_ALAN")
+    for m in MAH:
+        poly(m["poly"], "MAHREMIYET_BALKON" if m["tip"] == "balkon" else "MAHREMIYET_DUVARI")
     for v in villas:
         poly(v["ev"], "VILLA")
         poly(v["balkon"], "BALKON")

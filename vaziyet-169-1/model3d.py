@@ -51,6 +51,8 @@ MAT = {
     "ortak":     ((0.36, 0.56, 0.28), 1.0, 0.0),
     "zemin":     ((0.78, 0.75, 0.66), 1.0, 0.0),
     "bahce_duv": ((0.80, 0.78, 0.73), 0.9, 0.0),
+    "perde":     ((0.84, 0.79, 0.70), 0.9, 0.0),   # mahremiyet duvarları
+    "harpusta":  ((0.62, 0.60, 0.56), 0.8, 0.0),
     "cit":       ((0.24, 0.42, 0.20), 1.0, 0.0),
     "govde":     ((0.40, 0.29, 0.20), 1.0, 0.0),
     "yaprak":    ((0.27, 0.48, 0.22), 1.0, 0.0),
@@ -197,9 +199,7 @@ for row in ("A", "B"):
         bh = SUBASMAN + KAT
         add("villa", "duvar", bx(bu0, bv0, bh - 0.2, bu1, bv1, bh))
         ov0, ov1 = (bv1 - 0.06, bv1) if row == "A" else (bv0, bv0 + 0.06)
-        add("villa", "korkuluk", bx(bu0, ov0, bh, bu1, ov1, bh + 1.0))
-        add("villa", "korkuluk", bx(bu0, bv0, bh, bu0 + 0.06, bv1, bh + 1.0))
-        add("villa", "korkuluk", bx(bu1 - 0.06, bv0, bh, bu1, bv1, bh + 1.0))
+        add("villa", "korkuluk", bx(bu0, ov0, bh, bu1, ov1, bh + 1.0))   # yanlar mahremiyet duvarı
         # arka teras (zeminde, balkonun altında)
         t1 = arka_v - dn * 3.0
         add("peyzaj", "teras", bx(u0, arka_v, 0, u1, t1, 0.12))
@@ -235,7 +235,7 @@ for row in ("A", "B"):
             far = box(u0, -500, u1, 500).intersection(g).buffer(-1.4)
             if not far.is_empty:
                 fu0, fv0, fu1, fv1 = far.bounds
-                tu = rng.uniform(fu0, fu1)
+                tu = (fu1 - 0.3) if v["no"] % 2 == 0 else (fu0 + 0.3)     # bahçenin dip köşesine, villa numarasına göre
                 tv = (fv0 + 0.6) if row == "B" else (fv1 - 0.6)
                 if far.contains(Polygon([(tu - .1, tv - .1), (tu + .1, tv - .1), (tu + .1, tv + .1)])):
                     hgt = rng.uniform(4.0, 6.0)
@@ -247,20 +247,15 @@ for row in ("A", "B"):
                     crown.apply_translation((tu, tv, hgt * 0.62))
                     add("agac", rng.choice(["yaprak", "yaprak2"]), crown)
 
-# ------------------------------------------------------------ parsel çitleri (bahçeler arası)
-inner = P.buffer(-DUVAR_KAL)
-for row in ("A", "B"):
-    vs = [v for v in V.villas if v["sira"] == row]
-    for i, v in enumerate(vs):
-        u0, v0, u1, v1 = v["ev"].bounds
-        arka_v = v1 if row == "A" else v0
-        uus = [u0] + ([u1] if i == len(vs) - 1 else [])
-        for uu in uus:
-            far = 500 if row == "A" else -500
-            ln = LineString([(uu, arka_v), (uu, far)]).intersection(inner)
-            if ln.is_empty:
-                continue
-            add("peyzaj", "cit", slab(ln.buffer(0.15, cap_style=2), 0.0, CIT_H))
+# ------------------------------------------------------------ mahremiyet duvarları (vaziyet.py'deki MAH)
+for m in V.MAH:
+    if m["poly"].is_empty:
+        continue
+    if m["tip"] == "balkon":     # 1. kat: balkon döşemesinden saçağa kadar
+        add("villa", "perde", slab(m["poly"], SUBASMAN + KAT - 0.2, SACAK))
+    else:                        # zemin: bahçe, teras ve giriş duvarları + harpuşta
+        add("peyzaj", "perde", slab(m["poly"], 0.0, m["h"]))
+        add("peyzaj", "harpusta", slab(m["poly"].buffer(0.04, join_style=2), m["h"], m["h"] + 0.06))
 
 # ortak alanlarda birkaç ağaç
 for p in getattr(V.ORTAK, "geoms", [V.ORTAK]):

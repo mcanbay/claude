@@ -118,6 +118,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
         <dt>Parsel (tapu)</dt><dd>__TAPU__ m²</dd>
         <dt>TAKS / KAKS</dt><dd>__TAKS__ / __KAKS__</dd>
         <dt>Otopark</dt><dd>villa önünde 1</dd>
+        <dt>Mahremiyet duvarı</dt><dd>bahçe 1,9 · teras 2,4 m</dd>
+        <dt>Balkon yan duvarı</dt><dd>saçağa kadar</dd>
       </dl>
     </section>
 
@@ -130,6 +132,8 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
         <button class="view" data-v="bahce" aria-pressed="false">Arka bahçeler</button>
         <button class="view" data-v="plan" aria-pressed="false">Plan</button>
         <button class="view" data-v="kuzey" aria-pressed="false">Kuzeyden</button>
+        <button class="view" data-v="bahcede" aria-pressed="false">Bahçeden</button>
+        <button class="view" data-v="girisler" aria-pressed="false">Girişlerden</button>
       </div>
     </section>
 
@@ -159,6 +163,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
 
     <section>
       <p class="note">Sürükleyerek döndürün, tekerlek veya iki parmakla yaklaşın, sağ tuşla kaydırın.</p>
+      <p class="note">Komşu villalar arasında zeminde bahçe, teras ve giriş duvarları, 1. katta balkon yan duvarları vardır.</p>
       <p class="note">Kütle çalışmasıdır. Cephe, pencere ve çatı düzeni mimari projede netleşecek. Çekme mesafesi 3 m varsayılmıştır; imar durumuyla teyit edilmelidir.</p>
     </section>
   </aside>
@@ -260,14 +265,20 @@ const SW = N.clone().add(E).multiplyScalar(-1).normalize();
 const VIEWS = {
   kus:   () => [SW.clone().multiplyScalar(135).add(new THREE.Vector3(0, 82, 0)), new THREE.Vector3(6, 0, 0)],
   giris: () => [G.clone().add(new THREE.Vector3(16, 9, 9)), G.clone().add(new THREE.Vector3(-34, 2, -2))],
-  yol:   () => [G.clone().add(new THREE.Vector3(-10, 1.7, 1.4)), L.clone().add(new THREE.Vector3(0, 2.6, 0))],
+  yol:   () => [G.clone().add(new THREE.Vector3(-10, 1.7, 1.4)), L.clone().add(new THREE.Vector3(0, 2.6, 0)), 50],
   bahce: () => [new THREE.Vector3(-8, 24, 74), new THREE.Vector3(4, 3, 14)],
   plan:  () => [new THREE.Vector3(0, 175, 0.01), new THREE.Vector3(0, 0, 0)],
   kuzey: () => [N.clone().multiplyScalar(110).add(new THREE.Vector3(0, 48, 0)), new THREE.Vector3(0, 2, 0)],
+  // B sırası bahçesinin dibinden eve bakış (bahçeler +z yönünde)
+  bahcede: () => { const p = villa(24); return [new THREE.Vector3(p.x - 2.7, 1.7, p.z + 13.6), new THREE.Vector3(p.x + 2.6, 3.0, p.z + 5.5), 62]; },
+  // A sırası girişlerine yoldan çapraz bakış (A sırasının önü +z yönünde)
+  girisler: () => { const p = villa(8); return [new THREE.Vector3(p.x + 11, 5.0, p.z + 21), new THREE.Vector3(p.x - 3, 1.4, p.z + 6.5)]; },
 };
+function villa(no) { const v = META.villalar.find(x => x.no === no); return new THREE.Vector3(v.p[0], 0, v.p[1]); }
 let tween = null;
 function go(name, instant) {
-  const [p, t] = VIEWS[name]();
+  const [p, t, fov = 42] = VIEWS[name]();
+  camera.fov = fov; camera.updateProjectionMatrix();
   document.querySelectorAll("#views button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === name));
   if (instant || reduce) { camera.position.copy(p); controls.target.copy(t); controls.update(); return; }
   tween = { p0: camera.position.clone(), t0: controls.target.clone(), p1: p, t1: t, s: performance.now(), d: 1300 };
@@ -339,7 +350,10 @@ function frame(now) {
   needle.setAttribute("transform", `rotate(${a2 * 180 / Math.PI})`);
   nlabel.setAttribute("x", (Math.sin(a2) * 20).toFixed(1));
   nlabel.setAttribute("y", (-Math.cos(a2) * 20).toFixed(1));
-  if (!labelsEl.hidden) {
+  // göz hizasında etiketler binaların arkasından görüneceği için gizlenir
+  const eye = camera.position.y < 12;
+  labelsEl.style.visibility = eye ? "hidden" : "";
+  if (!labelsEl.hidden && !eye) {
     const w = stage.clientWidth, h = stage.clientHeight;
     for (const l of labels) {
       tmpA.copy(l.p).project(camera);
