@@ -1,0 +1,356 @@
+<title>İrfaniye Sıra Villaları</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+/* Düzen: solda tam yükseklik 3B sahne, sağda dar kontrol paneli; dar ekranda sahne üstte, panel altta. */
+:root {
+  --bg: #eef0ef;
+  --panel: #ffffff;
+  --ink: #1d2327;
+  --muted: #5d696e;
+  --line: #d8dedd;
+  --chip: #eef2f2;
+  --accent: #2f5d7c;
+  --accent-ink: #ffffff;
+  --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121618; --panel: #192024; --ink: #e6ebeb; --muted: #9aa7ab; --line: #2a3336;
+    --chip: #222a2e; --accent: #82b4d6; --accent-ink: #0c1a23; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121618; --panel: #192024; --ink: #e6ebeb; --muted: #9aa7ab; --line: #2a3336;
+  --chip: #222a2e; --accent: #82b4d6; --accent-ink: #0c1a23; color-scheme: dark;
+}
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 14px; line-height: 1.45; }
+.app { height: 100%; display: grid; grid-template-columns: minmax(0, 1fr) 330px; }
+.stage { position: relative; min-width: 0; min-height: 0; overflow: hidden; background: #cfdbe3; }
+.stage canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.panel {
+  background: var(--panel); border-left: 1px solid var(--line); overflow-y: auto;
+  padding-block: 22px 28px; padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 22px; min-width: 0;
+}
+.eyebrow { font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+h1 { font-family: var(--f-display); font-weight: 700; font-size: 26px; line-height: 1.1; margin: 6px 0 4px; text-wrap: balance; letter-spacing: -.01em; }
+.sub { color: var(--muted); margin: 0; }
+h2 { font-family: var(--f-display); font-weight: 500; font-size: 12px; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+dl.figs { display: grid; grid-template-columns: auto 1fr; gap: 7px 14px; margin: 0; }
+dl.figs dt { color: var(--muted); }
+dl.figs dd { margin: 0; font-family: var(--f-mono); font-variant-numeric: tabular-nums; text-align: right; }
+.views { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+button.view, .seg button {
+  font: 500 13px var(--f-body); color: var(--ink); background: var(--chip); border: 1px solid var(--line);
+  border-radius: 6px; padding: 8px 10px; cursor: pointer; text-align: left;
+}
+button.view:hover, .seg button:hover { border-color: var(--accent); }
+button.view[aria-pressed="true"], .seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.seg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 12px; }
+.seg button { text-align: center; padding: 7px 4px; font-size: 12.5px; }
+.sunrow { display: flex; align-items: center; gap: 10px; }
+.sunrow input { flex: 1; min-width: 0; accent-color: var(--accent); }
+.sunrow output { font-family: var(--f-mono); font-variant-numeric: tabular-nums; min-width: 44px; text-align: right; }
+.sunnote { color: var(--muted); font-size: 12.5px; margin: 6px 0 0; font-family: var(--f-mono); }
+.toggles { display: flex; flex-direction: column; gap: 8px; }
+.toggles label { display: flex; align-items: center; gap: 9px; cursor: pointer; }
+.toggles input { accent-color: var(--accent); width: 16px; height: 16px; }
+.note { color: var(--muted); font-size: 12.5px; margin: 0; }
+.note + .note { margin-top: 6px; }
+.hud { position: absolute; pointer-events: none; }
+.compass { right: calc(14px + env(safe-area-inset-right, 0px)); top: 14px; width: 54px; height: 54px; }
+.compass svg { width: 100%; height: 100%; }
+.labels { inset: 0; }
+.lbl {
+  position: absolute; transform: translate(-50%, -100%); font: 600 10.5px var(--f-mono); color: #1d2327;
+  background: rgba(255, 255, 255, .86); border-radius: 3px; padding: 1px 4px; white-space: nowrap;
+}
+.status {
+  left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: var(--f-mono); color: #1d2327;
+  background: rgba(255, 255, 255, .9); padding: 10px 14px; border-radius: 6px;
+}
+.scalebar { left: calc(14px + env(safe-area-inset-left, 0px)); bottom: 14px; font: 500 11px var(--f-mono); color: #1d2327;
+  background: rgba(255,255,255,.82); padding: 5px 8px; border-radius: 4px; }
+@media (max-width: 760px) {
+  .app { grid-template-columns: minmax(0, 1fr); grid-template-rows: 62vh auto; height: auto; }
+  .panel { border-left: 0; border-top: 1px solid var(--line); overflow: visible; }
+}
+</style>
+
+<div class="app">
+  <div class="stage" id="stage">
+    <div class="hud labels" id="labels"></div>
+    <div class="hud compass" aria-label="Kuzey yönü">
+      <svg viewBox="-30 -30 60 60" id="compass">
+        <circle r="27" fill="rgba(255,255,255,.88)" stroke="#1d2327" stroke-width="1.2"></circle>
+        <g id="needle">
+          <path d="M0,-13 L5,2 L0,0 L-5,2 Z" fill="#b6402b"></path>
+          <path d="M0,13 L5,2 L0,0 L-5,2 Z" fill="#9aa3a6"></path>
+        </g>
+        <text id="nlabel" text-anchor="middle" dominant-baseline="central" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="9" fill="#1d2327">K</text>
+      </svg>
+    </div>
+    <div class="hud scalebar">Mahya +__MAHYA__ m · saçak +__SACAK__ m</div>
+    <div class="hud status" id="status">Model yükleniyor…</div>
+  </div>
+
+  <aside class="panel">
+    <div>
+      <div class="eyebrow">169 Ada · 1 + 2 Parsel · Varyant B</div>
+      <h1>İrfaniye Sıra Villaları</h1>
+      <p class="sub">Nilüfer / Bursa · temsili kütle modeli</p>
+    </div>
+
+    <section>
+      <h2>Proje</h2>
+      <dl class="figs">
+        <dt>Villa</dt><dd>__N__ adet, 16 + 16</dd>
+        <dt>Villa ölçüsü</dt><dd>__W__ × __D__ m</dd>
+        <dt>Kat</dt><dd>Zemin + 1</dd>
+        <dt>Brüt / villa</dt><dd>__BRUT__ m²</dd>
+        <dt>Parsel (tapu)</dt><dd>__TAPU__ m²</dd>
+        <dt>TAKS / KAKS</dt><dd>__TAKS__ / __KAKS__</dd>
+        <dt>Otopark</dt><dd>villa önünde 1</dd>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Görünüm</h2>
+      <div class="views" id="views">
+        <button class="view" data-v="kus" aria-pressed="true">Kuşbakışı</button>
+        <button class="view" data-v="giris" aria-pressed="false">Site girişi</button>
+        <button class="view" data-v="yol" aria-pressed="false">Site yolunda</button>
+        <button class="view" data-v="bahce" aria-pressed="false">Arka bahçeler</button>
+        <button class="view" data-v="plan" aria-pressed="false">Plan</button>
+        <button class="view" data-v="kuzey" aria-pressed="false">Kuzeyden</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Güneş ve gölge</h2>
+      <div class="seg" id="season">
+        <button data-d="0" aria-pressed="true">21 Mart</button>
+        <button data-d="23.44" aria-pressed="false">21 Haziran</button>
+        <button data-d="-23.44" aria-pressed="false">21 Aralık</button>
+      </div>
+      <div class="sunrow">
+        <label for="hour" class="eyebrow">Saat</label>
+        <input type="range" id="hour" min="7" max="19" step="0.25" value="10.5">
+        <output id="hourOut" for="hour">10:30</output>
+      </div>
+      <p class="sunnote" id="sunNote"></p>
+    </section>
+
+    <section>
+      <h2>Göster</h2>
+      <div class="toggles">
+        <label><input type="checkbox" id="tLabels" checked> Villa numaraları</label>
+        <label><input type="checkbox" id="tTrees" checked> Ağaçlar</label>
+        <label><input type="checkbox" id="tCars" checked> Araçlar</label>
+      </div>
+    </section>
+
+    <section>
+      <p class="note">Sürükleyerek döndürün, tekerlek veya iki parmakla yaklaşın, sağ tuşla kaydırın.</p>
+      <p class="note">Kütle çalışmasıdır. Cephe, pencere ve çatı düzeni mimari projede netleşecek. Çekme mesafesi 3 m varsayılmıştır; imar durumuyla teyit edilmelidir.</p>
+    </section>
+  </aside>
+</div>
+
+<script type="importmap">
+{ "imports": {
+  "three": "__THREE__/build/three.module.js",
+  "three/addons/": "__THREE__/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from "three";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+
+const META = __META__;
+const GLB = "__GLB_B64__";
+
+const stage = document.getElementById("stage");
+const statusEl = document.getElementById("status");
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const small = Math.min(innerWidth, innerHeight) < 700;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+stage.prepend(renderer.domElement);
+
+const scene = new THREE.Scene();
+const SKY = new THREE.Color("#cdd9e2");
+scene.background = SKY;
+scene.fog = new THREE.Fog(SKY, 220, 520);
+
+const camera = new THREE.PerspectiveCamera(42, 1, 0.5, 2000);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.maxPolarAngle = Math.PI * 0.495;
+controls.minDistance = 4;
+controls.maxDistance = 420;
+
+const hemi = new THREE.HemisphereLight(0xe8f0f7, 0x6b6250, 0.85);
+scene.add(hemi);
+const sun = new THREE.DirectionalLight(0xfff4e2, 2.4);
+sun.castShadow = true;
+sun.shadow.mapSize.set(small ? 2048 : 4096, small ? 2048 : 4096);
+Object.assign(sun.shadow.camera, { left: -80, right: 80, top: 80, bottom: -80, near: 10, far: 400 });
+sun.shadow.bias = -0.0004;
+sun.shadow.normalBias = 0.03;
+scene.add(sun, sun.target);
+
+const ground = new THREE.Mesh(new THREE.CircleGeometry(900, 48),
+  new THREE.MeshStandardMaterial({ color: 0xc4bfae, roughness: 1 }));
+ground.rotation.x = -Math.PI / 2; ground.position.y = -0.12; ground.receiveShadow = true;
+scene.add(ground);
+
+const N = new THREE.Vector3(META.kuzey[0], 0, META.kuzey[1]);
+const E = new THREE.Vector3(META.dogu[0], 0, META.dogu[1]);
+
+// ---- güneş konumu (Bursa, enlem 40,23°; güneş saati)
+const LAT = 40.23 * Math.PI / 180;
+let decl = 0, hour = 10.5;
+function updateSun() {
+  const d = decl * Math.PI / 180, H = (hour - 12) * 15 * Math.PI / 180;
+  const sinEl = Math.sin(LAT) * Math.sin(d) + Math.cos(LAT) * Math.cos(d) * Math.cos(H);
+  const el = Math.asin(sinEl);
+  const az = Math.atan2(Math.sin(H), Math.cos(H) * Math.sin(LAT) - Math.tan(d) * Math.cos(LAT)) + Math.PI;
+  const h = Math.cos(el);
+  const dir = new THREE.Vector3().addScaledVector(E, h * Math.sin(az)).addScaledVector(N, h * Math.cos(az));
+  dir.y = Math.max(sinEl, 0.02);
+  dir.normalize();
+  sun.position.copy(dir).multiplyScalar(200);
+  sun.target.position.set(0, 0, 0);
+  const up = el > 0;
+  sun.intensity = up ? 0.6 + 2.0 * Math.min(1, sinEl / 0.5) : 0.05;
+  hemi.intensity = up ? 0.65 + 0.35 * Math.min(1, sinEl / 0.5) : 0.35;
+  const hh = Math.floor(hour), mm = Math.round((hour - hh) * 60);
+  document.getElementById("hourOut").textContent = `${String(hh).padStart(2, "0")}:${String(mm).padStart(2, "0")}`;
+  const azDeg = (az * 180 / Math.PI + 360) % 360;
+  document.getElementById("sunNote").textContent = up
+    ? `Yükseklik ${(el * 180 / Math.PI).toFixed(0)}°, azimut ${azDeg.toFixed(0)}° (güneş saati)`
+    : "Güneş ufkun altında";
+}
+document.getElementById("hour").addEventListener("input", e => { hour = +e.target.value; updateSun(); });
+document.querySelectorAll("#season button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("#season button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  decl = +b.dataset.d; updateSun();
+}));
+updateSun();
+
+// ---- kamera görünümleri
+const G = new THREE.Vector3(META.giris[0], 0, META.giris[1]);
+const L = new THREE.Vector3(META.yol_sol[0], 0, META.yol_sol[1]);
+const SW = N.clone().add(E).multiplyScalar(-1).normalize();
+const VIEWS = {
+  kus:   () => [SW.clone().multiplyScalar(135).add(new THREE.Vector3(0, 82, 0)), new THREE.Vector3(6, 0, 0)],
+  giris: () => [G.clone().add(new THREE.Vector3(16, 9, 9)), G.clone().add(new THREE.Vector3(-34, 2, -2))],
+  yol:   () => [G.clone().add(new THREE.Vector3(-10, 1.7, 1.4)), L.clone().add(new THREE.Vector3(0, 2.6, 0))],
+  bahce: () => [new THREE.Vector3(-8, 24, 74), new THREE.Vector3(4, 3, 14)],
+  plan:  () => [new THREE.Vector3(0, 175, 0.01), new THREE.Vector3(0, 0, 0)],
+  kuzey: () => [N.clone().multiplyScalar(110).add(new THREE.Vector3(0, 48, 0)), new THREE.Vector3(0, 2, 0)],
+};
+let tween = null;
+function go(name, instant) {
+  const [p, t] = VIEWS[name]();
+  document.querySelectorAll("#views button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === name));
+  if (instant || reduce) { camera.position.copy(p); controls.target.copy(t); controls.update(); return; }
+  tween = { p0: camera.position.clone(), t0: controls.target.clone(), p1: p, t1: t, s: performance.now(), d: 1300 };
+}
+document.querySelectorAll("#views button").forEach(b => b.addEventListener("click", () => go(b.dataset.v)));
+window.__go = go;
+
+// ---- etiketler
+const labelsEl = document.getElementById("labels");
+const labels = META.villalar.map(v => {
+  const el = document.createElement("div");
+  el.className = "lbl"; el.textContent = "V" + v.no;
+  labelsEl.appendChild(el);
+  return { el, p: new THREE.Vector3(v.p[0], META.mahya + 0.8, v.p[1]) };
+});
+const groups = { agac: [], arac: [] };
+document.getElementById("tLabels").addEventListener("change", e => labelsEl.hidden = !e.target.checked);
+document.getElementById("tTrees").addEventListener("change", e => groups.agac.forEach(o => o.visible = e.target.checked));
+document.getElementById("tCars").addEventListener("change", e => groups.arac.forEach(o => o.visible = e.target.checked));
+
+// ---- model
+let bin;
+try {
+  // gömülü değilse model, sayfanın yanındaki base64 metin dosyasından okunur
+  const b64 = GLB || (await (await fetch("model-glb.txt")).text()).trim();
+  bin = Uint8Array.from(atob(b64), c => c.charCodeAt(0)).buffer;
+} catch (e) { statusEl.textContent = "Model dosyası okunamadı."; throw e; }
+new GLTFLoader().parse(bin, "", gltf => {
+  gltf.scene.traverse(o => {
+    if (!o.isMesh) return;
+    const grp = o.name.split("__")[0] || (o.parent && o.parent.name.split("__")[0]);
+    const flat = grp === "zemin" || grp === "yol" || grp === "peyzaj";
+    o.castShadow = !flat || o.name.includes("cit") || o.name.includes("bahce_duv");
+    o.receiveShadow = true;
+    if (grp === "agac" || grp === "arac") groups[grp].push(o);
+    if (o.material && o.material.transparent) o.material.depthWrite = false;
+  });
+  scene.add(gltf.scene);
+  statusEl.remove();
+}, err => { statusEl.textContent = "Model açılamadı: " + err.message; });
+
+// ---- döngü
+function resize() {
+  const w = stage.clientWidth, h = stage.clientHeight;
+  renderer.setSize(w, h, false);
+  camera.aspect = w / h; camera.updateProjectionMatrix();
+}
+new ResizeObserver(resize).observe(stage);
+resize();
+go("kus", true);
+
+const needle = document.getElementById("needle"), nlabel = document.getElementById("nlabel");
+const tmpA = new THREE.Vector3(), tmpB = new THREE.Vector3();
+function ease(x) { return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+function frame(now) {
+  if (tween) {
+    const k = Math.min(1, (now - tween.s) / tween.d), e = ease(k);
+    camera.position.lerpVectors(tween.p0, tween.p1, e);
+    controls.target.lerpVectors(tween.t0, tween.t1, e);
+    if (k === 1) tween = null;
+  }
+  controls.update();
+  renderer.render(scene, camera);
+  // pusula: kuzey vektörünün ekrandaki yönü
+  tmpA.copy(controls.target).project(camera);
+  tmpB.copy(controls.target).addScaledVector(N, 10).project(camera);
+  const aspect = stage.clientWidth / stage.clientHeight;
+  const a2 = Math.atan2((tmpB.x - tmpA.x) * aspect, tmpB.y - tmpA.y);
+  needle.setAttribute("transform", `rotate(${a2 * 180 / Math.PI})`);
+  nlabel.setAttribute("x", (Math.sin(a2) * 20).toFixed(1));
+  nlabel.setAttribute("y", (-Math.cos(a2) * 20).toFixed(1));
+  if (!labelsEl.hidden) {
+    const w = stage.clientWidth, h = stage.clientHeight;
+    for (const l of labels) {
+      tmpA.copy(l.p).project(camera);
+      const dist = camera.position.distanceTo(l.p);
+      const vis = tmpA.z < 1 && Math.abs(tmpA.x) < 1.05 && Math.abs(tmpA.y) < 1.05 &&
+                  (camera.position.y > 40 ? dist < 260 : dist < 75);
+      l.el.style.display = vis ? "" : "none";
+      if (vis) l.el.style.left = ((tmpA.x + 1) / 2 * w) + "px", l.el.style.top = ((1 - tmpA.y) / 2 * h) + "px";
+    }
+  }
+  requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script>
