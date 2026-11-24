@@ -1420,8 +1420,9 @@ def build_site(M):
         neck = (cx + dx * 0.5, cy + dy * 0.5)
         S_('cizgi').obox(tail[0], tail[1], neck[0], neck[1], 0.3, 0.03, 0.036)
         tip = (cx + dx * 1.7, cy + dy * 1.7)
-        S_('cizgi').face([(neck[0] + nx * 0.6, neck[1] + ny * 0.6, 0.036), (tip[0], tip[1], 0.036), (neck[0] - nx * 0.6, neck[1] - ny * 0.6, 0.036)])
-        S_('cizgi').face([(neck[0] - nx * 0.6, neck[1] - ny * 0.6, 0.036), (tip[0], tip[1], 0.036), (neck[0] + nx * 0.6, neck[1] + ny * 0.6, 0.036)])
+        tri = [(neck[0] + nx * 0.6, neck[1] + ny * 0.6, 0.036), (tip[0], tip[1], 0.036), (neck[0] - nx * 0.6, neck[1] - ny * 0.6, 0.036)]
+        cr = (tri[1][0] - tri[0][0]) * (tri[2][1] - tri[0][1]) - (tri[1][1] - tri[0][1]) * (tri[2][0] - tri[0][0])
+        S_('cizgi').face(tri if cr > 0 else tri[::-1])      # single upward-facing head
     # perimeter wall with steel railing
     for i in range(len(FENCE) - 1):
         a, c = P(FENCE[i]), P(FENCE[i + 1])
@@ -1742,7 +1743,7 @@ def build_scene():
         instance(rng.choice(small), (wx(xx), wy(yy), 0.22), 0, 2.4, veg)
     # cars driving on the ring (one-way)
     LANE_PT = 3.5 * S
-    for (x, y, r_) in ((450, SEC['Y_N0'] + LANE_PT / 2, math.pi), (840, SEC['Y_I1'] + LANE_PT / 2, 0.0),
+    for (x, y, r_) in ((415, SEC['Y_N0'] + LANE_PT / 2, math.pi), (840, SEC['Y_I1'] + LANE_PT / 2, 0.0),
                        (SEC['BX'] + SEC['BHW'] + LANE_PT / 2, 268, math.pi / 2)):
         instance(car(), (wx(x), wy(y), 0.03), r_, 1.0, veg)
 
