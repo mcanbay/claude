@@ -6,7 +6,9 @@ import json, pathlib
 here = pathlib.Path(__file__).parent
 units = (here / 'units.json').read_text(encoding='utf-8')
 json.loads(units)  # doğrulama
-body = (here / 'sablon.html').read_text(encoding='utf-8').replace('/*UNITS*/null', units)
+ring = (here / 'ring.json').read_text(encoding='utf-8')
+json.loads(ring)
+body = (here / 'sablon.html').read_text(encoding='utf-8').replace('/*UNITS*/null', units).replace('/*RING*/null', ring)
 root = here.parent
 (root / 'index.html').write_text(body, encoding='utf-8')
 standalone = ('<!doctype html>\n<html lang="tr">\n<head>\n<meta charset="utf-8">\n'

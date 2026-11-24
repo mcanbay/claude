@@ -143,7 +143,8 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
         <div class="seg" role="group" aria-labelledby="camLbl">
           <button id="camPersp" aria-pressed="true">Perspektif</button>
           <button id="camTop" aria-pressed="false">Kuş bakışı</button>
-          <button id="camWalk" aria-pressed="false">Avlu</button>
+          <button id="camWalk" aria-pressed="false">Ring</button>
+          <button id="camPool" aria-pressed="false">Havuz</button>
         </div>
       </div>
 
@@ -177,8 +178,11 @@ input[type="range"] { width: 100%; accent-color: var(--accent); }
         <span><i style="background:#8e8a82"></i>Merdiven-asansör çekirdeği</span>
         <span><i style="background:#9e4b36"></i>Kırma çatı (varsayım)</span>
         <span><i style="background:#7f9f5e"></i>Yeşil alan</span>
+        <span><i style="background:#4a4d51"></i>Ring yolu (tek yön)</span>
+        <span><i style="background:#48b5dc"></i>Havuz 5 × 12,5 m</span>
       </div>
 
+      <p class="note"><b>Ring ve havuz (öneri):</b> site girişinden giren tek yönlü ring avlu boyunca döner. A, B, F, G, H, I ve J bloklarının otoparklarına yalnızca ringden girilir; cadde tarafındaki girişler kapatıldı. Şerit 3,50 m, orta ada 5,87 m. Havuz C ve B blokları arasında, ringin kuzeye kıvrıldığı adada yer alıyor.</p>
       <p class="note"><b>Kaynak:</b> vaziyet planı, 3+1 ve 2+1 kat planları, yerleşim kesiti. Duvarlar, pencere boşlukları ve merdiven ölçüleri çizimlerin vektör verisinden alındı (basamak 30 cm).
       <b>Varsayımlar:</b> kat yüksekliği 3,00 m, kırma çatı, kuzey paftanın üstü kabul edildi.</p>
     </div>
@@ -209,6 +213,7 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
 /* ---------- Plan data (meters), extracted from the PDF vector drawings ---------- */
 const UNITS = /*UNITS*/null;
+const RING = /*RING*/null;   // ring road + pool layout (plan points), from kaynak/ring.py
 
 const FH = 3.0;          // floor-to-floor (assumed)
 const SL = 0.18;         // slab
@@ -238,7 +243,7 @@ const TYPE = {
 };
 
 const PARCEL = [[196.0,143.7],[1072.0,143.6],[1105.9,183.4],[1044.4,573.2],[1007.2,604.2],[401.3,587.4],[102.5,587.5]];
-const FENCE = [[1071.4,392.1],[1042.9,572.2],[1006.6,602.5],[401.3,585.7],[104.4,585.8],[197.3,145.3],[1071.2,145.2],[1104.2,183.9],[1080.4,335.4]];
+const FENCE = [RING.gate.fence_south_end,[1042.9,572.2],[1006.6,602.5],[401.3,585.7],[104.4,585.8],[197.3,145.3],[1071.2,145.2],[1104.2,183.9],RING.gate.fence_north_end];
 const GREEN = [
   [[197.3,145.3],[620.6,145.3],[620.6,306.7],[612.6,314.7],[161.6,314.7]],
   [[636.8,173.1],[1037,173.1],[1061.4,197.4],[1061.4,290.5],[1037.3,314.7],[644.9,314.7],[636.8,306.7]],
@@ -265,7 +270,7 @@ const PATHS = [
   rect(418.4,544,463.6,561.4), rect(731.5,544,776.6,561.4), rect(865.8,544,910.9,561.4),
 ];
 const TREES = [
-  [579,167,1.1],[605,167,1.0],[596,196,1.2],
+  [579,167,1.1],[605,167,1.0],
   [173,347,1.0],[200,353,0.9],[196,376,1.0],
   [523,363,1.0],[546,344,1.15],[569,376,1.0],
   [723,376,1.0],[753,350,1.15],[779,380,1.0],
@@ -343,10 +348,13 @@ const MAT = {
   grass: std(0x7f9f5e, { roughness: 1 }),
   park: std(0x8aa866, { roughness: 1 }),
   fenceWall: std(0xa9a397),
+  deck: std(0xc9a77a, { roughness: 0.7 }),
+  poolTile: std(0x3e9cc4, { roughness: 0.4 }),
+  water: new THREE.MeshPhysicalMaterial({ color: 0x48b5dc, roughness: 0.05, transparent: true, opacity: 0.72, depthWrite: false }),
   fenceMesh: new THREE.MeshStandardMaterial({ color: 0x2f3337, transparent: true, opacity: 0.45, depthWrite: false, side: THREE.DoubleSide }),
 };
 // Every rendered (non-transparent) mesh gets these shadow flags
-const NO_SHADOW = new Set(['glass', 'rail', 'fenceMesh']);
+const NO_SHADOW = new Set(['glass', 'rail', 'fenceMesh', 'water']);
 
 /* ---------- Geometry accumulation (merged per material and level) ---------- */
 const LEVELS = 4; // 0..2 floors, 3 roof
@@ -373,7 +381,7 @@ function flush(map, group) {
     mesh.name = mat;
     mesh.castShadow = !NO_SHADOW.has(mat);
     mesh.receiveShadow = !NO_SHADOW.has(mat);
-    if (mat === 'glass' || mat === 'rail' || mat === 'fenceMesh') mesh.renderOrder = 2;
+    if (mat === 'glass' || mat === 'rail' || mat === 'fenceMesh' || mat === 'water') mesh.renderOrder = 2;
     group.add(mesh);
   }
 }
@@ -388,6 +396,13 @@ function segBox(ax, az, bx, bz, t, y0, y1) {
   return new THREE.BoxGeometry(len, y1 - y0, t).rotateY(Math.atan2(-dz, dx)).translate((ax + bx) / 2, (y0 + y1) / 2, (az + bz) / 2);
 }
 // polygon slab (world x/z points) extruded from y0 to y1
+function prismH(poly, y0, y1) {
+  const shape = new THREE.Shape(poly.ext.map(p => { const [x, z] = P(p); return new THREE.Vector2(x, -z); }));
+  for (const h of poly.holes) shape.holes.push(new THREE.Path(h.map(p => { const [x, z] = P(p); return new THREE.Vector2(x, -z); })));
+  const g = new THREE.ExtrudeGeometry(shape, { depth: y1 - y0, bevelEnabled: false });
+  g.rotateX(-Math.PI / 2); g.translate(0, y0, 0);
+  return g;
+}
 function prism(pts, y0, y1) {
   const shape = new THREE.Shape(pts.map(([x, z]) => new THREE.Vector2(x, -z)));
   const g = new THREE.ExtrudeGeometry(shape, { depth: y1 - y0, bevelEnabled: false });
@@ -460,7 +475,11 @@ function buildBlock(b) {
         // columns
         const xs = [ux0 + 0.2, (ux0 + ux1) / 2, ux1 - 0.2], zs = [uz0 + 0.25, (uz0 + uz1) / 2, uz1 - 0.25];
         for (const cx of xs) for (const cz of zs) L(lvl, 'core', box(X(cx - 0.2), Z(cz - 0.25), X(cx + 0.2), Z(cz + 0.25), 0, WH));
-        // parked cars: nose towards the drive aisle
+        // street side closed (access only from the ring): low wall + louvre screen
+        const sz = b.type === 'u31' ? uz0 : uz1, sd = b.type === 'u31' ? 0.2 : -0.2;
+        L(lvl, 'core', box(X(ux0), Z(sz), X(ux1), Z(sz + sd), 0, 1.0));
+        L(lvl, 'fenceMesh', box(X(ux0), Z(sz + sd / 2 - 0.02), X(ux1), Z(sz + sd / 2 + 0.02), 1.0, WH));
+        // parked cars, nose-in from the ring side
         const nCars = Math.floor((ux1 - ux0 - 0.6) / 2.6);
         const rows = b.type === 'u31' ? [uz0 + 2.7, uz1 - 2.9] : [uz1 - 2.7, uz0 + 2.9];
         rows.forEach((rz, ri) => {
@@ -682,11 +701,51 @@ for (let y = -300; y < 1300; y += 40) {
   const a = [edgeX(y) + 66, y], c = [edgeX(y + 22) + 66, y + 22];
   sitePut('marking', segBox(wx(a[0]), wz(a[1]), wx(c[0]), wz(c[1]), 0.14, 0.04, 0.05));
 }
-// parcel paving
-sitePut('paving', prism(PARCEL.map(P), -0.02, 0.1));
-// green areas and paths
-for (const g of GREEN) sitePut('grass', prism(g.map(P), 0.1, 0.24));
-for (const p of PATHS) sitePut('path', prism(p.map(P), 0.1, 0.26));
+// parcel paving (cut around the ring road) and the ring road itself
+for (const p of RING.paving) sitePut('paving', prismH(p, -0.02, 0.12));
+for (const p of RING.road) sitePut('asphalt', prismH(p, -0.02, 0.06));
+// lawns, median, pool deck and path
+for (const g of [...RING.greens, ...RING.median_green]) sitePut('grass', prismH(g, 0.1, 0.24));
+for (const g of RING.median_path) sitePut('path', prismH(g, 0.1, 0.2));
+for (const g of RING.deck) sitePut('deck', prismH(g, 0.1, 0.22));
+{ // pool: coping, basin walls, water
+  const [x0, y0, x1, y1] = RING.pool;
+  const [a, b] = [P([x0, y0]), P([x1, y1])];
+  sitePut('fascia', box(a[0] - 0.35, a[1] - 0.35, b[0] + 0.35, a[1], 0.1, 0.26));
+  sitePut('fascia', box(a[0] - 0.35, b[1], b[0] + 0.35, b[1] + 0.35, 0.1, 0.26));
+  sitePut('fascia', box(a[0] - 0.35, a[1], a[0], b[1], 0.1, 0.26));
+  sitePut('fascia', box(b[0], a[1], b[0] + 0.35, b[1], 0.1, 0.26));
+  sitePut('poolTile', box(a[0], a[1], b[0], b[1], -1.4, -1.35));
+  sitePut('water', box(a[0], a[1], b[0], b[1], -1.35, 0.12));
+  // sun loungers and umbrellas along the long sides
+  for (const side of [-1, 1]) for (let k = 0; k < 4; k++) {
+    const x = side < 0 ? a[0] - 1.1 : b[0] + 1.1, z = a[1] + 1.6 + k * 2.9;
+    sitePut('fascia', box(x - 0.33, z - 1.0, x + 0.33, z + 1.0, 0.22, 0.5));
+  }
+}
+for (const line of RING.pool_fence) for (let i = 0; i < line.length - 1; i++) {
+  const [p0, p1] = [P(line[i]), P(line[i + 1])];
+  sitePut('rail', segBox(p0[0], p0[1], p1[0], p1[1], 0.03, 0.24, 1.3));
+}
+// zebra crossings
+for (const c of RING.crossings) {
+  const [ax, az] = P(c.a), [bx, bz] = P(c.b);
+  const len = Math.hypot(bx - ax, bz - az), ux = (bx - ax) / len, uz = (bz - az) / len, w = c.w / S;
+  for (let t = 0.25; t < len - 0.25; t += 1.0) {
+    const cx = ax + ux * t, cz = az + uz * t;
+    sitePut('marking', segBox(cx - uz * w / 2, cz + ux * w / 2, cx + uz * w / 2, cz - ux * w / 2, 0.5, 0.06, 0.075));
+  }
+}
+// one-way arrows
+for (const [x, y, ang] of RING.arrows) {
+  const [cx, cz] = P([x, y]), dx = Math.cos(ang), dz = Math.sin(ang);
+  sitePut('marking', segBox(cx - dx * 1.6, cz - dz * 1.6, cx + dx * 0.6, cz + dz * 0.6, 0.28, 0.06, 0.075));
+  for (const s_ of [-1, 1]) {
+    const hx = cx + dx * 1.3, hz = cz + dz * 1.3;
+    const bx = hx - dx * 0.9 - dz * s_ * 0.7, bz = hz - dz * 0.9 + dx * s_ * 0.7;
+    sitePut('marking', segBox(bx, bz, hx, hz, 0.28, 0.06, 0.075));
+  }
+}
 // perimeter wall with railing (gap at the east entrance)
 for (let i = 0; i < FENCE.length - 1; i++) {
   const [a, c] = [P(FENCE[i]), P(FENCE[i + 1])];
@@ -694,19 +753,17 @@ for (let i = 0; i < FENCE.length - 1; i++) {
   sitePut('fenceMesh', segBox(a[0], a[1], c[0], c[1], 0.03, 0.7, 1.7));
   sitePut('frame', segBox(a[0], a[1], c[0], c[1], 0.06, 1.66, 1.72));
 }
-// gatehouse and barriers at the site entrance
+// gate island with guard booth and barriers (one entry lane, one exit lane)
+for (const g of RING.gate.island) sitePut('paving', prismH(g, 0.0, 0.2));
 {
-  const gh = [[1067.6, 416.0], [1071.4, 392.1], [1047.5, 388.4], [1043.6, 412.3]].map(P);
-  sitePut('wall', prism(gh, 0.1, 2.9));
-  const cx = gh.reduce((s, p) => s + p[0], 0) / 4, cz = gh.reduce((s, p) => s + p[1], 0) / 4;
-  sitePut('frame', prism(gh.map(([x, z]) => [cx + (x - cx) * 1.25, cz + (z - cz) * 1.25]), 2.9, 3.1));
-  for (const [a, c] of [[[1081.3, 339.7], [1055.8, 335.6]], [[1078.8, 355.6], [1053.2, 351.6]]]) {
-    const [pa, pc] = [P(a), P(c)];
+  const [x0, y0, x1, y1] = RING.gate.booth, [a, b] = [P([x0, y0]), P([x1, y1])];
+  sitePut('wall', box(a[0], a[1], b[0], b[1], 0.2, 2.8));
+  sitePut('frame', box(a[0] - 0.4, a[1] - 0.4, b[0] + 0.4, b[1] + 0.4, 2.8, 3.0));
+  for (const [p0, p1] of RING.gate.barriers) {
+    const [pa, pc] = [P(p0), P(p1)];
     sitePut('marking', segBox(pa[0], pa[1], pc[0], pc[1], 0.1, 0.95, 1.05));
-    sitePut('frame', box(pc[0] - 0.15, pc[1] - 0.15, pc[0] + 0.15, pc[1] + 0.15, 0, 1.1));
+    sitePut('frame', box(pa[0] - 0.15, pa[1] - 0.15, pa[0] + 0.15, pa[1] + 0.15, 0.2, 1.1));
   }
-  const [ia, ic] = [P([1066.1, 353.6]), P([1060.2, 390.3])];
-  sitePut('path', segBox(ia[0], ia[1], ic[0], ic[1], 1.2, 0, 0.2));
 }
 flush(siteAcc, siteGroup);
 
@@ -739,7 +796,11 @@ const treeGroup = new THREE.Group(); treeGroup.name = 'Agaclar'; scene.add(treeG
   for (const im of [canopy, trunk, shrub]) { im.castShadow = true; im.receiveShadow = true; treeGroup.add(im); }
   // lamp posts along the courtyard walks
   const lamps = [];
-  for (let x = 180; x < 1030; x += 62) { lamps.push([wx(x), wz(329.6)]); lamps.push([wx(x + 31), wz(398.2)]); }
+  const SEC = RING.section;
+  for (let x = SEC.X_W + 10; x < SEC.X_E; x += 52) {
+    if (x > 540 && x < 720) continue;
+    lamps.push([wx(x), wz(SEC.Y_I0 + 6)]); lamps.push([wx(x + 26), wz(SEC.Y_I1 - 6)]);
+  }
   const pole = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.05, 0.07, 3.6, 6).translate(0, 1.8, 0), MAT.frame, lamps.length);
   const head = new THREE.InstancedMesh(new THREE.BoxGeometry(0.35, 0.12, 0.35), std(0xf5f1e4, { emissive: 0x332d1c }), lamps.length);
   lamps.forEach(([x, z], i) => {
@@ -885,7 +946,8 @@ function flyTo(pos, target, dur = 1100) {
 const PRESETS = {
   camPersp: () => flyTo(new THREE.Vector3(58, 72, 118), new THREE.Vector3(2, 2, 2)),
   camTop: () => flyTo(new THREE.Vector3(0.01, 175, 8), new THREE.Vector3(0, 0, 0)),
-  camWalk: () => flyTo(new THREE.Vector3(wx(955), 1.7, wz(405)), new THREE.Vector3(wx(700), 5.5, wz(392))),
+  camWalk: () => flyTo(new THREE.Vector3(wx(1030), 1.7, wz(306)), new THREE.Vector3(wx(700), 4.5, wz(355))),
+  camPool: () => flyTo(new THREE.Vector3(wx(548), 15, wz(400)), new THREE.Vector3(wx(628.75), 0, wz(270))),
 };
 for (const id in PRESETS) {
   document.getElementById(id).addEventListener('click', () => {
