@@ -23,6 +23,7 @@ from shapely.ops import unary_union
 GEN, DER = 6.60, 11.00           # aks ölçüleri
 YD, DD = 0.125, 0.25             # yangın duvarı yarı kalınlığı, dış duvar kalınlığı
 KAT_H = 3.15
+SUBASMAN = 0.45                  # zemin kat döşeme kotu (±0,00 bahçe / otopark)
 BALKON_ON, BALKON_ARKA = 1.60, 1.50
 BRUT_HEDEF = 165.0
 
@@ -84,6 +85,30 @@ KAT1_KAPI = [
 ZEMIN_PENC = [("on", 0.60, 2.50, "p"), ("on", 3.45, 4.20, "p"), ("arka", 0.45, 5.90, "surgu")]
 KAT1_PENC = [("on", 0.50, 2.60, "surgu"), ("on", 3.75, 5.85, "surgu"),
              ("arka", 0.50, 3.30, "surgu"), ("arka", 4.55, 5.75, "p")]
+
+
+def cephe_aciklari(cephe):
+    """Cephedeki açıklıklar, plan aks koordinatında (x: 0..6,60, girişi sağda olan tip) ve kotlarıyla.
+    Görünüş, 3B model ve kat planı aynı tanımı kullanır. Döner: dict(x0, x1, z0, z1, tur)
+    tur: 'kapi' (dış kapı), 'surgu' (sürme cam kapı / balkon kapısı), 'pencere', 'yuksek' (WC/banyo)."""
+    out = []
+    for kat, liste in ((0, ZEMIN_PENC), (1, KAT1_PENC)):
+        zf = SUBASMAN + kat * KAT_H
+        for c, x0, x1, tur in liste:
+            if c != cephe:
+                continue
+            if tur == "surgu":
+                z0, z1, t = zf + 0.05, zf + 2.50, "surgu"
+            elif (x1 - x0) < 1.0 or kat == 1:       # WC / banyo: yüksek denizlik
+                z0, z1, t = zf + 1.50, zf + 2.30, "yuksek"
+            else:
+                z0, z1, t = zf + 0.90, zf + 2.30, "pencere"
+            out.append(dict(x0=x0 + YD, x1=x1 + YD, z0=z0, z1=z1, tur=t))
+    if cephe == "on":
+        k = ZEMIN_KAPI[0]
+        x1 = k["h"][0]
+        out.append(dict(x0=x1 - k["w"], x1=x1, z0=SUBASMAN, z1=SUBASMAN + 2.35, tur="kapi"))
+    return out
 
 
 # ------------------------------------------------------------------ duvar kütlesi

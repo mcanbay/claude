@@ -11,6 +11,8 @@ birleştirilerek tek parsel (6.396,50 m²) olarak çalışılmıştır.
 | `model_169-1-2_B.glb` | Varyant B 3B kütle modeli (Blender, SketchUp, Windows 3B Görüntüleyici) |
 | `model_169-1-2_B.html` | Modelin tarayıcıda açılan görüntüleyicisi (model içine gömülü; internet bağlantısı gerekir) |
 | `kat_plani_4+1.pdf/.png/.dxf` | Tip villa 4+1 zemin ve 1. kat planları, metraj tablosu (A2, 1/50) |
+| `cephe_gorunusleri.pdf/.png/.dxf` | Ön, arka, yan cephe (1/50) ve A sırası ön cephesi (1/200), A1 |
+| `cephe.py` | Cephe görünüşlerini üreten betik |
 | `kat_plani.py` | Kat planlarını üreten betik (mahaller, kapılar, pencereler, mobilya) |
 | `render/` | Görüntüleyiciden alınmış render görselleri |
 | `model3d.py`, `build_viewer.py`, `viewer_template.html` | 3B modeli ve görüntüleyiciyi üreten betikler |
@@ -58,3 +60,12 @@ Duvarlar 20 cm kalınlığındadır. DXF'te `MAHREMIYET_DUVARI` ve `MAHREMIYET_B
 
 Brüt: 2 × 72,60 + 19,84 balkon = **165,04 m²**. Net kapalı alan 129,22 m².
 Ön balkon vaziyet planına ve 3B modele de işlenmiştir; yanlarında 1. kat mahremiyet duvarları vardır.
+
+## Cephe görünüşleri
+
+`python cephe.py` ile üretilir (A1 yatay). Pencere, kapı ve balkon kapıları `kat_plani.cephe_aciklari()`
+fonksiyonundan gelir; 3B model de aynı tanımı kullandığı için plan, cephe ve model birbiriyle tutarlıdır.
+
+Kotlar: ±0,00 bahçe/otopark · +0,45 zemin kat · +3,60 1. kat · +6,75 saçak · +8,40 mahya · +8,85 yangın duvarı başlığı.
+Malzeme: mantolama üzeri açık bej sıva, gri doğal taş subasman, kiremit çatı (%30), antrasit alüminyum doğrama,
+100 cm cam balkon korkuluğu.

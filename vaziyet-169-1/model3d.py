@@ -16,6 +16,7 @@ import sys
 VARYANT = sys.argv[1] if len(sys.argv) > 1 else "B"
 sys.argv = ["vaziyet.py", VARYANT]
 import vaziyet as V  # noqa: E402  (plan geometrisi buradan gelir)
+import kat_plani as KP  # noqa: E402  (cephe açıklıkları buradan gelir)
 
 import numpy as np  # noqa: E402
 import trimesh  # noqa: E402
@@ -170,19 +171,29 @@ for row in ("A", "B"):
             add("villa", "duvar2", bx(u0 - 0.12, on_v, SUBASMAN, u0 + 0.12, on_v + dn * 0.25, SACAK))
             add("villa", "duvar2", bx(u0 - 0.12, arka_v, SUBASMAN, u0 + 0.12, arka_v - dn * 0.25, SACAK))
 
-        # ---- ön cephe: kapı yürüyüş yolunun hizasında, yanında pencere
-        wc = v["yuruyus"].centroid.x
-        kapi_sol = wc < (u0 + u1) / 2
+        # ---- cephe açıklıkları: kat_plani.py'deki tanım (girişi sağda olan tip, plan aks x'i)
+        # plan x'i -> u: A sırasında ön cephe v0'da (u artar), B sırasında v1'de (u azalır);
+        # giriş yürüyüş yolunun tarafında olacak şekilde gerekirse aynalanır.
+        def plan_u(px, _row=row, _u0=u0, _u1=u1):
+            return _u0 + px if _row == "A" else _u1 - px
+        wcx = v["yuruyus"].centroid.x
+        kapi_px = (wcx - u0) if row == "A" else (u1 - wcx)
+        ayna = kapi_px < W / 2
+
+        def u_araligi(x0, x1):
+            if ayna:
+                x0, x1 = W - x1, W - x0
+            a, b = plan_u(x0), plan_u(x1)
+            return min(a, b), max(a, b)
         f = on_v + dn * 0.03
-        add("villa", "dograma", bx(wc - 0.6, on_v, SUBASMAN, wc + 0.6, f + dn * 0.02, SUBASMAN + 2.35))
-        add("villa", "cam", bx(wc - 0.15, on_v, SUBASMAN + 1.0, wc + 0.15, f + dn * 0.03, SUBASMAN + 2.2))
-        pc0 = u0 + 0.9 if not kapi_sol else wc + 1.1
-        pc1 = wc - 1.1 if not kapi_sol else u1 - 0.9
-        if pc1 - pc0 > 1.0:
-            add("villa", "cam", bx(pc0, on_v, SUBASMAN + 0.9, pc1, f, SUBASMAN + 2.3))
-        # 1. kat ön cephe: iki yatak odasının balkon kapıları ve ön balkon (girişe saçak olur)
-        add("villa", "cam", bx(u0 + 0.6, on_v, SUBASMAN + KAT + 0.05, u0 + 2.75, f, SUBASMAN + KAT + 2.5))
-        add("villa", "cam", bx(u1 - 2.75, on_v, SUBASMAN + KAT + 0.05, u1 - 0.6, f, SUBASMAN + KAT + 2.5))
+        for ac in KP.cephe_aciklari("on"):
+            ua, ub = u_araligi(ac["x0"], ac["x1"])
+            if ac["tur"] == "kapi":
+                add("villa", "dograma", bx(ua, on_v, ac["z0"], ub, f + dn * 0.02, ac["z1"]))
+                add("villa", "cam", bx(ua + 0.42, on_v, ac["z0"] + 0.55, ub - 0.42, f + dn * 0.03, ac["z1"] - 0.15))
+            else:
+                add("villa", "cam", bx(ua, on_v, ac["z0"], ub, f, ac["z1"]))
+        # ön balkon (girişe saçak olur)
         fu0, fv0, fu1, fv1 = v["balkon_on"].bounds
         bh_on = SUBASMAN + KAT
         add("villa", "duvar", bx(fu0, fv0, bh_on - 0.2, fu1, fv1, bh_on))
@@ -191,9 +202,9 @@ for row in ("A", "B"):
 
         # ---- arka cephe: zeminde sürme cam, 1. katta balkon kapısı
         r = arka_v - dn * 0.03
-        add("villa", "cam", bx(u0 + 0.7, arka_v, SUBASMAN + 0.05, u1 - 0.7, r, SUBASMAN + 2.5))
-        add("villa", "cam", bx(u0 + 0.7, arka_v, SUBASMAN + KAT + 0.05, u0 + 3.4, r, SUBASMAN + KAT + 2.5))
-        add("villa", "cam", bx(u1 - 2.4, arka_v, SUBASMAN + KAT + 0.9, u1 - 0.7, r, SUBASMAN + KAT + 2.4))
+        for ac in KP.cephe_aciklari("arka"):
+            ua, ub = u_araligi(ac["x0"], ac["x1"])
+            add("villa", "cam", bx(ua, arka_v, ac["z0"], ub, r, ac["z1"]))
         # arka balkon (1. kat döşemesi seviyesinde) ve cam korkuluk
         bu0, bv0, bu1, bv1 = v["balkon"].bounds
         bh = SUBASMAN + KAT
