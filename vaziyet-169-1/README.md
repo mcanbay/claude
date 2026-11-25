@@ -10,6 +10,8 @@ birleştirilerek tek parsel (6.396,50 m²) olarak çalışılmıştır.
 | `vaziyet.py` | Planı üreten betik (parametreler dosyanın başında) |
 | `model_169-1-2_B.glb` | Varyant B 3B kütle modeli (Blender, SketchUp, Windows 3B Görüntüleyici) |
 | `model_169-1-2_B.html` | Modelin tarayıcıda açılan görüntüleyicisi (model içine gömülü; internet bağlantısı gerekir) |
+| `kat_plani_4+1.pdf/.png/.dxf` | Tip villa 4+1 zemin ve 1. kat planları, metraj tablosu (A2, 1/50) |
+| `kat_plani.py` | Kat planlarını üreten betik (mahaller, kapılar, pencereler, mobilya) |
 | `render/` | Görüntüleyiciden alınmış render görselleri |
 | `model3d.py`, `build_viewer.py`, `viewer_template.html` | 3B modeli ve görüntüleyiciyi üreten betikler |
 | `parsel-169-1.kml`, `parsel-169-2.kml` | TKGM parsel sorgu çıktıları |
@@ -43,3 +45,16 @@ Komşu villalar arasında, `vaziyet.py` içinde tanımlıdır (`MAH`). Aynı geo
 | 1. kat, balkonlar arasında | balkon döşemesinden saçağa kadar | 1,6 m (balkon derinliği + 0,1 m) |
 
 Duvarlar 20 cm kalınlığındadır. DXF'te `MAHREMIYET_DUVARI` ve `MAHREMIYET_BALKON` katmanlarındadır.
+
+## Tip villa 4+1 kat planı
+
+`python kat_plani.py` ile üretilir. Villa 6,60 × 11,00 m (aks), iç ölçü 6,35 × 10,50 m.
+
+| Kat | Mahaller (net m²) |
+|---|---|
+| Zemin | Salon + yemek 24,13 · Amerikan mutfak 9,92 · Misafir/çalışma odası (yatak 4) 10,54 · Antre 6,12 · Hol 3,11 · WC/duş 2,75 · Kiler 1,38 · Merdiven 7,15 · **Net 65,09** |
+| 1. kat | Ebeveyn yatak odası 14,44 · Giyinme odası 4,16 · Ebeveyn banyosu 4,90 · Yatak odası 2 10,54 · Yatak odası 3 10,71 · Ortak banyo 5,42 · Hol 6,80 · Merdiven 7,15 · **Net 64,13** |
+| Balkonlar | Ön 10,24 (6,40 × 1,60) · Arka 9,60 (6,40 × 1,50) |
+
+Brüt: 2 × 72,60 + 19,84 balkon = **165,04 m²**. Net kapalı alan 129,22 m².
+Ön balkon vaziyet planına ve 3B modele de işlenmiştir; yanlarında 1. kat mahremiyet duvarları vardır.

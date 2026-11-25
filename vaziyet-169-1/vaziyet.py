@@ -38,6 +38,7 @@ VARYANTLAR = {
 VARYANT = sys.argv[1] if len(sys.argv) > 1 else "A"
 D, CEP, VARYANT_ACIKLAMA = VARYANTLAR[VARYANT]
 BALKON = 1.5         # arka balkon çıkması (1. kat, kesikli gösterilir)
+BALKON_ON = 1.6      # ön balkon çıkması (1. kat, otopark üstüne; girişe saçak olur)
 BRUT = 165.0         # villa başı brüt alan (balkon dahil)
 EKSEN_ACI = 69.6     # parsel uzun ekseninin doğudan açısı (derece)
 
@@ -136,11 +137,13 @@ def make_row(x0, n, ev, otp, bahce_side, no0, sira):
         if bahce_side == "ust":
             g = box(x, ev[1], x + W, BIG).intersection(PARSEL)
             bal = box(x + 0.1, ev[1], x + W - 0.1, ev[1] + BALKON)
+            bal_on = box(x + 0.1, ev[0] - BALKON_ON, x + W - 0.1, ev[0])
         else:
             g = box(x, -BIG, x + W, ev[0]).intersection(PARSEL)
             bal = box(x + 0.1, ev[0] - BALKON, x + W - 0.1, ev[0])
+            bal_on = box(x + 0.1, ev[1], x + W - 0.1, ev[1] + BALKON_ON)
         villas.append(dict(no=no0 + k, ev=house, otopark=front, park=stall, yuruyus=walk,
-                           bahce=g, balkon=bal, sira=sira))
+                           bahce=g, balkon=bal, balkon_on=bal_on, sira=sira))
 
 
 # numaralandırma girişten (sağ uç) başlar: A sırası sağdan sola V1..V16, B sırası soldan sağa V17..V32
@@ -190,6 +193,8 @@ def _mahremiyet_duvarlari():
                     MAH.append(dict(tip="teras", poly=duvar.intersection(teras), h=MAH_H_TERAS))
                     MAH.append(dict(tip="bahce", poly=duvar.difference(teras), h=MAH_H_BAHCE))
                 MAH.append(dict(tip="balkon", poly=_vband(arka, arka + dis * (BALKON + 0.1),
+                                                          uu - MAH_T / 2, uu + MAH_T / 2), h=None))
+                MAH.append(dict(tip="balkon", poly=_vband(on, on - dis * (BALKON_ON + 0.1),
                                                           uu - MAH_T / 2, uu + MAH_T / 2), h=None))
             if i > 0:
                 once = vs[i - 1]
@@ -275,8 +280,9 @@ def render(path_pdf, path_png):
         if m["tip"] != "balkon":
             draw_poly(ax, m["poly"], facecolor=C["mah"], edgecolor="none", zorder=6)
     for v in villas:
-        bx = list(v["balkon"].exterior.coords)
-        ax.plot([p[0] for p in bx], [p[1] for p in bx], ls=(0, (2, 1.5)), lw=0.5, color=C["ev"], zorder=5)
+        for bk in ("balkon", "balkon_on"):
+            bx = list(v[bk].exterior.coords)
+            ax.plot([p[0] for p in bx], [p[1] for p in bx], ls=(0, (2, 1.5)), lw=0.5, color=C["ev"], zorder=5)
         c = v["ev"].centroid
         ax.text(c.x, c.y, f"V{v['no']}", ha="center", va="center", fontsize=6.2,
                 fontweight="bold", color=C["yazi"], rotation=90, zorder=6)
@@ -368,7 +374,7 @@ def render(path_pdf, path_png):
     # lejant
     lx = 175 / 420
     fig.text(lx, ty, "LEJANT", fontsize=9, fontweight="bold")
-    items = [(C["ev_fill"], C["ev"], "Villa (taban oturumu), kesikli: 1. kat balkon"),
+    items = [(C["ev_fill"], C["ev"], "Villa (taban oturumu), kesikli: 1. kat ön ve arka balkon"),
              (C["park"], "#78716c", "Otopark (villa önü, 2,6 × 5,0 m)"),
              (C["otopark"], "#a8a29e", "Villa ön bahçesi / araç girişi"),
              (C["yol"], "#78716c", "Site içi yol"),
@@ -442,6 +448,7 @@ def write_dxf(path):
     for v in villas:
         poly(v["ev"], "VILLA")
         poly(v["balkon"], "BALKON")
+        poly(v["balkon_on"], "BALKON")
         poly(v["otopark"], "OTOPARK")
         poly(v["park"], "PARK_YERI")
         poly(v["bahce"], "BAHCE")

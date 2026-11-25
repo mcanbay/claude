@@ -176,18 +176,18 @@ for row in ("A", "B"):
         f = on_v + dn * 0.03
         add("villa", "dograma", bx(wc - 0.6, on_v, SUBASMAN, wc + 0.6, f + dn * 0.02, SUBASMAN + 2.35))
         add("villa", "cam", bx(wc - 0.15, on_v, SUBASMAN + 1.0, wc + 0.15, f + dn * 0.03, SUBASMAN + 2.2))
-        # kapı saçağı
-        add("villa", "duvar2", bx(wc - 0.9, on_v, SUBASMAN + 2.6, wc + 0.9, on_v + dn * 1.2, SUBASMAN + 2.78))
         pc0 = u0 + 0.9 if not kapi_sol else wc + 1.1
         pc1 = wc - 1.1 if not kapi_sol else u1 - 0.9
         if pc1 - pc0 > 1.0:
             add("villa", "cam", bx(pc0, on_v, SUBASMAN + 0.9, pc1, f, SUBASMAN + 2.3))
-        # 1. kat ön pencereler
-        add("villa", "cam", bx(u0 + 0.8, on_v, SUBASMAN + KAT + 0.9, u0 + 2.6, f, SUBASMAN + KAT + 2.4))
-        add("villa", "cam", bx(u1 - 3.4, on_v, SUBASMAN + KAT + 0.5, u1 - 0.8, f, SUBASMAN + KAT + 2.5))
-        # Fransız balkon korkuluğu
-        add("villa", "korkuluk", bx(u1 - 3.5, on_v + dn * 0.05, SUBASMAN + KAT + 0.3, u1 - 0.7,
-                                    on_v + dn * 0.25, SUBASMAN + KAT + 1.3))
+        # 1. kat ön cephe: iki yatak odasının balkon kapıları ve ön balkon (girişe saçak olur)
+        add("villa", "cam", bx(u0 + 0.6, on_v, SUBASMAN + KAT + 0.05, u0 + 2.75, f, SUBASMAN + KAT + 2.5))
+        add("villa", "cam", bx(u1 - 2.75, on_v, SUBASMAN + KAT + 0.05, u1 - 0.6, f, SUBASMAN + KAT + 2.5))
+        fu0, fv0, fu1, fv1 = v["balkon_on"].bounds
+        bh_on = SUBASMAN + KAT
+        add("villa", "duvar", bx(fu0, fv0, bh_on - 0.2, fu1, fv1, bh_on))
+        fo0, fo1 = (fv0, fv0 + 0.06) if row == "A" else (fv1 - 0.06, fv1)
+        add("villa", "korkuluk", bx(fu0, fo0, bh_on, fu1, fo1, bh_on + 1.0))
 
         # ---- arka cephe: zeminde sürme cam, 1. katta balkon kapısı
         r = arka_v - dn * 0.03

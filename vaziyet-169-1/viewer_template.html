@@ -272,7 +272,7 @@ const VIEWS = {
   // B sırası bahçesinin dibinden eve bakış (bahçeler +z yönünde)
   bahcede: () => { const p = villa(24); return [new THREE.Vector3(p.x - 2.7, 1.7, p.z + 13.6), new THREE.Vector3(p.x + 2.6, 3.0, p.z + 5.5), 62]; },
   // A sırası girişlerine yoldan çapraz bakış (A sırasının önü +z yönünde)
-  girisler: () => { const p = villa(8); return [new THREE.Vector3(p.x + 11, 5.0, p.z + 21), new THREE.Vector3(p.x - 3, 1.4, p.z + 6.5)]; },
+  girisler: () => { const p = villa(8); return [new THREE.Vector3(p.x + 10, 2.4, p.z + 14.2), new THREE.Vector3(p.x - 3, 2.2, p.z + 6.5), 55]; },
 };
 function villa(no) { const v = META.villalar.find(x => x.no === no); return new THREE.Vector3(v.p[0], 0, v.p[1]); }
 let tween = null;
