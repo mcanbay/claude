@@ -7,7 +7,8 @@ Tip villa cephe görünüşleri (Varyant B, 4+1, 6,60 × 11,00 m, zemin + 1 kat)
   cephe_gorunusleri.dxf          CAD çizimi (metre; her görünüş ayrı yerde)
 
 Açıklıklar kat_plani.cephe_aciklari()'ndan gelir; 3B model de aynı tanımı kullanır.
-Kotlar: ±0,00 bahçe / otopark, +0,45 zemin kat döşemesi, +3,60 1. kat döşemesi, +6,75 saçak, +8,40 mahya.
+Kotlar: ±0,00 bahçe / otopark, +0,45 zemin kat döşemesi, +3,60 1. kat döşemesi, +6,75 betonarme çatı döşemesi,
++7,05 bitmiş çatı, +7,65 parapet (harpuşta üstü). Çatı betonarme düz çatıdır (gezilmeyen teras).
 """
 import ezdxf
 import matplotlib
@@ -19,17 +20,17 @@ import kat_plani as KP
 
 GEN, DER = KP.GEN, KP.DER
 SUB, KAT = KP.SUBASMAN, KP.KAT_H
-SACAK = SUB + 2 * KAT                       # 6,75
-EGIM, TASMA, CATI_KAL = 0.30, 0.50, 0.18
-MAHYA = SACAK + DER / 2 * EGIM              # 8,40
-SACAK_UC = SACAK - TASMA * EGIM             # 6,60 (saçak ucu alt kotu)
-YD_TEPE = MAHYA + 0.45                      # yangın duvarı tepe kotu
+CATI = KP.CATI_DOSEME                       # +6,75 betonarme çatı döşemesi
+CATI_BIT = KP.CATI_BITMIS                   # +7,05 bitmiş çatı
+PARAPET = KP.PARAPET_UST                    # +7,65 parapet / harpuşta üstü
+HARP = 0.06                                 # harpuşta yüksekliği
+YD_TEPE = PARAPET                           # çizim üst sınırı için
 BAL_ALT, BAL_UST = SUB + KAT - 0.20, SUB + KAT          # balkon döşemesi
 KORK = 1.00
 BANT = (SUB + KAT - 0.05, SUB + KAT + 0.25)             # kat bandı
 H_GIRIS, H_TERAS, H_BAHCE = 1.40, 2.40, 1.90
 
-R = dict(siva="#efe9df", bant="#d8ccb8", sub="#8d8780", cati="#a9563c", cati_cizgi="#7e3c28",
+R = dict(siva="#efe9df", bant="#d8ccb8", sub="#8d8780", harpusta="#b9b6af", cakil="#a8a49c",
          cam="#a9bfcc", kapi="#45484c", kork="#cfe2ea", perde="#cdbfa8", perde_kenar="#8a7b66",
          kont="#1c1917", zemin="#57534e", soluk="#a8a29e")
 
@@ -99,20 +100,13 @@ def aciklik(g, ac, ayna, x_off, olcek=1.0):
 
 def villa_on_arka(g, x_off, cephe, ayna, sol_uc=False, sag_uc=False, olcek=1.0, giris_duvari=()):
     """Tek villanın ön veya arka görünüşü. ayna: görünüşte kapı solda mı (aynalanmış tip).
-    sol_uc/sag_uc: sıranın ucu (çatı yandan taşar, yangın duvarı başlığı yok)."""
+    sol_uc/sag_uc: sıranın ucu (aks üzerinde yangın duvarı çıkıntısı yok, yalnız balkon yan duvarı)."""
     x0, x1 = x_off, x_off + GEN
     lw = 0.6 * olcek
-    # çatı (saçak ucu kotundan mahyaya görünen yüzey)
-    cx0, cx1 = x0 - (0.30 if sol_uc else 0), x1 + (0.30 if sag_uc else 0)
-    g.kutu(cx0, SACAK_UC + CATI_KAL, cx1, MAHYA + CATI_KAL, R["cati"], lw=lw, z=2, katman="CATI")
-    if olcek >= 1:
-        z = SACAK_UC + CATI_KAL + 0.22
-        while z < MAHYA + CATI_KAL - 0.05:
-            g.cizgi([(cx0, z), (cx1, z)], lw=0.25, z=2, renk=R["cati_cizgi"], katman="CATI")
-            z += 0.22
-    g.kutu(cx0, SACAK_UC, cx1, SACAK_UC + CATI_KAL, "#6b4a3c", lw=lw, z=3, katman="CATI")       # saçak alnı
-    # duvar, subasman, kat bandı
-    g.kutu(x0, SUB, x1, SACAK_UC, R["siva"], lw=lw, z=1)
+    # duvar ve parapet (betonarme düz çatı), döşeme alnı bandı, harpuşta
+    g.kutu(x0, SUB, x1, PARAPET - HARP, R["siva"], lw=lw, z=1)
+    g.kutu(x0, CATI, x1, CATI_BIT, R["bant"], lw=0.4 * olcek, z=2, katman="CATI")
+    g.kutu(x0 - 0.04, PARAPET - HARP, x1 + 0.04, PARAPET, R["harpusta"], lw=0.5 * olcek, z=3, katman="CATI")
     g.kutu(x0, 0, x1, SUB, R["sub"], lw=lw, z=1, hatch="////" if olcek >= 1 else None)
     g.kutu(x0, BANT[0], x1, BANT[1], R["bant"], lw=0.4 * olcek, z=2)
     # açıklıklar
@@ -126,12 +120,10 @@ def villa_on_arka(g, x_off, cephe, ayna, sol_uc=False, sag_uc=False, olcek=1.0, 
     # aks üzerindeki perdeler: yangın duvarı çıkıntısı + balkon yan duvarı (mahremiyet), başlık çatı üstünde
     for ax_x, uc in ((x0, sol_uc), (x1, sag_uc)):
         if uc:
-            g.kutu(ax_x - 0.10, BAL_ALT, ax_x + 0.10, SACAK_UC, R["perde"], ec=R["perde_kenar"], lw=lw, z=9,
+            g.kutu(ax_x - 0.10, BAL_ALT, ax_x + 0.10, PARAPET, R["perde"], ec=R["perde_kenar"], lw=lw, z=9,
                    katman="MAHREMIYET")
         else:
-            g.kutu(ax_x - 0.12, SUB, ax_x + 0.12, SACAK_UC, R["perde"], ec=R["perde_kenar"], lw=lw, z=9,
-                   katman="YANGIN_DUVARI")
-            g.kutu(ax_x - 0.12, SACAK_UC, ax_x + 0.12, YD_TEPE, R["perde"], ec=R["perde_kenar"], lw=lw, z=9,
+            g.kutu(ax_x - 0.12, SUB, ax_x + 0.12, PARAPET, R["perde"], ec=R["perde_kenar"], lw=lw, z=9,
                    katman="YANGIN_DUVARI")
         # zemin: arka cephede teras duvarı her aksta; ön cephede yalnız girişlerin yan yana geldiği aksta
         if cephe == "arka":
@@ -177,7 +169,7 @@ def olcu_yatay(g, z, xs, fs=6):
                   color=R["kont"], zorder=12)
 
 
-KOTLAR = [(0.0, "±0,00"), (SUB, "+0,45"), (SUB + KAT, "+3,60"), (SACAK, "+6,75"), (MAHYA, "+8,40")]
+KOTLAR = [(0.0, "±0,00"), (SUB, "+0,45"), (SUB + KAT, "+3,60"), (CATI, "+6,75"), (PARAPET, "+7,65")]
 
 
 # ------------------------------------------------------------------ görünüşler
@@ -201,7 +193,7 @@ def on_veya_arka(ax, cephe, dx):
     ax.add_patch(Rectangle((-3.0, -0.35), GEN + 6, 0.35, fc="#e7e2d8", ec="none", hatch="..", zorder=0))
     insan(g, 4.55 if cephe == "on" else 2.0)
     kotlar(g, -1.15, KOTLAR, sag=False)
-    olcu_dusey(g, -2.05, [0, SUB, SUB + KAT, SACAK, MAHYA])
+    olcu_dusey(g, -2.05, [0, SUB, SUB + KAT, CATI, PARAPET])
     olcu_yatay(g, -0.95, [0, GEN])
     # açıklık genişlikleri (tip villa)
     xs = []
@@ -222,21 +214,20 @@ def yan(ax, dx):
     ax.add_patch(MPoly(arac, closed=True, fc="#d6d3d1", ec=R["zemin"], lw=0.6, zorder=8))
     for cx in (-4.15, -1.45):
         ax.add_patch(plt.Circle((cx, 0.32), 0.32, fc="#44403c", ec="none", zorder=9))
-    # çatı (beşik, mahya cepheye dik), alın üçgeni, duvar, subasman
-    g.poly([(0, SACAK), (DER, SACAK), (DER / 2, MAHYA)], R["siva"], lw=lw, z=1)
-    g.kutu(0, SUB, DER, SACAK, R["siva"], lw=lw, z=1)
+    # betonarme düz çatı: duvar parapet üstüne kadar, döşeme alnı bandı ve harpuşta
+    g.kutu(0, SUB, DER, PARAPET - HARP, R["siva"], lw=lw, z=1)
     g.kutu(0, 0, DER, SUB, R["sub"], lw=lw, z=1, hatch="////")
-    for s in (-1, 1):
-        e = -TASMA if s < 0 else DER + TASMA
-        g.poly([(e, SACAK_UC), (DER / 2, MAHYA), (DER / 2, MAHYA + CATI_KAL), (e, SACAK_UC + CATI_KAL)],
-               R["cati"], lw=lw, z=3, katman="CATI")
+    g.kutu(0, CATI, DER, CATI_BIT, R["bant"], lw=0.4, z=2, katman="CATI")
+    g.kutu(-0.04, PARAPET - HARP, DER + 0.04, PARAPET, R["harpusta"], lw=0.5, z=3, katman="CATI")
+    # çatı yüzeyi (parapet arkasında, kesikli: görünmez)
+    g.cizgi([(0.25, CATI_BIT), (DER - 0.25, CATI_BIT)], lw=0.4, z=3, ls=(0, (4, 3)), katman="CATI")
     # kat bandı uçları (ön ve arka cephede, yandan kesit gibi görünür)
     for xb in (-0.12, DER):
         g.kutu(xb, BANT[0], xb + 0.12, BANT[1], R["bant"], lw=0.4, z=2)
     # balkonların yan mahremiyet duvarları (sıra sonunda da var)
-    g.kutu(-(KP.BALKON_ON + 0.10), BAL_ALT, 0, SACAK_UC, R["perde"], ec=R["perde_kenar"], lw=lw, z=4,
+    g.kutu(-(KP.BALKON_ON + 0.10), BAL_ALT, 0, PARAPET, R["perde"], ec=R["perde_kenar"], lw=lw, z=4,
            katman="MAHREMIYET")
-    g.kutu(DER, BAL_ALT, DER + KP.BALKON_ARKA + 0.10, SACAK_UC, R["perde"], ec=R["perde_kenar"], lw=lw, z=4,
+    g.kutu(DER, BAL_ALT, DER + KP.BALKON_ARKA + 0.10, PARAPET, R["perde"], ec=R["perde_kenar"], lw=lw, z=4,
            katman="MAHREMIYET")
     # bahçe: teras duvarı 2,40 (3,50 m) ve bahçe duvarı 1,90
     g.kutu(DER, 0, DER + 3.5, H_TERAS, "#d9cfbf", ec=R["perde_kenar"], lw=lw, z=5, katman="MAHREMIYET")
@@ -247,12 +238,13 @@ def yan(ax, dx):
     ax.add_patch(Rectangle((-6.0, -0.35), DER + 15, 0.35, fc="#e7e2d8", ec="none", hatch="..", zorder=0))
     insan(g, DER + 1.6)
     kotlar(g, DER + 8.9, KOTLAR, sag=True)
-    olcu_dusey(g, -5.4, [0, SUB, SUB + KAT, SACAK, MAHYA])
+    olcu_dusey(g, -5.4, [0, SUB, SUB + KAT, CATI, CATI_BIT, PARAPET])
     olcu_yatay(g, -1.0, [-(KP.BALKON_ON + 0.10), 0, DER / 2, DER, DER + KP.BALKON_ARKA + 0.10, DER + 3.5,
                          DER + 8.3])
     ax.text(-3.0, -1.9, "YOL / OTOPARK", ha="center", fontsize=6.5, color=R["zemin"])
     ax.text(DER + 4.5, -1.9, "BAHÇE", ha="center", fontsize=6.5, color=R["zemin"])
-    ax.text(DER / 2, MAHYA - 1.0, "%30", ha="center", fontsize=6.5, color=R["kont"])
+    ax.text(DER / 2, CATI_BIT + 0.12, "betonarme düz çatı (parapet arkasında)", ha="center", fontsize=6,
+            color=R["zemin"])
 
 
 def sira(ax, dx):
@@ -288,7 +280,7 @@ def render(pdf, png):
     fig.text(18 / W_, 1 - 14 / H_, "TİP VİLLA 4+1 · CEPHE GÖRÜNÜŞLERİ (ÖN ÇALIŞMA)", fontsize=18,
              fontweight="bold", color=R["kont"])
     fig.text(18 / W_, 1 - 21 / H_, "Bursa / Nilüfer / İrfaniye Mah. · 169 Ada 1 + 2 Parseller · Varyant B · "
-             "villa 6,60 × 11,00 m, zemin + 1 kat, çatı %30 beşik", fontsize=10, color="#44403c")
+             "villa 6,60 × 11,00 m, zemin + 1 kat, betonarme düz çatı", fontsize=10, color="#44403c")
 
     zl = (-1.2, YD_TEPE + 0.5)
     top1 = 40
@@ -323,7 +315,9 @@ def render(pdf, png):
         (R["siva"], None, "Dış cephe: ısı yalıtımlı mantolama, açık bej ince sıva"),
         (R["bant"], None, "Kat bandı ve balkon döşeme alnı: bej, hafif koyu ton"),
         (R["sub"], "////", "Subasman (45 cm): gri doğal taş kaplama"),
-        (R["cati"], None, "Çatı: %30 beşik, kiremit; saçak 50 cm, alın 30 cm"),
+        (R["bant"], None, "Betonarme çatı döşemesi alnı (+6,75 / +7,05)"),
+        (R["cakil"], None, "Çatı: betonarme düz, gezilmeyen teras; ısı + su yalıtımı, çakıl"),
+        (R["harpusta"], None, "Parapet 60 cm, alüminyum harpuşta (açık gri)"),
         (R["cam"], None, "Doğrama: antrasit alüminyum, ısıcam; banyo/WC buzlu"),
         (R["kapi"], None, "Dış kapı: antrasit çelik kapı, dar camlı"),
         (R["kork"], None, "Balkon korkuluğu: 100 cm temperli lamine cam"),
@@ -340,8 +334,9 @@ def render(pdf, png):
     fig.text(lx, y, "KOTLAR", fontsize=11, fontweight="bold", color=R["kont"])
     y -= 7 / H_
     for kot, txt in (("±0,00", "bahçe, teras ve otopark"), ("+0,45", "zemin kat döşemesi"),
-                     ("+3,60", "1. kat döşemesi (kat yüksekliği 315 cm)"), ("+6,75", "saçak"),
-                     ("+8,40", "mahya"), (f"+{YD_TEPE:.2f}".replace(".", ","), "yangın duvarı başlığı")):
+                     ("+3,60", "1. kat döşemesi (kat yüksekliği 315 cm)"),
+                     ("+6,75", "betonarme çatı döşemesi üstü"), ("+7,05", "bitmiş çatı (yalıtım + koruma)"),
+                     ("+7,65", "parapet / harpuşta üstü (en yüksek nokta)")):
         fig.text(lx, y, kot, fontsize=7.6, color=R["kont"], family="DejaVu Sans Mono")
         fig.text(lx + 16 / W_, y, txt, fontsize=7.6, color="#292524")
         y -= 5.0 / H_

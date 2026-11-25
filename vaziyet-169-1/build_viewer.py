@@ -24,7 +24,7 @@ for k, v in {
     "__THREE__": three, "__META__": json.dumps(meta, ensure_ascii=False), "__GLB_B64__": glb,
     "__N__": str(o["n"]), "__W__": tr(o["W"]), "__D__": tr(o["D"]), "__BRUT__": f"{o['brut']:.0f}",
     "__TAPU__": tr(o["tapu"]), "__TAKS__": tr(o["taks"]), "__KAKS__": tr(o["kaks"]),
-    "__MAHYA__": tr(meta["mahya"]), "__SACAK__": tr(meta["sacak"]),
+    "__UST__": tr(meta["ust"]), "__CATI__": tr(meta["cati"]),
 }.items():
     html = html.replace(k, v)
 if not artifact:

@@ -31,8 +31,9 @@ Betik, verilen villa sayısı için en geniş cepheyi ve iki sıranın bahçeler
 
 `python model3d.py B` modeli üretir. Ardından `python build_viewer.py B` görüntüleyici sayfasını hazırlar
 (`pip install trimesh mapbox_earcut scipy` gerekir).
-Villalar zemin + 1 kattır. Kat yüksekliği 3,15 m, subasman 0,45 m. Saçak +6,75 m, mahya +8,40 m.
-Çatı %30 eğimli beşik çatıdır ve mahyası sıra boyunca uzanır.
+Villalar zemin + 1 kattır. Kat yüksekliği 3,15 m, subasman 0,45 m.
+Çatı betonarme düz çatıdır (gezilmeyen teras): döşeme +6,75, ısı ve su yalıtımı ile çakıl koruma üstü +7,05,
+60 cm parapet ve alüminyum harpuşta üstü +7,65 (binanın en yüksek noktası). Yangın duvarları parapet hizasında biter.
 1. katta 1,5 m'lik arka balkon var. Model temsili bir kütle çalışmasıdır; cephe düzeni mimari projede netleşecek.
 
 ### Mahremiyet duvarları
@@ -66,6 +67,6 @@ Brüt: 2 × 72,60 + 19,84 balkon = **165,04 m²**. Net kapalı alan 129,22 m².
 `python cephe.py` ile üretilir (A1 yatay). Pencere, kapı ve balkon kapıları `kat_plani.cephe_aciklari()`
 fonksiyonundan gelir; 3B model de aynı tanımı kullandığı için plan, cephe ve model birbiriyle tutarlıdır.
 
-Kotlar: ±0,00 bahçe/otopark · +0,45 zemin kat · +3,60 1. kat · +6,75 saçak · +8,40 mahya · +8,85 yangın duvarı başlığı.
-Malzeme: mantolama üzeri açık bej sıva, gri doğal taş subasman, kiremit çatı (%30), antrasit alüminyum doğrama,
+Kotlar: ±0,00 bahçe/otopark · +0,45 zemin kat · +3,60 1. kat · +6,75 betonarme çatı döşemesi · +7,05 bitmiş çatı · +7,65 parapet.
+Malzeme: mantolama üzeri açık bej sıva, gri doğal taş subasman, betonarme düz çatı (parapetli), antrasit alüminyum doğrama,
 100 cm cam balkon korkuluğu.

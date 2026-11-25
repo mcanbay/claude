@@ -2,7 +2,7 @@
 """
 Varyant B vaziyet planından 3B kütle modeli üretir (GLB).
 
-Villalar Z+1, kırma yerine sıra boyunca uzanan beşik çatı, 1. katta arka balkon,
+Villalar Z+1, betonarme düz çatı (parapetli, gezilmeyen teras), 1. katta ön ve arka balkon,
 villa önünde otopark ve araç, arka bahçelerde çit ve ağaç. Temsili kütle modelidir;
 cephe ve pencere düzeni mimari projeyle değişecektir.
 
@@ -54,6 +54,7 @@ MAT = {
     "bahce_duv": ((0.80, 0.78, 0.73), 0.9, 0.0),
     "perde":     ((0.84, 0.79, 0.70), 0.9, 0.0),   # mahremiyet duvarları
     "harpusta":  ((0.62, 0.60, 0.56), 0.8, 0.0),
+    "cakil":     ((0.66, 0.65, 0.62), 1.0, 0.0),   # düz çatı çakıl koruma
     "cit":       ((0.24, 0.42, 0.20), 1.0, 0.0),
     "govde":     ((0.40, 0.29, 0.20), 1.0, 0.0),
     "yaprak":    ((0.27, 0.48, 0.22), 1.0, 0.0),
@@ -143,33 +144,30 @@ for row in ("A", "B"):
         W = u1 - u0
         # gövde
         add("villa", "subasman", bx(u0, v0, 0, u1, v1, SUBASMAN))
-        add("villa", "duvar", bx(u0, v0, SUBASMAN, u1, v1, SACAK))
+        add("villa", "duvar", bx(u0, v0, SUBASMAN, u1, v1, KP.CATI_BITMIS))
         # kat bandı
         add("villa", "duvar2", bx(u0, on_v, SUBASMAN + KAT - 0.05, u1, on_v + dn * 0.12, SUBASMAN + KAT + 0.25))
         add("villa", "duvar2", bx(u0, arka_v, SUBASMAN + KAT - 0.05, u1, arka_v - dn * 0.12, SUBASMAN + KAT + 0.25))
-        # çatı arası üçgen (beşik çatı, mahya sıra boyunca)
-        vm = (v0 + v1) / 2
-        rise = (v1 - v0) / 2 * EGIM
-        add("villa", "duvar", prism_u([(v0, SACAK), (v1, SACAK), (vm, SACAK + rise)], u0, u1))
-        # çatı örtüsü, iki yüz
-        for side in (-1, 1):
-            e = v0 - SACAK_TASMA if side < 0 else v1 + SACAK_TASMA
-            he = SACAK - SACAK_TASMA * EGIM
-            hr = SACAK + rise
-            prof = [(e, he), (vm, hr), (vm, hr + CATI_KAL), (e, he + CATI_KAL)]
-            if side > 0:
-                prof = prof[::-1]
-            first, last = (v is vs[0]), (v is vs[-1])
-            ua = u0 - (0.3 if first else 0)
-            ub = u1 + (0.3 if last else 0)
-            add("villa", "cati", prism_u(prof, ua, ub))
-        # yangın duvarı (bitişik villalar arasında, çatıdan taşan)
-        if v is not vs[0]:
-            add("villa", "duvar2", prism_u([(v0 - 0.15, SACAK - 0.1), (v1 + 0.15, SACAK - 0.1),
-                                            (v1 + 0.15, SACAK + 0.35), (vm, SACAK + rise + 0.45),
-                                            (v0 - 0.15, SACAK + 0.35)], u0 - 0.12, u0 + 0.12))
-            add("villa", "duvar2", bx(u0 - 0.12, on_v, SUBASMAN, u0 + 0.12, on_v + dn * 0.25, SACAK))
-            add("villa", "duvar2", bx(u0 - 0.12, arka_v, SUBASMAN, u0 + 0.12, arka_v - dn * 0.25, SACAK))
+        # betonarme düz çatı: döşeme alnı bandı, çakıl koruma, parapet ve harpuşta
+        CB, PU, PK = KP.CATI_BITMIS, KP.PARAPET_UST, KP.PARAPET_KAL
+        add("villa", "duvar2", bx(u0, on_v, KP.CATI_DOSEME, u1, on_v + dn * 0.04, CB))
+        add("villa", "duvar2", bx(u0, arka_v, KP.CATI_DOSEME, u1, arka_v - dn * 0.04, CB))
+        add("villa", "cakil", bx(u0, v0, CB, u1, v1, CB + 0.03))
+        first, last = (v is vs[0]), (v is vs[-1])
+        parapetler = [box(u0, v0, u1, v0 + PK), box(u0, v1 - PK, u1, v1)]
+        if first:
+            parapetler.append(box(u0, v0, u0 + PK, v1))
+        if last:
+            parapetler.append(box(u1 - PK, v0, u1, v1))
+        if not first:                      # aks üzerindeki yangın duvarı parapet hizasında biter
+            parapetler.append(box(u0 - PK / 2, v0, u0 + PK / 2, v1))
+        for pp in parapetler:
+            add("villa", "duvar", slab(pp, CB, PU - 0.05))
+            add("villa", "harpusta", slab(pp.buffer(0.04, join_style=2), PU - 0.05, PU))
+        # yangın duvarı cephe çıkıntısı (bitişik villalar arasında)
+        if not first:
+            add("villa", "duvar2", bx(u0 - 0.12, on_v, SUBASMAN, u0 + 0.12, on_v + dn * 0.25, PU))
+            add("villa", "duvar2", bx(u0 - 0.12, arka_v, SUBASMAN, u0 + 0.12, arka_v - dn * 0.25, PU))
 
         # ---- cephe açıklıkları: kat_plani.py'deki tanım (girişi sağda olan tip, plan aks x'i)
         # plan x'i -> u: A sırasında ön cephe v0'da (u artar), B sırasında v1'de (u azalır);
@@ -263,7 +261,7 @@ for m in V.MAH:
     if m["poly"].is_empty:
         continue
     if m["tip"] == "balkon":     # 1. kat: balkon döşemesinden saçağa kadar
-        add("villa", "perde", slab(m["poly"], SUBASMAN + KAT - 0.2, SACAK))
+        add("villa", "perde", slab(m["poly"], SUBASMAN + KAT - 0.2, KP.PARAPET_UST))
     else:                        # zemin: bahçe, teras ve giriş duvarları + harpuşta
         add("peyzaj", "perde", slab(m["poly"], 0.0, m["h"]))
         add("peyzaj", "harpusta", slab(m["poly"].buffer(0.04, join_style=2), m["h"], m["h"] + 0.06))
@@ -318,7 +316,7 @@ with open(out, "wb") as fh:
 a = math.radians(V.EKSEN_ACI)
 nu, nv = math.sin(a), math.cos(a)
 print(f"{out}: {sum(len(g.faces) for g in scene.geometry.values())} üçgen")
-print(f"kuzey (x,z) = ({nu:.4f}, {-nv:.4f})  saçak {SACAK:.2f} m  mahya {SACAK + (V.D / 2) * EGIM:.2f} m")
+print(f"kuzey (x,z) = ({nu:.4f}, {-nv:.4f})  bitmiş çatı {KP.CATI_BITMIS:.2f} m  parapet {KP.PARAPET_UST:.2f} m")
 
 # ------------------------------------------------------------ görüntüleyici için meta veri
 import json  # noqa: E402
@@ -332,7 +330,7 @@ meta = dict(
     varyant=VARYANT,
     kuzey=[round(nu, 4), round(-nv, 4)],                     # (x, z)
     dogu=[round(math.cos(a), 4), round(math.sin(a), 4)],
-    sacak=SACAK, mahya=round(SACAK + V.D / 2 * EGIM, 2),
+    cati=round(KP.CATI_BITMIS, 2), ust=round(KP.PARAPET_UST, 2),
     giris=g(V.YOL_POLY.bounds[2] + 4, ym),
     yol_sol=g(V.YOL_POLY.bounds[0] + 4, ym),
     parsel=[g(x_, y_) for x_, y_ in P.exterior.coords],

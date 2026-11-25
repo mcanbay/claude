@@ -24,6 +24,11 @@ GEN, DER = 6.60, 11.00           # aks ölçüleri
 YD, DD = 0.125, 0.25             # yangın duvarı yarı kalınlığı, dış duvar kalınlığı
 KAT_H = 3.15
 SUBASMAN = 0.45                  # zemin kat döşeme kotu (±0,00 bahçe / otopark)
+# Çatı: betonarme düz çatı (gezilmeyen teras): döşeme + ısı yalıtımı + su yalıtımı + çakıl koruma, parapet + harpuşta
+CATI_DOSEME = SUBASMAN + 2 * KAT_H   # +6,75 betonarme çatı döşemesi üstü
+CATI_BITMIS = CATI_DOSEME + 0.30     # +7,05 bitmiş çatı (yalıtım ve koruma katmanları)
+PARAPET_UST = CATI_BITMIS + 0.60     # +7,65 parapet / harpuşta üstü (binanın en yüksek noktası)
+PARAPET_KAL = 0.25
 BALKON_ON, BALKON_ARKA = 1.60, 1.50
 BRUT_HEDEF = 165.0
 

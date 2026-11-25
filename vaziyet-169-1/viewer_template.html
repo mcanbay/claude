@@ -97,7 +97,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
         <text id="nlabel" text-anchor="middle" dominant-baseline="central" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="9" fill="#1d2327">K</text>
       </svg>
     </div>
-    <div class="hud scalebar">Mahya +__MAHYA__ m · saçak +__SACAK__ m</div>
+    <div class="hud scalebar">Parapet +__UST__ m · çatı +__CATI__ m</div>
     <div class="hud status" id="status">Model yükleniyor…</div>
   </div>
 
@@ -114,6 +114,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
         <dt>Villa</dt><dd>__N__ adet, 16 + 16</dd>
         <dt>Villa ölçüsü</dt><dd>__W__ × __D__ m</dd>
         <dt>Kat</dt><dd>Zemin + 1</dd>
+        <dt>Çatı</dt><dd>betonarme düz, parapetli</dd>
         <dt>Brüt / villa</dt><dd>__BRUT__ m²</dd>
         <dt>Parsel (tapu)</dt><dd>__TAPU__ m²</dd>
         <dt>TAKS / KAKS</dt><dd>__TAKS__ / __KAKS__</dd>
@@ -292,7 +293,7 @@ const labels = META.villalar.map(v => {
   const el = document.createElement("div");
   el.className = "lbl"; el.textContent = "V" + v.no;
   labelsEl.appendChild(el);
-  return { el, p: new THREE.Vector3(v.p[0], META.mahya + 0.8, v.p[1]) };
+  return { el, p: new THREE.Vector3(v.p[0], META.ust + 0.8, v.p[1]) };
 });
 const groups = { agac: [], arac: [] };
 document.getElementById("tLabels").addEventListener("change", e => labelsEl.hidden = !e.target.checked);
