@@ -55,11 +55,11 @@ Duvarlar 20 cm kalınlığındadır. DXF'te `MAHREMIYET_DUVARI` ve `MAHREMIYET_B
 
 | Kat | Mahaller (net m²) |
 |---|---|
-| Zemin | Salon + yemek 24,13 · Amerikan mutfak 9,92 · Misafir/çalışma odası (yatak 4) 10,54 · Antre 6,12 · Hol 3,11 · WC/duş 2,75 · Kiler 1,38 · Merdiven 7,15 · **Net 65,09** |
+| Zemin | Salon + yemek 24,13 · Amerikan mutfak 9,92 · Misafir/çalışma odası (yatak 4) 10,54 · Antre 7,24 (3,15 m geniş) · Hol 2,72 · WC/duş 3,42 (yan holden, girişten görünmez) · Merdiven altı kiler 2,99 · Merdiven 3,41 · **Net 64,38** |
 | 1. kat | Ebeveyn yatak odası 14,44 · Giyinme odası 4,16 · Ebeveyn banyosu 4,90 · Yatak odası 2 10,54 · Yatak odası 3 10,71 · Ortak banyo 5,42 · Hol 6,80 · Merdiven 7,15 · **Net 64,13** |
 | Balkonlar | Ön 10,24 (6,40 × 1,60) · Arka 9,60 (6,40 × 1,50) |
 
-Brüt: 2 × 72,60 + 19,84 balkon = **165,04 m²**. Net kapalı alan 129,22 m².
+Brüt: 2 × 72,60 + 19,84 balkon = **165,04 m²**. Net kapalı alan 128,50 m².
 Ön balkon vaziyet planına ve 3B modele de işlenmiştir; yanlarında 1. kat mahremiyet duvarları vardır.
 
 ## Cephe görünüşleri

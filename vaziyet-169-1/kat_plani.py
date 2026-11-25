@@ -46,13 +46,13 @@ def P(x, y):
 # (ad, kutu(lar), net alana dahil mi). Aynı "grup" değerine sahip mahaller arasında duvar yoktur.
 ZEMIN = [
     dict(ad="MİSAFİR / ÇALIŞMA\nODASI (YATAK 4)", kisa="Misafir/çalışma (yatak 4)", g=[B(0, 0, 3.10, 3.40)]),
-    dict(ad="WC / DUŞ", kisa="WC / duş", g=[B(3.20, 0, 4.45, 2.20)]),
-    dict(ad="KİLER", kisa="Kiler", g=[B(3.20, 2.30, 4.45, 3.40)]),
-    dict(ad="ANTRE", kisa="Antre", g=[B(4.55, 0, 6.35, 3.40)], grup="acik"),
-    dict(ad="HOL", kisa="Hol", g=[B(3.10, 3.50, 6.35, 4.40), B(4.55, 3.40, 6.35, 3.50)], grup="acik"),
+    dict(ad="ANTRE", kisa="Antre", g=[B(3.20, 0, 6.35, 2.30)], grup="acik"),
+    dict(ad="HOL", kisa="Hol", g=[B(3.20, 2.30, 4.45, 3.50), B(3.10, 3.50, 4.45, 4.40)], grup="acik"),
+    dict(ad="WC / DUŞ", kisa="WC / duş", g=[B(4.55, 2.40, 6.35, 4.30)]),
+    dict(ad="MERDİVEN ALTI KİLER", kisa="Kiler (merdiven altı)", g=[B(3.20, 4.50, 6.35, 5.45)]),
     dict(ad="AMERİKAN\nMUTFAK", kisa="Amerikan mutfak", g=[B(0, 3.50, 3.10, 6.70)], grup="acik"),
     dict(ad="SALON + YEMEK", kisa="Salon + yemek", g=[B(0, 6.70, 6.35, 10.50)], grup="acik"),
-    dict(ad="MERDİVEN", kisa="Merdiven", g=[B(3.10, 4.40, 6.35, 6.60)], grup="acik", etiket=False),
+    dict(ad="MERDİVEN", kisa="Merdiven", g=[B(3.10, 5.55, 6.35, 6.60)], grup="acik", etiket=False),
 ]
 KAT1 = [
     dict(ad="YATAK ODASI 2", kisa="Yatak odası 2", g=[B(0, 0, 3.10, 3.40)]),
@@ -74,9 +74,9 @@ def kapi(hx, hy, kapali, acik, w, surgu=False):
 
 ZEMIN_KAPI = [
     kapi(6.15, 0.0, (-1, 0), (0, 1), 1.00),                 # dış kapı (antreye)
-    kapi(3.00, 3.40, (-1, 0), (0, -1), 0.80),               # misafir odası
-    kapi(4.45, 1.95, (0, -1), (1, 0), 0.75),                # WC / duş (antreye açılır)
-    kapi(4.15, 3.40, (-1, 0), (0, -1), 0.70),               # kiler
+    kapi(3.10, 2.10, (0, -1), (-1, 0), 0.80),               # misafir odası (antreden)
+    kapi(4.55, 4.20, (0, -1), (1, 0), 0.75),                # WC / duş (yan holden; girişten görünmez)
+    kapi(3.35, 4.50, (1, 0), (0, 1), 0.75),                 # merdiven altı kiler
 ]
 KAT1_KAPI = [
     kapi(3.00, 3.40, (-1, 0), (0, -1), 0.80),               # yatak 2
@@ -87,7 +87,7 @@ KAT1_KAPI = [
     kapi(4.10, 8.40, (1, 0), (0, 1), 0.75),                 # ebeveyn banyosu
 ]
 # pencere: (cephe 'on'/'arka', x0, x1 [iç çerçeve], tür)
-ZEMIN_PENC = [("on", 0.60, 2.50, "p"), ("on", 3.45, 4.20, "p"), ("arka", 0.45, 5.90, "surgu")]
+ZEMIN_PENC = [("on", 0.60, 2.50, "p"), ("on", 3.50, 4.60, "p"), ("arka", 0.45, 5.90, "surgu")]
 KAT1_PENC = [("on", 0.50, 2.60, "surgu"), ("on", 3.75, 5.85, "surgu"),
              ("arka", 0.50, 3.30, "surgu"), ("arka", 4.55, 5.75, "p")]
 
@@ -213,25 +213,31 @@ def merdiven(kat):
     x0, xs = 3.10, 3.10 + 8 * 0.27        # sahanlık başlangıcı ≈ 5,26
     for i in range(9):
         x = x0 + i * 0.27
-        out.append(cizgi((x, 5.55), (x, 6.60)) if kat == 0 else [])
-        kesik.append(cizgi((x, 5.55), (x, 6.60)))
-        out.append(cizgi((x, 4.40), (x, 5.45)))
-    out.append(cizgi((x0, 5.45), (xs, 5.45)))
+        if kat == 0:      # zeminde 1. kol görünür, 2. kol başın üstündedir (kesikli)
+            out.append(cizgi((x, 5.55), (x, 6.60)))
+            kesik.append(cizgi((x, 4.40), (x, 5.45)))
+        else:             # 1. katta 2. kol görünür, 1. kol boşluktan aşağıda (kesikli)
+            kesik.append(cizgi((x, 5.55), (x, 6.60)))
+            out.append(cizgi((x, 4.40), (x, 5.45)))
     out.append(cizgi((x0, 5.55), (xs, 5.55)))
-    out.append(cizgi((xs, 4.40), (xs, 6.60)))
     if kat == 0:
-        kesik = []
+        out.append(cizgi((xs, 5.55), (xs, 6.60)))
+        kesik.append(cizgi((xs, 4.40), (xs, 5.55)))
     else:
-        out = [o for o in out if o]
+        out.append(cizgi((x0, 5.45), (xs, 5.45)))
+        out.append(cizgi((xs, 4.40), (xs, 6.60)))
     return out, kesik
 
 
 ZEMIN_MOB = (
     yatak(0.0, 1.00, 1.40, 2.00, "sol") + dolap(0.0, 2.80, 2.00, 3.40)
     + dolap(2.50, 0.0, 3.10, 1.20)                                      # çalışma masası
-    + wc(3.20, 1.40, "sol") + lavabo(3.75, 1.65, 4.45, 2.20) + dus(3.20, 0.0, 4.10, 0.90)
-    + dolap(5.95, 1.20, 6.35, 3.30)                                     # vestiyer / ayakkabılık
-    + dolap(3.20, 2.30, 3.60, 3.40)                                     # kiler rafı
+    # antre: karşı duvar boyunca vestiyer, misafir odası duvarında ayakkabılık + oturma bankı
+    + dolap(4.55, 1.70, 6.35, 2.30) + dolap(3.20, 0.25, 3.62, 1.15) + [r(3.20, 1.15, 3.62, 1.25)]
+    # WC / duş: lavabo, klozet, duş
+    + lavabo(4.95, 2.40, 5.65, 2.90) + wc(6.35, 3.15, "sag") + dus(5.45, 3.40, 6.35, 4.30)
+    # merdiven altı kiler rafları
+    + dolap(4.30, 4.50, 6.35, 4.90)
     # mutfak: L tezgah, buzdolabı, ocak, eviye
     + [r(0.0, 3.50, 0.62, 6.70), r(0.62, 3.50, 2.05, 4.12)] + dolap(0.0, 3.50, 0.70, 4.20)
     + [r(0.10, 4.90, 0.55, 5.50)] + lavabo(0.08, 5.80, 0.56, 6.40)
@@ -343,10 +349,7 @@ def ciz_kat(ax, baslik, mahaller, kapilar, pencereler, mobilya, kat):
     if kat == 0:   # çıkış oku: 1. kol başlangıcından sahanlığa, 2. kolda kesme çizgisi
         ax.annotate("", P(5.10, 6.07), P(3.25, 6.07), arrowprops=dict(arrowstyle="-|>", lw=0.7, color=INK), zorder=8)
         ax.text(*P(3.25, 6.30), "ÇIKIŞ", fontsize=6, color=INK, zorder=8)
-        ax.plot(*zip(P(4.10, 4.40), P(4.40, 5.45)), color=INK, lw=0.6, zorder=8)
-        ax.text(*P(4.55, 4.62), "merdiven altı dolap", fontsize=5.5, color="#57534e", zorder=8,
-                bbox=dict(fc="#fbf8f2", ec="none", pad=0.3))
-        ax.plot(*zip(P(3.10, 4.40), P(6.35, 4.40)), color=INK, lw=0.4, ls=(0, (2, 2)), zorder=6)
+        ax.plot(*zip(P(4.10, 5.55), P(4.40, 6.60)), color=INK, lw=0.6, zorder=8)
     else:          # varış oku ve korkuluklar (boşluk kenarı)
         ax.annotate("", P(3.25, 4.92), P(5.10, 4.92), arrowprops=dict(arrowstyle="-|>", lw=0.7, color=INK), zorder=8)
         ax.text(*P(3.55, 5.12), "VARIŞ", fontsize=6, color=INK, zorder=8)
@@ -386,8 +389,7 @@ def ciz_kat(ax, baslik, mahaller, kapilar, pencereler, mobilya, kat):
 
     yb = -2.3 if kat else -2.0
     olcu_yatay([0, GEN], yb - 0.7)
-    olcu_yatay([0, YD + 3.10, YD + 3.20, YD + 4.45, YD + 4.55, GEN] if kat == 0 else
-               [0, YD + 3.10, YD + 3.20, GEN], yb)
+    olcu_yatay([0, YD + 3.10, YD + 3.20, GEN], yb)
     olcu_dusey([0, DER], -1.6)
     olcu_dusey([0, DD + 3.40, DD + 3.50, DD + 6.60, DD + 6.70, DER], -0.9)
     ax.text(GEN / 2, DER + 4.1, baslik, ha="center", va="bottom", fontsize=13, fontweight="bold", color=INK)
@@ -464,8 +466,10 @@ def render(pdf, png):
         "komşu villa aynalanmış tiptir.",
         "Bahçe, teras ve balkon kenarındaki koyu",
         "parçalar mahremiyet duvarlarıdır.",
-        "Banyo/WC havalandırması mekaniktir",
-        "(ortak banyo penceresizdir).",
+        "Banyo/WC havalandırması mekaniktir (zemin",
+        "WC/duş ve 1. kat ortak banyo penceresizdir).",
+        "Zemin WC/duş kapısı yan hole açılır;",
+        "girişten görünmez.",
         "Ön çalışmadır; statik ve tesisat projesiyle",
         "değişebilir.",
     ]
