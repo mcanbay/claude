@@ -89,3 +89,14 @@ iki villanın yan bahçesidir ve ortasından 1,90 m mahremiyet duvarı geçer.
 | KAKS (165 m²/villa) | 0,83 | 0,83 | 0,77 | 0,72 |
 
 Kuşbakışı ve giriş görselleri: `render/alternatifler/`. 3B modeller: `model_169-1-2_C/D/E.glb` ve `.html`.
+
+## Varyant F: kademeli cephe ve sosyal meydan
+
+`python vaziyet.py F` / `python model3d.py F`. 28 villa (6,60 × 11,00 m, mevcut 4+1 plan aynen).
+- **Kademe:** Her blokta villalar ikişerli gruplar halinde dönüşümlü olarak 1,5 m geri çekilir. Cephe ritmi kırılır;
+  geri çekilen villaların önünde 1,5 m'lik ön bahçe şeridi oluşur.
+- **Sosyal meydan:** İki sıranın blok boşluğu karşı karşıya hizalanıp 12,2 m'ye genişletilir (A: 7+7, B: 8+6).
+  - B yakasında 4,5 × 10 m havuz, 7,8 × 14 m deck, 1,2 m güvenlik çiti ve şezlonglar,
+  - A yakasında 10,2 × 8 m çocuk oyun alanı (kauçuk zemin) ile 6 × 4 m pergola ve banklar,
+  - yolda yükseltilmiş yaya geçidi; iki yakanın ön şeridinde 3'er misafir otoparkı (toplam 6).
+- Meydan toplamı yaklaşık 600 m². Görseller: `render/alternatifler/F_*.png`.

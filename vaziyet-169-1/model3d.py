@@ -256,6 +256,72 @@ for row in ("A", "B"):
                     crown.apply_translation((tu, tv, hgt * 0.62))
                     add("agac", rng.choice(["yaprak", "yaprak2"]), crown)
 
+# ------------------------------------------------------------ sosyal meydan (varyant F)
+MAT.update({
+    "plaza": ((0.84, 0.80, 0.72), 0.9, 0.0),
+    "su": ((0.24, 0.62, 0.80), 0.05, 0.0),
+    "kaucuk": ((0.86, 0.48, 0.24), 1.0, 0.0),
+    "oyun": ((0.95, 0.80, 0.30), 0.7, 0.0),
+    "ahsap": ((0.55, 0.40, 0.27), 0.8, 0.0),
+    "bank": ((0.90, 0.89, 0.86), 0.8, 0.0),
+})
+
+
+def agac(tu, tv, hgt):
+    trunk = trimesh.creation.cylinder(radius=0.15, height=hgt * 0.45, sections=8)
+    trunk.apply_translation((tu, tv, hgt * 0.225))
+    add("agac", "govde", trunk)
+    crown = trimesh.creation.icosphere(subdivisions=1, radius=hgt * 0.27)
+    crown.apply_scale((1, 1, 1.15))
+    crown.apply_translation((tu, tv, hgt * 0.62))
+    add("agac", rng.choice(["yaprak", "yaprak2"]), crown)
+
+
+if V.MEYDAN:
+    M = V.MEYDAN
+    add("peyzaj", "ortak", slab(unary_union([M["A"], M["B"]]), 0.0, 0.03))
+    add("yol", "plaza", slab(M["gecit"], 0.0, 0.10))                 # yükseltilmiş yaya geçidi
+    for kp in M["kaplama"]:
+        add("peyzaj", "plaza", slab(kp, 0.0, 0.06))
+    # havuz: deck, havuz kenarı (harpuşta), su yüzeyi, cam güvenlik çiti
+    add("peyzaj", "teras", slab(M["deck"].difference(M["havuz"]), 0.0, 0.15))
+    add("peyzaj", "harpusta", slab(M["havuz"].buffer(0.25, join_style=2).difference(M["havuz"]), 0.0, 0.18))
+    add("peyzaj", "su", slab(M["havuz"], -0.05, 0.05))
+    cit = M["cit"]
+    add("peyzaj", "korkuluk", slab(cit.difference(cit.buffer(-0.05, join_style=2)), 0.0, 1.2))
+    for sz in M["sezlong"]:
+        add("peyzaj", "bank", slab(sz, 0.15, 0.45))
+    # çocuk oyun alanı: kauçuk zemin, kule + kaydırak, salıncak, kum havuzu
+    add("peyzaj", "kaucuk", slab(M["oyun"], 0.0, 0.06))
+    k0, k1, kum = M["oyun_ekipman"]
+    ku0, kv0, ku1, kv1 = k0.bounds
+    add("peyzaj", "oyun", bx(ku0, kv0, 1.2, ku0 + 1.6, kv1, 1.35))                  # kule platformu
+    for pu, pv in ((ku0, kv0), (ku0 + 1.5, kv0), (ku0, kv1 - 0.1), (ku0 + 1.5, kv1 - 0.1)):
+        add("peyzaj", "ahsap", bx(pu, pv, 0.06, pu + 0.1, pv + 0.1, 2.4))
+    add("peyzaj", "oyun", prism_u([(kv0 + 0.6, 1.35), (kv0 + 1.4, 1.35), (kv0 + 1.4, 1.25), (kv0 + 0.6, 1.25)],
+                                  ku0 + 1.6, ku0 + 1.62))
+    add("peyzaj", "kaucuk", slab(Polygon([(ku0 + 1.6, kv0 + 0.6), (ku1, kv0 + 0.6), (ku1, kv0 + 1.4),
+                                          (ku0 + 1.6, kv0 + 1.4)]), 0.06, 0.4))      # kaydırak çıkışı
+    su0, sv0, su1, sv1 = k1.bounds
+    for pu in (su0, su1 - 0.1):
+        add("peyzaj", "ahsap", bx(pu, sv0 + 0.6, 0.06, pu + 0.1, sv0 + 0.7, 2.2))
+    add("peyzaj", "ahsap", bx(su0, sv0 + 0.6, 2.1, su1, sv0 + 0.7, 2.2))
+    add("peyzaj", "zemin", slab(kum, 0.06, 0.25))                                    # kum havuzu
+    # pergola: 4 dikme, kirişler, lameller; banklar
+    pu0, pv0, pu1, pv1 = M["pergola"].bounds
+    for pu, pv in ((pu0, pv0), (pu1 - 0.15, pv0), (pu0, pv1 - 0.15), (pu1 - 0.15, pv1 - 0.15)):
+        add("peyzaj", "ahsap", bx(pu, pv, 0.06, pu + 0.15, pv + 0.15, 2.7))
+    for pv in (pv0, pv1 - 0.15):
+        add("peyzaj", "ahsap", bx(pu0 - 0.2, pv, 2.55, pu1 + 0.2, pv + 0.15, 2.75))
+    x_ = pu0 + 0.25
+    while x_ < pu1 - 0.1:
+        add("peyzaj", "ahsap", bx(x_, pv0 - 0.2, 2.75, x_ + 0.08, pv1 + 0.2, 2.9))
+        x_ += 0.45
+    for b_ in M["bank"]:
+        add("peyzaj", "bank", slab(b_, 0.06, 0.48))
+    for tu, tv in M["agaclar"]:
+        agac(tu, tv, rng.uniform(5.0, 6.5))
+
 # ------------------------------------------------------------ misafir otoparkları (bloklar arası)
 for mp in V.MISAFIR:
     add("peyzaj", "park", slab(mp, 0.0, 0.08))
@@ -336,6 +402,7 @@ meta = dict(
     dogu=[round(math.cos(a), 4), round(math.sin(a), 4)],
     cati=round(KP.CATI_BITMIS, 2), ust=round(KP.PARAPET_UST, 2),
     giris=g(V.YOL_POLY.bounds[2] + 4, ym),
+    meydan=(g((V.MEYDAN_U[0] + V.MEYDAN_U[1]) / 2, ym) if V.MEYDAN_U else None),
     yol_sol=g(V.YOL_POLY.bounds[0] + 4, ym),
     parsel=[g(x_, y_) for x_, y_ in P.exterior.coords],
     villalar=[dict(no=v["no"], sira=v["sira"], p=g(*v["ev"].centroid.coords[0])) for v in V.villas],
