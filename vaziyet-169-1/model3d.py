@@ -219,8 +219,10 @@ for row in ("A", "B"):
         add("peyzaj", "yuruyus", slab(v["yuruyus"], 0.06, 0.10))
 
         # ---- araç (park yerlerinin çoğunda)
-        if rng.random() < 0.8:
-            pu0, pv0, pu1, pv1 = v["park"].bounds
+        for pp in v.get("parklar", [v["park"]]):
+            if pp.is_empty or rng.random() >= 0.8:
+                continue
+            pu0, pv0, pu1, pv1 = pp.bounds
             cu = (pu0 + pu1) / 2
             cv = (pv0 + pv1) / 2 + dn * 0.2
             L, Wc = 4.3, 1.8
@@ -322,6 +324,47 @@ if V.MEYDAN:
     for tu, tv in M["agaclar"]:
         agac(tu, tv, rng.uniform(5.0, 6.5))
 
+# ------------------------------------------------------------ araçsız lineer park (varyant G)
+if V.PARK:
+    K = V.PARK
+    add("peyzaj", "ortak", slab(K["alan"], 0.0, 0.03))
+    add("yol", "plaza", slab(K["serit"], 0.0, 0.05))                 # acil durum / yaya yolu (çim taşı)
+    add("yol", "plaza", slab(K["donus"], 0.0, 0.06))                 # dönüş meydanı
+    for bu, bv in K["babalar"]:                                       # babalar (park girişinde)
+        c_ = trimesh.creation.cylinder(radius=0.1, height=0.9, sections=10)
+        c_.apply_translation((bu, bv, 0.45))
+        add("peyzaj", "harpusta", c_)
+    add("peyzaj", "kaucuk", slab(K["oyun"], 0.0, 0.06))
+    k0, k1, kum = K["oyun_ekipman"]
+    ku0, kv0, ku1, kv1 = k0.bounds
+    add("peyzaj", "oyun", bx(ku0, kv0, 1.2, ku1, kv1, 1.35))
+    for pu, pv in ((ku0, kv0), (ku1 - 0.1, kv0), (ku0, kv1 - 0.1), (ku1 - 0.1, kv1 - 0.1)):
+        add("peyzaj", "ahsap", bx(pu, pv, 0.06, pu + 0.1, pv + 0.1, 2.4))
+    su0, sv0, su1, sv1 = k1.bounds
+    for pu in (su0, su1 - 0.1):
+        add("peyzaj", "ahsap", bx(pu, sv0, 0.06, pu + 0.1, sv0 + 0.1, 2.2))
+    add("peyzaj", "ahsap", bx(su0, sv0, 2.1, su1, sv0 + 0.1, 2.2))
+    add("peyzaj", "zemin", slab(kum, 0.06, 0.25))
+    pu0, pv0, pu1, pv1 = K["pergola"].bounds
+    add("peyzaj", "plaza", slab(K["pergola"], 0.0, 0.06))
+    for pu, pv in ((pu0, pv0), (pu1 - 0.15, pv0), (pu0, pv1 - 0.15), (pu1 - 0.15, pv1 - 0.15)):
+        add("peyzaj", "ahsap", bx(pu, pv, 0.06, pu + 0.15, pv + 0.15, 2.7))
+    for pv in (pv0, pv1 - 0.15):
+        add("peyzaj", "ahsap", bx(pu0 - 0.2, pv, 2.55, pu1 + 0.2, pv + 0.15, 2.75))
+    x_ = pu0 + 0.25
+    while x_ < pu1 - 0.1:
+        add("peyzaj", "ahsap", bx(x_, pv0 - 0.2, 2.75, x_ + 0.08, pv1 + 0.2, 2.9))
+        x_ += 0.45
+    for b_ in K["bank"]:
+        add("peyzaj", "bank", slab(b_, 0.06, 0.48))
+    for hb in K["hobi"]:                                              # yükseltilmiş hobi bahçesi kasaları
+        add("peyzaj", "ahsap", slab(hb, 0.0, 0.55))
+        add("peyzaj", "govde", slab(hb.buffer(-0.08, join_style=2), 0.55, 0.58))
+    add("peyzaj", "harpusta", slab(K["cop"], 0.0, 1.5))
+    add("peyzaj", "bank", slab(K["bisiklet"], 0.0, 0.9))
+    for tu, tv in K["agaclar"]:
+        agac(tu, tv, rng.uniform(5.0, 6.5))
+
 # ------------------------------------------------------------ misafir otoparkları (bloklar arası)
 for mp in V.MISAFIR:
     add("peyzaj", "park", slab(mp, 0.0, 0.08))
@@ -403,6 +446,9 @@ meta = dict(
     cati=round(KP.CATI_BITMIS, 2), ust=round(KP.PARAPET_UST, 2),
     giris=g(V.YOL_POLY.bounds[2] + 4, ym),
     meydan=(g((V.MEYDAN_U[0] + V.MEYDAN_U[1]) / 2, ym) if V.MEYDAN_U else None),
+    park=([g(V.PARK["alan"].bounds[0], (V.PARK["alan"].bounds[1] + V.PARK["alan"].bounds[3]) / 2),
+           g(V.PARK["alan"].bounds[2], (V.PARK["alan"].bounds[1] + V.PARK["alan"].bounds[3]) / 2)]
+          if V.PARK else None),
     yol_sol=g(V.YOL_POLY.bounds[0] + 4, ym),
     parsel=[g(x_, y_) for x_, y_ in P.exterior.coords],
     villalar=[dict(no=v["no"], sira=v["sira"], p=g(*v["ev"].centroid.coords[0])) for v in V.villas],

@@ -100,3 +100,13 @@ Kuşbakışı ve giriş görselleri: `render/alternatifler/`. 3B modeller: `mode
   - A yakasında 10,2 × 8 m çocuk oyun alanı (kauçuk zemin) ile 6 × 4 m pergola ve banklar,
   - yolda yükseltilmiş yaya geçidi; iki yakanın ön şeridinde 3'er misafir otoparkı (toplam 6).
 - Meydan toplamı yaklaşık 600 m². Görseller: `render/alternatifler/F_*.png`.
+
+## Varyant G: otopark girişte toplu, iç kısım araçsız lineer park
+
+`python vaziyet.py G` / `python model3d.py G`. 32 villa, 6,60 × 11,00 m (mevcut 4+1 plan aynen), ikişerli 1,5 m kademe.
+- **Toplu otopark:** Girişe yakın 9 + 9 villanın ön şeridinde 2'şer yer, toplam 36 (32 villa + 4 misafir).
+  Bu villaların önünden geçen 6 m otopark yolu, ucunda 11 × 7 m dönüş meydanı.
+- **Araçsız iç kısım:** Kalan 7 + 7 villanın önünde araç yolu yok. 2,5 m özel ön bahçe (1 m çit, parka açılan kapı)
+  ve yaklaşık 500 m² lineer park: çocuk oyun alanı, pergola, hobi bahçesi kasaları, çim/etkinlik alanı, ağaç sırası.
+- **Erişim:** Parkta 3,5 m çim taşı şerit; itfaiye, ambulans ve taşınma aracı için açık, girişinde babalar.
+- Dönüş meydanında çöp/geri dönüşüm noktası ve bisiklet park yeri. Görseller: `render/alternatifler/G_*.png`.

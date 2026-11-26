@@ -136,6 +136,7 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
         <button class="view" data-v="bahcede" aria-pressed="false">Bahçeden</button>
         <button class="view" data-v="girisler" aria-pressed="false">Girişlerden</button>
         <button class="view" data-v="meydan" aria-pressed="false" hidden>Meydan</button>
+        <button class="view" data-v="park" aria-pressed="false" hidden>Park</button>
       </div>
     </section>
 
@@ -277,9 +278,13 @@ const VIEWS = {
   // sosyal meydan: A yakasının üstünden havuza doğru (A yakası -z, B yakası +z tarafında)
   meydan: () => { const c = new THREE.Vector3(META.meydan ? META.meydan[0] : 0, 0, META.meydan ? META.meydan[1] : 0);
     return [c.clone().add(new THREE.Vector3(4, 13, -36)), c.clone().add(new THREE.Vector3(0, 0, 9)), 50]; },
+  // araçsız park: parkın sol (iç) ucunun gerisinden girişe doğru, göz hizasının biraz üstünden
+  park: () => { const a = META.park ? META.park[0] : [0, 0], b = META.park ? META.park[1] : [10, 0];
+    return [new THREE.Vector3(a[0] - 9, 11, a[1] + 1), new THREE.Vector3(b[0] - 4, 0.5, b[1]), 52]; },
   girisler: () => { const p = villa(8); return [new THREE.Vector3(p.x + 10, 2.4, p.z + 14.2), new THREE.Vector3(p.x - 3, 2.2, p.z + 6.5), 55]; },
 };
 if (META.meydan) document.querySelector('#views [data-v="meydan"]').hidden = false;
+if (META.park) document.querySelector('#views [data-v="park"]').hidden = false;
 function villa(no) { const v = META.villalar.find(x => x.no === no); return new THREE.Vector3(v.p[0], 0, v.p[1]); }
 let tween = null;
 function go(name, instant) {

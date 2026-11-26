@@ -43,16 +43,21 @@ VARYANTLAR = {
     "D": (11.0, 0.0, [8, 7], [7, 8], "30 villa, her sırada 2 blok (8+7), bloklar arası 6 m"),
     "E": (11.0, 0.0, [5, 4, 5], [5, 4, 5], "28 villa, her sırada 3 blok (5+4+5), bloklar arası 6 m"),
     "F": (11.0, 0.0, [7, 7], [7, 7], "28 villa, kademeli cephe, ortada sosyal meydan (havuz, oyun alanı)"),
+    "G": (11.0, 0.0, [16], [16], "32 villa, otopark girişte toplu, iç kısım araçsız lineer park, kademeli cephe"),
 }
 # ek seçenekler: kademe = ikişerli villaların bahçeye doğru geri çekilmesi (m);
 # meydan = iki sıradaki blok boşluğunu karşı karşıya hizalayıp genişletir, ortak sosyal alan yapar
-VARYANT_OPS = {"F": dict(kademe=1.5, meydan=True)}
+# park = iç kısmı araçsız site: her sıranın soldaki n_uzak villasının önünde araç yolu yoktur (ön bahçe + park);
+# girişe yakın villaların ön şeridinde 2'şer otopark yeri bulunur (toplu otopark)
+VARYANT_OPS = {"F": dict(kademe=1.5, meydan=True),
+               "G": dict(kademe=1.5, park=dict(n_uzak=7, on_bahce=2.5, donus=7.0))}
 VARYANT = sys.argv[1] if len(sys.argv) > 1 else "A"
 D, CEP, BLOK_UST, BLOK_ALT, VARYANT_ACIKLAMA = VARYANTLAR[VARYANT]
 N_UST, N_ALT = sum(BLOK_UST), sum(BLOK_ALT)
 ARA_UST, ARA_ALT = (len(BLOK_UST) - 1) * BLOK_ARA, (len(BLOK_ALT) - 1) * BLOK_ARA
 OPS = VARYANT_OPS.get(VARYANT, {})
 KADEME = OPS.get("kademe", 0.0)
+PARK_OPS = OPS.get("park")
 BALKON = 1.5         # arka balkon çıkması (1. kat, kesikli gösterilir)
 BALKON_ON = 1.6      # ön balkon çıkması (1. kat, otopark üstüne; girişe saçak olur)
 BRUT = 165.0         # villa başı brüt alan (balkon dahil)
@@ -189,6 +194,21 @@ def make_row(x0, n, ev, otp, bahce_side, no0, sira, blok=0):
         wx = x + W - 1.4 if left else x + 0.2
         # yürüyüş yolu otopark şeridinden (kademeli villada ön bahçeyi geçerek) kapıya ulaşır
         walk = box(wx, otp[0], wx + 1.2, ev_k[0]) if bahce_side == "ust" else box(wx, ev_k[1], wx + 1.2, otp[1])
+        uzak = bool(PARK_OPS) and k < PARK_OPS["n_uzak"]
+        parklar = [stall]
+        if PARK_OPS and uzak:
+            # araçsız kısım: otopark yok; ev önünde özel ön bahçe, parka açılan kapı ve yürüyüş yolu
+            ob = PARK_OPS["on_bahce"]
+            pk = otp[1] - ob if bahce_side == "ust" else otp[0] + ob     # park kenarı
+            on_bahce = box(x, pk, x + W, ev_k[0]) if bahce_side == "ust" else box(x, ev_k[1], x + W, pk)
+            walk = box(wx, pk, wx + 1.2, ev_k[0]) if bahce_side == "ust" else box(wx, ev_k[1], wx + 1.2, pk)
+            stall, front = Polygon(), Polygon()
+            parklar = []
+        elif PARK_OPS:
+            # toplu otopark: ön şeritte yürüyüş yolunun yanında 2 araçlık yer (biri uzak villalara tahsisli)
+            s0 = x + 1.45 if not left else x
+            parklar = [box(s0, otp[0], s0 + 2.55, otp[1]), box(s0 + 2.55, otp[0], s0 + 5.1, otp[1])]
+            stall = unary_union(parklar)
         e0, e1 = ev_k
         if bahce_side == "ust":
             g = box(x, e1, x + W, BIG).intersection(PARSEL)
@@ -200,7 +220,7 @@ def make_row(x0, n, ev, otp, bahce_side, no0, sira, blok=0):
             bal_on = box(x + 0.1, e1, x + W - 0.1, e1 + BALKON_ON)
         villas.append(dict(no=no0 + k, ev=house, otopark=front, park=stall, yuruyus=walk,
                            bahce=g, on_bahce=on_bahce, balkon=bal, balkon_on=bal_on, sira=sira, blok=blok,
-                           blok_bas=(k == 0), blok_son=(k == n - 1), kademe=d))
+                           blok_bas=(k == 0), blok_son=(k == n - 1), kademe=d, uzak=uzak, parklar=parklar))
 
 
 def make_bloklar(x0, bloklar, ev, otp, bahce_side, no0, sira, aralar=None):
@@ -252,7 +272,42 @@ for i, v in enumerate(reversed(villas)):
 make_bloklar(X_ALT, BLOK_ALT, alt, alt_otp, "alt", N_UST + 1, "B", GAPS_ALT)
 
 YOL_POLY = box(-BIG, yol[0], BIG, yol[1]).intersection(PARSEL)
+PARK = {}
+if PARK_OPS:
+    # otopark yolu, girişe yakın villaların başladığı yerden girişe kadar; ucunda dönüş meydanı
+    _lot0 = max(min(v["ev"].bounds[0] for v in villas if v["sira"] == r and not v["uzak"]) for r in ("A", "B"))
+    _ob, _dn = PARK_OPS["on_bahce"], PARK_OPS["donus"]
+    _pk_alt, _pk_ust = alt_otp[0] + _ob, ust_otp[1] - _ob                 # parkın iki kenarı (v)
+    _donus = box(_lot0 - _dn, _pk_alt, _lot0, _pk_ust).intersection(PARSEL)
+    YOL_POLY = unary_union([box(_lot0, yol[0], BIG, yol[1]).intersection(PARSEL), _donus])
+    _ic = PARSEL.buffer(-0.25, join_style=2)
+    _park = box(-BIG, _pk_alt, _lot0 - _dn, _pk_ust).intersection(_ic)
+    _pu0, _, _pu1, _ = _park.bounds
+    _ser = 3.5                                                            # acil durum / yaya yolu
+    _lane = box(_pu0, _pk_alt, _pu1, _pk_alt + _ser).intersection(_park)
+    _z0, _z1 = _pk_alt + _ser, _pk_ust                                     # donatı şeridi
+    _perg = box(_pu1 - 8.0, _z0 + 1.0, _pu1 - 2.0, _z1 - 1.0)
+    _oyun = box(_pu1 - 21.0, _z0 + 0.6, _pu1 - 9.5, _z1 - 0.6)
+    _hobi = [box(_pu1 - 31.0 + i * 3.0, _z0 + 1.5, _pu1 - 29.0 + i * 3.0, _z1 - 1.5) for i in range(3)]
+    PARK = dict(
+        alan=_park, serit=_lane, donus=_donus, pergola=_perg, oyun=_oyun, hobi=_hobi,
+        bank=[box(_perg.bounds[0] + 0.5, _perg.bounds[1] + 0.3, _perg.bounds[0] + 2.3, _perg.bounds[1] + 0.8),
+              box(_perg.bounds[2] - 2.3, _perg.bounds[1] + 0.3, _perg.bounds[2] - 0.5, _perg.bounds[1] + 0.8),
+              box(_perg.bounds[0] + 0.5, _perg.bounds[3] - 0.8, _perg.bounds[0] + 2.3, _perg.bounds[3] - 0.3),
+              box(_perg.bounds[2] - 2.3, _perg.bounds[3] - 0.8, _perg.bounds[2] - 0.5, _perg.bounds[3] - 0.3)],
+        oyun_ekipman=[box(_oyun.bounds[0] + 1.0, _oyun.bounds[1] + 1.0, _oyun.bounds[0] + 4.0, _oyun.bounds[1] + 3.5),
+                      box(_oyun.bounds[0] + 5.5, _oyun.bounds[3] - 2.4, _oyun.bounds[0] + 8.5, _oyun.bounds[3] - 1.0),
+                      box(_oyun.bounds[2] - 2.6, _oyun.bounds[1] + 1.2, _oyun.bounds[2] - 0.8, _oyun.bounds[1] + 3.2)],
+        cim=box(_pu0, _z0, _pu1 - 32.0, _z1).intersection(_park),
+        agaclar=[(u_, _z1 - 0.9) for u_ in [_pu1 - 1.0 - i * 7.0 for i in range(int((_pu1 - _pu0 - 2) / 7.0) + 1)]]
+                + [(u_, _pk_alt + _ser + 0.9) for u_ in [_pu1 - 36.0 - i * 8.0 for i in range(3)] if u_ > _pu0 + 2],
+        cop=box(_lot0 - _dn + 0.3, _pk_ust - 2.3, _lot0 - _dn + 3.3, _pk_ust - 0.3),
+        bisiklet=box(_lot0 - _dn + 3.6, _pk_ust - 1.8, _lot0 - 0.4, _pk_ust - 0.3),
+        babalar=[(_lot0 - _dn, _pk_alt + 0.6 + i * 0.9) for i in range(4)],
+        lot0=_lot0,
+    )
 CEP_POLY = box(-BIG, alt_otp[0], min(X_UST, X_ALT), ust_otp[1]).intersection(PARSEL) if CEP else Polygon()
+OTOPARK_SAYI = sum(len(v["parklar"]) for v in villas)
 if CEP:
     YOL_POLY = unary_union([YOL_POLY, CEP_POLY])
 SETBACK_LINE = BUILD.exterior
@@ -359,6 +414,19 @@ def _mahremiyet_duvarlari():
 
 
 _mahremiyet_duvarlari()
+if PARK_OPS:
+    for _v in villas:
+        if not _v["uzak"]:
+            continue
+        _u0, _v0, _u1, _v1 = _v["ev"].bounds
+        _wb = _v["yuruyus"].bounds
+        _pk = _wb[1] if _v["sira"] == "A" else _wb[3]                   # park kenarı
+        _on = _v0 if _v["sira"] == "A" else _v1
+        for _uu in (_u0, _u1):
+            MAH.append(dict(tip="on", poly=_vband(_on, _pk, _uu - MAH_T / 2, _uu + MAH_T / 2), h=1.0))
+        for _a, _b in ((_u0, _wb[0]), (_wb[2], _u1)):                  # bahçe kapısı yürüyüş yolunda açık
+            if _b - _a > 0.05:
+                MAH.append(dict(tip="on", poly=box(_a, _pk - MAH_T / 2, _b, _pk + MAH_T / 2), h=1.0))
 # 1. kat balkon yan duvarları: her villanın iki yanında, kendi ön ve arka cephesine göre (kademede ayrı ayrı)
 _fin_seen = set()
 for _v in villas:
@@ -376,7 +444,7 @@ for _v in villas:
 # ---------------------------------------------------------------- kontroller / tablo
 for v in villas:
     assert BUILD.contains(v["ev"]), v["no"]
-    assert PARSEL.buffer(0.01).contains(v["otopark"]), v["no"]
+    assert v["otopark"].is_empty or PARSEL.buffer(0.01).contains(v["otopark"]), v["no"]
 tapu_alanlar = [float(kml_data("Alan", t).replace(".", "").replace(",", ".")) for t in TXTS]
 tapu_alan = sum(tapu_alanlar)
 geo_alan = PARSEL.area
@@ -403,12 +471,14 @@ ozet = [
                     + ((f", ortada {MEYDAN_U[1] - MEYDAN_U[0]:.1f} m meydan".replace(".", ",") if MEYDAN_U else
                         f", bloklar arası {BLOK_ARA:.0f} m") if ARALAR else ", kesintisiz")
                     + (f"; ikişerli {KADEME:.1f} m kademe".replace(".", ",") if KADEME else "")),
-    ("Otopark", f"{len(villas)} villa önünde" + (f" + {len(MISAFIR)} misafir" if MISAFIR else "")
-                + " (2,6 × 5,0 m)"),
-    ("Site içi yol", f"{YOL:.1f} m genişlik, {yol_alan:,.0f} m²" + (" (dönüş cebi dahil)" if CEP else "")),
+    ("Otopark", (f"{OTOPARK_SAYI} yer, girişe yakın villaların önünde 2'şer ({len(villas)} + "
+                 f"{OTOPARK_SAYI - len(villas)} misafir)") if PARK else
+                (f"{len(villas)} villa önünde" + (f" + {len(MISAFIR)} misafir" if MISAFIR else "") + " (2,6 × 5,0 m)")),
+    ("Otopark yolu" if PARK else "Site içi yol", f"{YOL:.1f} m genişlik, {yol_alan:,.0f} m²" + (" (dönüş cebi dahil)" if CEP else "")),
     ("Özel bahçeler", f"{bahce_alan:,.0f} m² (villa başı {bahce_min:.0f}–{bahce_max:.0f} m²)"),
 ] + ([("Sosyal meydan", f"{MEYDAN['A'].area + MEYDAN['B'].area:,.0f} m²: havuz, oyun alanı, pergola")]
-     if MEYDAN else []) + [
+     if MEYDAN else []) + ([("Araçsız lineer park", f"{PARK['alan'].area:,.0f} m²: oyun, pergola, hobi bahçesi, çim")]
+     if PARK else []) + [
     ("Ortak alan / artık", f"{ortak_alan:,.0f} m²"),
 ]
 
@@ -447,7 +517,8 @@ def render(path_pdf, path_png):
     for v in villas:
         draw_poly(ax, v["bahce"], facecolor=C["bahce"], edgecolor="#86efac", lw=0.4, zorder=1)
         draw_poly(ax, v["otopark"], facecolor=C["otopark"], edgecolor="#a8a29e", lw=0.3, zorder=2)
-        draw_poly(ax, v["park"], facecolor=C["park"], edgecolor="#78716c", lw=0.3, zorder=3)
+        for pp in v["parklar"]:
+            draw_poly(ax, pp, facecolor=C["park"], edgecolor="#78716c", lw=0.3, zorder=3)
         draw_poly(ax, v["yuruyus"], facecolor="#ffffff", edgecolor="#a8a29e", lw=0.3, zorder=3)
         draw_poly(ax, v["ev"], facecolor=C["ev_fill"], edgecolor=C["ev"], lw=0.8, zorder=4)
     for v in villas:
@@ -484,6 +555,46 @@ def render(path_pdf, path_png):
         gb = M["gecit"].bounds
         ax.text((gb[0] + gb[2]) / 2, (gb[1] + gb[3]) / 2, "YÜKSELTİLMİŞ\nYAYA GEÇİDİ", ha="center", va="center",
                 fontsize=5, color="#44403c", zorder=7, bbox=dict(fc="#e7dcc8", ec="none", pad=0.3))
+    if PARK:
+        K = PARK
+        draw_poly(ax, K["alan"], facecolor="#c7e9b4", edgecolor="#4d7c0f", lw=0.6, zorder=2)
+        draw_poly(ax, K["serit"], facecolor="#ddd8cc", edgecolor="#a8a29e", lw=0.4, zorder=3, hatch="..")
+        draw_poly(ax, K["donus"], facecolor="#e7e1d6", edgecolor="#a8a29e", lw=0.5, zorder=3)
+        draw_poly(ax, K["oyun"], facecolor="#f4c08a", edgecolor="#b45309", lw=0.5, zorder=3)
+        for e in K["oyun_ekipman"]:
+            draw_poly(ax, e, facecolor="#fde7cf", edgecolor="#b45309", lw=0.4, zorder=4)
+        draw_poly(ax, K["pergola"], facecolor="#e7e1d6", edgecolor="#57534e", lw=0.6, zorder=4)
+        pb = K["pergola"].bounds
+        for xx in [pb[0] + i * 0.5 for i in range(1, int((pb[2] - pb[0]) / 0.5))]:
+            ax.plot([xx, xx], [pb[1], pb[3]], color="#78716c", lw=0.3, zorder=5)
+        for b_ in K["bank"]:
+            draw_poly(ax, b_, facecolor="#f5f5f4", edgecolor="#57534e", lw=0.3, zorder=5)
+        for hb_ in K["hobi"]:
+            draw_poly(ax, hb_, facecolor="#a16207", edgecolor="#713f12", lw=0.4, zorder=4)
+        draw_poly(ax, K["cop"], facecolor="#a8a29e", edgecolor="#44403c", lw=0.4, zorder=4)
+        draw_poly(ax, K["bisiklet"], facecolor="#e2e8f0", edgecolor="#64748b", lw=0.4, zorder=4)
+        for bx_, by_ in K["babalar"]:
+            ax.add_patch(plt.Circle((bx_, by_), 0.15, fc="#44403c", ec="none", zorder=6))
+        for tx, ty in K["agaclar"]:
+            ax.add_patch(plt.Circle((tx, ty), 1.2, fc="#86b86b", ec="#3f6212", lw=0.5, alpha=0.9, zorder=6))
+        ob_, hbb = K["oyun"].bounds, K["hobi"][0].bounds
+        ax.text((ob_[0] + ob_[2]) / 2, (ob_[1] + ob_[3]) / 2, "ÇOCUK OYUN", ha="center", va="center", fontsize=5,
+                color="#7c2d12", zorder=7)
+        ax.text((pb[0] + pb[2]) / 2, (pb[1] + pb[3]) / 2, "PERGOLA", ha="center", va="center", fontsize=5,
+                color="#292524", zorder=7, bbox=dict(fc="white", ec="none", pad=0.3, alpha=0.8))
+        ax.text((K["hobi"][0].bounds[0] + K["hobi"][-1].bounds[2]) / 2, hbb[3] + 0.6, "HOBİ BAHÇESİ", ha="center",
+                fontsize=5, color="#713f12", zorder=7)
+        cb_ = K["cim"].bounds
+        ax.text((cb_[0] + cb_[2]) / 2 + 3, (cb_[1] + cb_[3]) / 2, "ÇİM / ETKİNLİK ALANI", ha="center",
+                va="center", fontsize=5.5, color="#3f6212", zorder=7)
+        sb_ = K["serit"].bounds
+        ax.text((sb_[0] + sb_[2]) / 2, (sb_[1] + sb_[3]) / 2, "ACİL DURUM VE YAYA YOLU (3,5 m, çim taşı)",
+                ha="center", va="center", fontsize=5, color="#44403c", zorder=7)
+        db_ = K["donus"].bounds
+        ax.text((db_[0] + db_[2]) / 2, (db_[1] + db_[3]) / 2 - 1.2, "DÖNÜŞ\nMEYDANI", ha="center", va="center",
+                fontsize=5, color="#44403c", zorder=7)
+        ax.text((K["cop"].bounds[0] + K["cop"].bounds[2]) / 2, K["cop"].bounds[1] - 0.6, "çöp · bisiklet",
+                ha="center", va="top", fontsize=4.5, color="#44403c", zorder=7)
     for mp in MISAFIR:
         draw_poly(ax, mp, facecolor="#cbd5e1", edgecolor="#64748b", lw=0.4, zorder=3)
         c_ = mp.centroid
@@ -506,12 +617,14 @@ def render(path_pdf, path_png):
         c = v["ev"].centroid
         ax.text(c.x, c.y, f"V{v['no']}", ha="center", va="center", fontsize=6.2,
                 fontweight="bold", color=C["yazi"], rotation=90, zorder=6)
-        pc = v["park"].centroid
-        ax.text(pc.x, pc.y, "P", ha="center", va="center", fontsize=4.5, color="white", zorder=6)
+        for pp in v["parklar"]:
+            pc = pp.centroid
+            ax.text(pc.x, pc.y, "P", ha="center", va="center", fontsize=4.5, color="white", zorder=6)
     draw_poly(ax, YOL_POLY, facecolor=C["yol"], edgecolor="#78716c", lw=0.5, zorder=2)
     ym = (yol[0] + yol[1]) / 2
     ax.plot([PARSEL.bounds[0], PARSEL.bounds[2]], [ym, ym], ls=(0, (6, 4)), lw=0.5, color="white", zorder=3)
-    ax.text(X_ALT + L_ALT * (0.25 if MEYDAN else 0.5), ym, f"SİTE İÇİ YOL  ({YOL:.0f} m)", ha="center", va="center", fontsize=7,
+    ax.text((PARK["lot0"] + X_ALT + L_ALT) / 2 if PARK else X_ALT + L_ALT * (0.25 if MEYDAN else 0.5), ym,
+            "OTOPARK YOLU (6 m)" if PARK else f"SİTE İÇİ YOL  ({YOL:.0f} m)", ha="center", va="center", fontsize=7,
             color="#44403c", zorder=6, bbox=dict(fc=C["yol"], ec="none", pad=0.6))
 
     # parsel ve çekme hattı
@@ -601,7 +714,8 @@ def render(path_pdf, path_png):
              (C["bahce"], "#86efac", "Villa özel bahçesi"),
              (C["ortak"], "none", "Ortak yeşil / artık alan"),
              ("#cbd5e1", "#64748b", "Misafir otoparkı (M)"),
-             ] + ([("#c7e9b4", "#4d7c0f", "Sosyal meydan: havuz, deck, oyun alanı, pergola")] if MEYDAN else []) + [
+             ] + ([("#c7e9b4", "#4d7c0f", "Sosyal meydan: havuz, deck, oyun alanı, pergola")] if MEYDAN else []) + \
+        ([("#c7e9b4", "#4d7c0f", "Araçsız lineer park: oyun, pergola, hobi bahçesi, çim")] if PARK else []) + [
              (C["mah"], C["mah"], "Mahremiyet duvarı (h: teras {}, bahçe {}, giriş {} m) + 1. kat balkon yan duvarı"
               .format(*(f"{h:.1f}".replace(".", ",") for h in (MAH_H_TERAS, MAH_H_BAHCE, MAH_H_ON))))]
     for i, (fc, ec, lab) in enumerate(items):
@@ -627,11 +741,14 @@ def render(path_pdf, path_png):
         f"    Koordinat yuvarlaması: çizim {geo_alan:,.0f} m², tapu {tapu_alan:,.0f} m².",
         "3. Site girişi sağ (kuzeydoğu) uçtan; yol sol uçta çıkmaz.",
         ("    Sol uçta 16 m × 6 m dönüş cebi bırakılmıştır." if CEP else
+         "    Otopark yolunun ucunda 11 m × 7 m dönüş meydanı var." if PARK else
          "    Dönüş cebi YOK: itfaiye erişimi için uygun değildir."),
-        ("4. Ortadaki meydan iki yakayı yükseltilmiş geçitle bağlar; havuz" if MEYDAN else
+        ("4. İç kısım araçsız: otopark girişte toplu; parktaki 3,5 m şerit" if PARK else
+         "4. Ortadaki meydan iki yakayı yükseltilmiş geçitle bağlar; havuz" if MEYDAN else
          f"4. Bloklar arası {BLOK_ARA:.0f} m: önde 2 misafir otoparkı, arkada" if ARALAR else
          f"4. Villalar kesintisiz iki blok ({N_UST}+{N_ALT}); misafir otoparkı"),
-        ("    çevresinde 1,2 m güvenlik çiti. Villalar ikişerli 1,5 m kademeli." if MEYDAN else
+        ("    itfaiye/ambulans/taşınma için açık (babalı). 1,5 m kademe." if PARK else
+         "    çevresinde 1,2 m güvenlik çiti. Villalar ikişerli 1,5 m kademeli." if MEYDAN else
          "    uç villaların yan bahçeleri (ortada mahremiyet duvarı)." if ARALAR else
          "    ve ortak alan için yer kalmıyor."),
         "5. Ölçek 1/400 (A3). DXF dosyası TM30 / ITRF96 koordinatlıdır.",
