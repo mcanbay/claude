@@ -179,6 +179,8 @@ for row in ("A", "B"):
         ayna = kapi_px < W / 2
 
         def u_araligi(x0, x1):
+            k_ = W / KP.GEN                     # plan 6,60 m cepheye göre; farklı cephede orantılı yerleşir
+            x0, x1 = x0 * k_, x1 * k_
             if ayna:
                 x0, x1 = W - x1, W - x0
             a, b = plan_u(x0), plan_u(x1)
@@ -191,6 +193,14 @@ for row in ("A", "B"):
                 add("villa", "cam", bx(ua + 0.42, on_v, ac["z0"] + 0.55, ub - 0.42, f + dn * 0.03, ac["z1"] - 0.15))
             else:
                 add("villa", "cam", bx(ua, on_v, ac["z0"], ub, f, ac["z1"]))
+        # blok ucundaki açık yan cephe (ikiz/ayrık bloklar): her katta iki pencere
+        for uc_, var_ in ((u0, v.get("blok_bas")), (u1, v.get("blok_son"))):
+            if not var_ or not V.ARALAR:       # yalnız bloklara ayrılmış varyantlarda (sıra sonları sağır)
+                continue
+            yon = -1 if uc_ == u0 else 1
+            for z0_, z1_ in ((SUBASMAN + 0.9, SUBASMAN + 2.3), (SUBASMAN + KAT + 0.9, SUBASMAN + KAT + 2.3)):
+                for vc in ((v0 + v1) / 2 - 2.0, (v0 + v1) / 2 + 2.0):
+                    add("villa", "cam", bx(uc_, vc - 0.6, z0_, uc_ + yon * 0.03, vc + 0.6, z1_))
         # ön balkon (girişe saçak olur)
         fu0, fv0, fu1, fv1 = v["balkon_on"].bounds
         bh_on = SUBASMAN + KAT

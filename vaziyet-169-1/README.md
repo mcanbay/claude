@@ -110,3 +110,11 @@ Kuşbakışı ve giriş görselleri: `render/alternatifler/`. 3B modeller: `mode
   ve yaklaşık 500 m² lineer park: çocuk oyun alanı, pergola, hobi bahçesi kasaları, çim/etkinlik alanı, ağaç sırası.
 - **Erişim:** Parkta 3,5 m çim taşı şerit; itfaiye, ambulans ve taşınma aracı için açık, girişinde babalar.
 - Dönüş meydanında çöp/geri dönüşüm noktası ve bisiklet park yeri. Görseller: `render/alternatifler/G_*.png`.
+
+## Varyant H: ikiz villa
+
+`python vaziyet.py H` / `python model3d.py H`. 20 ikiz villa (10 blok), villa 8,00 × 9,00 m (oturum 72 m², brüt 165 m²),
+bloklar arası 6 m. Her villanın ön, arka ve yan cephesi açık; blok aralarında yan bahçe (ortada 1,90 m duvar),
+her villanın önünde 2 araç (toplam 40). Villa başı bahçe 84–157 m². TAKS 0,23, KAKS 0,52.
+Bu arsada sığan sayılar (3 m çekme, 6 m blok arası): müstakil 14, ikiz 20, 3'lü/4'lü blok 24, bitişik sıra 32.
+4+1 kat planı 8 × 9 m'ye uyarlanmalı. Görseller: `render/alternatifler/H_*.png`.
