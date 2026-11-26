@@ -70,3 +70,22 @@ fonksiyonundan gelir; 3B model de aynı tanımı kullandığı için plan, cephe
 Kotlar: ±0,00 bahçe/otopark · +0,45 zemin kat · +3,60 1. kat · +6,75 betonarme çatı döşemesi · +7,05 bitmiş çatı · +7,65 parapet.
 Malzeme: mantolama üzeri açık bej sıva, gri doğal taş subasman, betonarme düz çatı (parapetli), antrasit alüminyum doğrama,
 100 cm cam balkon korkuluğu.
+
+## Ayrık blok alternatifleri (bloklar arası 6 m)
+
+`python vaziyet.py C|D|E` ile üretilir (`VARYANTLAR` sözlüğü). Sıralar bloklara bölünür, bloklar arasında
+6 m boşluk kalır. Boşluğun ön şeridinde 2 misafir otoparkı (2,5 × 5,0 m) bulunur; geri kalanı blok sonundaki
+iki villanın yan bahçesidir ve ortasından 1,90 m mahremiyet duvarı geçer.
+
+| | B (mevcut) | C | D | E |
+|---|---|---|---|---|
+| Villa | 32 | 32 | 30 | 28 |
+| Blok (A / B sırası) | 16 / 16 | 8+8 / 8+8 | 8+7 / 7+8 | 5+4+5 / 5+4+5 |
+| Villa cephesi | 6,60 | 6,25 | 6,60 | 6,60 |
+| 4+1 kat planı | uyar | daraltılmalı | uyar | uyar |
+| Misafir otoparkı | 0 | 4 | 4 | 8 |
+| Yan bahçeli köşe villa | 0 | 4 | 4 | 8 |
+| En uzun blok | 105,6 m | 50,0 m | 52,8 m | 33,0 m |
+| KAKS (165 m²/villa) | 0,83 | 0,83 | 0,77 | 0,72 |
+
+Kuşbakışı ve giriş görselleri: `render/alternatifler/`. 3B modeller: `model_169-1-2_C/D/E.glb` ve `.html`.

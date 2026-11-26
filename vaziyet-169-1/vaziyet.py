@@ -1,14 +1,18 @@
 # -*- coding: utf-8 -*-
 """
-Bursa / Nilüfer / İrfaniye, 169 ada 1 + 2 parseller (tevhit): 32 bitişik villa vaziyet planı (ön çalışma)
+Bursa / Nilüfer / İrfaniye, 169 ada 1 + 2 parseller (tevhit): bitişik villa vaziyet planı (ön çalışma)
 
-Çıktılar (A: dönüş cepli, önerilen; B: dönüş cebi yok, daha geniş villa):
-  vaziyet_169-1-2_A.pdf / .png / .dxf
-  vaziyet_169-1-2_B.pdf / .png / .dxf
+Varyantlar (VARYANTLAR sözlüğü):
+  A: 32 villa, iki kesintisiz blok (16+16), sol uçta dönüş cebi
+  B: 32 villa, iki kesintisiz blok (16+16), dönüş cebi yok, villa cephesi en geniş
+  C: 32 villa, her sırada 2 blok (8+8), bloklar arası 6 m
+  D: 30 villa, her sırada 2 blok (8+7), bloklar arası 6 m
+  E: 28 villa, her sırada 3 blok (5+4+5), bloklar arası 6 m
+Çıktılar: vaziyet_169-1-2_<V>.pdf / .png / .dxf
 PDF: A3 yatay 1/400 pafta. DXF: TM30 (ITRF96, EPSG:5254) koordinatlı.
 
-Çalıştırma: python vaziyet.py          (iki varyantı da üretir)
-            python vaziyet.py A
+Çalıştırma: python vaziyet.py          (tüm varyantları üretir)
+            python vaziyet.py C
 """
 import sys
 import math
@@ -29,14 +33,20 @@ KMLS = ["parsel-169-1.kml", "parsel-169-2.kml"]   # tevhit edilecek parseller
 CEKME = 3.0          # parsel sınırından bina çekme mesafesi (varsayım; imar durumundan teyit edilmeli)
 OTOPARK = 5.0        # her villanın önündeki otopark derinliği
 YOL = 6.0            # site içi yol genişliği (çift yön)
-N_UST, N_ALT = 16, 16
+BLOK_ARA = 6.0       # ayrık bloklar arasındaki asgari mesafe (iki kütle arası)
+W_MAX = 6.60         # villa cephesi üst sınırı (4+1 tip kat planı bu genişliğe göre çizildi)
 VARYANTLAR = {
-    # ad: (villa derinliği D, sol uçta dönüş cebi genişliği, açıklama)
-    "A": (11.5, 6.0, "sol uçta dönüş cebi var (önerilen)"),
-    "B": (11.0, 0.0, "dönüş cebi yok, villa cephesi en geniş"),
+    # ad: (villa derinliği D, sol uçta dönüş cebi, A sırası blokları, B sırası blokları, açıklama)
+    "A": (11.5, 6.0, [16], [16], "sol uçta dönüş cebi var"),
+    "B": (11.0, 0.0, [16], [16], "dönüş cebi yok, villa cephesi en geniş"),
+    "C": (11.0, 0.0, [8, 8], [8, 8], "32 villa, her sırada 2 blok (8+8), bloklar arası 6 m"),
+    "D": (11.0, 0.0, [8, 7], [7, 8], "30 villa, her sırada 2 blok (8+7), bloklar arası 6 m"),
+    "E": (11.0, 0.0, [5, 4, 5], [5, 4, 5], "28 villa, her sırada 3 blok (5+4+5), bloklar arası 6 m"),
 }
 VARYANT = sys.argv[1] if len(sys.argv) > 1 else "A"
-D, CEP, VARYANT_ACIKLAMA = VARYANTLAR[VARYANT]
+D, CEP, BLOK_UST, BLOK_ALT, VARYANT_ACIKLAMA = VARYANTLAR[VARYANT]
+N_UST, N_ALT = sum(BLOK_UST), sum(BLOK_ALT)
+ARA_UST, ARA_ALT = (len(BLOK_UST) - 1) * BLOK_ARA, (len(BLOK_ALT) - 1) * BLOK_ARA
 BALKON = 1.5         # arka balkon çıkması (1. kat, kesikli gösterilir)
 BALKON_ON = 1.6      # ön balkon çıkması (1. kat, otopark üstüne; girişe saçak olur)
 BRUT = 165.0         # villa başı brüt alan (balkon dahil)
@@ -108,7 +118,8 @@ for _t10 in range(400, 560, 5):
         _su, _sa = bant(*_u, _cep_x), bant(*_a, _cep_x)
     except IndexError:
         continue
-    _w = math.floor(min((_su[1] - _su[0]) / N_UST, (_sa[1] - _sa[0]) / N_ALT) * 20) / 20
+    _w = math.floor(min((_su[1] - _su[0] - ARA_UST) / N_UST, (_sa[1] - _sa[0] - ARA_ALT) / N_ALT) * 20) / 20
+    _w = min(_w, W_MAX)
     _ust_bahce = PARSEL.bounds[3] - 1.0 - _ua
     _denge = abs(_ust_bahce - _a[0])
     _key = (_w, -_denge)
@@ -117,13 +128,16 @@ for _t10 in range(400, 560, 5):
 (W, _), UST_ARKA, SU, SA, CEP_X = _best
 ust, ust_otp, yol, alt_otp, alt = seritler(UST_ARKA)
 # sıraları giriş (sağ) ucuna yaslamak yerine bant içinde ortala
-X_UST = round(SU[0] + ((SU[1] - SU[0]) - N_UST * W) / 2, 2)
-X_ALT = round(SA[0] + ((SA[1] - SA[0]) - N_ALT * W) / 2, 2)
+L_UST, L_ALT = N_UST * W + ARA_UST, N_ALT * W + ARA_ALT          # sıra boyları (bloklar + aralar)
+X_UST = round(SU[0] + ((SU[1] - SU[0]) - L_UST) / 2, 2)
+X_ALT = round(SA[0] + ((SA[1] - SA[0]) - L_ALT) / 2, 2)
 
-villas = []   # dict: no, ev, otopark, park_yeri, yuruyus, bahce, balkon, sira
+villas = []   # dict: no, ev, otopark, park_yeri, yuruyus, bahce, balkon, sira, blok, blok_bas, blok_son
+ARALAR = []   # dict: sira, u0, u1 (bloklar arası 6 m boşluk)
+MISAFIR = []  # misafir otoparkı yerleri (bloklar arasındaki boşluğun ön şeridinde)
 
 
-def make_row(x0, n, ev, otp, bahce_side, no0, sira):
+def make_row(x0, n, ev, otp, bahce_side, no0, sira, blok=0):
     for k in range(n):
         x = x0 + k * W
         house = box(x, ev[0], x + W, ev[1])
@@ -143,14 +157,52 @@ def make_row(x0, n, ev, otp, bahce_side, no0, sira):
             bal = box(x + 0.1, ev[0] - BALKON, x + W - 0.1, ev[0])
             bal_on = box(x + 0.1, ev[1], x + W - 0.1, ev[1] + BALKON_ON)
         villas.append(dict(no=no0 + k, ev=house, otopark=front, park=stall, yuruyus=walk,
-                           bahce=g, balkon=bal, balkon_on=bal_on, sira=sira))
+                           bahce=g, balkon=bal, balkon_on=bal_on, sira=sira, blok=blok,
+                           blok_bas=(k == 0), blok_son=(k == n - 1)))
 
 
-# numaralandırma girişten (sağ uç) başlar: A sırası sağdan sola V1..V16, B sırası soldan sağa V17..V32
-make_row(X_UST, N_UST, ust, ust_otp, "ust", 1, "A")
+def make_bloklar(x0, bloklar, ev, otp, bahce_side, no0, sira):
+    """Sırayı bloklara böler; bloklar arasında BLOK_ARA boşluk bırakır. Boşluğun yarısı komşu uç
+    villanın yan bahçesi olur, ön şeridine iki misafir otoparkı konur."""
+    x = x0
+    for b, n in enumerate(bloklar):
+        make_row(x, n, ev, otp, bahce_side, no0, sira, blok=b)
+        no0 += n
+        x += n * W
+        if b < len(bloklar) - 1:
+            gu0, gu1 = x, x + BLOK_ARA
+            gc = (gu0 + gu1) / 2
+            ARALAR.append(dict(sira=sira, u0=gu0, u1=gu1))
+            for a0 in (gc - 2.55, gc + 0.05):
+                MISAFIR.append(box(a0, otp[0], a0 + 2.5, otp[1]))
+            # yan bahçeler: uç villanın yanında, ön cephe hizasından bahçe sonuna kadar
+            for vv in villas:
+                if vv["sira"] != sira:
+                    continue
+                hu0, hv0, hu1, hv1 = vv["ev"].bounds
+                if abs(hu1 - gu0) < 1e-6:          # boşluğun solundaki villa
+                    yan = box(hu1, hv0, gc, hv1)
+                    arka = box(hu1, hv1, gc, BIG) if bahce_side == "ust" else box(hu1, -BIG, gc, hv0)
+                    vv["bahce"] = unary_union([vv["bahce"], yan, arka.intersection(PARSEL)])
+                    vv["lot_u1"] = gc
+            x += BLOK_ARA
+    # boşluğun sağındaki villalar (bir sonraki bloğun ilk villası)
+    for a in [a for a in ARALAR if a["sira"] == sira]:
+        gc = (a["u0"] + a["u1"]) / 2
+        for vv in villas:
+            hu0, hv0, hu1, hv1 = vv["ev"].bounds
+            if vv["sira"] == sira and abs(hu0 - a["u1"]) < 1e-6:
+                yan = box(gc, hv0, hu0, hv1)
+                arka = box(gc, hv1, hu0, BIG) if bahce_side == "ust" else box(gc, -BIG, hu0, hv0)
+                vv["bahce"] = unary_union([vv["bahce"], yan, arka.intersection(PARSEL)])
+                vv["lot_u0"] = gc
+
+
+# numaralandırma girişten (sağ uç) başlar: A sırası sağdan sola V1.., B sırası soldan sağa
+make_bloklar(X_UST, BLOK_UST, ust, ust_otp, "ust", 1, "A")
 for i, v in enumerate(reversed(villas)):
     v["no"] = i + 1
-make_row(X_ALT, N_ALT, alt, alt_otp, "alt", N_UST + 1, "B")
+make_bloklar(X_ALT, BLOK_ALT, alt, alt_otp, "alt", N_UST + 1, "B")
 
 YOL_POLY = box(-BIG, yol[0], BIG, yol[1]).intersection(PARSEL)
 CEP_POLY = box(-BIG, alt_otp[0], min(X_UST, X_ALT), ust_otp[1]).intersection(PARSEL) if CEP else Polygon()
@@ -158,9 +210,9 @@ if CEP:
     YOL_POLY = unary_union([YOL_POLY, CEP_POLY])
 SETBACK_LINE = BUILD.exterior
 
-# ortak alan = parsel - (yol + villa lotları)
+# ortak alan = parsel - (yol + villa lotları + misafir otoparkları)
 lots = unary_union([unary_union([v["ev"], v["otopark"], v["bahce"]]) for v in villas])
-ORTAK = PARSEL.difference(unary_union([lots, YOL_POLY]))
+ORTAK = PARSEL.difference(unary_union([lots, YOL_POLY] + MISAFIR))
 
 # ---------------------------------------------------------------- mahremiyet duvarları
 # Komşu villalar arasında: arka bahçede teras boyunca yüksek, bahçe sonuna kadar alçak duvar;
@@ -179,13 +231,28 @@ def _vband(a, b, u0, u1):
 
 def _mahremiyet_duvarlari():
     ic = PARSEL.buffer(-CEVRE_DUVAR_KAL, join_style=2)
-    for row in ("A", "B"):
-        vs = sorted([v for v in villas if v["sira"] == row], key=lambda v: v["ev"].bounds[0])
+    for row, blok in sorted({(v["sira"], v["blok"]) for v in villas}):
+        vs = sorted([v for v in villas if v["sira"] == row and v["blok"] == blok], key=lambda v: v["ev"].bounds[0])
         for i, v in enumerate(vs):
             u0, v0, u1, v1 = v["ev"].bounds
             arka, on = (v1, v0) if row == "A" else (v0, v1)
             dis = 1 if row == "A" else -1           # arka cepheden bahçeye doğru v yönü
+            # blok sonundaki villanın dış yanında boşluk varsa yan bahçe duvarı boşluğun ortasındadır
+            for lot_key, uh in (("lot_u0", u0), ("lot_u1", u1)):
+                if lot_key in v:
+                    gc = v[lot_key]
+                    ln = LineString([(gc, on), (gc, arka + dis * 500)]).intersection(ic)
+                    MAH.append(dict(tip="bahce", poly=ln.buffer(MAH_T / 2, cap_style=2), h=MAH_H_BAHCE))
+                    MAH.append(dict(tip="on", poly=box(min(uh, gc), on - MAH_T / 2, max(uh, gc), on + MAH_T / 2),
+                                    h=MAH_H_ON))
             for uu in [u0] + ([u1] if i == len(vs) - 1 else []):
+                if (uu == u0 and "lot_u0" in v) or (uu == u1 and "lot_u1" in v):
+                    # yan bahçeli uç: zeminde duvar boşlukta; 1. katta balkon yan duvarı yine var
+                    MAH.append(dict(tip="balkon", poly=_vband(arka, arka + dis * (BALKON + 0.1),
+                                                              uu - MAH_T / 2, uu + MAH_T / 2), h=None))
+                    MAH.append(dict(tip="balkon", poly=_vband(on, on - dis * (BALKON_ON + 0.1),
+                                                              uu - MAH_T / 2, uu + MAH_T / 2), h=None))
+                    continue
                 ln = LineString([(uu, arka), (uu, arka + dis * 500)]).intersection(ic)
                 if not ln.is_empty:
                     duvar = ln.buffer(MAH_T / 2, cap_style=2)
@@ -227,12 +294,15 @@ bahce_max = max(v["bahce"].area for v in villas)
 ozet = [
     ("Parsel alanı (tapu)", f"{tapu_alan:,.2f} m² ({' + '.join(f'{a:,.2f}' for a in tapu_alanlar)})"),
     ("Villa sayısı", f"{len(villas)} adet (A sırası {N_UST} + B sırası {N_ALT})"),
-    ("Villa tipi", f"{W:.2f} × {D:.2f} m, bitişik nizam, Z+1"),
+    ("Villa tipi", f"{W:.2f} × {D:.2f} m, " + ("blok içinde bitişik" if ARALAR else "bitişik nizam") + ", Z+1"),
     ("Taban oturumu / villa", f"{oturum:.1f} m²"),
     ("Brüt alan / villa", f"{BRUT:.0f} m² (2 × {oturum:.1f} + {balkon_villa:.1f} balkon/teras)"),
     ("Toplam taban oturumu", f"{taban_top:,.0f} m²  →  TAKS ≈ {taban_top / tapu_alan:.2f}"),
     ("Toplam brüt inşaat", f"{brut_top:,.0f} m²  →  KAKS ≈ {brut_top / tapu_alan:.2f}"),
-    ("Otopark", f"{len(villas)} araç (her villanın önünde 2,6 × 5,0 m)"),
+    ("Blok düzeni", f"A: {'+'.join(map(str, BLOK_UST))}, B: {'+'.join(map(str, BLOK_ALT))}"
+                    + (f", bloklar arası {BLOK_ARA:.0f} m" if ARALAR else ", kesintisiz")),
+    ("Otopark", f"{len(villas)} villa önünde" + (f" + {len(MISAFIR)} misafir" if MISAFIR else "")
+                + " (2,6 × 5,0 m)"),
     ("Site içi yol", f"{YOL:.1f} m genişlik, {yol_alan:,.0f} m²" + (" (dönüş cebi dahil)" if CEP else "")),
     ("Özel bahçeler", f"{bahce_alan:,.0f} m² (villa başı {bahce_min:.0f}–{bahce_max:.0f} m²)"),
     ("Ortak alan / artık", f"{ortak_alan:,.0f} m²"),
@@ -276,6 +346,16 @@ def render(path_pdf, path_png):
         draw_poly(ax, v["park"], facecolor=C["park"], edgecolor="#78716c", lw=0.3, zorder=3)
         draw_poly(ax, v["yuruyus"], facecolor="#ffffff", edgecolor="#a8a29e", lw=0.3, zorder=3)
         draw_poly(ax, v["ev"], facecolor=C["ev_fill"], edgecolor=C["ev"], lw=0.8, zorder=4)
+    for mp in MISAFIR:
+        draw_poly(ax, mp, facecolor="#cbd5e1", edgecolor="#64748b", lw=0.4, zorder=3)
+        c_ = mp.centroid
+        ax.text(c_.x, c_.y, "M", ha="center", va="center", fontsize=4.5, color="#334155", zorder=6)
+    for a in ARALAR:                       # bloklar arası mesafe ölçüsü
+        vv = (ust[0] + ust[1]) / 2 if a["sira"] == "A" else (alt[0] + alt[1]) / 2
+        ax.annotate("", (a["u0"], vv), (a["u1"], vv), arrowprops=dict(arrowstyle="<->", lw=0.6, color="#b91c1c"),
+                    zorder=9)
+        ax.text((a["u0"] + a["u1"]) / 2, vv + 0.6, f"{BLOK_ARA:.2f}".replace(".", ","), ha="center",
+                fontsize=6, color="#b91c1c", zorder=9)
     for m in MAH:   # balkon yan duvarları zemindeki teras duvarıyla aynı izde, ayrıca çizilmez
         if m["tip"] != "balkon":
             draw_poly(ax, m["poly"], facecolor=C["mah"], edgecolor="none", zorder=6)
@@ -291,8 +371,7 @@ def render(path_pdf, path_png):
     draw_poly(ax, YOL_POLY, facecolor=C["yol"], edgecolor="#78716c", lw=0.5, zorder=2)
     ym = (yol[0] + yol[1]) / 2
     ax.plot([PARSEL.bounds[0], PARSEL.bounds[2]], [ym, ym], ls=(0, (6, 4)), lw=0.5, color="white", zorder=3)
-    ax.plot([X_ALT, X_ALT + N_ALT * W], [ym, ym], lw=0, zorder=3)
-    ax.text(X_ALT + N_ALT * W / 2, ym, f"SİTE İÇİ YOL  ({YOL:.0f} m)", ha="center", va="center", fontsize=7,
+    ax.text(X_ALT + L_ALT / 2, ym, f"SİTE İÇİ YOL  ({YOL:.0f} m)", ha="center", va="center", fontsize=7,
             color="#44403c", zorder=6, bbox=dict(fc=C["yol"], ec="none", pad=0.6))
 
     # parsel ve çekme hattı
@@ -325,9 +404,9 @@ def render(path_pdf, path_png):
     ax.text((e[0] + e[2]) / 2, e[3] + 6.9, f"{W:.2f}", fontsize=5.5, ha="center", color="#374151")
 
     # sıra etiketleri, giriş notları
-    ax.text(X_UST + N_UST * W / 2, PARSEL.bounds[3] + 2.5, f"A SIRASI · {N_UST} VİLLA · arka bahçeler",
+    ax.text(X_UST + L_UST / 2, PARSEL.bounds[3] + 2.5, f"A SIRASI · {N_UST} VİLLA · arka bahçeler",
             fontsize=6.5, ha="center", color="#166534", zorder=9)
-    ax.text(X_ALT + N_ALT * W / 2, alt[0] - BALKON - 1.6, f"B SIRASI · {N_ALT} VİLLA · arka bahçeler",
+    ax.text(X_ALT + L_ALT / 2, alt[0] - BALKON - 1.6, f"B SIRASI · {N_ALT} VİLLA · arka bahçeler",
             fontsize=6.5, ha="center", color="#166534", zorder=9)
     gx1 = YOL_POLY.bounds[2]
     ax.annotate("SİTE GİRİŞİ", (gx1 - 1.0, ym), (gx1 + 9.5, ym), fontsize=7.5, color="#b91c1c",
@@ -358,7 +437,8 @@ def render(path_pdf, path_png):
         ax.text(sx0 + m, sy0 - 1.6, f"{m} m", fontsize=5.5, ha="center")
 
     # başlık ve tablo
-    fig.text(20 / 420, 1 - 9 / 297, f"VAZİYET PLANI (ÖN ÇALIŞMA): {len(villas)} BİTİŞİK VİLLA · VARYANT {VARYANT}", fontsize=15,
+    fig.text(20 / 420, 1 - 9 / 297, (f"VAZİYET PLANI (ÖN ÇALIŞMA): {len(villas)} VİLLA, {len(BLOK_UST) + len(BLOK_ALT)} BLOK · VARYANT {VARYANT}"
+              if ARALAR else f"VAZİYET PLANI (ÖN ÇALIŞMA): {len(villas)} BİTİŞİK VİLLA · VARYANT {VARYANT}"), fontsize=15,
              fontweight="bold", color="#111827")
     fig.text(20 / 420, 1 - 14.5 / 297,
              f"{kml_data('İl')} / {kml_data('İlçe')} / {kml_data('Mahalle')} Mah. · "
@@ -380,6 +460,7 @@ def render(path_pdf, path_png):
              (C["yol"], "#78716c", "Site içi yol"),
              (C["bahce"], "#86efac", "Villa özel bahçesi"),
              (C["ortak"], "none", "Ortak yeşil / artık alan"),
+             ("#cbd5e1", "#64748b", "Misafir otoparkı (M)"),
              (C["mah"], C["mah"], "Mahremiyet duvarı (h: teras {}, bahçe {}, giriş {} m) + 1. kat balkon yan duvarı"
               .format(*(f"{h:.1f}".replace(".", ",") for h in (MAH_H_TERAS, MAH_H_BAHCE, MAH_H_ON))))]
     for i, (fc, ec, lab) in enumerate(items):
@@ -406,8 +487,10 @@ def render(path_pdf, path_png):
         "3. Site girişi sağ (kuzeydoğu) uçtan; yol sol uçta çıkmaz.",
         ("    Sol uçta 16 m × 6 m dönüş cebi bırakılmıştır." if CEP else
          "    Dönüş cebi YOK: itfaiye erişimi için uygun değildir."),
-        f"4. Villalar kesintisiz iki blok ({N_UST}+{N_ALT}); misafir otoparkı",
-        "    ve ortak alan için yer kalmıyor.",
+        (f"4. Bloklar arası {BLOK_ARA:.0f} m: önde 2 misafir otoparkı, arkada" if ARALAR else
+         f"4. Villalar kesintisiz iki blok ({N_UST}+{N_ALT}); misafir otoparkı"),
+        ("    uç villaların yan bahçeleri (ortada mahremiyet duvarı)." if ARALAR else
+         "    ve ortak alan için yer kalmıyor."),
         "5. Ölçek 1/400 (A3). DXF dosyası TM30 / ITRF96 koordinatlıdır.",
     ]
     for i, n in enumerate(notes):
@@ -426,7 +509,7 @@ def write_dxf(path):
     msp = doc.modelspace()
     layers = {"PARSEL": 7, "CEKME": 1, "YOL": 8, "OTOPARK": 9, "PARK_YERI": 252, "VILLA": 30,
               "BALKON": 30, "BAHCE": 3, "ORTAK_ALAN": 82, "YAZI": 7, "MAHREMIYET_DUVARI": 251,
-              "MAHREMIYET_BALKON": 251}
+              "MAHREMIYET_BALKON": 251, "MISAFIR_OTOPARK": 5}
     for n, col in layers.items():
         doc.layers.add(n, color=col)
     doc.layers.get("CEKME").dxf.linetype = "DASHDOT"
@@ -445,6 +528,8 @@ def write_dxf(path):
     poly(ORTAK, "ORTAK_ALAN")
     for m in MAH:
         poly(m["poly"], "MAHREMIYET_BALKON" if m["tip"] == "balkon" else "MAHREMIYET_DUVARI")
+    for mp in MISAFIR:
+        poly(mp, "MISAFIR_OTOPARK")
     for v in villas:
         poly(v["ev"], "VILLA")
         poly(v["balkon"], "BALKON")

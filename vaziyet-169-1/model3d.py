@@ -153,7 +153,7 @@ for row in ("A", "B"):
         add("villa", "duvar2", bx(u0, on_v, KP.CATI_DOSEME, u1, on_v + dn * 0.04, CB))
         add("villa", "duvar2", bx(u0, arka_v, KP.CATI_DOSEME, u1, arka_v - dn * 0.04, CB))
         add("villa", "cakil", bx(u0, v0, CB, u1, v1, CB + 0.03))
-        first, last = (v is vs[0]), (v is vs[-1])
+        first, last = v.get("blok_bas", v is vs[0]), v.get("blok_son", v is vs[-1])   # blok uçları
         parapetler = [box(u0, v0, u1, v0 + PK), box(u0, v1 - PK, u1, v1)]
         if first:
             parapetler.append(box(u0, v0, u0 + PK, v1))
@@ -256,6 +256,10 @@ for row in ("A", "B"):
                     crown.apply_translation((tu, tv, hgt * 0.62))
                     add("agac", rng.choice(["yaprak", "yaprak2"]), crown)
 
+# ------------------------------------------------------------ misafir otoparkları (bloklar arası)
+for mp in V.MISAFIR:
+    add("peyzaj", "park", slab(mp, 0.0, 0.08))
+
 # ------------------------------------------------------------ mahremiyet duvarları (vaziyet.py'deki MAH)
 for m in V.MAH:
     if m["poly"].is_empty:
@@ -336,6 +340,7 @@ meta = dict(
     parsel=[g(x_, y_) for x_, y_ in P.exterior.coords],
     villalar=[dict(no=v["no"], sira=v["sira"], p=g(*v["ev"].centroid.coords[0])) for v in V.villas],
     ozet=dict(W=V.W, D=V.D, n=len(V.villas), tapu=V.tapu_alan, brut=V.BRUT,
+              blok=" + ".join(map(str, V.BLOK_UST)) + " / " + " + ".join(map(str, V.BLOK_ALT)),
               taks=round(V.taban_top / V.tapu_alan, 2), kaks=round(V.brut_top / V.tapu_alan, 2)),
 )
 with open(f"model_169-1-2_{VARYANT}.json", "w", encoding="utf-8") as fh:
