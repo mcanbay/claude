@@ -201,12 +201,13 @@ for row in ("A", "B"):
             for z0_, z1_ in ((SUBASMAN + 0.9, SUBASMAN + 2.3), (SUBASMAN + KAT + 0.9, SUBASMAN + KAT + 2.3)):
                 for vc in ((v0 + v1) / 2 - 2.0, (v0 + v1) / 2 + 2.0):
                     add("villa", "cam", bx(uc_, vc - 0.6, z0_, uc_ + yon * 0.03, vc + 0.6, z1_))
-        # ön balkon (girişe saçak olur)
-        fu0, fv0, fu1, fv1 = v["balkon_on"].bounds
-        bh_on = SUBASMAN + KAT
-        add("villa", "duvar", bx(fu0, fv0, bh_on - 0.2, fu1, fv1, bh_on))
-        fo0, fo1 = (fv0, fv0 + 0.06) if row == "A" else (fv1 - 0.06, fv1)
-        add("villa", "korkuluk", bx(fu0, fo0, bh_on, fu1, fo1, bh_on + 1.0))
+        # ön balkon (girişe saçak olur); bazı varyantlarda yok
+        if not v["balkon_on"].is_empty:
+            fu0, fv0, fu1, fv1 = v["balkon_on"].bounds
+            bh_on = SUBASMAN + KAT
+            add("villa", "duvar", bx(fu0, fv0, bh_on - 0.2, fu1, fv1, bh_on))
+            fo0, fo1 = (fv0, fv0 + 0.06) if row == "A" else (fv1 - 0.06, fv1)
+            add("villa", "korkuluk", bx(fu0, fo0, bh_on, fu1, fo1, bh_on + 1.0))
 
         # ---- arka cephe: zeminde sürme cam, 1. katta balkon kapısı
         r = arka_v - dn * 0.03

@@ -118,3 +118,13 @@ bloklar arası 6 m. Her villanın ön, arka ve yan cephesi açık; blok araları
 her villanın önünde 2 araç (toplam 40). Villa başı bahçe 84–157 m². TAKS 0,23, KAKS 0,52.
 Bu arsada sığan sayılar (3 m çekme, 6 m blok arası): müstakil 14, ikiz 20, 3'lü/4'lü blok 24, bitişik sıra 32.
 4+1 kat planı 8 × 9 m'ye uyarlanmalı. Görseller: `render/alternatifler/H_*.png`.
+
+## Varyant I: 34 villa, emsal 0,70 / TAKS 0,35
+
+`python vaziyet.py I` / `python model3d.py I`. Tevhitli parsel 6.396,50 m²:
+emsal 0,70 → en çok 4.477,55 m² (villa başı 131,69 m²), TAKS 0,35 → en çok 2.238,78 m² (villa başı 65,84 m²).
+- Villa 6,20 × 9,70 m, Z+1: oturum 60,14 m², iki kat kapalı 120,28 m², arka balkon 6,00 × 1,90 = 11,40 m²,
+  toplam 131,68 m² (balkonlar emsale dahil sayıldı). Toplam inşaat 4.477 m² (emsal 0,700), taban 2.045 m² (TAKS 0,320).
+- 17 + 17 bitişik, ikişerli 1,5 m kademe; otopark girişte toplu (36 yer: 34 + 2 misafir), iç 8 + 8 villa önü araçsız park.
+- Her villanın özel arka bahçesi 8,1–11,2 m derinlikte, 50–69 m²; iç villalarda ayrıca 2,5–4,0 m ön bahçe.
+- 120 m² kapalı alan 3+1'e uygundur; 4+1 için bodrum kat (imarla teyit) gerekir.

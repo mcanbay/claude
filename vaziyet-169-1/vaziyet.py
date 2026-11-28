@@ -45,6 +45,7 @@ VARYANTLAR = {
     "F": (11.0, 0.0, [7, 7], [7, 7], "28 villa, kademeli cephe, ortada sosyal meydan (havuz, oyun alanı)"),
     "G": (11.0, 0.0, [16], [16], "32 villa, otopark girişte toplu, iç kısım araçsız lineer park, kademeli cephe"),
     "H": (9.0, 0.0, [2] * 5, [2] * 5, "20 ikiz villa (10 blok), bloklar arası 6 m, villa 8,00 × 9,00 m"),
+    "I": (9.70, 0.0, [17], [17], "34 villa, emsal 0,70 / TAKS 0,35, otopark girişte toplu, araçsız park, kademe"),
 }
 # ek seçenekler: kademe = ikişerli villaların bahçeye doğru geri çekilmesi (m);
 # meydan = iki sıradaki blok boşluğunu karşı karşıya hizalayıp genişletir, ortak sosyal alan yapar
@@ -53,7 +54,11 @@ VARYANTLAR = {
 VARYANT_OPS = {"F": dict(kademe=1.5, meydan=True),
                "G": dict(kademe=1.5, park=dict(n_uzak=7, on_bahce=2.5, donus=7.0)),
                # ikiz: sabit 8,00 m cephe, blok aralarında misafir otoparkı yok (yan bahçe), her villa önünde 2 araç
-               "H": dict(w=8.0, gap_misafir=0, iki_park=True)}
+               "H": dict(w=8.0, gap_misafir=0, iki_park=True),
+               # 34 villa, imar: emsal 0,70 / TAKS 0,35 → villa başı en çok 131,7 m² inşaat, 65,8 m² taban;
+               # balkonlar emsale dahil sayılmıştır (güvenli taraf): yalnız arka balkon 1,90 m
+               "I": dict(w=6.20, kademe=1.5, park=dict(n_uzak=8, on_bahce=2.5, donus=7.0), balkon=1.9, balkon_on=0.0,
+                         emsal=0.70, taks=0.35)}
 VARYANT = sys.argv[1] if len(sys.argv) > 1 else "A"
 D, CEP, BLOK_UST, BLOK_ALT, VARYANT_ACIKLAMA = VARYANTLAR[VARYANT]
 N_UST, N_ALT = sum(BLOK_UST), sum(BLOK_ALT)
@@ -61,9 +66,9 @@ ARA_UST, ARA_ALT = (len(BLOK_UST) - 1) * BLOK_ARA, (len(BLOK_ALT) - 1) * BLOK_AR
 OPS = VARYANT_OPS.get(VARYANT, {})
 KADEME = OPS.get("kademe", 0.0)
 PARK_OPS = OPS.get("park")
-BALKON = 1.5         # arka balkon çıkması (1. kat, kesikli gösterilir)
-BALKON_ON = 1.6      # ön balkon çıkması (1. kat, otopark üstüne; girişe saçak olur)
-BRUT = 165.0         # villa başı brüt alan (balkon dahil)
+BALKON = OPS.get("balkon", 1.5)        # arka balkon çıkması (1. kat, kesikli gösterilir)
+BALKON_ON = OPS.get("balkon_on", 1.6)  # ön balkon çıkması (1. kat, otopark üstüne; girişe saçak olur); 0 = yok
+BRUT = 165.0         # villa başı brüt alan (balkon dahil); imar sınırlı varyantta W ve D'den hesaplanır
 EKSEN_ACI = 69.6     # parsel uzun ekseninin doğudan açısı (derece)
 
 # ---------------------------------------------------------------- parsel
@@ -143,6 +148,8 @@ for _t10 in range(400, 560, 5):
 if OPS.get("w"):                      # sabit villa cephesi (ikiz vb.): sığdığını kontrol et
     assert OPS["w"] <= W + 1e-6 or (SU[1] - SU[0] - ARA_UST) / N_UST >= OPS["w"] - 1e-6, "villa cephesi sığmıyor"
     W = OPS["w"]
+if OPS.get("emsal"):                  # brüt = iki kat kapalı alan + balkonlar (balkon genişliği W - 0,20)
+    BRUT = round(2 * W * D + (W - 0.2) * (BALKON + BALKON_ON), 2)
 ust, ust_otp, yol, alt_otp, alt = seritler(UST_ARKA)
 # sıraları giriş (sağ) ucuna yaslamak yerine bant içinde ortala
 L_UST, L_ALT = N_UST * W + ARA_UST, N_ALT * W + ARA_ALT          # sıra boyları (bloklar + aralar)
@@ -219,11 +226,11 @@ def make_row(x0, n, ev, otp, bahce_side, no0, sira, blok=0):
         if bahce_side == "ust":
             g = box(x, e1, x + W, BIG).intersection(PARSEL)
             bal = box(x + 0.1, e1, x + W - 0.1, e1 + BALKON)
-            bal_on = box(x + 0.1, e0 - BALKON_ON, x + W - 0.1, e0)
+            bal_on = box(x + 0.1, e0 - BALKON_ON, x + W - 0.1, e0) if BALKON_ON else Polygon()
         else:
             g = box(x, -BIG, x + W, e0).intersection(PARSEL)
             bal = box(x + 0.1, e0 - BALKON, x + W - 0.1, e0)
-            bal_on = box(x + 0.1, e1, x + W - 0.1, e1 + BALKON_ON)
+            bal_on = box(x + 0.1, e1, x + W - 0.1, e1 + BALKON_ON) if BALKON_ON else Polygon()
         villas.append(dict(no=no0 + k, ev=house, otopark=front, park=stall, yuruyus=walk,
                            bahce=g, on_bahce=on_bahce, balkon=bal, balkon_on=bal_on, sira=sira, blok=blok,
                            blok_bas=(k == 0), blok_son=(k == n - 1), kademe=d, uzak=uzak, parklar=parklar))
@@ -441,6 +448,8 @@ for _v in villas:
     _dis = 1 if _v["sira"] == "A" else -1
     for _uu in (_u0, _u1):
         for _a, _b in ((_arka, _arka + _dis * (BALKON + 0.1)), (_on, _on - _dis * (BALKON_ON + 0.1))):
+            if abs(_b - _a) < 0.2:          # balkon yoksa yan duvar da yok
+                continue
             _k = (round(_uu, 2), round(min(_a, _b), 2), round(max(_a, _b), 2))
             if _k in _fin_seen:
                 continue
@@ -474,6 +483,12 @@ ozet = [
     ("Brüt alan / villa", f"{BRUT:.0f} m² (2 × {oturum:.1f} + {balkon_villa:.1f} balkon/teras)"),
     ("Toplam taban oturumu", f"{taban_top:,.0f} m²  →  TAKS ≈ {taban_top / tapu_alan:.2f}"),
     ("Toplam brüt inşaat", f"{brut_top:,.0f} m²  →  KAKS ≈ {brut_top / tapu_alan:.2f}"),
+] + ([("İmar sınırı", f"TAKS {OPS['taks']:.2f} → {OPS['taks'] * tapu_alan:,.0f} m², emsal {OPS['emsal']:.2f} → "
+                      f"{OPS['emsal'] * tapu_alan:,.0f} m²"),
+      ("Uygunluk", f"TAKS {taban_top / tapu_alan:.3f} ≤ {OPS['taks']:.2f}, emsal {brut_top / tapu_alan:.3f} ≤ "
+                   f"{OPS['emsal']:.2f} " + ("✓" if taban_top <= OPS['taks'] * tapu_alan + 0.5 and
+                                              brut_top <= OPS['emsal'] * tapu_alan + 0.5 else "AŞIYOR")),
+      ("Arsa payı / villa", f"{tapu_alan / len(villas):,.0f} m²")] if OPS.get("emsal") else []) + [
     ("Blok düzeni", f"A: {'+'.join(map(str, BLOK_UST))}, B: {'+'.join(map(str, BLOK_ALT))}"
                     + ((f", ortada {MEYDAN_U[1] - MEYDAN_U[0]:.1f} m meydan".replace(".", ",") if MEYDAN_U else
                         f", bloklar arası {BLOK_ARA:.0f} m") if ARALAR else ", kesintisiz")
@@ -620,6 +635,8 @@ def render(path_pdf, path_png):
             draw_poly(ax, m["poly"], facecolor=C["mah"], edgecolor="none", zorder=6)
     for v in villas:
         for bk in ("balkon", "balkon_on"):
+            if v[bk].is_empty:
+                continue
             bx = list(v[bk].exterior.coords)
             ax.plot([p[0] for p in bx], [p[1] for p in bx], ls=(0, (2, 1.5)), lw=0.5, color=C["ev"], zorder=5)
         c = v["ev"].centroid
@@ -753,12 +770,15 @@ def render(path_pdf, path_png):
         ("    Sol uçta 16 m × 6 m dönüş cebi bırakılmıştır." if CEP else
          "    Otopark yolunun ucunda 11 m × 7 m dönüş meydanı var." if PARK else
          "    Dönüş cebi YOK: itfaiye erişimi için uygun değildir."),
-        ("4. İkiz villalar: her villanın ön, arka ve yan cephesi açık; bloklar" if OPS.get("iki_park") else
+        ("4. Emsal 0,70 / TAKS 0,35: balkonlar emsale dahil sayıldı; kat planı" if OPS.get("emsal") else
+         "4. İkiz villalar: her villanın ön, arka ve yan cephesi açık; bloklar" if OPS.get("iki_park") else
          "4. İç kısım araçsız: otopark girişte toplu; parktaki 3,5 m şerit" if PARK else
          "4. Ortadaki meydan iki yakayı yükseltilmiş geçitle bağlar; havuz" if MEYDAN else
          f"4. Bloklar arası {BLOK_ARA:.0f} m: önde 2 misafir otoparkı, arkada" if ARALAR else
          f"4. Villalar kesintisiz iki blok ({N_UST}+{N_ALT}); misafir otoparkı"),
-        ("    arası 6 m yan bahçe (ortada 1,9 m duvar). Kat planı 8 × 9 m'ye uyarlanmalı." if OPS.get("iki_park") else
+        (f"    {W:.2f} × {D:.2f} m'ye (≈120 m² kapalı, 3+1) uyarlanmalı. Otopark girişte.".replace(".", ",", 2)
+         if OPS.get("emsal") else
+         "    arası 6 m yan bahçe (ortada 1,9 m duvar). Kat planı 8 × 9 m'ye uyarlanmalı." if OPS.get("iki_park") else
          "    itfaiye/ambulans/taşınma için açık (babalı). 1,5 m kademe." if PARK else
          "    çevresinde 1,2 m güvenlik çiti. Villalar ikişerli 1,5 m kademeli." if MEYDAN else
          "    uç villaların yan bahçeleri (ortada mahremiyet duvarı)." if ARALAR else

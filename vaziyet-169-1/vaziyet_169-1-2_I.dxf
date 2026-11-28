@@ -1,0 +1,20070 @@
+  0
+SECTION
+  2
+HEADER
+  9
+$ACADVER
+  1
+AC1024
+  9
+$ACADMAINTVER
+ 70
+6
+  9
+$DWGCODEPAGE
+  3
+ANSI_1252
+  9
+$LASTSAVEDBY
+  1
+ezdxf
+  9
+$INSBASE
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$EXTMIN
+ 10
+1e+20
+ 20
+1e+20
+ 30
+1e+20
+  9
+$EXTMAX
+ 10
+-1e+20
+ 20
+-1e+20
+ 30
+-1e+20
+  9
+$LIMMIN
+ 10
+0.0
+ 20
+0.0
+  9
+$LIMMAX
+ 10
+420.0
+ 20
+297.0
+  9
+$ORTHOMODE
+ 70
+0
+  9
+$REGENMODE
+ 70
+1
+  9
+$FILLMODE
+ 70
+1
+  9
+$QTEXTMODE
+ 70
+0
+  9
+$MIRRTEXT
+ 70
+1
+  9
+$LTSCALE
+ 40
+1.0
+  9
+$ATTMODE
+ 70
+1
+  9
+$TEXTSIZE
+ 40
+2.5
+  9
+$TRACEWID
+ 40
+1.0
+  9
+$TEXTSTYLE
+  7
+OpenSans
+  9
+$CLAYER
+  8
+0
+  9
+$CELTYPE
+  6
+ByLayer
+  9
+$CECOLOR
+ 62
+256
+  9
+$CELTSCALE
+ 40
+1.0
+  9
+$DISPSILH
+ 70
+0
+  9
+$DIMSCALE
+ 40
+1.0
+  9
+$DIMASZ
+ 40
+0.175
+  9
+$DIMEXO
+ 40
+0.125
+  9
+$DIMDLI
+ 40
+3.75
+  9
+$DIMRND
+ 40
+0.0
+  9
+$DIMDLE
+ 40
+0.0
+  9
+$DIMEXE
+ 40
+0.375
+  9
+$DIMTP
+ 40
+0.0
+  9
+$DIMTM
+ 40
+0.0
+  9
+$DIMTXT
+ 40
+0.25
+  9
+$DIMCEN
+ 40
+2.5
+  9
+$DIMTSZ
+ 40
+0.0
+  9
+$DIMTOL
+ 70
+0
+  9
+$DIMLIM
+ 70
+0
+  9
+$DIMTIH
+ 70
+0
+  9
+$DIMTOH
+ 70
+0
+  9
+$DIMSE1
+ 70
+0
+  9
+$DIMSE2
+ 70
+0
+  9
+$DIMTAD
+ 70
+1
+  9
+$DIMZIN
+ 70
+12
+  9
+$DIMBLK
+  1
+ARCHTICK
+  9
+$DIMASO
+ 70
+1
+  9
+$DIMSHO
+ 70
+1
+  9
+$DIMPOST
+  1
+
+  9
+$DIMAPOST
+  1
+
+  9
+$DIMALT
+ 70
+0
+  9
+$DIMALTD
+ 70
+3
+  9
+$DIMALTF
+ 40
+0.03937007874
+  9
+$DIMLFAC
+ 40
+100.0
+  9
+$DIMTOFL
+ 70
+1
+  9
+$DIMTVP
+ 40
+0.0
+  9
+$DIMTIX
+ 70
+0
+  9
+$DIMSOXD
+ 70
+0
+  9
+$DIMSAH
+ 70
+0
+  9
+$DIMBLK1
+  1
+
+  9
+$DIMBLK2
+  1
+
+  9
+$DIMSTYLE
+  2
+EZDXF
+  9
+$DIMCLRD
+ 70
+0
+  9
+$DIMCLRE
+ 70
+0
+  9
+$DIMCLRT
+ 70
+0
+  9
+$DIMTFAC
+ 40
+0.5
+  9
+$DIMGAP
+ 40
+0.1
+  9
+$DIMJUST
+ 70
+0
+  9
+$DIMSD1
+ 70
+0
+  9
+$DIMSD2
+ 70
+0
+  9
+$DIMTOLJ
+ 70
+0
+  9
+$DIMTZIN
+ 70
+8
+  9
+$DIMALTZ
+ 70
+0
+  9
+$DIMALTTZ
+ 70
+0
+  9
+$DIMUPT
+ 70
+1
+  9
+$DIMDEC
+ 70
+2
+  9
+$DIMTDEC
+ 70
+2
+  9
+$DIMALTU
+ 70
+2
+  9
+$DIMALTTD
+ 70
+3
+  9
+$DIMTXSTY
+  7
+OpenSansCondensed-Light
+  9
+$DIMAUNIT
+ 70
+0
+  9
+$DIMADEC
+ 70
+2
+  9
+$DIMALTRND
+ 40
+0.0
+  9
+$DIMAZIN
+ 70
+3
+  9
+$DIMDSEP
+ 70
+46
+  9
+$DIMATFIT
+ 70
+3
+  9
+$DIMFRAC
+ 70
+0
+  9
+$DIMLDRBLK
+  1
+
+  9
+$DIMLUNIT
+ 70
+2
+  9
+$DIMLWD
+ 70
+-2
+  9
+$DIMLWE
+ 70
+-2
+  9
+$DIMTMOVE
+ 70
+2
+  9
+$DIMFXL
+ 40
+1.0
+  9
+$DIMFXLON
+ 70
+0
+  9
+$DIMJOGANG
+ 40
+0.785398163397
+  9
+$DIMTFILL
+ 70
+0
+  9
+$DIMTFILLCLR
+ 70
+0
+  9
+$DIMARCSYM
+ 70
+0
+  9
+$DIMLTYPE
+  6
+
+  9
+$DIMLTEX1
+  6
+
+  9
+$DIMLTEX2
+  6
+
+  9
+$DIMTXTDIRECTION
+ 70
+0
+  9
+$LUNITS
+ 70
+2
+  9
+$LUPREC
+ 70
+4
+  9
+$SKETCHINC
+ 40
+1.0
+  9
+$FILLETRAD
+ 40
+10.0
+  9
+$AUNITS
+ 70
+0
+  9
+$AUPREC
+ 70
+2
+  9
+$MENU
+  1
+.
+  9
+$ELEVATION
+ 40
+0.0
+  9
+$PELEVATION
+ 40
+0.0
+  9
+$THICKNESS
+ 40
+0.0
+  9
+$LIMCHECK
+ 70
+0
+  9
+$CHAMFERA
+ 40
+0.0
+  9
+$CHAMFERB
+ 40
+0.0
+  9
+$CHAMFERC
+ 40
+0.0
+  9
+$CHAMFERD
+ 40
+0.0
+  9
+$SKPOLY
+ 70
+0
+  9
+$TDCREATE
+ 40
+2461373.4309143517
+  9
+$TDUCREATE
+ 40
+2458532.153996898
+  9
+$TDUPDATE
+ 40
+2461373.4309143517
+  9
+$TDUUPDATE
+ 40
+2458532.1544311
+  9
+$TDINDWG
+ 40
+0.0
+  9
+$TDUSRTIMER
+ 40
+0.0
+  9
+$USRTIMER
+ 70
+1
+  9
+$ANGBASE
+ 50
+0.0
+  9
+$ANGDIR
+ 70
+0
+  9
+$PDMODE
+ 70
+0
+  9
+$PDSIZE
+ 40
+0.0
+  9
+$PLINEWID
+ 40
+0.0
+  9
+$SPLFRAME
+ 70
+0
+  9
+$SPLINETYPE
+ 70
+6
+  9
+$SPLINESEGS
+ 70
+8
+  9
+$HANDSEED
+  5
+219
+  9
+$SURFTAB1
+ 70
+6
+  9
+$SURFTAB2
+ 70
+6
+  9
+$SURFTYPE
+ 70
+6
+  9
+$SURFU
+ 70
+6
+  9
+$SURFV
+ 70
+6
+  9
+$UCSBASE
+  2
+
+  9
+$UCSNAME
+  2
+
+  9
+$UCSORG
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$UCSXDIR
+ 10
+1.0
+ 20
+0.0
+ 30
+0.0
+  9
+$UCSYDIR
+ 10
+0.0
+ 20
+1.0
+ 30
+0.0
+  9
+$UCSORTHOREF
+  2
+
+  9
+$UCSORTHOVIEW
+ 70
+0
+  9
+$UCSORGTOP
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$UCSORGBOTTOM
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$UCSORGLEFT
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$UCSORGRIGHT
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$UCSORGFRONT
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$UCSORGBACK
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PUCSBASE
+  2
+
+  9
+$PUCSNAME
+  2
+
+  9
+$PUCSORG
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PUCSXDIR
+ 10
+1.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PUCSYDIR
+ 10
+0.0
+ 20
+1.0
+ 30
+0.0
+  9
+$PUCSORTHOREF
+  2
+
+  9
+$PUCSORTHOVIEW
+ 70
+0
+  9
+$PUCSORGTOP
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PUCSORGBOTTOM
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PUCSORGLEFT
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PUCSORGRIGHT
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PUCSORGFRONT
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PUCSORGBACK
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$USERI1
+ 70
+0
+  9
+$USERI2
+ 70
+0
+  9
+$USERI3
+ 70
+0
+  9
+$USERI4
+ 70
+0
+  9
+$USERI5
+ 70
+0
+  9
+$USERR1
+ 40
+0.0
+  9
+$USERR2
+ 40
+0.0
+  9
+$USERR3
+ 40
+0.0
+  9
+$USERR4
+ 40
+0.0
+  9
+$USERR5
+ 40
+0.0
+  9
+$WORLDVIEW
+ 70
+1
+  9
+$SHADEDGE
+ 70
+3
+  9
+$SHADEDIF
+ 70
+70
+  9
+$TILEMODE
+ 70
+1
+  9
+$MAXACTVP
+ 70
+64
+  9
+$PINSBASE
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  9
+$PLIMCHECK
+ 70
+0
+  9
+$PEXTMIN
+ 10
+1e+20
+ 20
+1e+20
+ 30
+1e+20
+  9
+$PEXTMAX
+ 10
+-1e+20
+ 20
+-1e+20
+ 30
+-1e+20
+  9
+$PLIMMIN
+ 10
+0.0
+ 20
+0.0
+  9
+$PLIMMAX
+ 10
+420.0
+ 20
+297.0
+  9
+$UNITMODE
+ 70
+0
+  9
+$VISRETAIN
+ 70
+1
+  9
+$PLINEGEN
+ 70
+0
+  9
+$PSLTSCALE
+ 70
+1
+  9
+$TREEDEPTH
+ 70
+3020
+  9
+$CMLSTYLE
+  2
+Standard
+  9
+$CMLJUST
+ 70
+0
+  9
+$CMLSCALE
+ 40
+20.0
+  9
+$PROXYGRAPHICS
+ 70
+1
+  9
+$MEASUREMENT
+ 70
+1
+  9
+$CELWEIGHT
+370
+-1
+  9
+$ENDCAPS
+280
+0
+  9
+$JOINSTYLE
+280
+0
+  9
+$LWDISPLAY
+290
+0
+  9
+$INSUNITS
+ 70
+6
+  9
+$HYPERLINKBASE
+  1
+
+  9
+$STYLESHEET
+  1
+
+  9
+$XEDIT
+290
+1
+  9
+$CEPSNTYPE
+380
+0
+  9
+$PSTYLEMODE
+290
+1
+  9
+$FINGERPRINTGUID
+  2
+{049D0DE3-319F-4779-A73A-1773F62DBCD4}
+  9
+$VERSIONGUID
+  2
+{C375E913-387B-49C8-AEFA-347033175CD9}
+  9
+$EXTNAMES
+290
+1
+  9
+$PSVPSCALE
+ 40
+0.0
+  9
+$OLESTARTUP
+290
+0
+  9
+$SORTENTS
+280
+127
+  9
+$INDEXCTL
+280
+0
+  9
+$HIDETEXT
+280
+1
+  9
+$XCLIPFRAME
+280
+1
+  9
+$HALOGAP
+280
+0
+  9
+$OBSCOLOR
+ 70
+257
+  9
+$OBSLTYPE
+280
+0
+  9
+$INTERSECTIONDISPLAY
+280
+0
+  9
+$INTERSECTIONCOLOR
+ 70
+257
+  9
+$DIMASSOC
+280
+2
+  9
+$PROJECTNAME
+  1
+
+  9
+$CAMERADISPLAY
+290
+0
+  9
+$LENSLENGTH
+ 40
+50.0
+  9
+$CAMERAHEIGHT
+ 40
+0.0
+  9
+$STEPSPERSEC
+ 40
+24.0
+  9
+$STEPSIZE
+ 40
+100.0
+  9
+$3DDWFPREC
+ 40
+2.0
+  9
+$PSOLWIDTH
+ 40
+0.005
+  9
+$PSOLHEIGHT
+ 40
+0.08
+  9
+$LOFTANG1
+ 40
+1.570796326795
+  9
+$LOFTANG2
+ 40
+1.570796326795
+  9
+$LOFTMAG1
+ 40
+0.0
+  9
+$LOFTMAG2
+ 40
+0.0
+  9
+$LOFTPARAM
+ 70
+7
+  9
+$LOFTNORMALS
+280
+1
+  9
+$LATITUDE
+ 40
+37.795
+  9
+$LONGITUDE
+ 40
+-122.394
+  9
+$NORTHDIRECTION
+ 40
+0.0
+  9
+$TIMEZONE
+ 70
+-8000
+  9
+$LIGHTGLYPHDISPLAY
+280
+1
+  9
+$TILEMODELIGHTSYNCH
+280
+1
+  9
+$CMATERIAL
+347
+20
+  9
+$SOLIDHIST
+280
+0
+  9
+$SHOWHIST
+280
+1
+  9
+$DWFFRAME
+280
+2
+  9
+$DGNFRAME
+280
+2
+  9
+$REALWORLDSCALE
+290
+1
+  9
+$INTERFERECOLOR
+ 62
+256
+  9
+$CSHADOW
+280
+0
+  9
+$SHADOWPLANELOCATION
+ 40
+0.0
+  0
+ENDSEC
+  0
+SECTION
+  2
+CLASSES
+  0
+CLASS
+  1
+ACDBDICTIONARYWDFLT
+  2
+AcDbDictionaryWithDefault
+  3
+ObjectDBX Classes
+ 90
+0
+ 91
+0
+280
+0
+281
+0
+  0
+CLASS
+  1
+SUN
+  2
+AcDbSun
+  3
+SCENEOE
+ 90
+1153
+ 91
+0
+280
+0
+281
+0
+  0
+CLASS
+  1
+VISUALSTYLE
+  2
+AcDbVisualStyle
+  3
+ObjectDBX Classes
+ 90
+4095
+ 91
+0
+280
+0
+281
+0
+  0
+CLASS
+  1
+MATERIAL
+  2
+AcDbMaterial
+  3
+ObjectDBX Classes
+ 90
+1153
+ 91
+0
+280
+0
+281
+0
+  0
+CLASS
+  1
+SCALE
+  2
+AcDbScale
+  3
+ObjectDBX Classes
+ 90
+1153
+ 91
+0
+280
+0
+281
+0
+  0
+CLASS
+  1
+TABLESTYLE
+  2
+AcDbTableStyle
+  3
+ObjectDBX Classes
+ 90
+4095
+ 91
+0
+280
+0
+281
+0
+  0
+CLASS
+  1
+MLEADERSTYLE
+  2
+AcDbMLeaderStyle
+  3
+ACDB_MLEADERSTYLE_CLASS
+ 90
+4095
+ 91
+0
+280
+0
+281
+0
+  0
+CLASS
+  1
+DICTIONARYVAR
+  2
+AcDbDictionaryVar
+  3
+ObjectDBX Classes
+ 90
+0
+ 91
+0
+280
+0
+281
+0
+  0
+CLASS
+  1
+CELLSTYLEMAP
+  2
+AcDbCellStyleMap
+  3
+ObjectDBX Classes
+ 90
+1152
+ 91
+0
+280
+0
+281
+0
+  0
+CLASS
+  1
+MENTALRAYRENDERSETTINGS
+  2
+AcDbMentalRayRenderSettings
+  3
+SCENEOE
+ 90
+1024
+ 91
+0
+280
+0
+281
+0
+  0
+CLASS
+  1
+ACDBDETAILVIEWSTYLE
+  2
+AcDbDetailViewStyle
+  3
+ObjectDBX Classes
+ 90
+1025
+ 91
+0
+280
+0
+281
+0
+  0
+CLASS
+  1
+ACDBSECTIONVIEWSTYLE
+  2
+AcDbSectionViewStyle
+  3
+ObjectDBX Classes
+ 90
+1025
+ 91
+0
+280
+0
+281
+0
+  0
+CLASS
+  1
+RASTERVARIABLES
+  2
+AcDbRasterVariables
+  3
+ISM
+ 90
+0
+ 91
+0
+280
+0
+281
+0
+  0
+CLASS
+  1
+ACDBPLACEHOLDER
+  2
+AcDbPlaceHolder
+  3
+ObjectDBX Classes
+ 90
+0
+ 91
+0
+280
+0
+281
+0
+  0
+CLASS
+  1
+LAYOUT
+  2
+AcDbLayout
+  3
+ObjectDBX Classes
+ 90
+0
+ 91
+0
+280
+0
+281
+0
+  0
+ENDSEC
+  0
+SECTION
+  2
+TABLES
+  0
+TABLE
+  2
+VPORT
+  5
+8
+330
+0
+100
+AcDbSymbolTable
+ 70
+1
+  0
+VPORT
+  5
+23
+330
+8
+100
+AcDbSymbolTableRecord
+100
+AcDbViewportTableRecord
+  2
+*Active
+ 70
+0
+ 10
+0.0
+ 20
+0.0
+ 11
+1.0
+ 21
+1.0
+ 12
+0.0
+ 22
+0.0
+ 13
+0.0
+ 23
+0.0
+ 14
+0.5
+ 24
+0.5
+ 15
+0.5
+ 25
+0.5
+ 16
+0.0
+ 26
+0.0
+ 36
+1.0
+ 17
+0.0
+ 27
+0.0
+ 37
+0.0
+ 40
+1000.0
+ 41
+1.34
+ 42
+50.0
+ 43
+0.0
+ 44
+0.0
+ 50
+0.0
+ 51
+0.0
+ 71
+0
+ 72
+1000
+ 73
+1
+ 74
+3
+ 75
+0
+ 76
+0
+ 77
+0
+ 78
+0
+281
+0
+ 65
+0
+146
+0.0
+  0
+ENDTAB
+  0
+TABLE
+  2
+LTYPE
+  5
+2
+330
+0
+100
+AcDbSymbolTable
+ 70
+21
+  0
+LTYPE
+  5
+24
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+ByBlock
+ 70
+0
+  3
+
+ 72
+65
+ 73
+0
+ 40
+0.0
+  0
+LTYPE
+  5
+25
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+ByLayer
+ 70
+0
+  3
+
+ 72
+65
+ 73
+0
+ 40
+0.0
+  0
+LTYPE
+  5
+26
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+Continuous
+ 70
+0
+  3
+
+ 72
+65
+ 73
+0
+ 40
+0.0
+  0
+LTYPE
+  5
+2F
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+CENTER
+ 70
+0
+  3
+Center ____ _ ____ _ ____ _ ____ _ ____ _ ____
+ 72
+65
+ 73
+4
+ 40
+5.08
+ 49
+3.175
+ 74
+0
+ 49
+-0.635
+ 74
+0
+ 49
+0.635
+ 74
+0
+ 49
+-0.635
+ 74
+0
+  0
+LTYPE
+  5
+30
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+CENTERX2
+ 70
+0
+  3
+Center (2x) ________  __  ________  __  ________
+ 72
+65
+ 73
+4
+ 40
+8.89
+ 49
+6.35
+ 74
+0
+ 49
+-0.635
+ 74
+0
+ 49
+1.27
+ 74
+0
+ 49
+-0.635
+ 74
+0
+  0
+LTYPE
+  5
+31
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+CENTER2
+ 70
+0
+  3
+Center (.5x) ____ _ ____ _ ____ _ ____ _ ____
+ 72
+65
+ 73
+4
+ 40
+2.54
+ 49
+1.587
+ 74
+0
+ 49
+-0.318
+ 74
+0
+ 49
+0.318
+ 74
+0
+ 49
+-0.318
+ 74
+0
+  0
+LTYPE
+  5
+32
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+DASHED
+ 70
+0
+  3
+Dashed __ __ __ __ __ __ __ __ __ __ __ __ __ _
+ 72
+65
+ 73
+2
+ 40
+1.524
+ 49
+1.27
+ 74
+0
+ 49
+-0.254
+ 74
+0
+  0
+LTYPE
+  5
+33
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+DASHEDX2
+ 70
+0
+  3
+Dashed (2x) ____  ____  ____  ____  ____  ____
+ 72
+65
+ 73
+2
+ 40
+3.048
+ 49
+2.54
+ 74
+0
+ 49
+-0.508
+ 74
+0
+  0
+LTYPE
+  5
+34
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+DASHED2
+ 70
+0
+  3
+Dashed (.5x) _ _ _ _ _ _ _ _ _ _ _ _ _ _
+ 72
+65
+ 73
+2
+ 40
+0.762
+ 49
+0.635
+ 74
+0
+ 49
+-0.127
+ 74
+0
+  0
+LTYPE
+  5
+35
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+PHANTOM
+ 70
+0
+  3
+Phantom ______  __  __  ______  __  __  ______
+ 72
+65
+ 73
+6
+ 40
+6.35
+ 49
+3.175
+ 74
+0
+ 49
+-0.635
+ 74
+0
+ 49
+0.635
+ 74
+0
+ 49
+-0.635
+ 74
+0
+ 49
+0.635
+ 74
+0
+ 49
+-0.635
+ 74
+0
+  0
+LTYPE
+  5
+36
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+PHANTOMX2
+ 70
+0
+  3
+Phantom (2x)____________    ____    ____    ____________
+ 72
+65
+ 73
+6
+ 40
+10.795
+ 49
+6.35
+ 74
+0
+ 49
+-0.635
+ 74
+0
+ 49
+1.27
+ 74
+0
+ 49
+-0.635
+ 74
+0
+ 49
+1.27
+ 74
+0
+ 49
+-0.635
+ 74
+0
+  0
+LTYPE
+  5
+37
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+PHANTOM2
+ 70
+0
+  3
+Phantom (.5x) ___ _ _ ___ _ _ ___ _ _ ___ _ _ ___
+ 72
+65
+ 73
+6
+ 40
+3.175
+ 49
+1.587
+ 74
+0
+ 49
+-0.318
+ 74
+0
+ 49
+0.318
+ 74
+0
+ 49
+-0.318
+ 74
+0
+ 49
+0.318
+ 74
+0
+ 49
+-0.318
+ 74
+0
+  0
+LTYPE
+  5
+38
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+DASHDOT
+ 70
+0
+  3
+Dash dot __ . __ . __ . __ . __ . __ . __ . __
+ 72
+65
+ 73
+4
+ 40
+3.556
+ 49
+2.54
+ 74
+0
+ 49
+-0.508
+ 74
+0
+ 49
+0.0
+ 74
+0
+ 49
+-0.508
+ 74
+0
+  0
+LTYPE
+  5
+39
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+DASHDOTX2
+ 70
+0
+  3
+Dash dot (2x) ____  .  ____  .  ____  .  ____
+ 72
+65
+ 73
+4
+ 40
+6.096
+ 49
+5.08
+ 74
+0
+ 49
+-0.508
+ 74
+0
+ 49
+0.0
+ 74
+0
+ 49
+-0.508
+ 74
+0
+  0
+LTYPE
+  5
+3A
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+DASHDOT2
+ 70
+0
+  3
+Dash dot (.5x) _ . _ . _ . _ . _ . _ . _ . _
+ 72
+65
+ 73
+4
+ 40
+1.778
+ 49
+1.27
+ 74
+0
+ 49
+-0.254
+ 74
+0
+ 49
+0.0
+ 74
+0
+ 49
+-0.254
+ 74
+0
+  0
+LTYPE
+  5
+3B
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+DOT
+ 70
+0
+  3
+Dot .  .  .  .  .  .  .  .  .  .  .  .  .  .  .  .
+ 72
+65
+ 73
+2
+ 40
+0.508
+ 49
+0.0
+ 74
+0
+ 49
+-0.508
+ 74
+0
+  0
+LTYPE
+  5
+3C
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+DOTX2
+ 70
+0
+  3
+Dot (2x) .    .    .    .    .    .    .    . 
+ 72
+65
+ 73
+2
+ 40
+1.016
+ 49
+0.0
+ 74
+0
+ 49
+-1.016
+ 74
+0
+  0
+LTYPE
+  5
+3D
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+DOT2
+ 70
+0
+  3
+Dot (.5) . . . . . . . . . . . . . . . . . . . 
+ 72
+65
+ 73
+2
+ 40
+0.254
+ 49
+0.0
+ 74
+0
+ 49
+-0.254
+ 74
+0
+  0
+LTYPE
+  5
+3E
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+DIVIDE
+ 70
+0
+  3
+Divide __ . . __ . . __ . . __ . . __ . . __
+ 72
+65
+ 73
+6
+ 40
+4.064
+ 49
+2.54
+ 74
+0
+ 49
+-0.508
+ 74
+0
+ 49
+0.0
+ 74
+0
+ 49
+-0.508
+ 74
+0
+ 49
+0.0
+ 74
+0
+ 49
+-0.508
+ 74
+0
+  0
+LTYPE
+  5
+3F
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+DIVIDEX2
+ 70
+0
+  3
+Divide (2x) ____  . .  ____  . .  ____  . .  ____
+ 72
+65
+ 73
+6
+ 40
+6.604
+ 49
+5.08
+ 74
+0
+ 49
+-0.508
+ 74
+0
+ 49
+0.0
+ 74
+0
+ 49
+-0.508
+ 74
+0
+ 49
+0.0
+ 74
+0
+ 49
+-0.508
+ 74
+0
+  0
+LTYPE
+  5
+40
+330
+2
+100
+AcDbSymbolTableRecord
+100
+AcDbLinetypeTableRecord
+  2
+DIVIDE2
+ 70
+0
+  3
+Divide(.5x) _ . _ . _ . _ . _ . _ . _ . _
+ 72
+65
+ 73
+6
+ 40
+2.032
+ 49
+1.27
+ 74
+0
+ 49
+-0.254
+ 74
+0
+ 49
+0.0
+ 74
+0
+ 49
+-0.254
+ 74
+0
+ 49
+0.0
+ 74
+0
+ 49
+-0.254
+ 74
+0
+  0
+ENDTAB
+  0
+TABLE
+  2
+LAYER
+  5
+1
+330
+0
+100
+AcDbSymbolTable
+ 70
+15
+  0
+LAYER
+  5
+27
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+0
+ 70
+0
+ 62
+7
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+28
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+Defpoints
+ 70
+0
+ 62
+7
+  6
+Continuous
+290
+0
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+8A
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+PARSEL
+ 70
+0
+ 62
+7
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+8B
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+CEKME
+ 70
+0
+ 62
+1
+  6
+DASHDOT
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+8C
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+YOL
+ 70
+0
+ 62
+8
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+8D
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+OTOPARK
+ 70
+0
+ 62
+9
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+8E
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+PARK_YERI
+ 70
+0
+ 62
+252
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+8F
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+VILLA
+ 70
+0
+ 62
+30
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+90
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+BALKON
+ 70
+0
+ 62
+30
+  6
+DASHED
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+91
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+BAHCE
+ 70
+0
+ 62
+3
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+92
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+ORTAK_ALAN
+ 70
+0
+ 62
+82
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+93
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+YAZI
+ 70
+0
+ 62
+7
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+94
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+MAHREMIYET_DUVARI
+ 70
+0
+ 62
+251
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+95
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+MAHREMIYET_BALKON
+ 70
+0
+ 62
+251
+  6
+DASHED
+370
+-3
+390
+13
+347
+21
+  0
+LAYER
+  5
+96
+330
+1
+100
+AcDbSymbolTableRecord
+100
+AcDbLayerTableRecord
+  2
+MISAFIR_OTOPARK
+ 70
+0
+ 62
+5
+  6
+Continuous
+370
+-3
+390
+13
+347
+21
+  0
+ENDTAB
+  0
+TABLE
+  2
+STYLE
+  5
+5
+330
+0
+100
+AcDbSymbolTable
+ 70
+26
+  0
+STYLE
+  5
+29
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+Standard
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+txt
+  4
+
+  0
+STYLE
+  5
+41
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+OpenSans-Light
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+OpenSans-Light.ttf
+  4
+
+  0
+STYLE
+  5
+42
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+OpenSans-Light-Italic
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+OpenSans-LightItalic.ttf
+  4
+
+  0
+STYLE
+  5
+43
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+OpenSans
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+OpenSans-Regular.ttf
+  4
+
+  0
+STYLE
+  5
+44
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+OpenSans-Italic
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+OpenSans-Italic.ttf
+  4
+
+  0
+STYLE
+  5
+45
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+OpenSans-SemiBold
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+OpenSans-SemiBold.ttf
+  4
+
+  0
+STYLE
+  5
+46
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+OpenSans-SemiBoldItalic
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+OpenSans-SemiBoldItalic.ttf
+  4
+
+  0
+STYLE
+  5
+47
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+OpenSans-Bold
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+OpenSans-Bold.ttf
+  4
+
+  0
+STYLE
+  5
+48
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+OpenSans-BoldItalic
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+OpenSans-BoldItalic.ttf
+  4
+
+  0
+STYLE
+  5
+49
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+OpenSans-ExtraBold
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+OpenSans-ExtraBold.ttf
+  4
+
+  0
+STYLE
+  5
+4A
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+OpenSans-ExtraBoldItalic
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+OpenSans-ExtraBoldItalic.ttf
+  4
+
+  0
+STYLE
+  5
+4B
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+OpenSansCondensed-Bold
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+OpenSansCondensed-Bold.ttf
+  4
+
+  0
+STYLE
+  5
+4C
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+OpenSansCondensed-Light
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+OpenSansCondensed-Light.ttf
+  4
+
+  0
+STYLE
+  5
+4D
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+OpenSansCondensed-Italic
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+OpenSansCondensed-LightItalic.ttf
+  4
+
+  0
+STYLE
+  5
+4E
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+LiberationSans
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+LiberationSans-Regular.ttf
+  4
+
+  0
+STYLE
+  5
+4F
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+LiberationSans-Bold
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+LiberationSans-Bold.ttf
+  4
+
+  0
+STYLE
+  5
+50
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+LiberationSans-BoldItalic
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+LiberationSans-BoldItalic.ttf
+  4
+
+  0
+STYLE
+  5
+51
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+LiberationSans-Italic
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+LiberationSans-Italic.ttf
+  4
+
+  0
+STYLE
+  5
+52
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+LiberationSerif
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+LiberationSerif-Regular.ttf
+  4
+
+  0
+STYLE
+  5
+53
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+LiberationSerif-Bold
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+LiberationSerif-Bold.ttf
+  4
+
+  0
+STYLE
+  5
+54
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+LiberationSerif-BoldItalic
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+LiberationSerif-BoldItalic.ttf
+  4
+
+  0
+STYLE
+  5
+55
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+LiberationSerif-Italic
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+LiberationSerif-Italic.ttf
+  4
+
+  0
+STYLE
+  5
+56
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+LiberationMono
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+LiberationMono-Regular.ttf
+  4
+
+  0
+STYLE
+  5
+57
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+LiberationMono-Bold
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+LiberationMono-Bold.ttf
+  4
+
+  0
+STYLE
+  5
+58
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+LiberationMono-BoldItalic
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+LiberationMono-BoldItalic.ttf
+  4
+
+  0
+STYLE
+  5
+59
+330
+5
+100
+AcDbSymbolTableRecord
+100
+AcDbTextStyleTableRecord
+  2
+LiberationMono-Italic
+ 70
+0
+ 40
+0.0
+ 41
+1.0
+ 50
+0.0
+ 71
+0
+ 42
+2.5
+  3
+LiberationMono-Italic.ttf
+  4
+
+  0
+ENDTAB
+  0
+TABLE
+  2
+VIEW
+  5
+7
+330
+0
+100
+AcDbSymbolTable
+ 70
+0
+  0
+ENDTAB
+  0
+TABLE
+  2
+UCS
+  5
+6
+330
+0
+100
+AcDbSymbolTable
+ 70
+0
+  0
+ENDTAB
+  0
+TABLE
+  2
+APPID
+  5
+3
+330
+0
+100
+AcDbSymbolTable
+ 70
+3
+  0
+APPID
+  5
+2A
+330
+3
+100
+AcDbSymbolTableRecord
+100
+AcDbRegAppTableRecord
+  2
+ACAD
+ 70
+0
+  0
+APPID
+  5
+216
+330
+3
+100
+AcDbSymbolTableRecord
+100
+AcDbRegAppTableRecord
+  2
+HATCHBACKGROUNDCOLOR
+ 70
+0
+  0
+APPID
+  5
+217
+330
+3
+100
+AcDbSymbolTableRecord
+100
+AcDbRegAppTableRecord
+  2
+EZDXF
+ 70
+0
+  0
+ENDTAB
+  0
+TABLE
+  2
+DIMSTYLE
+  5
+4
+330
+0
+100
+AcDbSymbolTable
+ 70
+12
+100
+AcDbDimStyleTable
+  0
+DIMSTYLE
+105
+2B
+330
+4
+100
+AcDbSymbolTableRecord
+100
+AcDbDimStyleTableRecord
+  2
+Standard
+ 70
+0
+ 40
+1.0
+ 41
+2.5
+ 42
+0.625
+ 43
+3.75
+ 44
+1.25
+ 45
+0.0
+ 46
+0.0
+ 47
+0.0
+ 48
+0.0
+ 49
+2.5
+140
+2.5
+141
+2.5
+142
+0.0
+143
+0.03937007874
+144
+1.0
+145
+0.0
+146
+1.0
+147
+0.625
+148
+0.0
+ 69
+0
+ 70
+0
+ 71
+0
+ 72
+0
+ 73
+0
+ 74
+0
+ 75
+0
+ 76
+0
+ 77
+1
+ 78
+8
+ 79
+3
+170
+0
+171
+3
+172
+1
+173
+0
+174
+0
+175
+0
+176
+0
+177
+0
+178
+0
+179
+2
+271
+2
+272
+2
+273
+2
+274
+3
+275
+0
+276
+0
+277
+2
+278
+44
+279
+0
+280
+0
+281
+0
+282
+0
+283
+0
+284
+8
+285
+0
+286
+0
+288
+0
+289
+3
+290
+0
+371
+-2
+372
+-2
+  0
+DIMSTYLE
+105
+73
+330
+4
+100
+AcDbSymbolTableRecord
+100
+AcDbDimStyleTableRecord
+  2
+EZDXF
+ 70
+0
+ 40
+1.0
+ 41
+0.175
+ 42
+0.125
+ 43
+3.75
+ 44
+0.375
+ 45
+0.0
+ 46
+0.0
+ 47
+0.0
+ 48
+0.0
+ 49
+2.5
+140
+0.25
+141
+2.5
+142
+0.0
+143
+0.03937007874
+144
+100.0
+145
+0.0
+146
+0.5
+147
+0.1
+148
+0.0
+ 69
+0
+ 70
+0
+ 71
+0
+ 72
+0
+ 73
+0
+ 74
+0
+ 75
+0
+ 76
+0
+ 77
+1
+ 78
+12
+ 79
+3
+170
+0
+171
+3
+172
+1
+173
+0
+174
+0
+175
+0
+176
+0
+177
+0
+178
+0
+179
+2
+271
+2
+272
+2
+273
+2
+274
+3
+275
+0
+276
+0
+277
+2
+278
+46
+279
+2
+280
+0
+281
+0
+282
+0
+283
+0
+284
+8
+285
+0
+286
+0
+288
+1
+289
+3
+290
+0
+340
+4C
+342
+74
+371
+-2
+372
+-2
+  0
+DIMSTYLE
+105
+7C
+330
+4
+100
+AcDbSymbolTableRecord
+100
+AcDbDimStyleTableRecord
+  2
+EZ_M_100_H25_CM
+ 70
+0
+ 40
+1.0
+ 41
+0.25
+ 42
+0.125
+ 43
+3.75
+ 44
+0.375
+ 45
+0.0
+ 46
+0.0
+ 47
+0.0
+ 48
+0.0
+ 49
+2.5
+140
+0.25
+141
+2.5
+142
+0.125
+143
+0.03937007874
+144
+100.0
+145
+0.0
+146
+0.5
+147
+0.1
+148
+0.0
+ 69
+0
+ 70
+0
+ 71
+0
+ 72
+0
+ 73
+0
+ 74
+0
+ 75
+0
+ 76
+0
+ 77
+1
+ 78
+12
+ 79
+3
+170
+0
+171
+3
+172
+1
+173
+0
+174
+0
+175
+0
+176
+0
+177
+0
+178
+0
+179
+2
+271
+2
+272
+2
+273
+2
+274
+3
+275
+0
+276
+0
+277
+2
+278
+46
+279
+2
+280
+0
+281
+0
+282
+0
+283
+0
+284
+8
+285
+0
+286
+0
+288
+1
+289
+3
+290
+0
+340
+4C
+371
+-2
+372
+-2
+  0
+DIMSTYLE
+105
+7D
+330
+4
+100
+AcDbSymbolTableRecord
+100
+AcDbDimStyleTableRecord
+  2
+EZ_M_50_H25_CM
+ 70
+0
+ 40
+1.0
+ 41
+0.125
+ 42
+0.0625
+ 43
+3.75
+ 44
+0.1875
+ 45
+0.0
+ 46
+0.0
+ 47
+0.0
+ 48
+0.0
+ 49
+2.5
+140
+0.125
+141
+2.5
+142
+0.0625
+143
+0.03937007874
+144
+100.0
+145
+0.0
+146
+0.5
+147
+0.05
+148
+0.0
+ 69
+0
+ 70
+0
+ 71
+0
+ 72
+0
+ 73
+0
+ 74
+0
+ 75
+0
+ 76
+0
+ 77
+1
+ 78
+12
+ 79
+3
+170
+0
+171
+3
+172
+1
+173
+0
+174
+0
+175
+0
+176
+0
+177
+0
+178
+0
+179
+2
+271
+2
+272
+2
+273
+2
+274
+3
+275
+0
+276
+0
+277
+2
+278
+46
+279
+2
+280
+0
+281
+0
+282
+0
+283
+0
+284
+8
+285
+0
+286
+0
+288
+1
+289
+3
+290
+0
+340
+4C
+371
+-2
+372
+-2
+  0
+DIMSTYLE
+105
+7E
+330
+4
+100
+AcDbSymbolTableRecord
+100
+AcDbDimStyleTableRecord
+  2
+EZ_M_25_H25_CM
+ 70
+0
+ 40
+1.0
+ 41
+0.0625
+ 42
+0.03125
+ 43
+3.75
+ 44
+0.09375
+ 45
+0.0
+ 46
+0.0
+ 47
+0.0
+ 48
+0.0
+ 49
+2.5
+140
+0.0625
+141
+2.5
+142
+0.03125
+143
+0.03937007874
+144
+100.0
+145
+0.0
+146
+0.5
+147
+0.025
+148
+0.0
+ 69
+0
+ 70
+0
+ 71
+0
+ 72
+0
+ 73
+0
+ 74
+0
+ 75
+0
+ 76
+0
+ 77
+1
+ 78
+12
+ 79
+3
+170
+0
+171
+3
+172
+1
+173
+0
+174
+0
+175
+0
+176
+0
+177
+0
+178
+0
+179
+2
+271
+2
+272
+2
+273
+2
+274
+3
+275
+0
+276
+0
+277
+2
+278
+46
+279
+2
+280
+0
+281
+0
+282
+0
+283
+0
+284
+8
+285
+0
+286
+0
+288
+1
+289
+3
+290
+0
+340
+4C
+371
+-2
+372
+-2
+  0
+DIMSTYLE
+105
+7F
+330
+4
+100
+AcDbSymbolTableRecord
+100
+AcDbDimStyleTableRecord
+  2
+EZ_M_20_H25_CM
+ 70
+0
+ 40
+1.0
+ 41
+0.05
+ 42
+0.025
+ 43
+3.75
+ 44
+0.07500000000000001
+ 45
+0.0
+ 46
+0.0
+ 47
+0.0
+ 48
+0.0
+ 49
+2.5
+140
+0.05
+141
+2.5
+142
+0.025
+143
+0.03937007874
+144
+100.0
+145
+0.0
+146
+0.5
+147
+0.020000000000000004
+148
+0.0
+ 69
+0
+ 70
+0
+ 71
+0
+ 72
+0
+ 73
+0
+ 74
+0
+ 75
+0
+ 76
+0
+ 77
+1
+ 78
+12
+ 79
+3
+170
+0
+171
+3
+172
+1
+173
+0
+174
+0
+175
+0
+176
+0
+177
+0
+178
+0
+179
+2
+271
+2
+272
+2
+273
+2
+274
+3
+275
+0
+276
+0
+277
+2
+278
+46
+279
+2
+280
+0
+281
+0
+282
+0
+283
+0
+284
+8
+285
+0
+286
+0
+288
+1
+289
+3
+290
+0
+340
+4C
+371
+-2
+372
+-2
+  0
+DIMSTYLE
+105
+80
+330
+4
+100
+AcDbSymbolTableRecord
+100
+AcDbDimStyleTableRecord
+  2
+EZ_M_10_H25_CM
+ 70
+0
+ 40
+1.0
+ 41
+0.025
+ 42
+0.0125
+ 43
+3.75
+ 44
+0.037500000000000006
+ 45
+0.0
+ 46
+0.0
+ 47
+0.0
+ 48
+0.0
+ 49
+2.5
+140
+0.025
+141
+2.5
+142
+0.0125
+143
+0.03937007874
+144
+100.0
+145
+0.0
+146
+0.5
+147
+0.010000000000000002
+148
+0.0
+ 69
+0
+ 70
+0
+ 71
+0
+ 72
+0
+ 73
+0
+ 74
+0
+ 75
+0
+ 76
+0
+ 77
+1
+ 78
+12
+ 79
+3
+170
+0
+171
+3
+172
+1
+173
+0
+174
+0
+175
+0
+176
+0
+177
+0
+178
+0
+179
+2
+271
+2
+272
+2
+273
+2
+274
+3
+275
+0
+276
+0
+277
+2
+278
+46
+279
+2
+280
+0
+281
+0
+282
+0
+283
+0
+284
+8
+285
+0
+286
+0
+288
+1
+289
+3
+290
+0
+340
+4C
+371
+-2
+372
+-2
+  0
+DIMSTYLE
+105
+81
+330
+4
+100
+AcDbSymbolTableRecord
+100
+AcDbDimStyleTableRecord
+  2
+EZ_M_5_H25_CM
+ 70
+0
+ 40
+1.0
+ 41
+0.0125
+ 42
+0.00625
+ 43
+3.75
+ 44
+0.018750000000000003
+ 45
+0.0
+ 46
+0.0
+ 47
+0.0
+ 48
+0.0
+ 49
+2.5
+140
+0.0125
+141
+2.5
+142
+0.00625
+143
+0.03937007874
+144
+100.0
+145
+0.0
+146
+0.5
+147
+0.005000000000000001
+148
+0.0
+ 69
+0
+ 70
+0
+ 71
+0
+ 72
+0
+ 73
+0
+ 74
+0
+ 75
+0
+ 76
+0
+ 77
+1
+ 78
+12
+ 79
+3
+170
+0
+171
+3
+172
+1
+173
+0
+174
+0
+175
+0
+176
+0
+177
+0
+178
+0
+179
+2
+271
+2
+272
+2
+273
+2
+274
+3
+275
+0
+276
+0
+277
+2
+278
+46
+279
+2
+280
+0
+281
+0
+282
+0
+283
+0
+284
+8
+285
+0
+286
+0
+288
+1
+289
+3
+290
+0
+340
+4C
+371
+-2
+372
+-2
+  0
+DIMSTYLE
+105
+82
+330
+4
+100
+AcDbSymbolTableRecord
+100
+AcDbDimStyleTableRecord
+  2
+EZ_M_1_H25_CM
+ 70
+0
+ 40
+1.0
+ 41
+0.0025
+ 42
+0.00125
+ 43
+3.75
+ 44
+0.00375
+ 45
+0.0
+ 46
+0.0
+ 47
+0.0
+ 48
+0.0
+ 49
+2.5
+140
+0.0025
+141
+2.5
+142
+0.00125
+143
+0.03937007874
+144
+100.0
+145
+0.0
+146
+0.5
+147
+0.001
+148
+0.0
+ 69
+0
+ 70
+0
+ 71
+0
+ 72
+0
+ 73
+0
+ 74
+0
+ 75
+0
+ 76
+0
+ 77
+1
+ 78
+12
+ 79
+3
+170
+0
+171
+3
+172
+1
+173
+0
+174
+0
+175
+0
+176
+0
+177
+0
+178
+0
+179
+2
+271
+2
+272
+2
+273
+2
+274
+3
+275
+0
+276
+0
+277
+2
+278
+46
+279
+2
+280
+0
+281
+0
+282
+0
+283
+0
+284
+8
+285
+0
+286
+0
+288
+1
+289
+3
+290
+0
+340
+4C
+371
+-2
+372
+-2
+  0
+DIMSTYLE
+105
+83
+330
+4
+100
+AcDbSymbolTableRecord
+100
+AcDbDimStyleTableRecord
+  2
+EZ_RADIUS
+ 70
+0
+ 40
+1.0
+ 41
+0.25
+ 42
+0.125
+ 43
+3.75
+ 44
+0.375
+ 45
+0.0
+ 46
+0.0
+ 47
+0.0
+ 48
+0.0
+ 49
+2.5
+140
+0.25
+141
+0.0
+142
+0.0
+143
+0.03937007874
+144
+100.0
+145
+0.0
+146
+0.5
+147
+0.1
+148
+0.0
+ 69
+0
+ 70
+0
+ 71
+0
+ 72
+0
+ 73
+0
+ 74
+0
+ 75
+0
+ 76
+0
+ 77
+1
+ 78
+12
+ 79
+3
+170
+0
+171
+3
+172
+0
+173
+0
+174
+0
+175
+0
+176
+0
+177
+0
+178
+0
+179
+2
+271
+2
+272
+2
+273
+2
+274
+3
+275
+0
+276
+0
+277
+2
+278
+46
+279
+1
+280
+0
+281
+0
+282
+0
+283
+0
+284
+8
+285
+0
+286
+0
+288
+1
+289
+3
+290
+0
+340
+4C
+342
+84
+371
+-2
+372
+-2
+  0
+DIMSTYLE
+105
+88
+330
+4
+100
+AcDbSymbolTableRecord
+100
+AcDbDimStyleTableRecord
+  2
+EZ_RADIUS_INSIDE
+ 70
+0
+ 40
+1.0
+ 41
+0.25
+ 42
+0.125
+ 43
+3.75
+ 44
+0.375
+ 45
+0.0
+ 46
+0.0
+ 47
+0.0
+ 48
+0.0
+ 49
+2.5
+140
+0.25
+141
+0.0
+142
+0.0
+143
+0.03937007874
+144
+100.0
+145
+0.0
+146
+0.5
+147
+0.1
+148
+0.0
+ 69
+0
+ 70
+0
+ 71
+0
+ 72
+0
+ 73
+0
+ 74
+0
+ 75
+0
+ 76
+0
+ 77
+0
+ 78
+12
+ 79
+3
+170
+0
+171
+3
+172
+0
+173
+0
+174
+1
+175
+0
+176
+0
+177
+0
+178
+0
+179
+2
+271
+2
+272
+2
+273
+2
+274
+3
+275
+0
+276
+0
+277
+2
+278
+46
+279
+0
+280
+0
+281
+0
+282
+0
+283
+0
+284
+8
+285
+0
+286
+0
+288
+1
+289
+0
+290
+0
+340
+4C
+342
+84
+371
+-2
+372
+-2
+  0
+DIMSTYLE
+105
+89
+330
+4
+100
+AcDbSymbolTableRecord
+100
+AcDbDimStyleTableRecord
+  2
+EZ_CURVED
+ 70
+0
+ 40
+1.0
+ 41
+0.25
+ 42
+0.125
+ 43
+3.75
+ 44
+0.375
+ 45
+0.0
+ 46
+0.0
+ 47
+0.0
+ 48
+0.0
+ 49
+2.5
+140
+0.25
+141
+2.5
+142
+0.0
+143
+0.03937007874
+144
+100.0
+145
+0.0
+146
+0.5
+147
+0.1
+148
+0.0
+ 69
+0
+ 70
+0
+ 71
+0
+ 72
+0
+ 73
+0
+ 74
+0
+ 75
+0
+ 76
+0
+ 77
+1
+ 78
+12
+ 79
+2
+ 90
+2
+170
+0
+171
+3
+172
+1
+173
+0
+174
+0
+175
+0
+176
+0
+177
+0
+178
+0
+179
+2
+271
+2
+272
+2
+273
+2
+274
+3
+275
+0
+276
+0
+277
+2
+278
+46
+279
+2
+280
+0
+281
+0
+282
+0
+283
+0
+284
+8
+285
+0
+286
+0
+288
+1
+289
+3
+290
+0
+340
+4C
+371
+-2
+372
+-2
+  0
+ENDTAB
+  0
+TABLE
+  2
+BLOCK_RECORD
+  5
+9
+330
+0
+100
+AcDbSymbolTable
+ 70
+5
+  0
+BLOCK_RECORD
+  5
+17
+330
+9
+100
+AcDbSymbolTableRecord
+100
+AcDbBlockTableRecord
+  2
+*Model_Space
+340
+1A
+ 70
+0
+280
+1
+281
+0
+  0
+BLOCK_RECORD
+  5
+1B
+330
+9
+100
+AcDbSymbolTableRecord
+100
+AcDbBlockTableRecord
+  2
+*Paper_Space
+340
+1E
+ 70
+0
+280
+1
+281
+0
+  0
+BLOCK_RECORD
+  5
+74
+330
+9
+100
+AcDbSymbolTableRecord
+100
+AcDbBlockTableRecord
+  2
+_ARCHTICK
+340
+0
+ 70
+0
+280
+1
+281
+0
+  0
+BLOCK_RECORD
+  5
+78
+330
+9
+100
+AcDbSymbolTableRecord
+100
+AcDbBlockTableRecord
+  2
+_CLOSEDFILLED
+340
+0
+ 70
+0
+280
+1
+281
+0
+  0
+BLOCK_RECORD
+  5
+84
+330
+9
+100
+AcDbSymbolTableRecord
+100
+AcDbBlockTableRecord
+  2
+_CLOSEDBLANK
+340
+0
+ 70
+0
+280
+1
+281
+0
+  0
+ENDTAB
+  0
+ENDSEC
+  0
+SECTION
+  2
+BLOCKS
+  0
+BLOCK
+  5
+18
+330
+17
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockBegin
+  2
+*Model_Space
+ 70
+0
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  3
+*Model_Space
+  1
+
+  0
+ENDBLK
+  5
+19
+330
+17
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockEnd
+  0
+BLOCK
+  5
+1C
+330
+1B
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockBegin
+  2
+*Paper_Space
+ 70
+0
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  3
+*Paper_Space
+  1
+
+  0
+ENDBLK
+  5
+1D
+330
+1B
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockEnd
+  0
+BLOCK
+  5
+75
+330
+74
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockBegin
+  2
+_ARCHTICK
+ 70
+0
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  3
+_ARCHTICK
+  1
+
+  0
+LWPOLYLINE
+  5
+77
+330
+74
+100
+AcDbEntity
+  8
+0
+  6
+BYBLOCK
+ 62
+0
+100
+AcDbPolyline
+ 90
+2
+ 70
+0
+ 43
+0.15
+ 10
+-0.5
+ 20
+-0.5
+ 10
+0.5
+ 20
+0.5
+  0
+ENDBLK
+  5
+76
+330
+74
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockEnd
+  0
+BLOCK
+  5
+79
+330
+78
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockBegin
+  2
+_CLOSEDFILLED
+ 70
+0
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  3
+_CLOSEDFILLED
+  1
+
+  0
+SOLID
+  5
+7B
+330
+78
+100
+AcDbEntity
+  8
+0
+  6
+BYBLOCK
+ 62
+0
+100
+AcDbTrace
+ 10
+-1.0
+ 20
+0.16439898372402537
+ 30
+0.0
+ 11
+0.0
+ 21
+0.0
+ 31
+0.0
+ 12
+-1.0
+ 22
+-0.16439898372402537
+ 32
+0.0
+ 13
+-1.0
+ 23
+-0.16439898372402537
+ 33
+0.0
+  0
+ENDBLK
+  5
+7A
+330
+78
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockEnd
+  0
+BLOCK
+  5
+85
+330
+84
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockBegin
+  2
+_CLOSEDBLANK
+ 70
+0
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  3
+_CLOSEDBLANK
+  1
+
+  0
+LWPOLYLINE
+  5
+87
+330
+84
+100
+AcDbEntity
+  8
+0
+  6
+BYBLOCK
+ 62
+0
+100
+AcDbPolyline
+ 90
+3
+ 70
+1
+ 10
+-1.0
+ 20
+0.16439898372402537
+ 10
+0.0
+ 20
+0.0
+ 10
+-1.0
+ 20
+-0.16439898372402537
+  0
+ENDBLK
+  5
+86
+330
+84
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockEnd
+  0
+ENDSEC
+  0
+SECTION
+  2
+ENTITIES
+  0
+LWPOLYLINE
+  5
+97
+330
+17
+100
+AcDbEntity
+  8
+PARSEL
+100
+AcDbPolyline
+ 90
+10
+ 70
+1
+ 10
+399170.46600144124
+ 20
+4455747.492857496
+ 10
+399146.8281578088
+ 20
+4455762.246788585
+ 10
+399122.33931226505
+ 20
+4455777.0121689355
+ 10
+399139.1332156897
+ 20
+4455823.4341773195
+ 10
+399158.6136779908
+ 20
+4455879.815989866
+ 10
+399164.6009148724
+ 20
+4455881.957267867
+ 10
+399207.6946992766
+ 20
+4455858.058545677
+ 10
+399209.3227351387
+ 20
+4455852.48366535
+ 10
+399182.85590769805
+ 20
+4455782.867492678
+ 10
+399178.43730964797
+ 20
+4455770.7095908625
+  0
+LWPOLYLINE
+  5
+98
+330
+17
+100
+AcDbEntity
+  8
+CEKME
+100
+AcDbPolyline
+ 90
+10
+ 70
+1
+ 10
+399168.8538034345
+ 20
+4455752.035553203
+ 10
+399148.3970075823
+ 20
+4455764.803983395
+ 10
+399125.99869909405
+ 20
+4455778.308888861
+ 10
+399141.9616600231
+ 20
+4455822.433991128
+ 10
+399160.97917178605
+ 20
+4455877.475897565
+ 10
+399164.33303935576
+ 20
+4455878.675376221
+ 10
+399205.1608207412
+ 20
+4455856.033321955
+ 10
+399206.1608556077
+ 20
+4455852.608904328
+ 10
+399180.0438833427
+ 20
+4455783.912962022
+ 10
+399175.608595236
+ 20
+4455771.709137028
+  0
+LWPOLYLINE
+  5
+99
+330
+17
+100
+AcDbEntity
+  8
+YOL
+100
+AcDbPolyline
+ 90
+8
+ 70
+1
+ 10
+399158.04447581095
+ 20
+4455811.059422615
+ 10
+399160.4844801422
+ 20
+4455817.620396541
+ 10
+399162.8276851159
+ 20
+4455816.748966423
+ 10
+399183.23521377303
+ 20
+4455871.623157304
+ 10
+399188.54217164323
+ 20
+4455868.680052781
+ 10
+399168.4513770529
+ 20
+4455814.657534139
+ 10
+399170.7945820266
+ 20
+4455813.786104021
+ 10
+399168.35457769537
+ 20
+4455807.225130094
+  0
+LWPOLYLINE
+  5
+9A
+330
+17
+100
+AcDbEntity
+  8
+ORTAK_ALAN
+100
+AcDbPolyline
+ 90
+26
+ 70
+1
+ 10
+399146.8281578088
+ 20
+4455762.246788585
+ 10
+399122.33931226505
+ 20
+4455777.0121689355
+ 10
+399122.9372864956
+ 20
+4455778.6651000045
+ 10
+399131.76046632323
+ 20
+4455775.38378884
+ 10
+399140.8521016213
+ 20
+4455772.002639981
+ 10
+399143.195306595
+ 20
+4455771.131209862
+ 10
+399145.3564532884
+ 20
+4455776.942358198
+ 10
+399147.5175999818
+ 20
+4455782.753506533
+ 10
+399149.6787466752
+ 20
+4455788.564654867
+ 10
+399151.8398933686
+ 20
+4455794.375803202
+ 10
+399154.001040062
+ 20
+4455800.186951537
+ 10
+399156.1621867554
+ 20
+4455805.998099872
+ 10
+399158.04447581095
+ 20
+4455811.059422615
+ 10
+399168.35457769537
+ 20
+4455807.225130094
+ 10
+399167.09274688404
+ 20
+4455803.8321692925
+ 10
+399164.93160019064
+ 20
+4455798.021020958
+ 10
+399162.77045349724
+ 20
+4455792.209872623
+ 10
+399160.60930680385
+ 20
+4455786.398724288
+ 10
+399158.44816011045
+ 20
+4455780.587575953
+ 10
+399156.28701341705
+ 20
+4455774.776427618
+ 10
+399154.12586672365
+ 20
+4455768.965279284
+ 10
+399151.96472003026
+ 20
+4455763.154130949
+ 10
+399154.307925004
+ 20
+4455762.28270083
+ 10
+399163.3995603021
+ 20
+4455758.901551971
+ 10
+399173.13943265215
+ 20
+4455755.279325914
+ 10
+399170.46600144124
+ 20
+4455747.492857496
+  0
+LWPOLYLINE
+  5
+9B
+330
+17
+100
+AcDbEntity
+  8
+ORTAK_ALAN
+100
+AcDbPolyline
+ 90
+7
+ 70
+1
+ 10
+399158.6136779908
+ 20
+4455879.815989866
+ 10
+399164.6009148724
+ 20
+4455881.957267867
+ 10
+399183.23521377303
+ 20
+4455871.623157304
+ 10
+399182.2780053565
+ 20
+4455869.049301437
+ 10
+399177.59159540903
+ 20
+4455870.792161673
+ 10
+399168.49996011093
+ 20
+4455874.173310532
+ 10
+399158.0117488065
+ 20
+4455878.073841353
+  0
+LWPOLYLINE
+  5
+9C
+330
+17
+100
+AcDbEntity
+  8
+ORTAK_ALAN
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399207.6946992766
+ 20
+4455858.058545677
+ 10
+399208.73564726464
+ 20
+4455854.49402932
+ 10
+399200.1390540898
+ 20
+4455857.6910736635
+ 10
+399191.04741879174
+ 20
+4455861.072222522
+ 10
+399186.3610088443
+ 20
+4455862.81508276
+ 10
+399188.54217164323
+ 20
+4455868.680052781
+  0
+LWPOLYLINE
+  5
+9D
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399131.79532352794
+ 20
+4455775.4775170395
+ 10
+399131.7256091185
+ 20
+4455775.290060641
+ 10
+399128.4451221553
+ 20
+4455776.510062807
+ 10
+399128.5148365647
+ 20
+4455776.697519205
+  0
+LWPOLYLINE
+  5
+9E
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399123.206473539
+ 20
+4455778.671681718
+ 10
+399128.5148365647
+ 20
+4455776.697519205
+ 10
+399128.4451221553
+ 20
+4455776.510062807
+ 10
+399123.1367591296
+ 20
+4455778.48422532
+  0
+LWPOLYLINE
+  5
+9F
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399133.95647022134
+ 20
+4455781.288665374
+ 10
+399133.88675581187
+ 20
+4455781.1012089765
+ 10
+399130.6062688487
+ 20
+4455782.3212111415
+ 10
+399130.6759832581
+ 20
+4455782.50866754
+  0
+LWPOLYLINE
+  5
+A0
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399125.31573053676
+ 20
+4455784.502127658
+ 10
+399130.6759832581
+ 20
+4455782.50866754
+ 10
+399130.6062688487
+ 20
+4455782.3212111415
+ 10
+399125.2460161273
+ 20
+4455784.314671259
+  0
+LWPOLYLINE
+  5
+A1
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399136.11761691474
+ 20
+4455787.099813709
+ 10
+399136.04790250526
+ 20
+4455786.912357311
+ 10
+399131.3614925578
+ 20
+4455788.655217548
+ 10
+399131.4312069673
+ 20
+4455788.842673945
+  0
+LWPOLYLINE
+  5
+A2
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399127.4249875345
+ 20
+4455790.332573597
+ 10
+399131.4312069673
+ 20
+4455788.842673945
+ 10
+399131.3614925578
+ 20
+4455788.655217548
+ 10
+399127.35527312505
+ 20
+4455790.145117199
+  0
+LWPOLYLINE
+  5
+A3
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399147.55245718657
+ 20
+4455782.847234732
+ 10
+399143.8033292286
+ 20
+4455784.24152292
+ 10
+399143.7336148191
+ 20
+4455784.054066523
+ 10
+399147.4827427771
+ 20
+4455782.659778333
+  0
+LWPOLYLINE
+  5
+A4
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399136.8728406239
+ 20
+4455793.4338201145
+ 10
+399136.8031262144
+ 20
+4455793.246363717
+ 10
+399133.5226392512
+ 20
+4455794.466365882
+ 10
+399133.5923536607
+ 20
+4455794.6538222805
+  0
+LWPOLYLINE
+  5
+A5
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399129.5342445323
+ 20
+4455796.163019537
+ 10
+399133.5923536607
+ 20
+4455794.6538222805
+ 10
+399133.5226392512
+ 20
+4455794.466365882
+ 10
+399129.4645301228
+ 20
+4455795.975563139
+  0
+LWPOLYLINE
+  5
+A6
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399140.43991030153
+ 20
+4455798.722110379
+ 10
+399140.37019589206
+ 20
+4455798.53465398
+ 10
+399137.08970892883
+ 20
+4455799.754656146
+ 10
+399137.1594233383
+ 20
+4455799.942112545
+  0
+LWPOLYLINE
+  5
+A7
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399131.64350153005
+ 20
+4455801.993465477
+ 10
+399137.1594233383
+ 20
+4455799.942112545
+ 10
+399137.08970892883
+ 20
+4455799.754656146
+ 10
+399131.5737871206
+ 20
+4455801.806009078
+  0
+LWPOLYLINE
+  5
+A8
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399153.2806735576
+ 20
+4455793.94667333
+ 10
+399149.53154559963
+ 20
+4455795.34096152
+ 10
+399149.46183119016
+ 20
+4455795.153505121
+ 10
+399153.2109591481
+ 20
+4455793.759216933
+  0
+LWPOLYLINE
+  5
+A9
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399142.6010569949
+ 20
+4455804.533258714
+ 10
+399142.53134258545
+ 20
+4455804.3458023155
+ 10
+399139.25085562223
+ 20
+4455805.5658044815
+ 10
+399139.3205700317
+ 20
+4455805.753260879
+  0
+LWPOLYLINE
+  5
+AA
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399133.75275852776
+ 20
+4455807.823911416
+ 10
+399139.3205700317
+ 20
+4455805.753260879
+ 10
+399139.25085562223
+ 20
+4455805.5658044815
+ 10
+399133.6830441183
+ 20
+4455807.636455018
+  0
+LWPOLYLINE
+  5
+AB
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399144.7622036883
+ 20
+4455810.344407048
+ 10
+399144.69248927885
+ 20
+4455810.156950651
+ 10
+399140.0060793314
+ 20
+4455811.899810887
+ 10
+399140.07579374086
+ 20
+4455812.087267285
+  0
+LWPOLYLINE
+  5
+AC
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399135.8620155255
+ 20
+4455813.654357356
+ 10
+399140.07579374086
+ 20
+4455812.087267285
+ 10
+399140.0060793314
+ 20
+4455811.899810887
+ 10
+399135.79230111605
+ 20
+4455813.466900958
+  0
+LWPOLYLINE
+  5
+AD
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399156.19704396016
+ 20
+4455806.091828071
+ 10
+399152.4479160022
+ 20
+4455807.48611626
+ 10
+399152.3782015927
+ 20
+4455807.298659862
+ 10
+399156.1273295507
+ 20
+4455805.904371673
+  0
+LWPOLYLINE
+  5
+AE
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399145.5174273975
+ 20
+4455816.678413454
+ 10
+399145.447712988
+ 20
+4455816.490957056
+ 10
+399142.1672260248
+ 20
+4455817.710959222
+ 10
+399142.23694043426
+ 20
+4455817.8984156195
+  0
+LWPOLYLINE
+  5
+AF
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399137.9712725233
+ 20
+4455819.484803296
+ 10
+399142.23694043426
+ 20
+4455817.8984156195
+ 10
+399142.1672260248
+ 20
+4455817.710959222
+ 10
+399137.9015581138
+ 20
+4455819.297346897
+  0
+LWPOLYLINE
+  5
+B0
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399149.0844970751
+ 20
+4455821.966703718
+ 10
+399149.01478266565
+ 20
+4455821.77924732
+ 10
+399145.7342957024
+ 20
+4455822.999249485
+ 10
+399145.8040101119
+ 20
+4455823.186705884
+  0
+LWPOLYLINE
+  5
+B1
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399140.0535816282
+ 20
+4455825.325271066
+ 10
+399145.8040101119
+ 20
+4455823.186705884
+ 10
+399145.7342957024
+ 20
+4455822.999249485
+ 10
+399139.9838672187
+ 20
+4455825.137814669
+  0
+LWPOLYLINE
+  5
+B2
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399161.9252603312
+ 20
+4455817.19126667
+ 10
+399158.1761323732
+ 20
+4455818.585554859
+ 10
+399158.10641796375
+ 20
+4455818.398098461
+ 10
+399161.8555459217
+ 20
+4455817.003810272
+  0
+LWPOLYLINE
+  5
+B3
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399151.2456437685
+ 20
+4455827.777852053
+ 10
+399151.17592935904
+ 20
+4455827.590395655
+ 10
+399147.8954423958
+ 20
+4455828.810397821
+ 10
+399147.9651568053
+ 20
+4455828.997854219
+  0
+LWPOLYLINE
+  5
+B4
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399142.07884928683
+ 20
+4455831.186952362
+ 10
+399147.9651568053
+ 20
+4455828.997854219
+ 10
+399147.8954423958
+ 20
+4455828.810397821
+ 10
+399142.0091348774
+ 20
+4455830.999495964
+  0
+LWPOLYLINE
+  5
+B5
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399153.4067904619
+ 20
+4455833.589000387
+ 10
+399153.33707605244
+ 20
+4455833.40154399
+ 10
+399148.650666105
+ 20
+4455835.144404226
+ 10
+399148.72038051445
+ 20
+4455835.331860624
+  0
+LWPOLYLINE
+  5
+B6
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399144.1041169455
+ 20
+4455837.048633656
+ 10
+399148.72038051445
+ 20
+4455835.331860624
+ 10
+399148.650666105
+ 20
+4455835.144404226
+ 10
+399144.03440253605
+ 20
+4455836.861177258
+  0
+LWPOLYLINE
+  5
+B7
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399164.8416307337
+ 20
+4455829.336421411
+ 10
+399161.0925027758
+ 20
+4455830.730709599
+ 10
+399161.0227883663
+ 20
+4455830.543253202
+ 10
+399164.7719163243
+ 20
+4455829.148965012
+  0
+LWPOLYLINE
+  5
+B8
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399154.1620141711
+ 20
+4455839.9230067935
+ 10
+399154.0922997616
+ 20
+4455839.735550395
+ 10
+399150.8118127984
+ 20
+4455840.955552561
+ 10
+399150.88152720785
+ 20
+4455841.1430089595
+  0
+LWPOLYLINE
+  5
+B9
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399146.12938460417
+ 20
+4455842.910314951
+ 10
+399150.88152720785
+ 20
+4455841.1430089595
+ 10
+399150.8118127984
+ 20
+4455840.955552561
+ 10
+399146.0596701947
+ 20
+4455842.722858554
+  0
+LWPOLYLINE
+  5
+BA
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399157.7290838487
+ 20
+4455845.211297058
+ 10
+399157.65936943924
+ 20
+4455845.023840659
+ 10
+399154.378882476
+ 20
+4455846.243842825
+ 10
+399154.4485968855
+ 20
+4455846.431299223
+  0
+LWPOLYLINE
+  5
+BB
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399148.1546522628
+ 20
+4455848.771996247
+ 10
+399154.4485968855
+ 20
+4455846.431299223
+ 10
+399154.378882476
+ 20
+4455846.243842825
+ 10
+399148.08493785333
+ 20
+4455848.584539848
+  0
+LWPOLYLINE
+  5
+BC
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399170.5698471047
+ 20
+4455840.435860009
+ 10
+399166.82071914675
+ 20
+4455841.830148199
+ 10
+399166.75100473734
+ 20
+4455841.6426918
+ 10
+399170.5001326953
+ 20
+4455840.248403611
+  0
+LWPOLYLINE
+  5
+BD
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399159.8902305421
+ 20
+4455851.022445392
+ 10
+399159.82051613263
+ 20
+4455850.8349889945
+ 10
+399156.5400291694
+ 20
+4455852.05499116
+ 10
+399156.6097435789
+ 20
+4455852.242447558
+  0
+LWPOLYLINE
+  5
+BE
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399150.17991992144
+ 20
+4455854.633677541
+ 10
+399156.6097435789
+ 20
+4455852.242447558
+ 10
+399156.5400291694
+ 20
+4455852.05499116
+ 10
+399150.11020551197
+ 20
+4455854.446221143
+  0
+LWPOLYLINE
+  5
+BF
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399162.0513772355
+ 20
+4455856.833593727
+ 10
+399161.98166282603
+ 20
+4455856.646137329
+ 10
+399157.29525287857
+ 20
+4455858.388997566
+ 10
+399157.36496728804
+ 20
+4455858.576453963
+  0
+LWPOLYLINE
+  5
+C0
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399152.2051875801
+ 20
+4455860.495358836
+ 10
+399157.36496728804
+ 20
+4455858.576453963
+ 10
+399157.29525287857
+ 20
+4455858.388997566
+ 10
+399152.13547317067
+ 20
+4455860.307902439
+  0
+LWPOLYLINE
+  5
+C1
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399173.4862175073
+ 20
+4455852.58101475
+ 10
+399169.7370895493
+ 20
+4455853.975302939
+ 10
+399169.6673751399
+ 20
+4455853.787846541
+ 10
+399173.41650309786
+ 20
+4455852.393558351
+  0
+LWPOLYLINE
+  5
+C2
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399162.80660094466
+ 20
+4455863.1676001325
+ 10
+399162.7368865352
+ 20
+4455862.980143735
+ 10
+399159.45639957197
+ 20
+4455864.2001459
+ 10
+399159.52611398144
+ 20
+4455864.3876022985
+  0
+LWPOLYLINE
+  5
+C3
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399154.2304552388
+ 20
+4455866.3570401305
+ 10
+399159.52611398144
+ 20
+4455864.3876022985
+ 10
+399159.45639957197
+ 20
+4455864.2001459
+ 10
+399154.1607408293
+ 20
+4455866.169583733
+  0
+LWPOLYLINE
+  5
+C4
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399166.3736706223
+ 20
+4455868.455890397
+ 10
+399166.3039562128
+ 20
+4455868.268433998
+ 10
+399163.0234692496
+ 20
+4455869.488436164
+ 10
+399163.0931836591
+ 20
+4455869.675892563
+  0
+LWPOLYLINE
+  5
+C5
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399156.2557228974
+ 20
+4455872.218721426
+ 10
+399163.0931836591
+ 20
+4455869.675892563
+ 10
+399163.0234692496
+ 20
+4455869.488436164
+ 10
+399156.18600848794
+ 20
+4455872.031265028
+  0
+LWPOLYLINE
+  5
+C6
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399168.5348173157
+ 20
+4455874.267038732
+ 10
+399168.4651029062
+ 20
+4455874.079582334
+ 10
+399165.184615943
+ 20
+4455875.2995845
+ 10
+399165.2543303525
+ 20
+4455875.487040897
+  0
+LWPOLYLINE
+  5
+C7
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399158.28099055606
+ 20
+4455878.080402721
+ 10
+399165.2543303525
+ 20
+4455875.487040897
+ 10
+399165.184615943
+ 20
+4455875.2995845
+ 10
+399158.2112761466
+ 20
+4455877.892946322
+  0
+LWPOLYLINE
+  5
+C8
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399179.2144338783
+ 20
+4455863.680453348
+ 10
+399175.46530592034
+ 20
+4455865.074741538
+ 10
+399175.39559151087
+ 20
+4455864.887285139
+ 10
+399179.14471946884
+ 20
+4455863.492996951
+  0
+LWPOLYLINE
+  5
+C9
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399163.3647030973
+ 20
+4455758.807823773
+ 10
+399163.4344175068
+ 20
+4455758.99528017
+ 10
+399166.71490447
+ 20
+4455757.775278005
+ 10
+399166.64519006055
+ 20
+4455757.587821607
+  0
+LWPOLYLINE
+  5
+CA
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399172.87017984845
+ 20
+4455755.272768657
+ 10
+399166.64519006055
+ 20
+4455757.587821607
+ 10
+399166.71490447
+ 20
+4455757.775278005
+ 10
+399172.9398942579
+ 20
+4455755.460225055
+  0
+LWPOLYLINE
+  5
+CB
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399165.5258497907
+ 20
+4455764.618972107
+ 10
+399165.5955642002
+ 20
+4455764.806428505
+ 10
+399168.8760511634
+ 20
+4455763.586426339
+ 10
+399168.80633675394
+ 20
+4455763.398969942
+  0
+LWPOLYLINE
+  5
+CC
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399174.88418635
+ 20
+4455761.138637939
+ 10
+399168.80633675394
+ 20
+4455763.398969942
+ 10
+399168.8760511634
+ 20
+4455763.586426339
+ 10
+399174.95390075946
+ 20
+4455761.326094336
+  0
+LWPOLYLINE
+  5
+CD
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399167.6869964841
+ 20
+4455770.430120442
+ 10
+399167.7567108936
+ 20
+4455770.61757684
+ 10
+399172.44312084105
+ 20
+4455768.874716603
+ 10
+399172.3734064316
+ 20
+4455768.687260206
+  0
+LWPOLYLINE
+  5
+CE
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399176.8981928516
+ 20
+4455767.00450722
+ 10
+399172.3734064316
+ 20
+4455768.687260206
+ 10
+399172.44312084105
+ 20
+4455768.874716603
+ 10
+399176.96790726105
+ 20
+4455767.191963618
+  0
+LWPOLYLINE
+  5
+CF
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399160.0709985798
+ 20
+4455773.475867628
+ 10
+399156.3218706218
+ 20
+4455774.870155817
+ 10
+399156.25215621234
+ 20
+4455774.68269942
+ 10
+399160.0012841703
+ 20
+4455773.28841123
+  0
+LWPOLYLINE
+  5
+D0
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399171.25406616175
+ 20
+4455775.718410706
+ 10
+399171.3237805712
+ 20
+4455775.9058671035
+ 10
+399174.60426753445
+ 20
+4455774.685864938
+ 10
+399174.534553125
+ 20
+4455774.49840854
+  0
+LWPOLYLINE
+  5
+D1
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399178.950627429
+ 20
+4455772.856085229
+ 10
+399174.534553125
+ 20
+4455774.49840854
+ 10
+399174.60426753445
+ 20
+4455774.685864938
+ 10
+399179.0203418385
+ 20
+4455773.043541626
+  0
+LWPOLYLINE
+  5
+D2
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399172.0092898709
+ 20
+4455782.052417112
+ 10
+399172.0790042804
+ 20
+4455782.23987351
+ 10
+399175.3594912436
+ 20
+4455781.019871344
+ 10
+399175.28977683414
+ 20
+4455780.8324149465
+  0
+LWPOLYLINE
+  5
+D3
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399181.06845309393
+ 20
+4455778.683344509
+ 10
+399175.28977683414
+ 20
+4455780.8324149465
+ 10
+399175.3594912436
+ 20
+4455781.019871344
+ 10
+399181.1381675034
+ 20
+4455778.870800907
+  0
+LWPOLYLINE
+  5
+D4
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399162.98736898234
+ 20
+4455785.621022369
+ 10
+399159.2382410244
+ 20
+4455787.0153105585
+ 10
+399159.1685266149
+ 20
+4455786.82785416
+ 10
+399162.91765457287
+ 20
+4455785.4335659705
+  0
+LWPOLYLINE
+  5
+D5
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399174.1704365643
+ 20
+4455787.863565447
+ 10
+399174.2401509738
+ 20
+4455788.051021844
+ 10
+399177.520637937
+ 20
+4455786.831019679
+ 10
+399177.45092352753
+ 20
+4455786.643563281
+  0
+LWPOLYLINE
+  5
+D6
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399183.21048550913
+ 20
+4455784.50160138
+ 10
+399177.45092352753
+ 20
+4455786.643563281
+ 10
+399177.520637937
+ 20
+4455786.831019679
+ 10
+399183.2801999186
+ 20
+4455784.689057779
+  0
+LWPOLYLINE
+  5
+D7
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399176.3315832577
+ 20
+4455793.674713781
+ 10
+399176.4012976672
+ 20
+4455793.862170179
+ 10
+399181.08770761464
+ 20
+4455792.119309943
+ 10
+399181.01799320517
+ 20
+4455791.931853545
+  0
+LWPOLYLINE
+  5
+D8
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399185.41381615546
+ 20
+4455790.297061644
+ 10
+399181.01799320517
+ 20
+4455791.931853545
+ 10
+399181.08770761464
+ 20
+4455792.119309943
+ 10
+399185.48353056493
+ 20
+4455790.484518042
+  0
+LWPOLYLINE
+  5
+D9
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399168.7155853534
+ 20
+4455796.720460967
+ 10
+399164.9664573954
+ 20
+4455798.114749157
+ 10
+399164.89674298593
+ 20
+4455797.927292759
+ 10
+399168.6458709439
+ 20
+4455796.53300457
+  0
+LWPOLYLINE
+  5
+DA
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399179.89865293534
+ 20
+4455798.963004045
+ 10
+399179.9683673448
+ 20
+4455799.150460443
+ 10
+399183.24885430804
+ 20
+4455797.930458277
+ 10
+399183.17913989857
+ 20
+4455797.74300188
+  0
+LWPOLYLINE
+  5
+DB
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399187.61714680184
+ 20
+4455796.092521907
+ 10
+399183.17913989857
+ 20
+4455797.74300188
+ 10
+399183.24885430804
+ 20
+4455797.930458277
+ 10
+399187.68686121126
+ 20
+4455796.279978305
+  0
+LWPOLYLINE
+  5
+DC
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399180.6538766445
+ 20
+4455805.297010452
+ 10
+399180.723591054
+ 20
+4455805.484466849
+ 10
+399184.0040780172
+ 20
+4455804.264464684
+ 10
+399183.9343636077
+ 20
+4455804.077008286
+  0
+LWPOLYLINE
+  5
+DD
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399189.8204774482
+ 20
+4455801.887982171
+ 10
+399183.9343636077
+ 20
+4455804.077008286
+ 10
+399184.0040780172
+ 20
+4455804.264464684
+ 10
+399189.89019185764
+ 20
+4455802.075438568
+  0
+LWPOLYLINE
+  5
+DE
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399171.63195575593
+ 20
+4455808.865615708
+ 10
+399167.88282779796
+ 20
+4455810.2599038975
+ 10
+399167.8131133885
+ 20
+4455810.072447499
+ 10
+399171.56224134646
+ 20
+4455808.6781593105
+  0
+LWPOLYLINE
+  5
+DF
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399182.8150233379
+ 20
+4455811.108158786
+ 10
+399182.8847377474
+ 20
+4455811.295615184
+ 10
+399186.1652247106
+ 20
+4455810.075613018
+ 10
+399186.0955103011
+ 20
+4455809.888156621
+  0
+LWPOLYLINE
+  5
+E0
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399192.0238080945
+ 20
+4455807.683442434
+ 10
+399186.0955103011
+ 20
+4455809.888156621
+ 10
+399186.1652247106
+ 20
+4455810.075613018
+ 10
+399192.093522504
+ 20
+4455807.870898832
+  0
+LWPOLYLINE
+  5
+E1
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399184.9761700313
+ 20
+4455816.919307121
+ 10
+399185.04588444077
+ 20
+4455817.106763518
+ 10
+399189.73229438823
+ 20
+4455815.363903282
+ 10
+399189.66257997876
+ 20
+4455815.176446884
+  0
+LWPOLYLINE
+  5
+E2
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399194.2271387408
+ 20
+4455813.478902698
+ 10
+399189.66257997876
+ 20
+4455815.176446884
+ 10
+399189.73229438823
+ 20
+4455815.363903282
+ 10
+399194.2968531503
+ 20
+4455813.666359095
+  0
+LWPOLYLINE
+  5
+E3
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399177.3601721269
+ 20
+4455819.965054307
+ 10
+399173.61104416894
+ 20
+4455821.359342496
+ 10
+399173.5413297595
+ 20
+4455821.171886099
+ 10
+399177.2904577175
+ 20
+4455819.777597909
+  0
+LWPOLYLINE
+  5
+E4
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399188.54323970893
+ 20
+4455822.207597385
+ 10
+399188.6129541184
+ 20
+4455822.3950537825
+ 10
+399191.89344108163
+ 20
+4455821.175051617
+ 10
+399191.82372667216
+ 20
+4455820.987595219
+  0
+LWPOLYLINE
+  5
+E5
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399196.4304693872
+ 20
+4455819.274362961
+ 10
+399191.82372667216
+ 20
+4455820.987595219
+ 10
+399191.89344108163
+ 20
+4455821.175051617
+ 10
+399196.5001837967
+ 20
+4455819.461819358
+  0
+LWPOLYLINE
+  5
+E6
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399189.2984634181
+ 20
+4455828.541603791
+ 10
+399189.36817782756
+ 20
+4455828.729060189
+ 10
+399192.6486647908
+ 20
+4455827.509058023
+ 10
+399192.5789503813
+ 20
+4455827.321601625
+  0
+LWPOLYLINE
+  5
+E7
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399198.63380003354
+ 20
+4455825.069823224
+ 10
+399192.5789503813
+ 20
+4455827.321601625
+ 10
+399192.6486647908
+ 20
+4455827.509058023
+ 10
+399198.703514443
+ 20
+4455825.257279622
+  0
+LWPOLYLINE
+  5
+E8
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399180.27654252946
+ 20
+4455832.110209048
+ 10
+399176.5274145715
+ 20
+4455833.504497237
+ 10
+399176.4577001621
+ 20
+4455833.317040839
+ 10
+399180.20682812005
+ 20
+4455831.9227526495
+  0
+LWPOLYLINE
+  5
+E9
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399191.4596101115
+ 20
+4455834.352752126
+ 10
+399191.52932452096
+ 20
+4455834.540208523
+ 10
+399194.8098114842
+ 20
+4455833.320206358
+ 10
+399194.7400970747
+ 20
+4455833.13274996
+  0
+LWPOLYLINE
+  5
+EA
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399200.83713067987
+ 20
+4455830.865283487
+ 10
+399194.7400970747
+ 20
+4455833.13274996
+ 10
+399194.8098114842
+ 20
+4455833.320206358
+ 10
+399200.90684508934
+ 20
+4455831.052739886
+  0
+LWPOLYLINE
+  5
+EB
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399193.6207568049
+ 20
+4455840.16390046
+ 10
+399193.69047121436
+ 20
+4455840.351356858
+ 10
+399198.3768811618
+ 20
+4455838.608496621
+ 10
+399198.30716675235
+ 20
+4455838.421040224
+  0
+LWPOLYLINE
+  5
+EC
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399203.04046132625
+ 20
+4455836.660743751
+ 10
+399198.30716675235
+ 20
+4455838.421040224
+ 10
+399198.3768811618
+ 20
+4455838.608496621
+ 10
+399203.11017573567
+ 20
+4455836.848200149
+  0
+LWPOLYLINE
+  5
+ED
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399186.0047589005
+ 20
+4455843.209647646
+ 10
+399182.2556309425
+ 20
+4455844.603935836
+ 10
+399182.18591653305
+ 20
+4455844.416479438
+ 10
+399185.935044491
+ 20
+4455843.022191249
+  0
+LWPOLYLINE
+  5
+EE
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399197.1878264825
+ 20
+4455845.452190724
+ 10
+399197.257540892
+ 20
+4455845.6396471225
+ 10
+399200.5380278552
+ 20
+4455844.4196449565
+ 10
+399200.46831344574
+ 20
+4455844.232188558
+  0
+LWPOLYLINE
+  5
+EF
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399205.2437919726
+ 20
+4455842.456204014
+ 10
+399200.46831344574
+ 20
+4455844.232188558
+ 10
+399200.5380278552
+ 20
+4455844.4196449565
+ 10
+399205.31350638205
+ 20
+4455842.643660412
+  0
+LWPOLYLINE
+  5
+F0
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399197.9430501917
+ 20
+4455851.78619713
+ 10
+399198.01276460115
+ 20
+4455851.973653528
+ 10
+399201.2932515644
+ 20
+4455850.753651362
+ 10
+399201.2235371549
+ 20
+4455850.566194965
+  0
+LWPOLYLINE
+  5
+F1
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399207.4471226189
+ 20
+4455848.251664277
+ 10
+399201.2235371549
+ 20
+4455850.566194965
+ 10
+399201.2932515644
+ 20
+4455850.753651362
+ 10
+399207.5168370284
+ 20
+4455848.439120675
+  0
+LWPOLYLINE
+  5
+F2
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399200.1041968851
+ 20
+4455857.597345465
+ 10
+399200.17391129455
+ 20
+4455857.784801863
+ 10
+399203.4543982578
+ 20
+4455856.564799697
+ 10
+399203.3846838483
+ 20
+4455856.377343299
+  0
+LWPOLYLINE
+  5
+F3
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399208.4086163054
+ 20
+4455854.508959566
+ 10
+399203.3846838483
+ 20
+4455856.377343299
+ 10
+399203.4543982578
+ 20
+4455856.564799697
+ 10
+399208.47833071486
+ 20
+4455854.6964159645
+  0
+LWPOLYLINE
+  5
+F4
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399188.92112930305
+ 20
+4455855.354802387
+ 10
+399185.1720013451
+ 20
+4455856.749090577
+ 10
+399185.1022869356
+ 20
+4455856.561634178
+ 10
+399188.8514148936
+ 20
+4455855.1673459895
+  0
+LWPOLYLINE
+  5
+F5
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399143.2301637998
+ 20
+4455771.224938062
+ 10
+399140.88695882604
+ 20
+4455772.09636818
+ 10
+399140.81724441657
+ 20
+4455771.908911782
+ 10
+399143.1604493903
+ 20
+4455771.037481664
+  0
+LWPOLYLINE
+  5
+F6
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399145.39131049317
+ 20
+4455777.036086396
+ 10
+399143.04810551944
+ 20
+4455777.907516515
+ 10
+399142.97839110997
+ 20
+4455777.720060117
+ 10
+399145.3215960837
+ 20
+4455776.848629999
+  0
+LWPOLYLINE
+  5
+F7
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399143.35874920344
+ 20
+4455771.283809056
+ 10
+399143.1712928055
+ 20
+4455771.353523466
+ 10
+399143.1015783961
+ 20
+4455771.1660670675
+ 10
+399143.28903479397
+ 20
+4455771.096352658
+  0
+LWPOLYLINE
+  5
+F8
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399145.45018148737
+ 20
+4455776.9075009925
+ 10
+399145.2627250895
+ 20
+4455776.977215403
+ 10
+399143.5895792623
+ 20
+4455772.478261853
+ 10
+399143.7770356602
+ 20
+4455772.408547443
+  0
+LWPOLYLINE
+  5
+F9
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399145.39131049317
+ 20
+4455777.036086396
+ 10
+399143.04810551944
+ 20
+4455777.907516515
+ 10
+399142.97839110997
+ 20
+4455777.720060117
+ 10
+399145.3215960837
+ 20
+4455776.848629999
+  0
+LWPOLYLINE
+  5
+FA
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399147.55245718657
+ 20
+4455782.847234732
+ 10
+399145.20925221284
+ 20
+4455783.71866485
+ 10
+399145.13953780336
+ 20
+4455783.531208452
+ 10
+399147.4827427771
+ 20
+4455782.659778333
+  0
+LWPOLYLINE
+  5
+FB
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399147.1233273145
+ 20
+4455781.406454543
+ 10
+399146.93587091664
+ 20
+4455781.476168952
+ 10
+399145.2627250895
+ 20
+4455776.977215403
+ 10
+399145.45018148737
+ 20
+4455776.9075009925
+  0
+LWPOLYLINE
+  5
+FC
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399147.61132818076
+ 20
+4455782.718649328
+ 10
+399147.4238717829
+ 20
+4455782.788363737
+ 10
+399147.3541573734
+ 20
+4455782.60090734
+ 10
+399147.5416137713
+ 20
+4455782.5311929295
+  0
+LWPOLYLINE
+  5
+FD
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399147.55245718657
+ 20
+4455782.847234732
+ 10
+399143.8033292286
+ 20
+4455784.24152292
+ 10
+399143.7336148191
+ 20
+4455784.054066523
+ 10
+399147.4827427771
+ 20
+4455782.659778333
+  0
+LWPOLYLINE
+  5
+FE
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399149.71360387997
+ 20
+4455788.658383067
+ 10
+399145.964475922
+ 20
+4455790.052671256
+ 10
+399145.8947615125
+ 20
+4455789.865214857
+ 10
+399149.6438894705
+ 20
+4455788.4709266685
+  0
+LWPOLYLINE
+  5
+FF
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399147.68104259024
+ 20
+4455782.906105726
+ 10
+399147.4935861923
+ 20
+4455782.975820135
+ 10
+399147.4238717829
+ 20
+4455782.788363737
+ 10
+399147.61132818076
+ 20
+4455782.718649328
+  0
+LWPOLYLINE
+  5
+100
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399149.77247487416
+ 20
+4455788.529797663
+ 10
+399149.5850184763
+ 20
+4455788.599512072
+ 10
+399147.9118726491
+ 20
+4455784.100558522
+ 10
+399148.099329047
+ 20
+4455784.030844113
+  0
+LWPOLYLINE
+  5
+101
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399149.71360387997
+ 20
+4455788.658383067
+ 10
+399145.964475922
+ 20
+4455790.052671256
+ 10
+399145.8947615125
+ 20
+4455789.865214857
+ 10
+399149.6438894705
+ 20
+4455788.4709266685
+  0
+LWPOLYLINE
+  5
+102
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399151.87475057336
+ 20
+4455794.469531401
+ 10
+399148.1256226154
+ 20
+4455795.863819591
+ 10
+399148.0559082059
+ 20
+4455795.6763631925
+ 10
+399151.8050361639
+ 20
+4455794.282075003
+  0
+LWPOLYLINE
+  5
+103
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399151.4456207013
+ 20
+4455793.028751212
+ 10
+399151.25816430344
+ 20
+4455793.0984656215
+ 10
+399149.5850184763
+ 20
+4455788.599512072
+ 10
+399149.77247487416
+ 20
+4455788.529797663
+  0
+LWPOLYLINE
+  5
+104
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399151.93362156756
+ 20
+4455794.340945997
+ 10
+399151.74616516964
+ 20
+4455794.410660407
+ 10
+399151.6764507602
+ 20
+4455794.223204009
+ 10
+399151.8639071581
+ 20
+4455794.1534896
+  0
+LWPOLYLINE
+  5
+105
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399151.87475057336
+ 20
+4455794.469531401
+ 10
+399149.53154559963
+ 20
+4455795.34096152
+ 10
+399149.46183119016
+ 20
+4455795.153505121
+ 10
+399151.8050361639
+ 20
+4455794.282075003
+  0
+LWPOLYLINE
+  5
+106
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399154.03589726676
+ 20
+4455800.280679736
+ 10
+399151.692692293
+ 20
+4455801.152109854
+ 10
+399151.62297788355
+ 20
+4455800.964653457
+ 10
+399153.9661828573
+ 20
+4455800.093223338
+  0
+LWPOLYLINE
+  5
+107
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399152.00333597703
+ 20
+4455794.528402396
+ 10
+399151.8158795791
+ 20
+4455794.598116805
+ 10
+399151.74616516964
+ 20
+4455794.410660407
+ 10
+399151.93362156756
+ 20
+4455794.340945997
+  0
+LWPOLYLINE
+  5
+108
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399154.09476826095
+ 20
+4455800.1520943325
+ 10
+399153.90731186303
+ 20
+4455800.221808742
+ 10
+399152.2341660359
+ 20
+4455795.722855193
+ 10
+399152.4216224338
+ 20
+4455795.653140782
+  0
+LWPOLYLINE
+  5
+109
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399154.03589726676
+ 20
+4455800.280679736
+ 10
+399151.692692293
+ 20
+4455801.152109854
+ 10
+399151.62297788355
+ 20
+4455800.964653457
+ 10
+399153.9661828573
+ 20
+4455800.093223338
+  0
+LWPOLYLINE
+  5
+10A
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399156.19704396016
+ 20
+4455806.091828071
+ 10
+399153.8538389864
+ 20
+4455806.963258189
+ 10
+399153.78412457695
+ 20
+4455806.775801791
+ 10
+399156.1273295507
+ 20
+4455805.904371673
+  0
+LWPOLYLINE
+  5
+10B
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399155.7679140881
+ 20
+4455804.651047882
+ 10
+399155.58045769023
+ 20
+4455804.720762291
+ 10
+399153.90731186303
+ 20
+4455800.221808742
+ 10
+399154.09476826095
+ 20
+4455800.1520943325
+  0
+LWPOLYLINE
+  5
+10C
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399156.25591495435
+ 20
+4455805.963242667
+ 10
+399156.06845855643
+ 20
+4455806.032957077
+ 10
+399155.998744147
+ 20
+4455805.845500679
+ 10
+399156.1862005449
+ 20
+4455805.775786269
+  0
+LWPOLYLINE
+  5
+10D
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399156.19704396016
+ 20
+4455806.091828071
+ 10
+399152.4479160022
+ 20
+4455807.48611626
+ 10
+399152.3782015927
+ 20
+4455807.298659862
+ 10
+399156.1273295507
+ 20
+4455805.904371673
+  0
+LWPOLYLINE
+  5
+10E
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399158.35819065355
+ 20
+4455811.902976406
+ 10
+399154.6090626956
+ 20
+4455813.297264595
+ 10
+399154.5393482861
+ 20
+4455813.109808197
+ 10
+399158.2884762441
+ 20
+4455811.715520008
+  0
+LWPOLYLINE
+  5
+10F
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399156.3256293638
+ 20
+4455806.150699065
+ 10
+399156.1381729659
+ 20
+4455806.220413474
+ 10
+399156.06845855643
+ 20
+4455806.032957077
+ 10
+399156.25591495435
+ 20
+4455805.963242667
+  0
+LWPOLYLINE
+  5
+110
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399158.41706164775
+ 20
+4455811.774391002
+ 10
+399158.2296052498
+ 20
+4455811.844105411
+ 10
+399156.5564594227
+ 20
+4455807.345151862
+ 10
+399156.7439158206
+ 20
+4455807.275437453
+  0
+LWPOLYLINE
+  5
+111
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399158.35819065355
+ 20
+4455811.902976406
+ 10
+399154.6090626956
+ 20
+4455813.297264595
+ 10
+399154.5393482861
+ 20
+4455813.109808197
+ 10
+399158.2884762441
+ 20
+4455811.715520008
+  0
+LWPOLYLINE
+  5
+112
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399160.51933734695
+ 20
+4455817.71412474
+ 10
+399156.770209389
+ 20
+4455819.10841293
+ 10
+399156.7004949795
+ 20
+4455818.920956532
+ 10
+399160.4496229375
+ 20
+4455817.526668343
+  0
+LWPOLYLINE
+  5
+113
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399160.0902074749
+ 20
+4455816.273344551
+ 10
+399159.90275107697
+ 20
+4455816.343058961
+ 10
+399158.2296052498
+ 20
+4455811.844105411
+ 10
+399158.41706164775
+ 20
+4455811.774391002
+  0
+LWPOLYLINE
+  5
+114
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399160.57820834115
+ 20
+4455817.585539337
+ 10
+399160.3907519432
+ 20
+4455817.655253747
+ 10
+399160.32103753375
+ 20
+4455817.467797348
+ 10
+399160.5084939317
+ 20
+4455817.398082939
+  0
+LWPOLYLINE
+  5
+115
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399154.34278220875
+ 20
+4455762.37642903
+ 10
+399151.999577235
+ 20
+4455763.247859147
+ 10
+399151.92986282555
+ 20
+4455763.06040275
+ 10
+399154.2730677993
+ 20
+4455762.1889726315
+  0
+LWPOLYLINE
+  5
+116
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399156.50392890215
+ 20
+4455768.187577364
+ 10
+399154.1607239284
+ 20
+4455769.059007483
+ 10
+399154.09100951895
+ 20
+4455768.871551084
+ 10
+399156.4342144927
+ 20
+4455768.000120967
+  0
+LWPOLYLINE
+  5
+117
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399152.1281626387
+ 20
+4455763.306730142
+ 10
+399151.94070624077
+ 20
+4455763.376444551
+ 10
+399151.87099183135
+ 20
+4455763.188988154
+ 10
+399152.0584482292
+ 20
+4455763.119273744
+  0
+LWPOLYLINE
+  5
+118
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399154.2195949226
+ 20
+4455768.930422079
+ 10
+399154.03213852475
+ 20
+4455769.000136488
+ 10
+399152.35899269755
+ 20
+4455764.501182939
+ 10
+399152.5464490955
+ 20
+4455764.43146853
+  0
+LWPOLYLINE
+  5
+119
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399156.50392890215
+ 20
+4455768.187577364
+ 10
+399154.1607239284
+ 20
+4455769.059007483
+ 10
+399154.09100951895
+ 20
+4455768.871551084
+ 10
+399156.4342144927
+ 20
+4455768.000120967
+  0
+LWPOLYLINE
+  5
+11A
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399158.66507559555
+ 20
+4455773.998725699
+ 10
+399156.3218706218
+ 20
+4455774.870155817
+ 10
+399156.25215621234
+ 20
+4455774.68269942
+ 10
+399158.5953611861
+ 20
+4455773.811269301
+  0
+LWPOLYLINE
+  5
+11B
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399155.89274074975
+ 20
+4455773.429375628
+ 10
+399155.7052843519
+ 20
+4455773.499090038
+ 10
+399154.03213852475
+ 20
+4455769.000136488
+ 10
+399154.2195949226
+ 20
+4455768.930422079
+  0
+LWPOLYLINE
+  5
+11C
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399156.380741616
+ 20
+4455774.741570414
+ 10
+399156.19328521815
+ 20
+4455774.811284823
+ 10
+399156.1235708087
+ 20
+4455774.623828425
+ 10
+399156.31102720654
+ 20
+4455774.554114016
+  0
+LWPOLYLINE
+  5
+11D
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399160.0709985798
+ 20
+4455773.475867628
+ 10
+399156.3218706218
+ 20
+4455774.870155817
+ 10
+399156.25215621234
+ 20
+4455774.68269942
+ 10
+399160.0012841703
+ 20
+4455773.28841123
+  0
+LWPOLYLINE
+  5
+11E
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399162.2321452732
+ 20
+4455779.287015963
+ 10
+399158.4830173152
+ 20
+4455780.681304152
+ 10
+399158.41330290574
+ 20
+4455780.493847754
+ 10
+399162.1624308637
+ 20
+4455779.099559565
+  0
+LWPOLYLINE
+  5
+11F
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399156.4504560255
+ 20
+4455774.929026811
+ 10
+399156.26299962756
+ 20
+4455774.998741221
+ 10
+399156.19328521815
+ 20
+4455774.811284823
+ 10
+399156.380741616
+ 20
+4455774.741570414
+  0
+LWPOLYLINE
+  5
+120
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399158.5418883094
+ 20
+4455780.552718748
+ 10
+399158.3544319115
+ 20
+4455780.622433158
+ 10
+399156.68128608435
+ 20
+4455776.123479608
+ 10
+399156.8687424823
+ 20
+4455776.053765199
+  0
+LWPOLYLINE
+  5
+121
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399162.2321452732
+ 20
+4455779.287015963
+ 10
+399158.4830173152
+ 20
+4455780.681304152
+ 10
+399158.41330290574
+ 20
+4455780.493847754
+ 10
+399162.1624308637
+ 20
+4455779.099559565
+  0
+LWPOLYLINE
+  5
+122
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399164.3932919666
+ 20
+4455785.098164298
+ 10
+399160.6441640086
+ 20
+4455786.492452487
+ 10
+399160.57444959914
+ 20
+4455786.304996089
+ 10
+399164.3235775571
+ 20
+4455784.9107079
+  0
+LWPOLYLINE
+  5
+123
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399160.21503413655
+ 20
+4455785.051672298
+ 10
+399160.0275777387
+ 20
+4455785.121386708
+ 10
+399158.3544319115
+ 20
+4455780.622433158
+ 10
+399158.5418883094
+ 20
+4455780.552718748
+  0
+LWPOLYLINE
+  5
+124
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399160.7030350028
+ 20
+4455786.363867084
+ 10
+399160.5155786049
+ 20
+4455786.433581493
+ 10
+399160.44586419547
+ 20
+4455786.246125095
+ 10
+399160.63332059333
+ 20
+4455786.176410685
+  0
+LWPOLYLINE
+  5
+125
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399162.98736898234
+ 20
+4455785.621022369
+ 10
+399160.6441640086
+ 20
+4455786.492452487
+ 10
+399160.57444959914
+ 20
+4455786.304996089
+ 10
+399162.91765457287
+ 20
+4455785.4335659705
+  0
+LWPOLYLINE
+  5
+126
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399165.14851567574
+ 20
+4455791.432170704
+ 10
+399162.805310702
+ 20
+4455792.303600822
+ 10
+399162.73559629254
+ 20
+4455792.116144424
+ 10
+399165.07880126627
+ 20
+4455791.244714306
+  0
+LWPOLYLINE
+  5
+127
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399160.7727494123
+ 20
+4455786.551323481
+ 10
+399160.58529301436
+ 20
+4455786.621037891
+ 10
+399160.5155786049
+ 20
+4455786.433581493
+ 10
+399160.7030350028
+ 20
+4455786.363867084
+  0
+LWPOLYLINE
+  5
+128
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399162.8641816962
+ 20
+4455792.175015418
+ 10
+399162.6767252983
+ 20
+4455792.244729828
+ 10
+399161.00357947114
+ 20
+4455787.745776278
+ 10
+399161.19103586907
+ 20
+4455787.676061869
+  0
+LWPOLYLINE
+  5
+129
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399165.14851567574
+ 20
+4455791.432170704
+ 10
+399162.805310702
+ 20
+4455792.303600822
+ 10
+399162.73559629254
+ 20
+4455792.116144424
+ 10
+399165.07880126627
+ 20
+4455791.244714306
+  0
+LWPOLYLINE
+  5
+12A
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399167.30966236914
+ 20
+4455797.243319038
+ 10
+399164.9664573954
+ 20
+4455798.114749157
+ 10
+399164.89674298593
+ 20
+4455797.927292759
+ 10
+399167.23994795966
+ 20
+4455797.055862641
+  0
+LWPOLYLINE
+  5
+12B
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399164.53732752334
+ 20
+4455796.673968968
+ 10
+399164.3498711255
+ 20
+4455796.743683377
+ 10
+399162.6767252983
+ 20
+4455792.244729828
+ 10
+399162.8641816962
+ 20
+4455792.175015418
+  0
+LWPOLYLINE
+  5
+12C
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399165.0253283896
+ 20
+4455797.986163753
+ 10
+399164.8378719917
+ 20
+4455798.055878162
+ 10
+399164.76815758226
+ 20
+4455797.868421765
+ 10
+399164.9556139801
+ 20
+4455797.798707355
+  0
+LWPOLYLINE
+  5
+12D
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399168.7155853534
+ 20
+4455796.720460967
+ 10
+399164.9664573954
+ 20
+4455798.114749157
+ 10
+399164.89674298593
+ 20
+4455797.927292759
+ 10
+399168.6458709439
+ 20
+4455796.53300457
+  0
+LWPOLYLINE
+  5
+12E
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399170.8767320468
+ 20
+4455802.531609302
+ 10
+399167.1276040888
+ 20
+4455803.925897491
+ 10
+399167.05788967933
+ 20
+4455803.738441094
+ 10
+399170.8070176373
+ 20
+4455802.344152904
+  0
+LWPOLYLINE
+  5
+12F
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399165.0950427991
+ 20
+4455798.173620151
+ 10
+399164.90758640115
+ 20
+4455798.243334561
+ 10
+399164.8378719917
+ 20
+4455798.055878162
+ 10
+399165.0253283896
+ 20
+4455797.986163753
+  0
+LWPOLYLINE
+  5
+130
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399167.186475083
+ 20
+4455803.797312088
+ 10
+399166.9990186851
+ 20
+4455803.867026498
+ 10
+399165.32587285794
+ 20
+4455799.3680729475
+ 10
+399165.51332925586
+ 20
+4455799.298358538
+  0
+LWPOLYLINE
+  5
+131
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399170.8767320468
+ 20
+4455802.531609302
+ 10
+399167.1276040888
+ 20
+4455803.925897491
+ 10
+399167.05788967933
+ 20
+4455803.738441094
+ 10
+399170.8070176373
+ 20
+4455802.344152904
+  0
+LWPOLYLINE
+  5
+132
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399173.0378787401
+ 20
+4455808.342757638
+ 10
+399169.2887507822
+ 20
+4455809.737045826
+ 10
+399169.2190363727
+ 20
+4455809.549589428
+ 10
+399172.9681643307
+ 20
+4455808.155301239
+  0
+LWPOLYLINE
+  5
+133
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399168.85962091014
+ 20
+4455808.2962656375
+ 10
+399168.6721645122
+ 20
+4455808.365980047
+ 10
+399166.9990186851
+ 20
+4455803.867026498
+ 10
+399167.186475083
+ 20
+4455803.797312088
+  0
+LWPOLYLINE
+  5
+134
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_DUVARI
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399169.3476217764
+ 20
+4455809.608460423
+ 10
+399169.1601653785
+ 20
+4455809.678174832
+ 10
+399169.090450969
+ 20
+4455809.490718435
+ 10
+399169.2779073669
+ 20
+4455809.421004025
+  0
+LWPOLYLINE
+  5
+135
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399131.79532352794
+ 20
+4455775.4775170395
+ 10
+399129.92075954896
+ 20
+4455776.174661133
+ 10
+399129.85104513954
+ 20
+4455775.987204736
+ 10
+399131.7256091185
+ 20
+4455775.290060641
+  0
+LWPOLYLINE
+  5
+136
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399133.95647022134
+ 20
+4455781.288665374
+ 10
+399132.08190624235
+ 20
+4455781.985809469
+ 10
+399132.01219183294
+ 20
+4455781.79835307
+ 10
+399133.88675581187
+ 20
+4455781.1012089765
+  0
+LWPOLYLINE
+  5
+137
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399136.11761691474
+ 20
+4455787.099813709
+ 10
+399134.24305293575
+ 20
+4455787.796957803
+ 10
+399134.1733385263
+ 20
+4455787.609501406
+ 10
+399136.04790250526
+ 20
+4455786.912357311
+  0
+LWPOLYLINE
+  5
+138
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399134.7116939305
+ 20
+4455787.62267178
+ 10
+399132.8371299515
+ 20
+4455788.319815874
+ 10
+399132.76741554204
+ 20
+4455788.132359477
+ 10
+399134.641979521
+ 20
+4455787.435215382
+  0
+LWPOLYLINE
+  5
+139
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399136.8728406239
+ 20
+4455793.4338201145
+ 10
+399134.9982766449
+ 20
+4455794.130964209
+ 10
+399134.92856223544
+ 20
+4455793.943507811
+ 10
+399136.8031262144
+ 20
+4455793.246363717
+  0
+LWPOLYLINE
+  5
+13A
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399139.0339873173
+ 20
+4455799.24496845
+ 10
+399137.1594233383
+ 20
+4455799.942112545
+ 10
+399137.08970892883
+ 20
+4455799.754656146
+ 10
+399138.9642729078
+ 20
+4455799.057512051
+  0
+LWPOLYLINE
+  5
+13B
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399140.43991030153
+ 20
+4455798.722110379
+ 10
+399138.56534632255
+ 20
+4455799.419254473
+ 10
+399138.4956319131
+ 20
+4455799.231798075
+ 10
+399140.37019589206
+ 20
+4455798.53465398
+  0
+LWPOLYLINE
+  5
+13C
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399142.6010569949
+ 20
+4455804.533258714
+ 10
+399140.72649301594
+ 20
+4455805.230402808
+ 10
+399140.65677860647
+ 20
+4455805.04294641
+ 10
+399142.53134258545
+ 20
+4455804.3458023155
+  0
+LWPOLYLINE
+  5
+13D
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399144.7622036883
+ 20
+4455810.344407048
+ 10
+399142.88763970934
+ 20
+4455811.041551143
+ 10
+399142.81792529987
+ 20
+4455810.854094745
+ 10
+399144.69248927885
+ 20
+4455810.156950651
+  0
+LWPOLYLINE
+  5
+13E
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399143.3562807041
+ 20
+4455810.867265119
+ 10
+399141.4817167251
+ 20
+4455811.564409214
+ 10
+399141.4120023156
+ 20
+4455811.376952816
+ 10
+399143.2865662946
+ 20
+4455810.679808721
+  0
+LWPOLYLINE
+  5
+13F
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399145.5174273975
+ 20
+4455816.678413454
+ 10
+399143.6428634185
+ 20
+4455817.375557548
+ 10
+399143.573149009
+ 20
+4455817.188101151
+ 10
+399145.447712988
+ 20
+4455816.490957056
+  0
+LWPOLYLINE
+  5
+140
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399147.6785740909
+ 20
+4455822.489561789
+ 10
+399145.8040101119
+ 20
+4455823.186705884
+ 10
+399145.7342957024
+ 20
+4455822.999249485
+ 10
+399147.6088596814
+ 20
+4455822.302105391
+  0
+LWPOLYLINE
+  5
+141
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399149.0844970751
+ 20
+4455821.966703718
+ 10
+399147.20993309614
+ 20
+4455822.663847812
+ 10
+399147.14021868666
+ 20
+4455822.476391414
+ 10
+399149.01478266565
+ 20
+4455821.77924732
+  0
+LWPOLYLINE
+  5
+142
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399151.2456437685
+ 20
+4455827.777852053
+ 10
+399149.37107978953
+ 20
+4455828.474996148
+ 10
+399149.30136538006
+ 20
+4455828.287539749
+ 10
+399151.17592935904
+ 20
+4455827.590395655
+  0
+LWPOLYLINE
+  5
+143
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399153.4067904619
+ 20
+4455833.589000387
+ 10
+399151.53222648293
+ 20
+4455834.286144482
+ 10
+399151.46251207346
+ 20
+4455834.098688085
+ 10
+399153.33707605244
+ 20
+4455833.40154399
+  0
+LWPOLYLINE
+  5
+144
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399152.0008674777
+ 20
+4455834.111858458
+ 10
+399150.1263034987
+ 20
+4455834.809002553
+ 10
+399150.0565890892
+ 20
+4455834.621546155
+ 10
+399151.9311530682
+ 20
+4455833.924402061
+  0
+LWPOLYLINE
+  5
+145
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399154.1620141711
+ 20
+4455839.9230067935
+ 10
+399152.2874501921
+ 20
+4455840.620150888
+ 10
+399152.2177357826
+ 20
+4455840.43269449
+ 10
+399154.0922997616
+ 20
+4455839.735550395
+  0
+LWPOLYLINE
+  5
+146
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399156.3231608645
+ 20
+4455845.734155129
+ 10
+399154.4485968855
+ 20
+4455846.431299223
+ 10
+399154.378882476
+ 20
+4455846.243842825
+ 10
+399156.253446455
+ 20
+4455845.54669873
+  0
+LWPOLYLINE
+  5
+147
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399157.7290838487
+ 20
+4455845.211297058
+ 10
+399155.8545198697
+ 20
+4455845.9084411515
+ 10
+399155.78480546025
+ 20
+4455845.720984754
+ 10
+399157.65936943924
+ 20
+4455845.023840659
+  0
+LWPOLYLINE
+  5
+148
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399159.8902305421
+ 20
+4455851.022445392
+ 10
+399158.0156665631
+ 20
+4455851.719589487
+ 10
+399157.94595215365
+ 20
+4455851.532133088
+ 10
+399159.82051613263
+ 20
+4455850.8349889945
+  0
+LWPOLYLINE
+  5
+149
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399162.0513772355
+ 20
+4455856.833593727
+ 10
+399160.1768132565
+ 20
+4455857.530737822
+ 10
+399160.10709884705
+ 20
+4455857.343281424
+ 10
+399161.98166282603
+ 20
+4455856.646137329
+  0
+LWPOLYLINE
+  5
+14A
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399160.64545425127
+ 20
+4455857.356451798
+ 10
+399158.7708902723
+ 20
+4455858.053595892
+ 10
+399158.7011758628
+ 20
+4455857.866139495
+ 10
+399160.5757398418
+ 20
+4455857.1689954
+  0
+LWPOLYLINE
+  5
+14B
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399162.80660094466
+ 20
+4455863.1676001325
+ 10
+399160.9320369657
+ 20
+4455863.864744227
+ 10
+399160.8623225562
+ 20
+4455863.677287829
+ 10
+399162.7368865352
+ 20
+4455862.980143735
+  0
+LWPOLYLINE
+  5
+14C
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399164.96774763806
+ 20
+4455868.978748468
+ 10
+399163.0931836591
+ 20
+4455869.675892563
+ 10
+399163.0234692496
+ 20
+4455869.488436164
+ 10
+399164.8980332286
+ 20
+4455868.7912920695
+  0
+LWPOLYLINE
+  5
+14D
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399166.3736706223
+ 20
+4455868.455890397
+ 10
+399164.4991066433
+ 20
+4455869.153034491
+ 10
+399164.42939223384
+ 20
+4455868.965578093
+ 10
+399166.3039562128
+ 20
+4455868.268433998
+  0
+LWPOLYLINE
+  5
+14E
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399168.5348173157
+ 20
+4455874.267038732
+ 10
+399166.6602533367
+ 20
+4455874.964182826
+ 10
+399166.59053892724
+ 20
+4455874.776726428
+ 10
+399168.4651029062
+ 20
+4455874.079582334
+  0
+LWPOLYLINE
+  5
+14F
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399165.3089814858
+ 20
+4455758.298136076
+ 10
+399163.4344175068
+ 20
+4455758.99528017
+ 10
+399163.3647030973
+ 20
+4455758.807823773
+ 10
+399165.2392670763
+ 20
+4455758.110679678
+  0
+LWPOLYLINE
+  5
+150
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399167.4701281792
+ 20
+4455764.10928441
+ 10
+399165.5955642002
+ 20
+4455764.806428505
+ 10
+399165.5258497907
+ 20
+4455764.618972107
+ 10
+399167.4004137697
+ 20
+4455763.921828013
+  0
+LWPOLYLINE
+  5
+151
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399169.6312748726
+ 20
+4455769.9204327455
+ 10
+399167.7567108936
+ 20
+4455770.61757684
+ 10
+399167.6869964841
+ 20
+4455770.430120442
+ 10
+399169.5615604631
+ 20
+4455769.732976347
+  0
+LWPOLYLINE
+  5
+152
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399171.0371978568
+ 20
+4455769.397574674
+ 10
+399169.16263387783
+ 20
+4455770.094718769
+ 10
+399169.09291946836
+ 20
+4455769.907262371
+ 10
+399170.96748344734
+ 20
+4455769.210118276
+  0
+LWPOLYLINE
+  5
+153
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399173.1983445502
+ 20
+4455775.20872301
+ 10
+399171.3237805712
+ 20
+4455775.9058671035
+ 10
+399171.25406616175
+ 20
+4455775.718410706
+ 10
+399173.12863014074
+ 20
+4455775.021266611
+  0
+LWPOLYLINE
+  5
+154
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399175.3594912436
+ 20
+4455781.019871344
+ 10
+399173.4849272646
+ 20
+4455781.717015439
+ 10
+399173.41521285515
+ 20
+4455781.52955904
+ 10
+399175.28977683414
+ 20
+4455780.8324149465
+  0
+LWPOLYLINE
+  5
+155
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399173.95356825937
+ 20
+4455781.542729415
+ 10
+399172.0790042804
+ 20
+4455782.23987351
+ 10
+399172.0092898709
+ 20
+4455782.052417112
+ 10
+399173.8838538499
+ 20
+4455781.355273017
+  0
+LWPOLYLINE
+  5
+156
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399176.11471495277
+ 20
+4455787.35387775
+ 10
+399174.2401509738
+ 20
+4455788.051021844
+ 10
+399174.1704365643
+ 20
+4455787.863565447
+ 10
+399176.0450005433
+ 20
+4455787.166421352
+  0
+LWPOLYLINE
+  5
+157
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399178.27586164617
+ 20
+4455793.1650260845
+ 10
+399176.4012976672
+ 20
+4455793.862170179
+ 10
+399176.3315832577
+ 20
+4455793.674713781
+ 10
+399178.2061472367
+ 20
+4455792.977569687
+  0
+LWPOLYLINE
+  5
+158
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399179.6817846304
+ 20
+4455792.642168013
+ 10
+399177.8072206514
+ 20
+4455793.339312108
+ 10
+399177.73750624195
+ 20
+4455793.151855711
+ 10
+399179.61207022093
+ 20
+4455792.454711616
+  0
+LWPOLYLINE
+  5
+159
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399181.8429313238
+ 20
+4455798.453316349
+ 10
+399179.9683673448
+ 20
+4455799.150460443
+ 10
+399179.89865293534
+ 20
+4455798.963004045
+ 10
+399181.7732169143
+ 20
+4455798.26585995
+  0
+LWPOLYLINE
+  5
+15A
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399184.0040780172
+ 20
+4455804.264464684
+ 10
+399182.1295140382
+ 20
+4455804.961608778
+ 10
+399182.05979962874
+ 20
+4455804.77415238
+ 10
+399183.9343636077
+ 20
+4455804.077008286
+  0
+LWPOLYLINE
+  5
+15B
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399182.59815503296
+ 20
+4455804.787322754
+ 10
+399180.723591054
+ 20
+4455805.484466849
+ 10
+399180.6538766445
+ 20
+4455805.297010452
+ 10
+399182.5284406235
+ 20
+4455804.599866357
+  0
+LWPOLYLINE
+  5
+15C
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399184.75930172636
+ 20
+4455810.598471089
+ 10
+399182.8847377474
+ 20
+4455811.295615184
+ 10
+399182.8150233379
+ 20
+4455811.108158786
+ 10
+399184.6895873169
+ 20
+4455810.411014691
+  0
+LWPOLYLINE
+  5
+15D
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399186.92044841975
+ 20
+4455816.4096194245
+ 10
+399185.04588444077
+ 20
+4455817.106763518
+ 10
+399184.9761700313
+ 20
+4455816.919307121
+ 10
+399186.8507340103
+ 20
+4455816.222163026
+  0
+LWPOLYLINE
+  5
+15E
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399188.326371404
+ 20
+4455815.886761353
+ 10
+399186.451807425
+ 20
+4455816.583905448
+ 10
+399186.38209301553
+ 20
+4455816.39644905
+ 10
+399188.2566569945
+ 20
+4455815.699304955
+  0
+LWPOLYLINE
+  5
+15F
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399190.4875180974
+ 20
+4455821.697909688
+ 10
+399188.6129541184
+ 20
+4455822.3950537825
+ 10
+399188.54323970893
+ 20
+4455822.207597385
+ 10
+399190.4178036879
+ 20
+4455821.51045329
+  0
+LWPOLYLINE
+  5
+160
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399192.6486647908
+ 20
+4455827.509058023
+ 10
+399190.7741008118
+ 20
+4455828.206202118
+ 10
+399190.7043864023
+ 20
+4455828.018745719
+ 10
+399192.5789503813
+ 20
+4455827.321601625
+  0
+LWPOLYLINE
+  5
+161
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399191.24274180655
+ 20
+4455828.031916094
+ 10
+399189.36817782756
+ 20
+4455828.729060189
+ 10
+399189.2984634181
+ 20
+4455828.541603791
+ 10
+399191.1730273971
+ 20
+4455827.844459696
+  0
+LWPOLYLINE
+  5
+162
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399193.40388849995
+ 20
+4455833.843064428
+ 10
+399191.52932452096
+ 20
+4455834.540208523
+ 10
+399191.4596101115
+ 20
+4455834.352752126
+ 10
+399193.3341740905
+ 20
+4455833.655608031
+  0
+LWPOLYLINE
+  5
+163
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399195.56503519334
+ 20
+4455839.6542127635
+ 10
+399193.69047121436
+ 20
+4455840.351356858
+ 10
+399193.6207568049
+ 20
+4455840.16390046
+ 10
+399195.49532078387
+ 20
+4455839.466756365
+  0
+LWPOLYLINE
+  5
+164
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399196.9709581776
+ 20
+4455839.131354692
+ 10
+399195.0963941986
+ 20
+4455839.828498787
+ 10
+399195.0266797891
+ 20
+4455839.641042389
+ 10
+399196.9012437681
+ 20
+4455838.943898295
+  0
+LWPOLYLINE
+  5
+165
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399199.132104871
+ 20
+4455844.942503028
+ 10
+399197.257540892
+ 20
+4455845.6396471225
+ 10
+399197.1878264825
+ 20
+4455845.452190724
+ 10
+399199.0623904615
+ 20
+4455844.755046629
+  0
+LWPOLYLINE
+  5
+166
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399201.2932515644
+ 20
+4455850.753651362
+ 10
+399199.4186875854
+ 20
+4455851.450795457
+ 10
+399199.3489731759
+ 20
+4455851.263339059
+ 10
+399201.2235371549
+ 20
+4455850.566194965
+  0
+LWPOLYLINE
+  5
+167
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399199.88732858014
+ 20
+4455851.276509433
+ 10
+399198.01276460115
+ 20
+4455851.973653528
+ 10
+399197.9430501917
+ 20
+4455851.78619713
+ 10
+399199.81761417066
+ 20
+4455851.089053036
+  0
+LWPOLYLINE
+  5
+168
+330
+17
+100
+AcDbEntity
+  8
+MAHREMIYET_BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399202.04847527354
+ 20
+4455857.087657768
+ 10
+399200.17391129455
+ 20
+4455857.784801863
+ 10
+399200.1041968851
+ 20
+4455857.597345465
+ 10
+399201.97876086406
+ 20
+4455856.90020137
+  0
+LWPOLYLINE
+  5
+169
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399143.0132483147
+ 20
+4455777.813788316
+ 10
+399133.92161301663
+ 20
+4455781.194937175
+ 10
+399131.76046632323
+ 20
+4455775.38378884
+ 10
+399140.8521016213
+ 20
+4455772.002639981
+  0
+LWPOLYLINE
+  5
+16A
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399133.88675581187
+ 20
+4455781.1012089765
+ 10
+399132.10592003184
+ 20
+4455781.763495866
+ 10
+399130.0144877479
+ 20
+4455776.139803929
+ 10
+399131.79532352794
+ 20
+4455775.4775170395
+  0
+LWPOLYLINE
+  5
+16B
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399133.92161301663
+ 20
+4455781.194937175
+ 10
+399131.76046632323
+ 20
+4455775.38378884
+ 10
+399122.9372864956
+ 20
+4455778.6651000045
+ 10
+399125.04654349334
+ 20
+4455784.495545944
+  0
+TEXT
+  5
+16C
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399137.386857319
+ 20
+4455776.598788578
+ 30
+0.0
+ 40
+1.2
+  1
+V17
+ 50
+159.6
+ 72
+1
+ 11
+399137.386857319
+ 21
+4455776.598788578
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+16D
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399145.17439500807
+ 20
+4455783.6249366505
+ 10
+399136.08275971
+ 20
+4455787.006085509
+ 10
+399133.92161301663
+ 20
+4455781.194937175
+ 10
+399143.0132483147
+ 20
+4455777.813788316
+  0
+LWPOLYLINE
+  5
+16E
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399136.04790250526
+ 20
+4455786.912357311
+ 10
+399134.26706672524
+ 20
+4455787.5746442005
+ 10
+399132.1756344413
+ 20
+4455781.950952264
+ 10
+399133.95647022134
+ 20
+4455781.288665374
+  0
+LWPOLYLINE
+  5
+16F
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399136.08275971
+ 20
+4455787.006085509
+ 10
+399133.92161301663
+ 20
+4455781.194937175
+ 10
+399125.04654349334
+ 20
+4455784.495545944
+ 10
+399127.15580049105
+ 20
+4455790.325991884
+  0
+TEXT
+  5
+170
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399139.5480040124
+ 20
+4455782.409936913
+ 30
+0.0
+ 40
+1.2
+  1
+V16
+ 50
+159.6
+ 72
+1
+ 11
+399139.5480040124
+ 21
+4455782.409936913
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+171
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399145.92961871723
+ 20
+4455789.958943057
+ 10
+399136.8379834192
+ 20
+4455793.340091916
+ 10
+399134.6768367258
+ 20
+4455787.528943581
+ 10
+399143.76847202383
+ 20
+4455784.147794722
+  0
+LWPOLYLINE
+  5
+172
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399136.8031262144
+ 20
+4455793.246363717
+ 10
+399135.0222904344
+ 20
+4455793.908650607
+ 10
+399132.9308581505
+ 20
+4455788.28495867
+ 10
+399134.7116939305
+ 20
+4455787.62267178
+  0
+LWPOLYLINE
+  5
+173
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399136.8379834192
+ 20
+4455793.340091916
+ 10
+399134.6768367258
+ 20
+4455787.528943581
+ 10
+399127.15580049105
+ 20
+4455790.325991884
+ 10
+399129.2650574888
+ 20
+4455796.156437824
+  0
+TEXT
+  5
+174
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399140.30322772154
+ 20
+4455788.743943319
+ 30
+0.0
+ 40
+1.2
+  1
+V15
+ 50
+159.6
+ 72
+1
+ 11
+399140.30322772154
+ 21
+4455788.743943319
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+175
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399148.0907654106
+ 20
+4455795.770091391
+ 10
+399138.9991301126
+ 20
+4455799.15124025
+ 10
+399136.8379834192
+ 20
+4455793.340091916
+ 10
+399145.92961871723
+ 20
+4455789.958943057
+  0
+LWPOLYLINE
+  5
+176
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399138.9642729078
+ 20
+4455799.057512051
+ 10
+399137.1834371278
+ 20
+4455799.719798941
+ 10
+399135.0920048439
+ 20
+4455794.096107004
+ 10
+399136.8728406239
+ 20
+4455793.4338201145
+  0
+LWPOLYLINE
+  5
+177
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399138.9991301126
+ 20
+4455799.15124025
+ 10
+399136.8379834192
+ 20
+4455793.340091916
+ 10
+399129.2650574888
+ 20
+4455796.156437824
+ 10
+399131.3743144866
+ 20
+4455801.986883763
+  0
+TEXT
+  5
+178
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399142.46437441494
+ 20
+4455794.555091654
+ 30
+0.0
+ 40
+1.2
+  1
+V14
+ 50
+159.6
+ 72
+1
+ 11
+399142.46437441494
+ 21
+4455794.555091654
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+179
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399151.65783508826
+ 20
+4455801.058381655
+ 10
+399142.5661997902
+ 20
+4455804.439530514
+ 10
+399140.4050530968
+ 20
+4455798.62838218
+ 10
+399149.49668839487
+ 20
+4455795.247233321
+  0
+LWPOLYLINE
+  5
+17A
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399142.53134258545
+ 20
+4455804.3458023155
+ 10
+399140.75050680543
+ 20
+4455805.008089205
+ 10
+399138.6590745215
+ 20
+4455799.384397268
+ 10
+399140.43991030153
+ 20
+4455798.722110379
+  0
+LWPOLYLINE
+  5
+17B
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399142.5661997902
+ 20
+4455804.439530514
+ 10
+399140.4050530968
+ 20
+4455798.62838218
+ 10
+399131.3743144866
+ 20
+4455801.986883763
+ 10
+399133.48357148434
+ 20
+4455807.817329703
+  0
+TEXT
+  5
+17C
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399146.0314440926
+ 20
+4455799.843381917
+ 30
+0.0
+ 40
+1.2
+  1
+V13
+ 50
+159.6
+ 72
+1
+ 11
+399146.0314440926
+ 21
+4455799.843381917
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+17D
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399153.81898178166
+ 20
+4455806.8695299905
+ 10
+399144.7273464836
+ 20
+4455810.250678849
+ 10
+399142.5661997902
+ 20
+4455804.439530514
+ 10
+399151.65783508826
+ 20
+4455801.058381655
+  0
+LWPOLYLINE
+  5
+17E
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399144.69248927885
+ 20
+4455810.156950651
+ 10
+399142.9116534988
+ 20
+4455810.8192375405
+ 10
+399140.8202212149
+ 20
+4455805.1955456035
+ 10
+399142.6010569949
+ 20
+4455804.533258714
+  0
+LWPOLYLINE
+  5
+17F
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399144.7273464836
+ 20
+4455810.250678849
+ 10
+399142.5661997902
+ 20
+4455804.439530514
+ 10
+399133.48357148434
+ 20
+4455807.817329703
+ 10
+399135.59282848204
+ 20
+4455813.647775643
+  0
+TEXT
+  5
+180
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399148.1925907859
+ 20
+4455805.654530252
+ 30
+0.0
+ 40
+1.2
+  1
+V12
+ 50
+159.6
+ 72
+1
+ 11
+399148.1925907859
+ 21
+4455805.654530252
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+181
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399154.5742054908
+ 20
+4455813.203536396
+ 10
+399145.4825701928
+ 20
+4455816.584685255
+ 10
+399143.3214234994
+ 20
+4455810.773536921
+ 10
+399152.4130587974
+ 20
+4455807.392388062
+  0
+LWPOLYLINE
+  5
+182
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399145.447712988
+ 20
+4455816.490957056
+ 10
+399143.666877208
+ 20
+4455817.153243946
+ 10
+399141.57544492406
+ 20
+4455811.529552009
+ 10
+399143.3562807041
+ 20
+4455810.867265119
+  0
+LWPOLYLINE
+  5
+183
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399145.4825701928
+ 20
+4455816.584685255
+ 10
+399143.3214234994
+ 20
+4455810.773536921
+ 10
+399135.59282848204
+ 20
+4455813.647775643
+ 10
+399137.7020854798
+ 20
+4455819.478221582
+  0
+TEXT
+  5
+184
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399148.94781449507
+ 20
+4455811.988536658
+ 30
+0.0
+ 40
+1.2
+  1
+V11
+ 50
+159.6
+ 72
+1
+ 11
+399148.94781449507
+ 21
+4455811.988536658
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+185
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399156.7353521842
+ 20
+4455819.014684731
+ 10
+399147.6437168862
+ 20
+4455822.39583359
+ 10
+399145.4825701928
+ 20
+4455816.584685255
+ 10
+399154.5742054908
+ 20
+4455813.203536396
+  0
+LWPOLYLINE
+  5
+186
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399147.6088596814
+ 20
+4455822.302105391
+ 10
+399145.8280239014
+ 20
+4455822.964392281
+ 10
+399143.73659161746
+ 20
+4455817.340700344
+ 10
+399145.5174273975
+ 20
+4455816.678413454
+  0
+LWPOLYLINE
+  5
+187
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+5
+ 70
+1
+ 10
+399147.6437168862
+ 20
+4455822.39583359
+ 10
+399145.4825701928
+ 20
+4455816.584685255
+ 10
+399137.7020854798
+ 20
+4455819.478221582
+ 10
+399139.1332156897
+ 20
+4455823.4341773195
+ 10
+399139.78433987865
+ 20
+4455825.3187096985
+  0
+TEXT
+  5
+188
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399151.10896118847
+ 20
+4455817.799684993
+ 30
+0.0
+ 40
+1.2
+  1
+V10
+ 50
+159.6
+ 72
+1
+ 11
+399151.10896118847
+ 21
+4455817.799684993
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+189
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399160.30242186185
+ 20
+4455824.302974994
+ 10
+399151.2107865638
+ 20
+4455827.684123854
+ 10
+399149.0496398704
+ 20
+4455821.872975519
+ 10
+399158.14127516845
+ 20
+4455818.49182666
+  0
+LWPOLYLINE
+  5
+18A
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399151.17592935904
+ 20
+4455827.590395655
+ 10
+399149.395093579
+ 20
+4455828.252682544
+ 10
+399147.3036612951
+ 20
+4455822.628990607
+ 10
+399149.0844970751
+ 20
+4455821.966703718
+  0
+LWPOLYLINE
+  5
+18B
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399164.9888318093
+ 20
+4455822.560114758
+ 10
+399160.30242186185
+ 20
+4455824.302974994
+ 10
+399158.14127516845
+ 20
+4455818.49182666
+ 10
+399162.8276851159
+ 20
+4455816.748966423
+  0
+LWPOLYLINE
+  5
+18C
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399163.33311458456
+ 20
+4455818.108025308
+ 10
+399158.6467046371
+ 20
+4455819.850885545
+ 10
+399159.53556335776
+ 20
+4455822.240954618
+ 10
+399160.4244220784
+ 20
+4455824.631023691
+ 10
+399165.1108320259
+ 20
+4455822.888163455
+ 10
+399164.2219733052
+ 20
+4455820.498094381
+  0
+LWPOLYLINE
+  5
+18D
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399151.2107865638
+ 20
+4455827.684123854
+ 10
+399149.0496398704
+ 20
+4455821.872975519
+ 10
+399139.78433987865
+ 20
+4455825.3187096985
+ 10
+399141.8096075373
+ 20
+4455831.180390993
+  0
+TEXT
+  5
+18E
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399154.6760308661
+ 20
+4455823.087975257
+ 30
+0.0
+ 40
+1.2
+  1
+V9
+ 50
+159.6
+ 72
+1
+ 11
+399154.6760308661
+ 21
+4455823.087975257
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+18F
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399162.46356855525
+ 20
+4455830.1141233295
+ 10
+399153.3719332572
+ 20
+4455833.495272188
+ 10
+399151.2107865638
+ 20
+4455827.684123854
+ 10
+399160.30242186185
+ 20
+4455824.302974994
+  0
+LWPOLYLINE
+  5
+190
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399153.33707605244
+ 20
+4455833.40154399
+ 10
+399151.5562402724
+ 20
+4455834.0638308795
+ 10
+399149.4648079885
+ 20
+4455828.440138943
+ 10
+399151.2456437685
+ 20
+4455827.777852053
+  0
+LWPOLYLINE
+  5
+191
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399167.1499785027
+ 20
+4455828.371263093
+ 10
+399162.46356855525
+ 20
+4455830.1141233295
+ 10
+399160.30242186185
+ 20
+4455824.302974994
+ 10
+399164.9888318093
+ 20
+4455822.560114758
+  0
+LWPOLYLINE
+  5
+192
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399164.9888318093
+ 20
+4455822.560114758
+ 10
+399160.30242186185
+ 20
+4455824.302974994
+ 10
+399161.1912805825
+ 20
+4455826.693044068
+ 10
+399162.0801393032
+ 20
+4455829.083113141
+ 10
+399166.76654925063
+ 20
+4455827.340252904
+ 10
+399165.87769053
+ 20
+4455824.950183831
+  0
+LWPOLYLINE
+  5
+193
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399153.3719332572
+ 20
+4455833.495272188
+ 10
+399151.2107865638
+ 20
+4455827.684123854
+ 10
+399141.8096075373
+ 20
+4455831.180390993
+ 10
+399143.8348751959
+ 20
+4455837.042072289
+  0
+TEXT
+  5
+194
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399156.8371775595
+ 20
+4455828.899123591
+ 30
+0.0
+ 40
+1.2
+  1
+V8
+ 50
+159.6
+ 72
+1
+ 11
+399156.8371775595
+ 21
+4455828.899123591
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+195
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399163.2187922644
+ 20
+4455836.448129736
+ 10
+399154.12715696637
+ 20
+4455839.829278595
+ 10
+399151.96601027297
+ 20
+4455834.01813026
+ 10
+399161.057645571
+ 20
+4455830.636981401
+  0
+LWPOLYLINE
+  5
+196
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399154.0922997616
+ 20
+4455839.735550395
+ 10
+399152.3114639816
+ 20
+4455840.397837286
+ 10
+399150.22003169765
+ 20
+4455834.774145349
+ 10
+399152.0008674777
+ 20
+4455834.111858458
+  0
+LWPOLYLINE
+  5
+197
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399169.3111251961
+ 20
+4455834.182411428
+ 10
+399164.62471524865
+ 20
+4455835.925271665
+ 10
+399162.46356855525
+ 20
+4455830.1141233295
+ 10
+399167.1499785027
+ 20
+4455828.371263093
+  0
+LWPOLYLINE
+  5
+198
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399167.65540797135
+ 20
+4455829.730321978
+ 10
+399162.9689980239
+ 20
+4455831.473182214
+ 10
+399163.85785674455
+ 20
+4455833.8632512875
+ 10
+399164.7467154652
+ 20
+4455836.253320361
+ 10
+399169.4331254127
+ 20
+4455834.510460124
+ 10
+399168.544266692
+ 20
+4455832.120391051
+  0
+LWPOLYLINE
+  5
+199
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399154.12715696637
+ 20
+4455839.829278595
+ 10
+399151.96601027297
+ 20
+4455834.01813026
+ 10
+399143.8348751959
+ 20
+4455837.042072289
+ 10
+399145.86014285457
+ 20
+4455842.903753583
+  0
+TEXT
+  5
+19A
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399157.59240126866
+ 20
+4455835.233129998
+ 30
+0.0
+ 40
+1.2
+  1
+V7
+ 50
+159.6
+ 72
+1
+ 11
+399157.59240126866
+ 21
+4455835.233129998
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+19B
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399165.3799389578
+ 20
+4455842.25927807
+ 10
+399156.28830365976
+ 20
+4455845.640426929
+ 10
+399154.12715696637
+ 20
+4455839.829278595
+ 10
+399163.2187922644
+ 20
+4455836.448129736
+  0
+LWPOLYLINE
+  5
+19C
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399156.253446455
+ 20
+4455845.54669873
+ 10
+399154.472610675
+ 20
+4455846.20898562
+ 10
+399152.38117839105
+ 20
+4455840.585293683
+ 10
+399154.1620141711
+ 20
+4455839.9230067935
+  0
+LWPOLYLINE
+  5
+19D
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399171.4722718895
+ 20
+4455839.993559763
+ 10
+399166.78586194204
+ 20
+4455841.736419999
+ 10
+399164.62471524865
+ 20
+4455835.925271665
+ 10
+399169.3111251961
+ 20
+4455834.182411428
+  0
+LWPOLYLINE
+  5
+19E
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399169.3111251961
+ 20
+4455834.182411428
+ 10
+399164.62471524865
+ 20
+4455835.925271665
+ 10
+399165.5135739693
+ 20
+4455838.315340738
+ 10
+399166.40243268997
+ 20
+4455840.705409811
+ 10
+399171.08884263743
+ 20
+4455838.962549575
+ 10
+399170.19998391677
+ 20
+4455836.572480501
+  0
+LWPOLYLINE
+  5
+19F
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399156.28830365976
+ 20
+4455845.640426929
+ 10
+399154.12715696637
+ 20
+4455839.829278595
+ 10
+399145.86014285457
+ 20
+4455842.903753583
+ 10
+399147.88541051326
+ 20
+4455848.765434878
+  0
+TEXT
+  5
+1A0
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399159.75354796206
+ 20
+4455841.044278332
+ 30
+0.0
+ 40
+1.2
+  1
+V6
+ 50
+159.6
+ 72
+1
+ 11
+399159.75354796206
+ 21
+4455841.044278332
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1A1
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399168.94700863544
+ 20
+4455847.547568334
+ 10
+399159.85537333734
+ 20
+4455850.928717193
+ 10
+399157.694226644
+ 20
+4455845.117568858
+ 10
+399166.78586194204
+ 20
+4455841.736419999
+  0
+LWPOLYLINE
+  5
+1A2
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399159.82051613263
+ 20
+4455850.8349889945
+ 10
+399158.0396803526
+ 20
+4455851.497275884
+ 10
+399155.9482480687
+ 20
+4455845.873583947
+ 10
+399157.7290838487
+ 20
+4455845.211297058
+  0
+LWPOLYLINE
+  5
+1A3
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399173.6334185829
+ 20
+4455845.804708097
+ 10
+399168.94700863544
+ 20
+4455847.547568334
+ 10
+399166.78586194204
+ 20
+4455841.736419999
+ 10
+399171.4722718895
+ 20
+4455839.993559763
+  0
+LWPOLYLINE
+  5
+1A4
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399171.97770135815
+ 20
+4455841.352618648
+ 10
+399167.2912914107
+ 20
+4455843.095478884
+ 10
+399168.18015013135
+ 20
+4455845.485547957
+ 10
+399169.069008852
+ 20
+4455847.87561703
+ 10
+399173.75541879947
+ 20
+4455846.132756794
+ 10
+399172.8665600788
+ 20
+4455843.742687721
+  0
+LWPOLYLINE
+  5
+1A5
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399159.85537333734
+ 20
+4455850.928717193
+ 10
+399157.694226644
+ 20
+4455845.117568858
+ 10
+399147.88541051326
+ 20
+4455848.765434878
+ 10
+399149.9106781719
+ 20
+4455854.6271161735
+  0
+TEXT
+  5
+1A6
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399163.3206176397
+ 20
+4455846.332568596
+ 30
+0.0
+ 40
+1.2
+  1
+V5
+ 50
+159.6
+ 72
+1
+ 11
+399163.3206176397
+ 21
+4455846.332568596
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1A7
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399171.10815532884
+ 20
+4455853.358716669
+ 10
+399162.01652003074
+ 20
+4455856.739865528
+ 10
+399159.85537333734
+ 20
+4455850.928717193
+ 10
+399168.94700863544
+ 20
+4455847.547568334
+  0
+LWPOLYLINE
+  5
+1A8
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399161.98166282603
+ 20
+4455856.646137329
+ 10
+399160.200827046
+ 20
+4455857.308424219
+ 10
+399158.1093947621
+ 20
+4455851.684732282
+ 10
+399159.8902305421
+ 20
+4455851.022445392
+  0
+LWPOLYLINE
+  5
+1A9
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399175.7945652763
+ 20
+4455851.615856432
+ 10
+399171.10815532884
+ 20
+4455853.358716669
+ 10
+399168.94700863544
+ 20
+4455847.547568334
+ 10
+399173.6334185829
+ 20
+4455845.804708097
+  0
+LWPOLYLINE
+  5
+1AA
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399173.6334185829
+ 20
+4455845.804708097
+ 10
+399168.94700863544
+ 20
+4455847.547568334
+ 10
+399169.8358673561
+ 20
+4455849.937637407
+ 10
+399170.72472607676
+ 20
+4455852.32770648
+ 10
+399175.4111360242
+ 20
+4455850.584846244
+ 10
+399174.52227730356
+ 20
+4455848.194777171
+  0
+LWPOLYLINE
+  5
+1AB
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399162.01652003074
+ 20
+4455856.739865528
+ 10
+399159.85537333734
+ 20
+4455850.928717193
+ 10
+399149.9106781719
+ 20
+4455854.6271161735
+ 10
+399151.93594583054
+ 20
+4455860.488797468
+  0
+TEXT
+  5
+1AC
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399165.4817643331
+ 20
+4455852.143716931
+ 30
+0.0
+ 40
+1.2
+  1
+V4
+ 50
+159.6
+ 72
+1
+ 11
+399165.4817643331
+ 21
+4455852.143716931
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1AD
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399171.863379038
+ 20
+4455859.692723075
+ 10
+399162.7717437399
+ 20
+4455863.073871934
+ 10
+399160.6105970465
+ 20
+4455857.262723599
+ 10
+399169.7022323446
+ 20
+4455853.88157474
+  0
+LWPOLYLINE
+  5
+1AE
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399162.7368865352
+ 20
+4455862.980143735
+ 10
+399160.95605075517
+ 20
+4455863.642430625
+ 10
+399158.86461847124
+ 20
+4455858.018738688
+ 10
+399160.64545425127
+ 20
+4455857.356451798
+  0
+LWPOLYLINE
+  5
+1AF
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399177.9557119697
+ 20
+4455857.427004768
+ 10
+399173.26930202224
+ 20
+4455859.169865004
+ 10
+399171.10815532884
+ 20
+4455853.358716669
+ 10
+399175.7945652763
+ 20
+4455851.615856432
+  0
+LWPOLYLINE
+  5
+1B0
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399176.2999947449
+ 20
+4455852.974915317
+ 10
+399171.6135847975
+ 20
+4455854.717775553
+ 10
+399172.50244351814
+ 20
+4455857.1078446265
+ 10
+399173.3913022388
+ 20
+4455859.4979137005
+ 10
+399178.07771218626
+ 20
+4455857.755053463
+ 10
+399177.1888534656
+ 20
+4455855.36498439
+  0
+LWPOLYLINE
+  5
+1B1
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399162.7717437399
+ 20
+4455863.073871934
+ 10
+399160.6105970465
+ 20
+4455857.262723599
+ 10
+399151.93594583054
+ 20
+4455860.488797468
+ 10
+399153.9612134892
+ 20
+4455866.350478763
+  0
+TEXT
+  5
+1B2
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399166.23698804225
+ 20
+4455858.477723337
+ 30
+0.0
+ 40
+1.2
+  1
+V3
+ 50
+159.6
+ 72
+1
+ 11
+399166.23698804225
+ 21
+4455858.477723337
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1B3
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399174.0245257314
+ 20
+4455865.503871409
+ 10
+399164.9328904333
+ 20
+4455868.885020269
+ 10
+399162.7717437399
+ 20
+4455863.073871934
+ 10
+399171.863379038
+ 20
+4455859.692723075
+  0
+LWPOLYLINE
+  5
+1B4
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399164.8980332286
+ 20
+4455868.7912920695
+ 10
+399163.11719744856
+ 20
+4455869.453578959
+ 10
+399161.02576516464
+ 20
+4455863.829887022
+ 10
+399162.80660094466
+ 20
+4455863.1676001325
+  0
+LWPOLYLINE
+  5
+1B5
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399180.1168586631
+ 20
+4455863.238153102
+ 10
+399175.43044871563
+ 20
+4455864.981013339
+ 10
+399173.26930202224
+ 20
+4455859.169865004
+ 10
+399177.9557119697
+ 20
+4455857.427004768
+  0
+LWPOLYLINE
+  5
+1B6
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399177.9557119697
+ 20
+4455857.427004768
+ 10
+399173.26930202224
+ 20
+4455859.169865004
+ 10
+399174.1581607429
+ 20
+4455861.559934077
+ 10
+399175.04701946356
+ 20
+4455863.95000315
+ 10
+399179.733429411
+ 20
+4455862.207142914
+ 10
+399178.84457069036
+ 20
+4455859.817073841
+  0
+LWPOLYLINE
+  5
+1B7
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399164.9328904333
+ 20
+4455868.885020269
+ 10
+399162.7717437399
+ 20
+4455863.073871934
+ 10
+399153.9612134892
+ 20
+4455866.350478763
+ 10
+399155.9864811479
+ 20
+4455872.212160057
+  0
+TEXT
+  5
+1B8
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399168.39813473565
+ 20
+4455864.288871672
+ 30
+0.0
+ 40
+1.2
+  1
+V2
+ 50
+159.6
+ 72
+1
+ 11
+399168.39813473565
+ 21
+4455864.288871672
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1B9
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399177.59159540903
+ 20
+4455870.792161673
+ 10
+399168.49996011093
+ 20
+4455874.173310532
+ 10
+399166.33881341753
+ 20
+4455868.362162198
+ 10
+399175.43044871563
+ 20
+4455864.981013339
+  0
+LWPOLYLINE
+  5
+1BA
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399168.4651029062
+ 20
+4455874.079582334
+ 10
+399166.6842671262
+ 20
+4455874.741869223
+ 10
+399164.5928348423
+ 20
+4455869.118177286
+ 10
+399166.3736706223
+ 20
+4455868.455890397
+  0
+LWPOLYLINE
+  5
+1BB
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399182.2780053565
+ 20
+4455869.049301437
+ 10
+399177.59159540903
+ 20
+4455870.792161673
+ 10
+399175.43044871563
+ 20
+4455864.981013339
+ 10
+399180.1168586631
+ 20
+4455863.238153102
+  0
+LWPOLYLINE
+  5
+1BC
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399180.6222881317
+ 20
+4455864.597211987
+ 10
+399175.9358781842
+ 20
+4455866.340072224
+ 10
+399176.82473690493
+ 20
+4455868.730141297
+ 10
+399177.7135956256
+ 20
+4455871.12021037
+ 10
+399182.40000557306
+ 20
+4455869.377350133
+ 10
+399181.5111468524
+ 20
+4455866.98728106
+  0
+LWPOLYLINE
+  5
+1BD
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399168.49996011093
+ 20
+4455874.173310532
+ 10
+399166.33881341753
+ 20
+4455868.362162198
+ 10
+399155.9864811479
+ 20
+4455872.212160057
+ 10
+399158.0117488065
+ 20
+4455878.073841353
+  0
+TEXT
+  5
+1BE
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399171.9652044133
+ 20
+4455869.577161936
+ 30
+0.0
+ 40
+1.2
+  1
+V1
+ 50
+159.6
+ 72
+1
+ 11
+399171.9652044133
+ 21
+4455869.577161936
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1BF
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399165.5607069955
+ 20
+4455764.712700306
+ 10
+399156.4690716974
+ 20
+4455768.093849165
+ 10
+399154.307925004
+ 20
+4455762.28270083
+ 10
+399163.3995603021
+ 20
+4455758.901551971
+  0
+LWPOLYLINE
+  5
+1C0
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399167.3066855708
+ 20
+4455763.956685217
+ 10
+399165.5258497907
+ 20
+4455764.618972107
+ 10
+399163.4344175068
+ 20
+4455758.99528017
+ 10
+399165.2152532868
+ 20
+4455758.33299328
+  0
+LWPOLYLINE
+  5
+1C1
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399163.3995603021
+ 20
+4455758.901551971
+ 10
+399165.5607069955
+ 20
+4455764.712700306
+ 10
+399175.15343915374
+ 20
+4455761.145195195
+ 10
+399173.13943265215
+ 20
+4455755.279325914
+  0
+TEXT
+  5
+1C2
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399159.93431599974
+ 20
+4455763.497700568
+ 30
+0.0
+ 40
+1.2
+  1
+V18
+ 50
+159.6
+ 72
+1
+ 11
+399159.93431599974
+ 21
+4455763.497700568
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1C3
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399167.7218536889
+ 20
+4455770.523848641
+ 10
+399158.6302183908
+ 20
+4455773.9049975
+ 10
+399156.4690716974
+ 20
+4455768.093849165
+ 10
+399165.5607069955
+ 20
+4455764.712700306
+  0
+LWPOLYLINE
+  5
+1C4
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399169.4678322642
+ 20
+4455769.767833552
+ 10
+399167.6869964841
+ 20
+4455770.430120442
+ 10
+399165.5955642002
+ 20
+4455764.806428505
+ 10
+399167.3763999802
+ 20
+4455764.144141615
+  0
+LWPOLYLINE
+  5
+1C5
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399165.5607069955
+ 20
+4455764.712700306
+ 10
+399167.7218536889
+ 20
+4455770.523848641
+ 10
+399177.16744565533
+ 20
+4455767.011064477
+ 10
+399175.15343915374
+ 20
+4455761.145195195
+  0
+TEXT
+  5
+1C6
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399162.09546269313
+ 20
+4455769.3088489035
+ 30
+0.0
+ 40
+1.2
+  1
+V19
+ 50
+159.6
+ 72
+1
+ 11
+399162.09546269313
+ 21
+4455769.3088489035
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1C7
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399171.2889233665
+ 20
+4455775.812138905
+ 10
+399162.1972880684
+ 20
+4455779.193287764
+ 10
+399160.036141375
+ 20
+4455773.382139429
+ 10
+399169.1277766731
+ 20
+4455770.0009905705
+  0
+LWPOLYLINE
+  5
+1C8
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399173.03490194184
+ 20
+4455775.056123816
+ 10
+399171.25406616175
+ 20
+4455775.718410706
+ 10
+399169.16263387783
+ 20
+4455770.094718769
+ 10
+399170.94346965785
+ 20
+4455769.432431879
+  0
+LWPOLYLINE
+  5
+1C9
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+5
+ 70
+1
+ 10
+399169.1277766731
+ 20
+4455770.0009905705
+ 10
+399171.2889233665
+ 20
+4455775.812138905
+ 10
+399179.21981164214
+ 20
+4455772.862667994
+ 10
+399178.43730964797
+ 20
+4455770.7095908625
+ 10
+399177.16744565533
+ 20
+4455767.011064477
+  0
+TEXT
+  5
+1CA
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399165.66253237077
+ 20
+4455774.597139167
+ 30
+0.0
+ 40
+1.2
+  1
+V20
+ 50
+159.6
+ 72
+1
+ 11
+399165.66253237077
+ 21
+4455774.597139167
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1CB
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399173.4500700599
+ 20
+4455781.62328724
+ 10
+399164.3584347618
+ 20
+4455785.004436099
+ 10
+399162.1972880684
+ 20
+4455779.193287764
+ 10
+399171.2889233665
+ 20
+4455775.812138905
+  0
+LWPOLYLINE
+  5
+1CC
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399175.1960486352
+ 20
+4455780.867272151
+ 10
+399173.41521285515
+ 20
+4455781.52955904
+ 10
+399171.3237805712
+ 20
+4455775.9058671035
+ 10
+399173.10461635125
+ 20
+4455775.243580214
+  0
+LWPOLYLINE
+  5
+1CD
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399171.2889233665
+ 20
+4455775.812138905
+ 10
+399173.4500700599
+ 20
+4455781.62328724
+ 10
+399181.33763730706
+ 20
+4455778.689927275
+ 10
+399179.21981164214
+ 20
+4455772.862667994
+  0
+TEXT
+  5
+1CE
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399167.82367906417
+ 20
+4455780.408287502
+ 30
+0.0
+ 40
+1.2
+  1
+V21
+ 50
+159.6
+ 72
+1
+ 11
+399167.82367906417
+ 21
+4455780.408287502
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1CF
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399174.2052937691
+ 20
+4455787.9572936455
+ 10
+399165.113658471
+ 20
+4455791.338442504
+ 10
+399162.9525117776
+ 20
+4455785.52729417
+ 10
+399172.0441470757
+ 20
+4455782.146145311
+  0
+LWPOLYLINE
+  5
+1D0
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399175.95127234433
+ 20
+4455787.201278557
+ 10
+399174.1704365643
+ 20
+4455787.863565447
+ 10
+399172.0790042804
+ 20
+4455782.23987351
+ 10
+399173.8598400604
+ 20
+4455781.57758662
+  0
+LWPOLYLINE
+  5
+1D1
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+5
+ 70
+1
+ 10
+399172.0441470757
+ 20
+4455782.146145311
+ 10
+399174.2052937691
+ 20
+4455787.9572936455
+ 10
+399183.47966938495
+ 20
+4455784.508184272
+ 10
+399182.85590769805
+ 20
+4455782.867492678
+ 10
+399181.33763730706
+ 20
+4455778.689927275
+  0
+TEXT
+  5
+1D2
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399168.5789027733
+ 20
+4455786.742293907
+ 30
+0.0
+ 40
+1.2
+  1
+V22
+ 50
+159.6
+ 72
+1
+ 11
+399168.5789027733
+ 21
+4455786.742293907
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1D3
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399176.3664404625
+ 20
+4455793.768441981
+ 10
+399167.2748051644
+ 20
+4455797.14959084
+ 10
+399165.113658471
+ 20
+4455791.338442504
+ 10
+399174.2052937691
+ 20
+4455787.9572936455
+  0
+LWPOLYLINE
+  5
+1D4
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399178.11241903773
+ 20
+4455793.012426891
+ 10
+399176.3315832577
+ 20
+4455793.674713781
+ 10
+399174.2401509738
+ 20
+4455788.051021844
+ 10
+399176.0209867538
+ 20
+4455787.388734954
+  0
+LWPOLYLINE
+  5
+1D5
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399174.2052937691
+ 20
+4455787.9572936455
+ 10
+399176.3664404625
+ 20
+4455793.768441981
+ 10
+399185.6830000313
+ 20
+4455790.303644535
+ 10
+399183.47966938495
+ 20
+4455784.508184272
+  0
+TEXT
+  5
+1D6
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399170.7400494667
+ 20
+4455792.553442243
+ 30
+0.0
+ 40
+1.2
+  1
+V23
+ 50
+159.6
+ 72
+1
+ 11
+399170.7400494667
+ 21
+4455792.553442243
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1D7
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399179.9335101401
+ 20
+4455799.056732245
+ 10
+399170.841874842
+ 20
+4455802.437881104
+ 10
+399168.6807281486
+ 20
+4455796.6267327685
+ 10
+399177.7723634467
+ 20
+4455793.24558391
+  0
+LWPOLYLINE
+  5
+1D8
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399181.67948871537
+ 20
+4455798.300717155
+ 10
+399179.89865293534
+ 20
+4455798.963004045
+ 10
+399177.8072206514
+ 20
+4455793.339312108
+ 10
+399179.58805643144
+ 20
+4455792.6770252185
+  0
+LWPOLYLINE
+  5
+1D9
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399177.7723634467
+ 20
+4455793.24558391
+ 10
+399179.9335101401
+ 20
+4455799.056732245
+ 10
+399187.8863306776
+ 20
+4455796.099104798
+ 10
+399185.6830000313
+ 20
+4455790.303644535
+  0
+TEXT
+  5
+1DA
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399174.30711914436
+ 20
+4455797.841732507
+ 30
+0.0
+ 40
+1.2
+  1
+V24
+ 50
+159.6
+ 72
+1
+ 11
+399174.30711914436
+ 21
+4455797.841732507
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1DB
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399182.0946568335
+ 20
+4455804.867880579
+ 10
+399173.0030215354
+ 20
+4455808.249029438
+ 10
+399170.841874842
+ 20
+4455802.437881104
+ 10
+399179.9335101401
+ 20
+4455799.056732245
+  0
+LWPOLYLINE
+  5
+1DC
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399183.84063540876
+ 20
+4455804.111865491
+ 10
+399182.05979962874
+ 20
+4455804.77415238
+ 10
+399179.9683673448
+ 20
+4455799.150460443
+ 10
+399181.74920312484
+ 20
+4455798.488173554
+  0
+LWPOLYLINE
+  5
+1DD
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399179.9335101401
+ 20
+4455799.056732245
+ 10
+399182.0946568335
+ 20
+4455804.867880579
+ 10
+399190.089661324
+ 20
+4455801.894565062
+ 10
+399187.8863306776
+ 20
+4455796.099104798
+  0
+TEXT
+  5
+1DE
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399176.46826583776
+ 20
+4455803.652880841
+ 30
+0.0
+ 40
+1.2
+  1
+V25
+ 50
+159.6
+ 72
+1
+ 11
+399176.46826583776
+ 21
+4455803.652880841
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1DF
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399182.84988054266
+ 20
+4455811.201886985
+ 10
+399173.75824524456
+ 20
+4455814.583035844
+ 10
+399171.59709855117
+ 20
+4455808.771887509
+ 10
+399180.68873384927
+ 20
+4455805.39073865
+  0
+LWPOLYLINE
+  5
+1E0
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399184.5958591179
+ 20
+4455810.445871896
+ 10
+399182.8150233379
+ 20
+4455811.108158786
+ 10
+399180.723591054
+ 20
+4455805.484466849
+ 10
+399182.504426834
+ 20
+4455804.822179959
+  0
+LWPOLYLINE
+  5
+1E1
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399173.75824524456
+ 20
+4455814.583035844
+ 10
+399169.0718352971
+ 20
+4455816.325896081
+ 10
+399166.9106886037
+ 20
+4455810.514747745
+ 10
+399171.59709855117
+ 20
+4455808.771887509
+  0
+LWPOLYLINE
+  5
+1E2
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399172.1025280198
+ 20
+4455810.130946394
+ 10
+399167.41611807235
+ 20
+4455811.87380663
+ 10
+399168.304976793
+ 20
+4455814.263875703
+ 10
+399169.19383551367
+ 20
+4455816.653944777
+ 10
+399173.8802454611
+ 20
+4455814.91108454
+ 10
+399172.99138674047
+ 20
+4455812.521015467
+  0
+LWPOLYLINE
+  5
+1E3
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399180.68873384927
+ 20
+4455805.39073865
+ 10
+399182.84988054266
+ 20
+4455811.201886985
+ 10
+399192.2929919703
+ 20
+4455807.690025325
+ 10
+399190.089661324
+ 20
+4455801.894565062
+  0
+TEXT
+  5
+1E4
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399177.2234895469
+ 20
+4455809.986887247
+ 30
+0.0
+ 40
+1.2
+  1
+V26
+ 50
+159.6
+ 72
+1
+ 11
+399177.2234895469
+ 21
+4455809.986887247
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1E5
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399185.01102723606
+ 20
+4455817.01303532
+ 10
+399175.91939193796
+ 20
+4455820.394184179
+ 10
+399173.75824524456
+ 20
+4455814.583035844
+ 10
+399182.84988054266
+ 20
+4455811.201886985
+  0
+LWPOLYLINE
+  5
+1E6
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399186.7570058113
+ 20
+4455816.257020231
+ 10
+399184.9761700313
+ 20
+4455816.919307121
+ 10
+399182.8847377474
+ 20
+4455811.295615184
+ 10
+399184.6655735274
+ 20
+4455810.633328294
+  0
+LWPOLYLINE
+  5
+1E7
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399175.91939193796
+ 20
+4455820.394184179
+ 10
+399171.2329819905
+ 20
+4455822.137044416
+ 10
+399169.0718352971
+ 20
+4455816.325896081
+ 10
+399173.75824524456
+ 20
+4455814.583035844
+  0
+LWPOLYLINE
+  5
+1E8
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399173.75824524456
+ 20
+4455814.583035844
+ 10
+399169.0718352971
+ 20
+4455816.325896081
+ 10
+399169.96069401776
+ 20
+4455818.715965154
+ 10
+399170.8495527384
+ 20
+4455821.106034227
+ 10
+399175.5359626859
+ 20
+4455819.3631739905
+ 10
+399174.6471039652
+ 20
+4455816.973104917
+  0
+LWPOLYLINE
+  5
+1E9
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399182.84988054266
+ 20
+4455811.201886985
+ 10
+399185.01102723606
+ 20
+4455817.01303532
+ 10
+399194.49632261664
+ 20
+4455813.485485588
+ 10
+399192.2929919703
+ 20
+4455807.690025325
+  0
+TEXT
+  5
+1EA
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399179.3846362403
+ 20
+4455815.798035582
+ 30
+0.0
+ 40
+1.2
+  1
+V27
+ 50
+159.6
+ 72
+1
+ 11
+399179.3846362403
+ 21
+4455815.798035582
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1EB
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399188.57809691364
+ 20
+4455822.301325584
+ 10
+399179.4864616156
+ 20
+4455825.682474443
+ 10
+399177.3253149222
+ 20
+4455819.8713261075
+ 10
+399186.4169502203
+ 20
+4455816.490177249
+  0
+LWPOLYLINE
+  5
+1EC
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399190.32407548896
+ 20
+4455821.5453104945
+ 10
+399188.54323970893
+ 20
+4455822.207597385
+ 10
+399186.451807425
+ 20
+4455816.583905448
+ 10
+399188.23264320503
+ 20
+4455815.921618558
+  0
+LWPOLYLINE
+  5
+1ED
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399178.08053863136
+ 20
+4455826.205332514
+ 10
+399173.3941286839
+ 20
+4455827.94819275
+ 10
+399171.2329819905
+ 20
+4455822.137044416
+ 10
+399175.91939193796
+ 20
+4455820.394184179
+  0
+LWPOLYLINE
+  5
+1EE
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399176.4248214066
+ 20
+4455821.753243064
+ 10
+399171.73841145914
+ 20
+4455823.496103301
+ 10
+399172.6272701798
+ 20
+4455825.886172374
+ 10
+399173.51612890046
+ 20
+4455828.276241447
+ 10
+399178.2025388479
+ 20
+4455826.53338121
+ 10
+399177.31368012726
+ 20
+4455824.143312137
+  0
+LWPOLYLINE
+  5
+1EF
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399186.4169502203
+ 20
+4455816.490177249
+ 10
+399188.57809691364
+ 20
+4455822.301325584
+ 10
+399196.699653263
+ 20
+4455819.2809458515
+ 10
+399194.49632261664
+ 20
+4455813.485485588
+  0
+TEXT
+  5
+1F0
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399182.95170591795
+ 20
+4455821.086325846
+ 30
+0.0
+ 40
+1.2
+  1
+V28
+ 50
+159.6
+ 72
+1
+ 11
+399182.95170591795
+ 21
+4455821.086325846
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1F1
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399190.73924360704
+ 20
+4455828.112473919
+ 10
+399181.647608309
+ 20
+4455831.493622778
+ 10
+399179.4864616156
+ 20
+4455825.682474443
+ 10
+399188.57809691364
+ 20
+4455822.301325584
+  0
+LWPOLYLINE
+  5
+1F2
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399192.48522218235
+ 20
+4455827.35645883
+ 10
+399190.7043864023
+ 20
+4455828.018745719
+ 10
+399188.6129541184
+ 20
+4455822.3950537825
+ 10
+399190.39378989843
+ 20
+4455821.732766893
+  0
+LWPOLYLINE
+  5
+1F3
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399180.24168532476
+ 20
+4455832.016480848
+ 10
+399175.5552753773
+ 20
+4455833.759341085
+ 10
+399173.3941286839
+ 20
+4455827.94819275
+ 10
+399178.08053863136
+ 20
+4455826.205332514
+  0
+LWPOLYLINE
+  5
+1F4
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399178.08053863136
+ 20
+4455826.205332514
+ 10
+399173.3941286839
+ 20
+4455827.94819275
+ 10
+399174.28298740456
+ 20
+4455830.338261823
+ 10
+399175.1718461252
+ 20
+4455832.728330897
+ 10
+399179.8582560727
+ 20
+4455830.98547066
+ 10
+399178.969397352
+ 20
+4455828.595401587
+  0
+LWPOLYLINE
+  5
+1F5
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399188.57809691364
+ 20
+4455822.301325584
+ 10
+399190.73924360704
+ 20
+4455828.112473919
+ 10
+399198.90298390936
+ 20
+4455825.076406116
+ 10
+399196.699653263
+ 20
+4455819.2809458515
+  0
+TEXT
+  5
+1F6
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399185.11285261135
+ 20
+4455826.897474181
+ 30
+0.0
+ 40
+1.2
+  1
+V29
+ 50
+159.6
+ 72
+1
+ 11
+399185.11285261135
+ 21
+4455826.897474181
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1F7
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399191.4944673162
+ 20
+4455834.4464803245
+ 10
+399182.40283201815
+ 20
+4455837.827629183
+ 10
+399180.24168532476
+ 20
+4455832.016480848
+ 10
+399189.3333206228
+ 20
+4455828.635331989
+  0
+LWPOLYLINE
+  5
+1F8
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399193.2404458915
+ 20
+4455833.690465235
+ 10
+399191.4596101115
+ 20
+4455834.352752126
+ 10
+399189.36817782756
+ 20
+4455828.729060189
+ 10
+399191.1490136076
+ 20
+4455828.066773298
+  0
+LWPOLYLINE
+  5
+1F9
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399182.40283201815
+ 20
+4455837.827629183
+ 10
+399177.7164220707
+ 20
+4455839.57048942
+ 10
+399175.5552753773
+ 20
+4455833.759341085
+ 10
+399180.24168532476
+ 20
+4455832.016480848
+  0
+LWPOLYLINE
+  5
+1FA
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399180.7471147934
+ 20
+4455833.375539733
+ 10
+399176.06070484594
+ 20
+4455835.11839997
+ 10
+399176.9495635666
+ 20
+4455837.508469043
+ 10
+399177.83842228726
+ 20
+4455839.898538116
+ 10
+399182.5248322347
+ 20
+4455838.15567788
+ 10
+399181.63597351406
+ 20
+4455835.765608806
+  0
+LWPOLYLINE
+  5
+1FB
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399189.3333206228
+ 20
+4455828.635331989
+ 10
+399191.4944673162
+ 20
+4455834.4464803245
+ 10
+399201.1063145557
+ 20
+4455830.871866379
+ 10
+399198.90298390936
+ 20
+4455825.076406116
+  0
+TEXT
+  5
+1FC
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399185.8680763205
+ 20
+4455833.231480586
+ 30
+0.0
+ 40
+1.2
+  1
+V30
+ 50
+159.6
+ 72
+1
+ 11
+399185.8680763205
+ 21
+4455833.231480586
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+1FD
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399193.6556140096
+ 20
+4455840.25762866
+ 10
+399184.56397871155
+ 20
+4455843.638777519
+ 10
+399182.40283201815
+ 20
+4455837.827629183
+ 10
+399191.4944673162
+ 20
+4455834.4464803245
+  0
+LWPOLYLINE
+  5
+1FE
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399195.4015925849
+ 20
+4455839.50161357
+ 10
+399193.6207568049
+ 20
+4455840.16390046
+ 10
+399191.52932452096
+ 20
+4455834.540208523
+ 10
+399193.310160301
+ 20
+4455833.877921633
+  0
+LWPOLYLINE
+  5
+1FF
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399184.56397871155
+ 20
+4455843.638777519
+ 10
+399179.8775687641
+ 20
+4455845.381637755
+ 10
+399177.7164220707
+ 20
+4455839.57048942
+ 10
+399182.40283201815
+ 20
+4455837.827629183
+  0
+LWPOLYLINE
+  5
+200
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399182.40283201815
+ 20
+4455837.827629183
+ 10
+399177.7164220707
+ 20
+4455839.57048942
+ 10
+399178.60528079135
+ 20
+4455841.960558494
+ 10
+399179.494139512
+ 20
+4455844.350627567
+ 10
+399184.1805494595
+ 20
+4455842.60776733
+ 10
+399183.2916907388
+ 20
+4455840.2176982565
+  0
+LWPOLYLINE
+  5
+201
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399191.4944673162
+ 20
+4455834.4464803245
+ 10
+399193.6556140096
+ 20
+4455840.25762866
+ 10
+399203.309645202
+ 20
+4455836.667326642
+ 10
+399201.1063145557
+ 20
+4455830.871866379
+  0
+TEXT
+  5
+202
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399188.0292230139
+ 20
+4455839.042628922
+ 30
+0.0
+ 40
+1.2
+  1
+V31
+ 50
+159.6
+ 72
+1
+ 11
+399188.0292230139
+ 21
+4455839.042628922
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+203
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399197.2226836872
+ 20
+4455845.545918923
+ 10
+399188.1310483892
+ 20
+4455848.927067782
+ 10
+399185.9699016958
+ 20
+4455843.1159194475
+ 10
+399195.06153699383
+ 20
+4455839.734770589
+  0
+LWPOLYLINE
+  5
+204
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399198.96866226254
+ 20
+4455844.789903834
+ 10
+399197.1878264825
+ 20
+4455845.452190724
+ 10
+399195.0963941986
+ 20
+4455839.828498787
+ 10
+399196.8772299786
+ 20
+4455839.1662118975
+  0
+LWPOLYLINE
+  5
+205
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399186.72512540495
+ 20
+4455849.449925853
+ 10
+399182.0387154575
+ 20
+4455851.19278609
+ 10
+399179.8775687641
+ 20
+4455845.381637755
+ 10
+399184.56397871155
+ 20
+4455843.638777519
+  0
+LWPOLYLINE
+  5
+206
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399185.06940818013
+ 20
+4455844.997836403
+ 10
+399180.3829982327
+ 20
+4455846.74069664
+ 10
+399181.2718569534
+ 20
+4455849.130765713
+ 10
+399182.16071567405
+ 20
+4455851.520834786
+ 10
+399186.8471256215
+ 20
+4455849.77797455
+ 10
+399185.95826690085
+ 20
+4455847.387905477
+  0
+LWPOLYLINE
+  5
+207
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399195.06153699383
+ 20
+4455839.734770589
+ 10
+399197.2226836872
+ 20
+4455845.545918923
+ 10
+399205.5129758484
+ 20
+4455842.4627869055
+ 10
+399203.309645202
+ 20
+4455836.667326642
+  0
+TEXT
+  5
+208
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399191.59629269154
+ 20
+4455844.330919186
+ 30
+0.0
+ 40
+1.2
+  1
+V32
+ 50
+159.6
+ 72
+1
+ 11
+399191.59629269154
+ 21
+4455844.330919186
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+209
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399199.3838303806
+ 20
+4455851.357067258
+ 10
+399190.2921950826
+ 20
+4455854.738216117
+ 10
+399188.1310483892
+ 20
+4455848.927067782
+ 10
+399197.2226836872
+ 20
+4455845.545918923
+  0
+LWPOLYLINE
+  5
+20A
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399201.12980895594
+ 20
+4455850.601052169
+ 10
+399199.3489731759
+ 20
+4455851.263339059
+ 10
+399197.257540892
+ 20
+4455845.6396471225
+ 10
+399199.038376672
+ 20
+4455844.977360232
+  0
+LWPOLYLINE
+  5
+20B
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399188.88627209835
+ 20
+4455855.261074188
+ 10
+399184.1998621509
+ 20
+4455857.003934424
+ 10
+399182.0387154575
+ 20
+4455851.19278609
+ 10
+399186.72512540495
+ 20
+4455849.449925853
+  0
+LWPOLYLINE
+  5
+20C
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399186.72512540495
+ 20
+4455849.449925853
+ 10
+399182.0387154575
+ 20
+4455851.19278609
+ 10
+399182.92757417815
+ 20
+4455853.582855163
+ 10
+399183.8164328988
+ 20
+4455855.972924236
+ 10
+399188.50284284627
+ 20
+4455854.230064
+ 10
+399187.6139841256
+ 20
+4455851.839994926
+  0
+LWPOLYLINE
+  5
+20D
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399197.2226836872
+ 20
+4455845.545918923
+ 10
+399199.3838303806
+ 20
+4455851.357067258
+ 10
+399207.7163064947
+ 20
+4455848.258247169
+ 10
+399205.5129758484
+ 20
+4455842.4627869055
+  0
+TEXT
+  5
+20E
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399193.75743938494
+ 20
+4455850.14206752
+ 30
+0.0
+ 40
+1.2
+  1
+V33
+ 50
+159.6
+ 72
+1
+ 11
+399193.75743938494
+ 21
+4455850.14206752
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+LWPOLYLINE
+  5
+20F
+330
+17
+100
+AcDbEntity
+  8
+VILLA
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399200.1390540898
+ 20
+4455857.6910736635
+ 10
+399191.04741879174
+ 20
+4455861.072222522
+ 10
+399188.88627209835
+ 20
+4455855.261074188
+ 10
+399197.9779073964
+ 20
+4455851.879925329
+  0
+LWPOLYLINE
+  5
+210
+330
+17
+100
+AcDbEntity
+  8
+BALKON
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399201.8850326651
+ 20
+4455856.935058575
+ 10
+399200.1041968851
+ 20
+4455857.597345465
+ 10
+399198.01276460115
+ 20
+4455851.973653528
+ 10
+399199.7936003812
+ 20
+4455851.311366638
+  0
+LWPOLYLINE
+  5
+211
+330
+17
+100
+AcDbEntity
+  8
+OTOPARK
+100
+AcDbPolyline
+ 90
+4
+ 70
+1
+ 10
+399191.04741879174
+ 20
+4455861.072222522
+ 10
+399186.3610088443
+ 20
+4455862.81508276
+ 10
+399184.1998621509
+ 20
+4455857.003934424
+ 10
+399188.88627209835
+ 20
+4455855.261074188
+  0
+LWPOLYLINE
+  5
+212
+330
+17
+100
+AcDbEntity
+  8
+PARK_YERI
+100
+AcDbPolyline
+ 90
+6
+ 70
+1
+ 10
+399189.3917015669
+ 20
+4455856.620133073
+ 10
+399184.70529161947
+ 20
+4455858.362993309
+ 10
+399185.5941503402
+ 20
+4455860.753062382
+ 10
+399186.48300906084
+ 20
+4455863.143131455
+ 10
+399191.1694190083
+ 20
+4455861.400271219
+ 10
+399190.28056028765
+ 20
+4455859.010202146
+  0
+LWPOLYLINE
+  5
+213
+330
+17
+100
+AcDbEntity
+  8
+BAHCE
+100
+AcDbPolyline
+ 90
+5
+ 70
+1
+ 10
+399197.9779073964
+ 20
+4455851.879925329
+ 10
+399200.1390540898
+ 20
+4455857.6910736635
+ 10
+399208.73564726464
+ 20
+4455854.49402932
+ 10
+399209.3227351387
+ 20
+4455852.48366535
+ 10
+399207.7163064947
+ 20
+4455848.258247169
+  0
+TEXT
+  5
+214
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399194.5126630941
+ 20
+4455856.476073926
+ 30
+0.0
+ 40
+1.2
+  1
+V34
+ 50
+159.6
+ 72
+1
+ 11
+399194.5126630941
+ 21
+4455856.476073926
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+TEXT
+  5
+215
+330
+17
+100
+AcDbEntity
+  8
+YAZI
+100
+AcDbText
+ 10
+399197.178540223
+ 20
+4455804.9764728565
+ 30
+0.0
+ 40
+2.0
+  1
+169 ADA 1 + 2 PARSEL
+ 50
+69.6
+ 72
+1
+ 11
+399197.178540223
+ 21
+4455804.9764728565
+ 31
+0.0
+100
+AcDbText
+ 73
+2
+  0
+ENDSEC
+  0
+SECTION
+  2
+OBJECTS
+  0
+DICTIONARY
+  5
+A
+330
+0
+100
+AcDbDictionary
+281
+1
+  3
+ACAD_COLOR
+350
+B
+  3
+ACAD_GROUP
+350
+C
+  3
+ACAD_LAYOUT
+350
+D
+  3
+ACAD_MATERIAL
+350
+E
+  3
+ACAD_MLEADERSTYLE
+350
+F
+  3
+ACAD_MLINESTYLE
+350
+10
+  3
+ACAD_PLOTSETTINGS
+350
+11
+  3
+ACAD_PLOTSTYLENAME
+350
+12
+  3
+ACAD_SCALELIST
+350
+14
+  3
+ACAD_TABLESTYLE
+350
+15
+  3
+ACAD_VISUALSTYLE
+350
+16
+  3
+EZDXF_META
+350
+2D
+  0
+DICTIONARY
+  5
+B
+330
+A
+100
+AcDbDictionary
+281
+1
+  0
+DICTIONARY
+  5
+C
+330
+A
+100
+AcDbDictionary
+281
+1
+  0
+DICTIONARY
+  5
+D
+330
+A
+100
+AcDbDictionary
+281
+1
+  3
+Model
+350
+1A
+  3
+Layout1
+350
+1E
+  0
+DICTIONARY
+  5
+E
+330
+A
+100
+AcDbDictionary
+281
+1
+  3
+ByBlock
+350
+1F
+  3
+ByLayer
+350
+20
+  3
+Global
+350
+21
+  0
+DICTIONARY
+  5
+F
+330
+A
+100
+AcDbDictionary
+281
+1
+  3
+Standard
+350
+2C
+  0
+DICTIONARY
+  5
+10
+330
+A
+100
+AcDbDictionary
+281
+1
+  3
+Standard
+350
+22
+  0
+DICTIONARY
+  5
+11
+330
+A
+100
+AcDbDictionary
+281
+1
+  0
+ACDBDICTIONARYWDFLT
+  5
+12
+330
+A
+100
+AcDbDictionary
+281
+1
+  3
+Normal
+350
+13
+100
+AcDbDictionaryWithDefault
+340
+13
+  0
+ACDBPLACEHOLDER
+  5
+13
+330
+12
+  0
+DICTIONARY
+  5
+14
+330
+A
+100
+AcDbDictionary
+281
+1
+  0
+DICTIONARY
+  5
+15
+330
+A
+100
+AcDbDictionary
+281
+1
+  0
+DICTIONARY
+  5
+16
+330
+A
+100
+AcDbDictionary
+281
+1
+  3
+2dWireframe
+350
+5A
+  3
+Basic
+350
+5B
+  3
+Brighten
+350
+5C
+  3
+ColorChange
+350
+5D
+  3
+Conceptual
+350
+5E
+  3
+Dim
+350
+5F
+  3
+EdgeColorOff
+350
+60
+  3
+Facepattern
+350
+61
+  3
+Flat
+350
+62
+  3
+FlatWithEdges
+350
+63
+  3
+Gouraud
+350
+64
+  3
+GouraudWithEdges
+350
+65
+  3
+Hidden
+350
+66
+  3
+JitterOff
+350
+67
+  3
+Linepattern
+350
+68
+  3
+Modeling
+350
+69
+  3
+OverhangOff
+350
+6A
+  3
+Realistic
+350
+6B
+  3
+Shaded
+350
+6C
+  3
+Shaded with edges
+350
+6D
+  3
+Shades of Gray
+350
+6E
+  3
+Sketchy
+350
+6F
+  3
+Thicken
+350
+70
+  3
+Wireframe
+350
+71
+  3
+X-Ray
+350
+72
+  0
+LAYOUT
+  5
+1A
+330
+D
+100
+AcDbPlotSettings
+  1
+
+  4
+A3
+  6
+
+ 40
+7.5
+ 41
+20.0
+ 42
+7.5
+ 43
+20.0
+ 44
+420.0
+ 45
+297.0
+ 46
+0.0
+ 47
+0.0
+ 48
+0.0
+ 49
+0.0
+140
+0.0
+141
+0.0
+142
+1.0
+143
+1.0
+ 70
+1024
+ 72
+1
+ 73
+0
+ 74
+5
+  7
+
+ 75
+16
+ 76
+0
+ 77
+2
+ 78
+300
+147
+1.0
+148
+0.0
+149
+0.0
+100
+AcDbLayout
+  1
+Model
+ 70
+1
+ 71
+0
+ 10
+0.0
+ 20
+0.0
+ 11
+420.0
+ 21
+297.0
+ 12
+0.0
+ 22
+0.0
+ 32
+0.0
+ 14
+1e+20
+ 24
+1e+20
+ 34
+1e+20
+ 15
+-1e+20
+ 25
+-1e+20
+ 35
+-1e+20
+146
+0.0
+ 13
+0.0
+ 23
+0.0
+ 33
+0.0
+ 16
+1.0
+ 26
+0.0
+ 36
+0.0
+ 17
+0.0
+ 27
+1.0
+ 37
+0.0
+ 76
+1
+330
+17
+  0
+LAYOUT
+  5
+1E
+330
+D
+100
+AcDbPlotSettings
+  1
+
+  4
+A3
+  6
+
+ 40
+7.5
+ 41
+20.0
+ 42
+7.5
+ 43
+20.0
+ 44
+420.0
+ 45
+297.0
+ 46
+0.0
+ 47
+0.0
+ 48
+0.0
+ 49
+0.0
+140
+0.0
+141
+0.0
+142
+1.0
+143
+1.0
+ 70
+0
+ 72
+1
+ 73
+0
+ 74
+5
+  7
+
+ 75
+16
+ 76
+0
+ 77
+2
+ 78
+300
+147
+1.0
+148
+0.0
+149
+0.0
+100
+AcDbLayout
+  1
+Layout1
+ 70
+1
+ 71
+1
+ 10
+0.0
+ 20
+0.0
+ 11
+420.0
+ 21
+297.0
+ 12
+0.0
+ 22
+0.0
+ 32
+0.0
+ 14
+1e+20
+ 24
+1e+20
+ 34
+1e+20
+ 15
+-1e+20
+ 25
+-1e+20
+ 35
+-1e+20
+146
+0.0
+ 13
+0.0
+ 23
+0.0
+ 33
+0.0
+ 16
+1.0
+ 26
+0.0
+ 36
+0.0
+ 17
+0.0
+ 27
+1.0
+ 37
+0.0
+ 76
+1
+330
+1B
+  0
+MATERIAL
+  5
+1F
+102
+{ACAD_REACTORS
+330
+E
+102
+}
+330
+E
+100
+AcDbMaterial
+  1
+ByBlock
+  2
+
+ 70
+0
+ 40
+1.0
+ 71
+1
+ 41
+1.0
+ 91
+-1023410177
+ 42
+1.0
+ 72
+1
+  3
+
+ 73
+1
+ 74
+1
+ 75
+1
+ 44
+0.5
+ 73
+0
+ 45
+1.0
+ 46
+1.0
+ 77
+1
+  4
+
+ 78
+1
+ 79
+1
+170
+1
+ 48
+1.0
+171
+1
+  6
+
+172
+1
+173
+1
+174
+1
+140
+1.0
+141
+1.0
+175
+1
+  7
+
+176
+1
+177
+1
+178
+1
+143
+1.0
+179
+1
+  8
+
+270
+1
+271
+1
+272
+1
+145
+1.0
+146
+1.0
+273
+1
+  9
+
+274
+1
+275
+1
+276
+1
+ 42
+1.0
+ 72
+1
+  3
+
+ 73
+1
+ 74
+1
+ 75
+1
+ 94
+63
+  0
+MATERIAL
+  5
+20
+102
+{ACAD_REACTORS
+330
+E
+102
+}
+330
+E
+100
+AcDbMaterial
+  1
+ByLayer
+  2
+
+ 70
+0
+ 40
+1.0
+ 71
+1
+ 41
+1.0
+ 91
+-1023410177
+ 42
+1.0
+ 72
+1
+  3
+
+ 73
+1
+ 74
+1
+ 75
+1
+ 44
+0.5
+ 73
+0
+ 45
+1.0
+ 46
+1.0
+ 77
+1
+  4
+
+ 78
+1
+ 79
+1
+170
+1
+ 48
+1.0
+171
+1
+  6
+
+172
+1
+173
+1
+174
+1
+140
+1.0
+141
+1.0
+175
+1
+  7
+
+176
+1
+177
+1
+178
+1
+143
+1.0
+179
+1
+  8
+
+270
+1
+271
+1
+272
+1
+145
+1.0
+146
+1.0
+273
+1
+  9
+
+274
+1
+275
+1
+276
+1
+ 42
+1.0
+ 72
+1
+  3
+
+ 73
+1
+ 74
+1
+ 75
+1
+ 94
+63
+  0
+MATERIAL
+  5
+21
+102
+{ACAD_REACTORS
+330
+E
+102
+}
+330
+E
+100
+AcDbMaterial
+  1
+Global
+  2
+
+ 70
+0
+ 40
+1.0
+ 71
+1
+ 41
+1.0
+ 91
+-1023410177
+ 42
+1.0
+ 72
+1
+  3
+
+ 73
+1
+ 74
+1
+ 75
+1
+ 44
+0.5
+ 73
+0
+ 45
+1.0
+ 46
+1.0
+ 77
+1
+  4
+
+ 78
+1
+ 79
+1
+170
+1
+ 48
+1.0
+171
+1
+  6
+
+172
+1
+173
+1
+174
+1
+140
+1.0
+141
+1.0
+175
+1
+  7
+
+176
+1
+177
+1
+178
+1
+143
+1.0
+179
+1
+  8
+
+270
+1
+271
+1
+272
+1
+145
+1.0
+146
+1.0
+273
+1
+  9
+
+274
+1
+275
+1
+276
+1
+ 42
+1.0
+ 72
+1
+  3
+
+ 73
+1
+ 74
+1
+ 75
+1
+ 94
+63
+  0
+MLINESTYLE
+  5
+22
+102
+{ACAD_REACTORS
+330
+10
+102
+}
+330
+10
+100
+AcDbMlineStyle
+  2
+Standard
+ 70
+0
+  3
+
+ 62
+256
+ 51
+90.0
+ 52
+90.0
+ 71
+2
+ 49
+0.5
+ 62
+256
+  6
+BYLAYER
+ 49
+-0.5
+ 62
+256
+  6
+BYLAYER
+  0
+MLEADERSTYLE
+  5
+2C
+102
+{ACAD_REACTORS
+330
+F
+102
+}
+330
+F
+100
+AcDbMLeaderStyle
+179
+2
+170
+2
+171
+1
+172
+0
+ 90
+2
+ 40
+0.0
+ 41
+0.0
+173
+1
+ 91
+-1056964608
+ 92
+-2
+290
+1
+ 42
+2.0
+291
+1
+ 43
+8.0
+  3
+Standard
+ 44
+4.0
+300
+
+342
+29
+174
+1
+175
+1
+176
+0
+178
+1
+ 93
+-1056964608
+ 45
+4.0
+292
+0
+297
+0
+ 46
+4.0
+ 94
+-1056964608
+ 47
+1.0
+ 49
+1.0
+140
+1.0
+294
+1
+141
+0.0
+177
+0
+142
+1.0
+295
+0
+296
+0
+143
+3.75
+271
+0
+272
+9
+273
+9
+  0
+DICTIONARY
+  5
+2D
+330
+A
+100
+AcDbDictionary
+280
+1
+281
+1
+  3
+CREATED_BY_EZDXF
+350
+2E
+  3
+WRITTEN_BY_EZDXF
+350
+218
+  0
+DICTIONARYVAR
+  5
+2E
+330
+2D
+100
+DictionaryVariables
+280
+0
+  1
+1.4.5 @ 2026-11-28T10:20:31.191580+00:00
+  0
+VISUALSTYLE
+  5
+5A
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+2dWireframe
+ 70
+4
+ 90
+0
+ 40
+0.6
+ 62
+7
+290
+0
+291
+0
+  0
+VISUALSTYLE
+  5
+5B
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Basic
+ 70
+7
+ 90
+1
+ 40
+0.6
+ 62
+7
+290
+0
+291
+1
+  0
+VISUALSTYLE
+  5
+5C
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Brighten
+ 70
+12
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+1
+  0
+VISUALSTYLE
+  5
+5D
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+ColorChange
+ 70
+16
+ 90
+2
+ 40
+0.6
+ 62
+8
+290
+0
+291
+1
+  0
+VISUALSTYLE
+  5
+5E
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Conceptual
+ 70
+9
+ 90
+3
+ 40
+0.6
+ 62
+7
+290
+0
+291
+0
+  0
+VISUALSTYLE
+  5
+5F
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Dim
+ 70
+11
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+1
+  0
+VISUALSTYLE
+  5
+60
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+EdgeColorOff
+ 70
+22
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+1
+  0
+VISUALSTYLE
+  5
+61
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Facepattern
+ 70
+15
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+1
+  0
+VISUALSTYLE
+  5
+62
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Flat
+ 70
+0
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+1
+  0
+VISUALSTYLE
+  5
+63
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+FlatWithEdges
+ 70
+1
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+1
+  0
+VISUALSTYLE
+  5
+64
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Gouraud
+ 70
+2
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+1
+  0
+VISUALSTYLE
+  5
+65
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+GouraudWithEdges
+ 70
+3
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+1
+  0
+VISUALSTYLE
+  5
+66
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Hidden
+ 70
+6
+ 90
+1
+ 40
+0.6
+ 62
+7
+290
+0
+291
+0
+  0
+VISUALSTYLE
+  5
+67
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+JitterOff
+ 70
+20
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+1
+  0
+VISUALSTYLE
+  5
+68
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Linepattern
+ 70
+14
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+1
+  0
+VISUALSTYLE
+  5
+69
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Modeling
+ 70
+10
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+0
+  0
+VISUALSTYLE
+  5
+6A
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+OverhangOff
+ 70
+21
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+1
+  0
+VISUALSTYLE
+  5
+6B
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Realistic
+ 70
+8
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+0
+  0
+VISUALSTYLE
+  5
+6C
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Shaded
+ 70
+27
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+0
+  0
+VISUALSTYLE
+  5
+6D
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Shaded with edges
+ 70
+26
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+0
+  0
+VISUALSTYLE
+  5
+6E
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Shades of Gray
+ 70
+23
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+0
+  0
+VISUALSTYLE
+  5
+6F
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Sketchy
+ 70
+24
+ 90
+1
+ 40
+0.6
+ 62
+7
+290
+0
+291
+0
+  0
+VISUALSTYLE
+  5
+70
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Thicken
+ 70
+13
+ 90
+2
+ 40
+0.6
+ 62
+7
+290
+0
+291
+1
+  0
+VISUALSTYLE
+  5
+71
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+Wireframe
+ 70
+5
+ 90
+0
+ 40
+0.6
+ 62
+7
+290
+0
+291
+0
+  0
+VISUALSTYLE
+  5
+72
+102
+{ACAD_REACTORS
+330
+16
+102
+}
+330
+16
+100
+AcDbVisualStyle
+  2
+X-Ray
+ 70
+25
+ 90
+2
+ 40
+0.5
+ 62
+7
+290
+0
+291
+0
+  0
+DICTIONARYVAR
+  5
+218
+330
+2D
+100
+DictionaryVariables
+280
+0
+  1
+1.4.5 @ 2026-11-28T10:20:31.213252+00:00
+  0
+ENDSEC
+  0
+EOF
