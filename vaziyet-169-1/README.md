@@ -128,3 +128,13 @@ emsal 0,70 → en çok 4.477,55 m² (villa başı 131,69 m²), TAKS 0,35 → en 
 - 17 + 17 bitişik, ikişerli 1,5 m kademe; otopark girişte toplu (36 yer: 34 + 2 misafir), iç 8 + 8 villa önü araçsız park.
 - Her villanın özel arka bahçesi 8,1–11,2 m derinlikte, 50–69 m²; iç villalarda ayrıca 2,5–4,0 m ön bahçe.
 - 120 m² kapalı alan 3+1'e uygundur; 4+1 için bodrum kat (imarla teyit) gerekir.
+
+## Kullanıcı vaziyeti (U): ölçekli sayısallaştırma ve 3B model
+
+`python kullanici_vaziyet.py` (girdi: `girdi/vaziyet_kullanici.png`). Görseldeki parsel köşeleri tevhitli parsele
+benzerlik dönüşümüyle oturtulur (18,14 px/m, köşe hatası ≤ 0,5 m); bina hatları görüntüden çıkarılır.
+- 5 dörtlü blok (artı biçimli, 14,94 × 22,11 m, bloklar arası 7,50 m) = 20 villa, villa tabanı ≈ 71,5 m²
+- 13 sıra villa (5 + 8), 7,43 × 11,14 m L biçimli, villa tabanı ≈ 71,6 m²
+- iç yol 6,07 m; parsel iki uzun kenarından kamu yoluna cepheli
+- Z+1 kabulüyle taban 2.361 m² (TAKS 0,369), inşaat 4.721 m² (emsal 0,738); sınırlar 0,35 / 0,70
+Çıktılar: `vaziyet_169-1-2_U.pdf/.png/.dxf`, `model_169-1-2_U.glb/.html`, `render/kullanici/`.
